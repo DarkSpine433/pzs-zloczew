@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
@@ -13,7 +14,7 @@ const page = async (props: Props) => {
   })
   return (
     <div>
-      <div>{parse(data.docs[0].nameOfYourRichTextField_html)}</div>{' '}
+      <div>{parse(data.docs[0].nameOfYourRichTextField_html || '')}</div>{' '}
     </div>
   )
 }
