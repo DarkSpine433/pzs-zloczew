@@ -14,7 +14,10 @@ const page = async (props: Props) => {
   })
   return (
     <div>
-      <div>{parse(data.docs[0].nameOfYourRichTextField_html || '')}</div>{' '}
+      <div>
+        {parse(typeof data.docs[0].nameOfYourRichTextField_html === 'undefined' && '') ===
+          'undefined' && ''}
+      </div>
     </div>
   )
 }
