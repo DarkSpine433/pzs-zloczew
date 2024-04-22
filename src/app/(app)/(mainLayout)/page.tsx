@@ -1,6 +1,9 @@
 import React from 'react'
 import Marquee from 'react-fast-marquee'
 import CursorMovmentAnimation from '@/app/components/mainPageComponents/CursorMovmentAnimation'
+import configPromise from '@payload-config'
+import GetOffer from './GetOffer'
+
 type Props = {}
 
 const Opinions = [
@@ -22,6 +25,9 @@ const Opinions = [
 ]
 
 const page = (props: Props) => {
+  const getOffer = async () => {
+    console.log(await fetch('@/app/my-route/route'))
+  }
   return (
     <div className=" space-y-10 ">
       <CursorMovmentAnimation />
@@ -49,6 +55,7 @@ const page = (props: Props) => {
           <img src="/img/mainPage/pzs-1.png" alt="zloczew" className="object-contain w-max " />
         </div>
       </section>
+      <GetOffer />
     </div>
   )
 }
