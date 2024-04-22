@@ -1,16 +1,17 @@
 //@ts-nocheck
-import { getPayloadHMR } from '@payloadcms/next/utilities'
-import config from '@payload-config'
+
+import configPromise from '@payload-config'
+import { getPayload } from 'payload'
 
 type Props = {}
 
 const GetOffer = async (props: Props) => {
-  const payload = await getPayloadHMR({ config })
+  const payload = await getPayload({ config: configPromise })
   const getOffer = await payload.find({
     collection: 'offer',
   })
   return (
-    <div>
+    <section>
       <h1>
         {getOffer.docs.map((offer) => {
           return (
@@ -20,7 +21,7 @@ const GetOffer = async (props: Props) => {
           )
         }) || ''}
       </h1>
-    </div>
+    </section>
   )
 }
 export default GetOffer
