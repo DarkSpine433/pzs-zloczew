@@ -11,7 +11,7 @@ const page = async (props: Props) => {
   const data = await payload.find({
     collection: 'pages',
   })
-  const parseDat = parse(data.docs[0].nameOfYourRichTextField_html)
+  const parseDat = parse(data?.docs[0]?.nameOfYourRichTextField_html)
   return (
     <div>
       <div>{parseDat}</div>
