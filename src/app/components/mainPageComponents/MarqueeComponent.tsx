@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+
 import Marquee from 'react-fast-marquee'
 const Opinions = [
   {
@@ -22,17 +22,15 @@ type Props = {}
 const MarqueeComponent = (props: Props) => {
   return (
     <Marquee autoFill={true} gradient={true} gradientWidth={30}>
-      <div>
-        {Opinions.map(({ imie, opinia }) => (
-          <div
-            className="p-3 ml-2 bg-foreground text-white rounded-lg  overflow-hidden shadow-sm shadow-primary "
-            key={imie + opinia}
-          >
-            <div className="font-bold">{imie}</div>
-            <div className="w-60">{opinia}</div>
-          </div>
-        )) || ''}
-      </div>
+      {Opinions.map(({ imie, opinia }) => (
+        <div
+          className="p-3 ml-2 bg-foreground text-white rounded-lg  overflow-hidden shadow-sm shadow-primary "
+          key={imie + opinia}
+        >
+          <div className="font-bold">{imie}</div>
+          <div className="w-60">{opinia}</div>
+        </div>
+      ))}
     </Marquee>
   )
 }
