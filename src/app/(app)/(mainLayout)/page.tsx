@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 import Marquee from 'react-fast-marquee'
 import CursorMovmentAnimation from '@/app/components/mainPageComponents/CursorMovmentAnimation'

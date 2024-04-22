@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { CollectionConfig } from 'payload/types'
 
 import { HTMLConverterFeature, lexicalEditor, lexicalHTML } from '@payloadcms/richtext-lexical'

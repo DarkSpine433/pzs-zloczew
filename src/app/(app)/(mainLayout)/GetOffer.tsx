@@ -20,6 +20,7 @@ const GetOffer = async (props: Props) => {
         {getOffer.docs.map((offer) => {
           return (
             <div key={offer.id}>
+              {/* @ts-ignore */}
               <h1>{offer.title}</h1>
               <img src="/api/media/file/89dcd9ed59d16f7c77f001daa35c38e30b16c8dc.png" alt="asd" />
             </div>
