@@ -1,13 +1,13 @@
 //@ts-nocheck
 import React from 'react'
-import { getPayload } from 'payload'
+import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@payload-config'
 import parse from 'html-react-parser'
 import './style.css'
 type Props = {}
 
 const page = async (props: Props) => {
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayloadHMR({ config: configPromise })
   const data = await payload.find({
     collection: 'pages',
   })
