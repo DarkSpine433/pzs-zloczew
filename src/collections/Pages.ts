@@ -5,6 +5,9 @@ import { HTMLConverterFeature, lexicalEditor, lexicalHTML } from '@payloadcms/ri
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       name: 'nameOfYourRichTextField',
