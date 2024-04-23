@@ -33,8 +33,11 @@ const ShowMenu = () => {
         </SheetHeader>
         <div className="py-5">
           <menu>
+            {' '}
             <Link href="/">
-              <li>asdf</li>
+              <SheetClose>
+                <li>asdf</li>
+              </SheetClose>
             </Link>
             <li>asdf</li>
           </menu>

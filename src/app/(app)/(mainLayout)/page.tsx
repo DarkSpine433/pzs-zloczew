@@ -1,13 +1,9 @@
-// @ts-nocheck
-import React from 'react'
 import CursorMovmentAnimation from '@/app/components/mainPageComponents/CursorMovmentAnimation'
 
 import MarqueeComponent from '@/app/components/mainPageComponents/MarqueeComponent'
 import Image from 'next/image'
-import dynamic from 'next/dynamic'
-const GetOffer = dynamic(() => import('./GetOffer'), {
-  ssr: false,
-})
+import GetOffer from './GetOffer'
+
 type Props = {}
 
 const page = (props: Props) => {
@@ -15,7 +11,7 @@ const page = (props: Props) => {
     <div className=" space-y-10 ">
       <CursorMovmentAnimation />
 
-      <hr className=" w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent border-none " />
+      <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent via-primary/50 to-transparent border-none p-0 " />
       <h2
         id="discover"
         className=" scroll-m-20 text-center font-bold text-4xl py-5 uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]"

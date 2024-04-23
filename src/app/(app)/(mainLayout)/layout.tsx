@@ -1,3 +1,4 @@
+import '../globals.css'
 import Footer from '@/app/components/mainLayout/Footer'
 import Nav from '@/app/components/mainLayout/Nav'
 

@@ -11,13 +11,37 @@ export const Offer: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
-      required: true,
+      name: 'color', // required
+      type: 'radio', // required
+      options: [
+        // required
+        {
+          label: 'Mint',
+          value: 'mint',
+        },
+        {
+          label: 'Dark Gray',
+          value: 'dark_gray',
+        },
+      ],
+      defaultValue: 'mint', // The first value in options.
+      admin: {
+        layout: 'horizontal',
+      },
     },
     {
-      name: 'asd',
-      type: 'richText',
+      type: 'text',
+      name: 'title',
+
+      admin: {
+        condition: (data, siblingData, { user }) => {
+          if (data.color == 'Mint') {
+            return true
+          } else {
+            return false
+          }
+        },
+      },
     },
   ],
 }

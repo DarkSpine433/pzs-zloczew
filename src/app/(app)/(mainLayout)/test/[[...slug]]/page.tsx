@@ -19,7 +19,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
   const parseDat = parse(data?.docs[0]?.nameOfYourRichTextField_html, {
     replace({ name, children, attribs }) {
       if (name === 'img') {
-        return <Image {...attribs} />
+        return <Image {...attribs} height={100} width={100} alt={'asd'} />
       }
     },
   })
