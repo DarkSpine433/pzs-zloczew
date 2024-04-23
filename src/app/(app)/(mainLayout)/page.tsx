@@ -1,9 +1,13 @@
 // @ts-nocheck
 import React from 'react'
 import CursorMovmentAnimation from '@/app/components/mainPageComponents/CursorMovmentAnimation'
-import GetOffer from './GetOffer'
+
 import MarqueeComponent from '@/app/components/mainPageComponents/MarqueeComponent'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
+const GetOffer = dynamic(() => import('./GetOffer'), {
+  ssr: false,
+})
 type Props = {}
 
 const page = (props: Props) => {
