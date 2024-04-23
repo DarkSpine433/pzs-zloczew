@@ -9,9 +9,12 @@ import './style.css'
 type Props = {}
 const getPages = unstable_cache(async () => {
   const payload = await getPayloadHMR({ config: configPromise })
-  const data = await payload.find({
-    collection: 'pages',
-  })
+  const data = await payload.find(
+    {
+      collection: 'pages',
+    },
+    { next: { revalidate: 5 } },
+  )
   const parseDat = parse(data?.docs[0]?.nameOfYourRichTextField_html, {
     replace({ name, children, attribs }) {
       if (name === 'img') {
