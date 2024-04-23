@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import { useRef } from 'react'
+import Image from 'next/image'
 
 type Props = {}
 
@@ -68,51 +69,72 @@ const CursorMovmentAnimation = (props: Props) => {
       {/*Interactive Imgaes*/}
       <div className=" h-fit absolute hidden -z-10 top-0 right-0  overflow-hidden md:flex justify-end">
         <div className=" size-fit relative [perspective:150px] ">
-          <motion.img
-            style={{
-              rotateX: transformPostionX,
-              rotateY: transformPostionY,
-              transformStyle: 'preserve-3d',
-              transition: `all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
-            }}
-            src="/img/mainPage/notebook-front-color.png"
-            alt="zloczew"
-            className="w-max object-cover size-[600px] hidden lg:block "
-          />
-          <motion.img
-            style={{
-              rotateX: transformPostionX,
-              rotateY: transformPostionY,
-              transformStyle: 'preserve-3d',
-              transition: `all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
-            }}
-            src="/img/mainPage/notebook-front-premium.png"
-            alt="zloczew"
-            className="w-max object-cover size-[600px] block lg:hidden "
-          />
-          <motion.img
+          <motion.div
             style={{
               rotateX: transformPostionX,
               rotateY: transformPostionY,
               transformStyle: 'preserve-3d',
               transition: `all 2s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
             }}
-            src="/img/mainPage/calender-dynamic-color.png"
-            alt="zloczew"
-            className="object-cover size-[180px] absolute top-0 right-20"
-          />
-          <motion.img
+            className=" object-cover h-fit w-fit"
+          >
+            <Image
+              src="/img/mainPage/notebook-front-color.png"
+              alt="zloczew"
+              width={600}
+              height={600}
+              quality={100}
+              className="hidden lg:block"
+              priority={true}
+            />
+            <Image
+              src="/img/mainPage/notebook-front-premium.png"
+              alt="zloczew"
+              width={600}
+              height={600}
+              quality={100}
+              className="block lg:hidden "
+              priority={true}
+            />
+          </motion.div>
+          <motion.div
             style={{
               rotateX: transformPostionX,
               rotateY: transformPostionY,
               transformStyle: 'preserve-3d',
               transition: `all 2s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
             }}
-            src="/img/mainPage/thumb-up-dynamic-color.png"
-            alt="zloczew"
-            className="absolute object-cover size-[180px] bottom-10 left-10"
-          />
-          <motion.img
+            className="w-fit h-fit absolute top-0 right-20"
+          >
+            <Image
+              src="/img/mainPage/calender-dynamic-color.png"
+              alt="zloczew"
+              width={180}
+              height={180}
+              priority={true}
+              className="object-cover "
+            />
+          </motion.div>
+
+          <motion.div
+            style={{
+              rotateX: transformPostionX,
+              rotateY: transformPostionY,
+              transformStyle: 'preserve-3d',
+              transition: `all 2s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
+            }}
+            className="w-fit h-fit absolute bottom-10 left-10"
+          >
+            <Image
+              src="/img/mainPage/thumb-up-dynamic-color.png"
+              alt="zloczew"
+              width={180}
+              height={180}
+              priority={true}
+              className="object-cover "
+            />
+          </motion.div>
+          <motion.div
             style={{
               rotateX: transformPostionX,
               rotateY: transformPostionY,
@@ -120,10 +142,17 @@ const CursorMovmentAnimation = (props: Props) => {
               transition: `all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
               translateX: '-50%',
             }}
-            src="/img/mainPage/Ellipse.png"
-            alt="zloczew"
-            className="absolute object-contain size-[300px] bottom-0 left-1/2 -z-10 opacity-5 "
-          />
+            className="absolute object-contain w-fit h-fit bottom-5 left-1/2 -z-10 opacity-5 "
+          >
+            <Image
+              src="/img/mainPage/Ellipse.png"
+              alt="zloczew"
+              width={300}
+              height={300}
+              priority={true}
+              className="object-cover "
+            />
+          </motion.div>
         </div>
       </div>
     </motion.section>

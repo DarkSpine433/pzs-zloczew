@@ -3,7 +3,7 @@ import React from 'react'
 import CursorMovmentAnimation from '@/app/components/mainPageComponents/CursorMovmentAnimation'
 import GetOffer from './GetOffer'
 import MarqueeComponent from '@/app/components/mainPageComponents/MarqueeComponent'
-
+import Image from 'next/image'
 type Props = {}
 
 const page = (props: Props) => {
@@ -21,7 +21,14 @@ const page = (props: Props) => {
       <MarqueeComponent />
       <section className=" w-full h-fit">
         <div className=" w-full h-max flex  justify-center">
-          <img src="/img/mainPage/pzs-1.png" alt="zloczew" className="object-contain w-max " />
+          <Image
+            src="/img/mainPage/pzs-1.png"
+            alt="zloczew"
+            width={2000}
+            height={2000}
+            quality={100}
+            className="object-contain w-max "
+          />
         </div>
       </section>
       <GetOffer />
