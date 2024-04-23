@@ -12,10 +12,6 @@ const getPages = unstable_cache(async () => {
   const data = await payload.find({
     collection: 'pages',
   })
-  return data
-}, 'pages')
-const page = async (props: Props) => {
-  const data = await getPages()
   const parseDat = parse(data?.docs[0]?.nameOfYourRichTextField_html, {
     replace({ name, children, attribs }) {
       if (name === 'img') {
@@ -23,6 +19,11 @@ const page = async (props: Props) => {
       }
     },
   })
+  return parseDat
+}, 'pages')
+const page = async (props: Props) => {
+  const parseDat = await getPages()
+
   return (
     <div>
       <div>{parseDat}</div>
