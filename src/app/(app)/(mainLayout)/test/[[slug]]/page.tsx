@@ -7,7 +7,8 @@ import Image from 'next/image'
 import { unstable_cache } from 'next/cache'
 import './style.css'
 type Props = {}
-const getPages = unstable_cache(async () => {
+
+const page = async ({ params }: { params: { slug: string } }) => {
   const payload = await getPayloadHMR({ config: configPromise })
   const data = await payload.find(
     {
@@ -22,14 +23,11 @@ const getPages = unstable_cache(async () => {
       }
     },
   })
-  return parseDat
-}, 'pages')
-const page = async (props: Props) => {
-  const parseDat = await getPages()
-
   return (
     <div>
-      <div>{parseDat}</div>
+      <div>
+        {parseDat} {params.slug}
+      </div>
     </div>
   )
 }
