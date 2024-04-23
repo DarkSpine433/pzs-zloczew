@@ -2,7 +2,8 @@
 import React from 'react'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@payload-config'
-import parse from 'html-react-parser'
+import parse, { domToReact } from 'html-react-parser'
+import Image from 'next/image'
 import './style.css'
 type Props = {}
 
@@ -11,10 +12,16 @@ const page = async (props: Props) => {
   const data = await payload.find({
     collection: 'pages',
   })
-  const parseDat = parse(data?.docs[0]?.nameOfYourRichTextField_html)
+  const parseDat = parse(data?.docs[0]?.nameOfYourRichTextField_html, {
+    replace({ name, children, attribs }) {
+      if (name === 'img') {
+        return <Image {...attribs} />
+      }
+    },
+  })
   return (
     <div>
-      <div>{parseDat === 'undefined' && ' '}</div>
+      <div>{parseDat}</div>
     </div>
   )
 }
