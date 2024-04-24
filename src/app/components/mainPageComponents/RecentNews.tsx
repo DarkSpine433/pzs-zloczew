@@ -12,8 +12,8 @@ const RecentNews = async (props: Props) => {
     collection: 'pages',
   })
 
-  const dataDisplay = data.docs.map((doc) =>
-    doc?.Content.map((block) => {
+  const dataDisplay = data.docs.map((doc: any) =>
+    doc?.Content.map((block: any) => {
       return (
         <>
           <BlockParser block={block} />
