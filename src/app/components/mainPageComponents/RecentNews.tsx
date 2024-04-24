@@ -1,12 +1,12 @@
-//@ts-nocheck
-import React from 'react'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@payload-config'
 import BlockParser from '@/app/components/BlockParser'
-import './style.css'
+import { unstable_noStore as noStore } from 'next/cache'
+
 type Props = {}
 
-const page = async () => {
+const RecentNews = async (props: Props) => {
+  noStore()
   const payload = await getPayloadHMR({ config: configPromise })
   const data = await payload.find({
     collection: 'pages',
@@ -21,12 +21,7 @@ const page = async () => {
       )
     }),
   )
-
-  return (
-    <div>
-      <div>{dataDisplay}</div>
-    </div>
-  )
+  return <>{dataDisplay}</>
 }
 
-export default page
+export default RecentNews

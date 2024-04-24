@@ -1,6 +1,9 @@
+//disable cache
+import { unstable_noStore as noStore } from 'next/cache'
+
+//Other Ui Components Import
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import React from 'react'
 
 //menu imports
 import {
@@ -18,9 +21,18 @@ import {
 import { FaYoutube } from 'react-icons/fa'
 import { FaFacebook } from 'react-icons/fa'
 
+//Payload imports
+import { getPayloadHMR } from '@payloadcms/next/utilities'
+import configPromise from '@payload-config'
+
 type Props = {}
 
-const ShowMenu = () => {
+const ShowMenu = async () => {
+  noStore()
+  const payload = await getPayloadHMR({ config: configPromise })
+  const data = await payload.findGlobal({
+    slug: 'nav',
+  })
   return (
     <Sheet>
       <SheetTrigger asChild>

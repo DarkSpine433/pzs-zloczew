@@ -3,6 +3,7 @@ import CursorMovmentAnimation from '@/app/components/mainPageComponents/CursorMo
 import MarqueeComponent from '@/app/components/mainPageComponents/MarqueeComponent'
 import Image from 'next/image'
 import GetOffer from './GetOffer'
+import RecentNews from '@/app/components/mainPageComponents/RecentNews'
 
 type Props = {}
 
@@ -32,6 +33,7 @@ const page = (props: Props) => {
         </div>
       </section>
       <GetOffer />
+      <RecentNews />
     </div>
   )
 }

@@ -15,7 +15,7 @@ export default function mainLayout({ children }: { children: React.ReactNode }) 
           <Nav />
         </div>
       </nav>
-      <div className="w-full bg-gradient-to-b absolute top-0 left-0 from-primary/30 to-transparent h-dvh pointer-events-none -z-50"></div>
+      <div className="w-full absolute top-0 left-0 bg-gradient-to-b from-primary/30 to-transparent h-dvh pointer-events-none -z-50"></div>
       <div className=" max-w-[1440px] mx-auto  pb-10 pt-5">
         <main>{children}</main>
       </div>

@@ -1,25 +1,34 @@
 // @ts-nocheck
 import type { CollectionConfig } from 'payload/types'
 
-import { HTMLConverterFeature, lexicalEditor, lexicalHTML } from '@payloadcms/richtext-lexical'
+import { ImageUrl } from './blocks/ImageUrl'
+import { RichTextBlock } from './blocks/RichTextBlock'
+import { Iframe } from './blocks/Iframe'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
+  labels: {
+    singular: 'Podstrony',
+    plural: 'Podstrony',
+  },
+
   access: {
     read: () => true,
   },
   fields: [
     {
-      name: 'nameOfYourRichTextField',
-      type: 'richText',
-      editor: lexicalEditor({
-        features: ({ defaultFeatures }) => [
-          ...defaultFeatures,
-          // The HTMLConverter Feature is the feature which manages the HTML serializers. If you do not pass any arguments to it, it will use the default serializers.
-          HTMLConverterFeature({}),
-        ],
-      }),
+      name: 'title',
+      label: 'Tytuł',
+      type: 'text',
     },
-    lexicalHTML('nameOfYourRichTextField', { name: 'nameOfYourRichTextField_html' }),
+    {
+      name: 'Content', // required
+      label: 'Kontent Strony',
+      type: 'blocks', // required
+      minRows: 1,
+      maxRows: 20,
+
+      blocks: [ImageUrl, RichTextBlock, Iframe],
+    },
   ],
 }
