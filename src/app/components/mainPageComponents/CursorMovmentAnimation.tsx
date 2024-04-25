@@ -34,7 +34,7 @@ const CursorMovmentAnimation = (props: Props) => {
     >
       <div className="w-[600px]  ">
         <h1 className=" text-5xl text inline-block text-transparent bg-clip-text bg-gradient-to-tl from-primary via-foreground to-primary from-40% to-60% font-bold space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
-          <div className="uppercase text-5xl sm:text-7xl font-extrabold">PZS ZŁOCZEw</div>
+          <div className="uppercase text-5xl sm:text-8xl font-extrabold">PZS ZŁOCZEw</div>
           <div className=" text-2xl sm:text-3xl">
             Cieszymy się, że jesteś tutaj! Dowiedz się więcej o naszej szkole, naszych wartościach i
             bogatej historii. Znajdź informacje, które Cię interesują i dołącz do naszej wspaniałej
@@ -42,9 +42,9 @@ const CursorMovmentAnimation = (props: Props) => {
           </div>
           <div className="flex gap-5 items-center ">
             <Link href="#discover" className=" flex items-center">
-              <Button className="p-5">Zwiedzaj</Button>
+              <Button className="p-6 text-lg">Zwiedzaj</Button>
             </Link>
-            <ContactButton />
+            <ContactButton className="p-6 text-lg" />
           </div>
         </h1>
       </div>

@@ -20,11 +20,11 @@ const GetOffer = async (props: Props) => {
             key={offer.id}
             src={offer.ImageUrl}
             alt="offer"
-            width={500}
-            height={500}
+            width={450}
+            height={450}
             key={offer.id}
             quality={100}
-            className="border-8 border-blue-500 hover:scale-[1.02] transition-all shadow-md shadow-blue-500"
+            className="outline-4 outline-blue-500 outline border-blue-500 hover:scale-[1.02] hover:outline-8 transition-all shadow-md shadow-blue-500"
           />
         )
       })}

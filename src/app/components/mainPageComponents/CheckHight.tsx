@@ -19,7 +19,7 @@ const CheckHight = ({ children }: Props) => {
   }, [])
   return (
     <div
-      className="bg-secondary-foreground shadow-md rounded-lg shadow-blue-200 border-2 border-blue-700 text-background  transition-all relative overflow-hidden max-h-[600px] h-fit w-full"
+      className="bg-secondary-foreground shadow-md rounded-lg shadow-blue-200 border-2 border-blue-700 text-background  transition-all relative overflow-hidden max-h-[600px] h-fit w-full px-2 [&>h2]:text-9xl"
       ref={ref}
     >
       {height >= heighToCheck ? (
@@ -30,7 +30,7 @@ const CheckHight = ({ children }: Props) => {
 
           <Dialog>
             <DialogTrigger>
-              <div className={`w-full  md:p-10 py-5 h-max `}>{children}</div>
+              <div className={`w-full  md:p-10 py-5 h-max  `}>{children}</div>
             </DialogTrigger>
             <DialogContent className="max-w-[1000px] max-h-[850px] py-10 flex flex-col items-center">
               {children}
@@ -39,7 +39,7 @@ const CheckHight = ({ children }: Props) => {
         </>
       ) : (
         <div
-          className={`bg-secondary-foreground shadow-md rounded-lg shadow-blue-200 border-2 border-blue-700 md:p-10 py-5 text-background w-full  transition-all   relative overflow-hidden max-h-[600px] h-fit`}
+          className={`bg-secondary-foreground shadow-md md:p-10 py-5 text-background w-full  transition-all   relative overflow-hidden max-h-[600px] h-fit`}
         >
           {children}
         </div>

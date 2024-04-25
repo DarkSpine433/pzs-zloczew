@@ -16,8 +16,9 @@ const RecentNews = async (props: Props) => {
 
   const dataDisplay = data.docs.map((doc: any, index) => (
     <CheckHight key={doc.id + index}>
-      <h2 className="text-3xl font-bold text-left pb-10">{doc.title}</h2>
-      <div className="h-fit md:px-5">
+      <h2 className="text-4xl font-extrabold pb-5 text-center ">{doc.title}</h2>
+      <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent via-primary/50 to-transparent border-none p-0 " />
+      <div className="h-fit md:px-5 pt-5">
         {doc?.Content.map((block: any) => {
           return <BlockParser block={block} key={block.id} />
         })}
@@ -26,7 +27,7 @@ const RecentNews = async (props: Props) => {
     </CheckHight>
   ))
 
-  return <div className="grid md:grid-cols-2 gap-10 justify-center">{dataDisplay}</div>
+  return <div className="grid md:grid-cols-2 gap-10 justify-center ">{dataDisplay}</div>
 }
 
 export default RecentNews
