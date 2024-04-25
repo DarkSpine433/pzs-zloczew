@@ -1,4 +1,3 @@
-import React from 'react'
 import ContactButton from '../ui/ContactButton'
 
 type Props = {}

@@ -18,7 +18,7 @@ const RecentNews = async (props: Props) => {
     <CheckHight key={doc.id + index}>
       <h2 className="text-4xl font-extrabold pb-5 text-center ">{doc.title}</h2>
       <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent via-primary/50 to-transparent border-none p-0 " />
-      <div className="h-fit md:px-5 pt-5">
+      <div className="h-fit md:px-5 pt-5 space-y-10">
         {doc?.Content.map((block: any) => {
           return <BlockParser block={block} key={block.id} />
         })}
