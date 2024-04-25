@@ -2,28 +2,33 @@
 import { unstable_noStore as noStore } from 'next/cache'
 
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
-
+import { getPayloadHMR } from '@payloadcms/next/utilities'
+import Image from 'next/image'
 type Props = {}
 
 const GetOffer = async (props: Props) => {
   noStore()
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayloadHMR({ config: configPromise })
   const getOffer = await payload.find({
     collection: 'offer',
   })
   return (
-    <section>
-      <h1>
-        {getOffer.docs.map((offer) => {
-          return (
-            <div key={offer.id}>
-              <h1>{offer.title}</h1>
-            </div>
-          )
-        }) || ''}
-      </h1>
-    </section>
+    <div className="flex flex-wrap items-center justify-center gap-10">
+      {getOffer.docs[0].Content.map((offer) => {
+        return (
+          <Image
+            key={offer.id}
+            src={offer.ImageUrl}
+            alt="offer"
+            width={500}
+            height={500}
+            key={offer.id}
+            quality={100}
+            className="border-8 border-blue-500 hover:scale-[1.02] transition-all shadow-md shadow-blue-500"
+          />
+        )
+      })}
+    </div>
   )
 }
 export default GetOffer

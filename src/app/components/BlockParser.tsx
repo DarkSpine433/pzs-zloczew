@@ -12,7 +12,17 @@ const BlockParser = ({ block }: { block: any }) => {
     return <div key={block.id}>{parse(block.nameOfYourRichTextField_html)}</div>
   }
   if (block.blockType === 'imageurl') {
-    return <Image src={block.ImageUrl} alt={block.alt} height={600} width={600} key={block.id} />
+    return (
+      <Image
+        src={block.ImageUrl}
+        alt={block.alt}
+        height={400}
+        width={400}
+        key={block.id}
+        quality={100}
+        className="object-cover w-fit "
+      />
+    )
   }
 }
 

@@ -1,4 +1,6 @@
 import type { CollectionConfig } from 'payload/types'
+import { ImageUrl } from './blocks/ImageUrl'
+import { RichTextBlock } from './blocks/RichTextBlock'
 
 export const Offer: CollectionConfig = {
   slug: 'offer',
@@ -11,37 +13,18 @@ export const Offer: CollectionConfig = {
   },
   fields: [
     {
-      name: 'color', // required
-      type: 'radio', // required
-      options: [
-        // required
-        {
-          label: 'Mint',
-          value: 'mint',
-        },
-        {
-          label: 'Dark Gray',
-          value: 'dark_gray',
-        },
-      ],
-      defaultValue: 'mint', // The first value in options.
-      admin: {
-        layout: 'horizontal',
-      },
+      name: 'title',
+      label: 'Tytuł',
+      type: 'text',
     },
     {
-      type: 'text',
-      name: 'title',
+      name: 'Content', // required
+      label: 'Kontent Strony',
+      type: 'blocks', // required
+      minRows: 1,
+      maxRows: 20,
 
-      admin: {
-        condition: (data, siblingData, { user }) => {
-          if (data.color == 'Mint') {
-            return true
-          } else {
-            return false
-          }
-        },
-      },
+      blocks: [ImageUrl, RichTextBlock],
     },
   ],
 }
