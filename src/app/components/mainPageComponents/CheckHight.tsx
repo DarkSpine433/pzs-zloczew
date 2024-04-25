@@ -30,7 +30,10 @@ const CheckHight = ({ children }: Props) => {
 
           <Dialog>
             <DialogTrigger>
-              <div className={`w-full  md:p-10 py-5 h-max  `}>{children}</div>
+              <div className={`w-full  md:p-10 py-5 h-max  `}>
+                {' '}
+                <div className="pointer-events-none">{children}</div>
+              </div>
             </DialogTrigger>
             <DialogContent className="max-w-[1000px] max-h-[850px] py-10 flex flex-col items-center">
               {children}
