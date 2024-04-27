@@ -12,16 +12,15 @@ const FetchContent = async ({ id }: { id: string }) => {
     collection: 'pages',
     id: id,
   })
-  console.log(typeof data)
+
   return (
     <>
-      {data ? (
-        data?.Content.map((block: any, index: number) => {
-          return <BlockParser block={block} key={block.id + index} />
-        })
-      ) : (
-        <div>404</div>
-      )}
+      <h1 className="text-5xl font-extrabold  py-5 uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
+        {data.title}
+      </h1>
+      {data?.Content.map((block: any, index: number) => {
+        return <BlockParser block={block} key={block.id + index} />
+      })}
     </>
   )
 }

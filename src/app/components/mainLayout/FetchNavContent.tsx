@@ -24,7 +24,7 @@ const FetchNavContent = async () => {
         {data.nav.map((item: any) => {
           return (
             <li className="w-full " key={item.page.id}>
-              <Link href={'/' + item.page.id}>
+              <Link href={'/p/' + item.page.id}>
                 <SheetClose>{item.page.title} </SheetClose>
               </Link>
             </li>
