@@ -57,16 +57,14 @@ const page = (props: Props) => {
             </div>
           </Section>
 
-          <Section className=" bg-background" maxWidth="max-w-6xl">
-            <div className="relative pt-20">
-              <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent from-10% to-90% via-primary to-transparent border-none p-0  absolute top-0 m-0 " />
+          <Section className=" bg-background" maxWidth="max-w-6xl ">
+            <div className="relative ">
+              <hr className="w-full h-[0.1rem] bg-gradient-to-r from-transparent from-10% to-90% via-primary to-transparent border-none p-0  absolute top-0 m-0 " />
               <h2 className=" scroll-m-20 text-center pb-20 font-extrabold text-4xl py-5 uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
                 Aktualności
               </h2>
             </div>
-            <div className="px-2">
-              <RecentNews />
-            </div>
+            <RecentNews />
           </Section>
         </div>
       </div>

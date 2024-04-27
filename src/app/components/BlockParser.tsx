@@ -13,8 +13,8 @@ const BlockParser = ({ block }: { block: any }) => {
       <div
         key={block.id}
         className="
-        text-left w-full
-        [&>h2]:text-6xl
+        text-left w-full text-lg font-semibold
+        [&>h2]:text-6xl [&>h2]:py-5
         [&>hr]:w-full [&>hr]:h-[0.05rem] [&>hr]:bg-foreground [&>hr]:border-none [&>hr]:p-0
         "
       >
@@ -32,7 +32,7 @@ const BlockParser = ({ block }: { block: any }) => {
         key={block.id}
         quality={100}
         loading="lazy"
-        className="object-cover w-fit "
+        className="object-cover w-fit border-primary  rounded-lg shadow-sm shadow-primary"
       />
     )
   }

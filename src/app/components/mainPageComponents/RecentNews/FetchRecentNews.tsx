@@ -5,14 +5,7 @@ import { parseISO, format } from 'date-fns'
 import { unstable_noStore as noStore } from 'next/cache'
 import Image from 'next/image'
 import BlockParser from '../../BlockParser'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 
 type Props = {}
 
@@ -21,7 +14,7 @@ const FetchRecentNews = async (props: Props) => {
   const payload = await getPayloadHMR({ config: configPromise })
   const data = await payload.find({
     collection: 'news',
-    limit: 10,
+    limit: 5,
   })
 
   return (

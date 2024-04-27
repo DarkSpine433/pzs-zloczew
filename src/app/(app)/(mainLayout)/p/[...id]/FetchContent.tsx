@@ -15,12 +15,16 @@ const FetchContent = async ({ id }: { id: string }) => {
 
   return (
     <>
-      <h1 className="text-5xl font-extrabold  py-5 uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
-        {data.title}
-      </h1>
-      {data?.Content.map((block: any, index: number) => {
-        return <BlockParser block={block} key={block.id + index} />
-      })}
+      <div className="bg-primary/5 py-3  border-b border-primary/50  rounded-xl">
+        <h1 className="text-4xl sm:text-5xl font-extrabold px-3   uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)] ">
+          {data.title}
+        </h1>
+      </div>
+      <div className="px-3 bg-primary-foreground border-b border-primary/50  py-3 flex gap-4 flex-col   rounded-xl">
+        {data?.Content.map((block: any, index: number) => {
+          return <BlockParser block={block} key={block.id + index} />
+        })}
+      </div>
     </>
   )
 }
