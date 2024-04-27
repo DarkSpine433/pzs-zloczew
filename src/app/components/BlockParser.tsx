@@ -29,6 +29,7 @@ const BlockParser = ({ block }: { block: any }) => {
         width={400}
         key={block.id}
         quality={100}
+        loading="lazy"
         className="object-cover w-fit "
       />
     )

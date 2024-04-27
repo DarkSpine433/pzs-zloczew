@@ -1,6 +1,8 @@
-import '../globals.css'
+import dynamic from 'next/dynamic'
+
 import Footer from '@/app/components/mainLayout/Footer'
 import Nav from '@/app/components/mainLayout/Nav'
+import '../globals.css'
 
 export const metadata = {
   title: 'Next.js',

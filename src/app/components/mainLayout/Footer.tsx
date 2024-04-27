@@ -10,7 +10,7 @@ const Footer = (props: Props) => {
         <div>Socials</div>
         <div>Kontakt</div>
       </div>
-      <hr className=" border-none w-full max-w-screen-2xl h-[1px] bg-gradient-to-r from-transparent via-secondary/50 to-transparent" />
+      <hr className=" border-none w-full max-w-screen-2xl h-[1px] bg-gradient-to-r from-transparent via-secondary/50 to-transparent p-0" />
       <div className="text-center py-5">
         Wykonana z ❤️ Przez{' '}
         <Link href="https://ds-craft.vercel.app/" className="underline" target="_blank">

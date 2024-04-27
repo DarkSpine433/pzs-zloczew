@@ -1,4 +1,4 @@
-'use client'
+'use client' //Don't remove use client becouse of website will broke
 import Marquee from 'react-fast-marquee'
 const Opinions = [
   {

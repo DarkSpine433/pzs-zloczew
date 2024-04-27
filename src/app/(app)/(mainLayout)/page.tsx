@@ -1,8 +1,11 @@
+import dynamic from 'next/dynamic'
+
 import CursorMovmentAnimation from '@/app/components/mainPageComponents/CursorMovmentAnimation'
 
 import MarqueeComponent from '@/app/components/mainPageComponents/MarqueeComponent'
 import GetOffer from './GetOffer'
-import RecentNews from '@/app/components/mainPageComponents/RecentNews'
+
+import RecentNews from '@/app/components/mainPageComponents/RecentNews/RecentNews'
 import Section from '@/app/components/mainPageComponents/Section'
 
 import Cta from '@/app/components/mainPageComponents/Cta'

@@ -1,5 +1,4 @@
-//disable cache
-import { unstable_noStore as noStore } from 'next/cache'
+import dynamic from 'next/dynamic'
 
 //Other Ui Components Import
 import { Button } from '@/components/ui/button'
@@ -8,7 +7,6 @@ import Link from 'next/link'
 //menu imports
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetFooter,
@@ -21,18 +19,11 @@ import {
 import { FaYoutube } from 'react-icons/fa'
 import { FaFacebook } from 'react-icons/fa'
 
-//Payload imports
-import { getPayloadHMR } from '@payloadcms/next/utilities'
-import configPromise from '@payload-config'
+const FetchNavContent = dynamic(() => import('./FetchNavContent'), { ssr: false })
 
 type Props = {}
 
 const ShowMenu = async () => {
-  noStore()
-  const payload = await getPayloadHMR({ config: configPromise })
-  const data = await payload.findGlobal({
-    slug: 'nav',
-  })
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -43,17 +34,7 @@ const ShowMenu = async () => {
           <SheetTitle>Menu</SheetTitle>
           <SheetDescription>Tu znajdziesz czego szukasz.</SheetDescription>
         </SheetHeader>
-        <div className="py-5">
-          <menu>
-            {' '}
-            <Link href="/">
-              <SheetClose>
-                <li>asdf</li>
-              </SheetClose>
-            </Link>
-            <li>asdf</li>
-          </menu>
-        </div>
+        <FetchNavContent />
 
         <SheetFooter>
           <div className="text-center py-5">
@@ -72,7 +53,6 @@ const Nav = (props: Props) => {
   return (
     <div className="w-full flex justify-around items-center py-3.5">
       <ShowMenu />
-
       <div className=" flex gap-3 ">
         <Link href="https://uonetplus.vulcan.net.pl/powiatsieradzki/" target="_blanks">
           <Button className="p-5 px-7">Dziennik</Button>

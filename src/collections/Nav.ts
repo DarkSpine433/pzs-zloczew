@@ -27,17 +27,12 @@ const Nav: GlobalConfig = {
       type: 'array',
       fields: [
         {
-          name: 'title',
-          label: 'Tytuł',
-          type: 'text',
+          name: 'page',
+          type: 'relationship',
+          relationTo: 'pages',
+          required: true,
         },
       ],
-    },
-    {
-      name: 'page',
-      label: 'Strona',
-      type: 'relationship',
-      relationTo: 'pages',
     },
   ],
 }
