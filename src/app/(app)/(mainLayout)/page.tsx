@@ -43,7 +43,7 @@ const page = (props: Props) => {
             </div>
           </Section>
 
-          <Section maxWidth="max-w-[1440px] " className="   pt-32 ">
+          <Section maxWidth="max-w-[1440px] " className="  pt-32 ">
             <div className=" w-full h-max flex justify-center ">
               <h2 className=" text-5xl sm:text-8xl  font-extrabold text-center uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60% max-w-4xl ">
                 Rozpocznij swoją przygodę edukacyjną z nami!
@@ -52,7 +52,7 @@ const page = (props: Props) => {
             <div className=" py-20 z-50">
               <Cta />
             </div>
-            <div className=" absolute  blur-[200px] size-96 bg-primary left-1/2 bottom-0 -translate-x-1/2  translate-y-1/2 -z-20 pointer-events-none "></div>
+            <div className=" absolute rounded-full  w-[60rem] h-[50rem] left-1/2 bottom-0 -translate-x-1/2  translate-y-1/2 -z-20 pointer-events-none  bg-[radial-gradient(rgba(135,206,250)_0%,rgba(0,0,0,0.00)_70%)]  "></div>
           </Section>
 
           <Section className=" bg-background" maxWidth="max-w-6xl">
