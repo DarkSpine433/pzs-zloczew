@@ -16,7 +16,7 @@ const FetchNavContent = async () => {
   const payload = await getPayloadHMR({ config: configPromise })
   const data: any = await payload.findGlobal({
     slug: 'nav',
-    depth: 3,
+    depth: 4,
   })
   return (
     <div className="py-5">
