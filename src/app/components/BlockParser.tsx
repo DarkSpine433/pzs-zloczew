@@ -13,8 +13,10 @@ const BlockParser = ({ block }: { block: any }) => {
       <div
         key={block.id}
         className="
-        [&>h2]:text-9xl
-      [&>hr]:w-full [&>hr]:h-[0.05rem] [&>hr]:bg-foreground [&>hr]:border-none [&>hr]:p-0  "
+        text-left w-full
+        [&>h2]:text-6xl
+        [&>hr]:w-full [&>hr]:h-[0.05rem] [&>hr]:bg-foreground [&>hr]:border-none [&>hr]:p-0
+        "
       >
         {parse(block.nameOfYourRichTextField_html)}
       </div>

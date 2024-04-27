@@ -51,7 +51,7 @@ const FetchRecentNews = async (props: Props) => {
               </div>
             </div>
           </DialogTrigger>
-          <DialogContent className="px-2 h-5/6= w-11/12">
+          <DialogContent className="px-10 h-5/6 max-h-[900px] max-w-3xl w-11/12 overflow-y-scroll shadow-md shadow-primary">
             <div className="w-full text-pretty text-left">
               <h2 className="text-[1.08rem] font-bold pb-5 ">{doc.title}</h2>
 
@@ -63,7 +63,7 @@ const FetchRecentNews = async (props: Props) => {
               </h3>
             </div>
             <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent via-primary/50 to-transparent border-none p-0 " />
-            <div className="h-fit md:px-5 pt-5 space-y-10">
+            <div className="   pt-5 space-y-10 flex justify-center items-center flex-col">
               {doc?.Content.map((block: any) => {
                 return <BlockParser block={block} key={block.id} />
               })}

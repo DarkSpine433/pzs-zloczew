@@ -18,12 +18,13 @@ import {
 //icons imports
 import { FaYoutube } from 'react-icons/fa'
 import { FaFacebook } from 'react-icons/fa'
+import ClientNav from './ClientNav'
 
 const FetchNavContent = dynamic(() => import('./FetchNavContent'), { ssr: false })
 
 type Props = {}
 
-const ShowMenu = async () => {
+const ShowMenu = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -34,8 +35,9 @@ const ShowMenu = async () => {
           <SheetTitle>Menu</SheetTitle>
           <SheetDescription>Tu znajdziesz czego szukasz.</SheetDescription>
         </SheetHeader>
-        <FetchNavContent />
-
+        <ClientNav>
+          <FetchNavContent />
+        </ClientNav>
         <SheetFooter>
           <div className="text-center py-5">
             Wykonana z ❤️ Przez{' '}

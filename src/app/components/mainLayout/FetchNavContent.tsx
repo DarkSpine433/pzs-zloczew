@@ -16,16 +16,18 @@ const FetchNavContent = async () => {
   const payload = await getPayloadHMR({ config: configPromise })
   const data: any = await payload.findGlobal({
     slug: 'nav',
-    depth: 4,
+    depth: 3,
   })
   return (
     <div className="py-5">
       <menu>
         {data.nav.map((item: any) => {
           return (
-            <Link href={'/' + item.id} key={item.id}>
-              <li className="w-full ">{item.page.title}</li>
-            </Link>
+            <li className="w-full " key={item.page.id}>
+              <Link href={'/' + item.page.id}>
+                <SheetClose>{item.page.title} </SheetClose>
+              </Link>
+            </li>
           )
         })}
         <Link href="/">
