@@ -30,7 +30,7 @@ const page = (props: Props) => {
 
           <MarqueeComponent />
         </Section>
-        <div className="px-2">
+        <div className="px-2 overflow-hidden">
           <Section className=" mt-20  overflow-hidden">
             <div className="relative py-20 border-b rounded-lg border-primary/20">
               <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent from-10% to-90% via-primary to-transparent border-none p-0  absolute top-0 m-0 " />
@@ -43,16 +43,18 @@ const page = (props: Props) => {
             </div>
           </Section>
 
-          <Section maxWidth="max-w-[1440px] " className="  pt-32 ">
-            <div className=" w-full h-max flex justify-center ">
-              <h2 className=" text-5xl sm:text-8xl  font-extrabold text-center uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60% max-w-4xl ">
-                Rozpocznij swoją przygodę edukacyjną z nami!
-              </h2>
+          <Section maxWidth="max-w-[1440px] " className=" pt-32 ">
+            <div className="relative">
+              <div className=" w-full h-max flex justify-center ">
+                <h2 className=" text-5xl sm:text-8xl  font-extrabold text-center uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60% max-w-4xl ">
+                  Rozpocznij swoją przygodę edukacyjną z nami!
+                </h2>
+              </div>
+              <div className=" py-20 z-50">
+                <Cta />
+              </div>
+              <div className=" absolute rounded-full  w-[60rem] h-[50rem] left-1/2 bottom-0 -translate-x-1/2  translate-y-1/2 -z-20 pointer-events-none  bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_70%)]  "></div>
             </div>
-            <div className=" py-20 z-50">
-              <Cta />
-            </div>
-            <div className=" absolute rounded-full  w-[60rem] h-[50rem] left-1/2 bottom-0 -translate-x-1/2  translate-y-1/2 -z-20 pointer-events-none  bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_70%)]  "></div>
           </Section>
 
           <Section className=" bg-background" maxWidth="max-w-6xl">

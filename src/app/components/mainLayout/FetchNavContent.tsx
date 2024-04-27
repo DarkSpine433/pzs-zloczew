@@ -20,16 +20,14 @@ const FetchNavContent = async () => {
   })
   return (
     <div className="py-5">
-      {data.nav.map((item: any) => {
-        return (
-          <Link href={'/' + item.id} key={item.id}>
-            <div key={item.id} className="w-full h-20">
-              {item.page.title} test
-            </div>
-          </Link>
-        )
-      })}
       <menu>
+        {data.nav.map((item: any) => {
+          return (
+            <Link href={'/' + item.id} key={item.id}>
+              <li className="w-full ">{item.page.title}</li>
+            </Link>
+          )
+        })}
         <Link href="/">
           <SheetClose>
             <li>asdf</li>

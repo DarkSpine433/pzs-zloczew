@@ -3,7 +3,7 @@ import SkeletonNews from '../SkeletonNews'
 
 const FetchRecentNews = dynamic(() => import('./FetchRecentNews'), {
   ssr: false,
-  loading: () => <SkeletonNews repeat={10} width="w-full" height="h-96" />,
+  loading: () => <SkeletonNews repeat={10} width="w-full" height="h-30" />,
 })
 type Props = {}
 
