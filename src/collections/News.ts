@@ -21,11 +21,14 @@ export const News: CollectionConfig = {
       name: 'title',
       label: 'Tytuł',
       type: 'text',
+      required: true,
+      maxLength: 90,
     },
     {
       name: 'description',
       label: 'Opis',
       type: 'text',
+      maxLength: 600,
     },
     {
       name: 'test',
@@ -35,6 +38,11 @@ export const News: CollectionConfig = {
           Field: Test,
         },
       },
+    },
+    {
+      name: 'thumbnail',
+      label: 'Miniaturka Link',
+      type: 'text',
     },
     {
       name: 'Content', // required

@@ -9,7 +9,7 @@ type Props = {}
 
 const RecentNews = async (props: Props) => {
   return (
-    <div className="grid md:grid-cols-2 gap-10 justify-center ">
+    <div className="grid md:grid-cols-2 gap-10 justify-center pb-2">
       <FetchRecentNews />
     </div>
   )
