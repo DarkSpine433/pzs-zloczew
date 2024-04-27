@@ -34,7 +34,7 @@ const page = (props: Props) => {
           <Section className=" mt-20  overflow-hidden">
             <div className="relative py-20 border-b rounded-lg border-primary/20">
               <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent from-10% to-90% via-primary to-transparent border-none p-0  absolute top-0 m-0 " />
-              <div className=" absolute  blur-[100px] size-52 bg-primary left-1/2 top-0 -translate-x-1/2  -translate-y-1/2 -z-20 pointer-events-none "></div>
+              <div className=" absolute rounded-full  w-[60rem] h-[50rem] left-1/2 top-0 -translate-x-1/2  -translate-y-1/2 -z-20 pointer-events-none  bg-[radial-gradient(rgba(135,206,250)_0%,rgba(0,0,0,0.00)_70%)]  "></div>
               <h2 className=" scroll-m-20 text-center font-extrabold text-4xl pb-10 uppercase text-transparent bg-clip-text bg-gradient-to-b from-primary via-foreground to-primary from-40% to-60%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
                 Oferta Naszej Szkoły
               </h2>

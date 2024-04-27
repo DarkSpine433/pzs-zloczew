@@ -56,12 +56,6 @@ const FetchRecentNews = async (props: Props) => {
           </DialogTrigger>
           <DialogContent>
             <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent via-primary/50 to-transparent border-none p-0 " />
-            <div className="h-fit md:px-5 pt-5 space-y-10">
-              {doc?.Content.map((block: any) => {
-                return <BlockParser block={block} key={block.id} />
-              })}
-              <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent via-primary/50 to-transparent border-none p-0 " />
-            </div>
           </DialogContent>
         </Dialog>
       ))}
