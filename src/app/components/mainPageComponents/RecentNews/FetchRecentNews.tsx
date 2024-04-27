@@ -51,7 +51,17 @@ const FetchRecentNews = async (props: Props) => {
               </div>
             </div>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="px-2 h-5/6= w-11/12">
+            <div className="w-full text-pretty text-left">
+              <h2 className="text-[1.08rem] font-bold pb-5 ">{doc.title}</h2>
+
+              <h3 className="text-sm text-gray-900 ">
+                Data:&nbsp;
+                <time dateTime={doc.createdAt}>
+                  {format(parseISO(doc.createdAt), 'dd.MM.yyyy')}
+                </time>
+              </h3>
+            </div>
             <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent via-primary/50 to-transparent border-none p-0 " />
             <div className="h-fit md:px-5 pt-5 space-y-10">
               {doc?.Content.map((block: any) => {
