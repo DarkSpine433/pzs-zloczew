@@ -12,7 +12,7 @@ type Props = {
 
 const page = ({ params }: { params: { id: string } }) => {
   return (
-    <div className="max-w-[1440px]">
+    <div className="max-w-xl mx-auto">
       <FetchContent id={params.id} />
     </div>
   )

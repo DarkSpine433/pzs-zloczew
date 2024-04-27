@@ -12,7 +12,7 @@ const FetchContent = async ({ id }: { id: string }) => {
     collection: 'pages',
     id: id,
   })
-
+  console.log(typeof data)
   return (
     <>
       {data ? (
