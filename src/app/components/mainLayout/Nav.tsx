@@ -61,13 +61,18 @@ const Nav = (props: Props) => {
           <Link
             href="https://www.facebook.com/people/PZS-Z%C5%82oczew/61551036213821/"
             target="_blanks"
+            title="Facebook"
           >
-            <Button className="py-5">
+            <Button className="py-5" title="Facebook">
               <FaFacebook />
             </Button>
           </Link>
-          <Link href="https://www.youtube.com/channel/UCUub2QdjjKFoww2u2ZeVpKA" target="_blanks">
-            <Button className="py-5 bg-red-600">
+          <Link
+            href="https://www.youtube.com/channel/UCUub2QdjjKFoww2u2ZeVpKA"
+            target="_blanks"
+            title="YouTube"
+          >
+            <Button className="py-5 bg-red-600" title="YouTube">
               <FaYoutube />
             </Button>
           </Link>

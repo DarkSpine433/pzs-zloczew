@@ -39,15 +39,15 @@ const FetchRecentNews = async (props: Props) => {
                   className="rounded-lg h-full object-cover overflow-hidden "
                 />
               </div>
-              <div className="w-full text-pretty">
-                <h2 className="text-[1.08rem] font-bold pb-5 text-left ">{doc.title}</h2>
+              <div className="w-full text-pretty text-left">
+                <h2 className="text-[1.08rem] font-bold pb-5 ">{doc.title}</h2>
 
-                <h4 className="text-sm text-gray-500 text-ellipsis overflow-x-hidden whitespace-pre">
+                <h3 className="text-sm text-gray-900 ">
                   Data:&nbsp;
                   <time dateTime={doc.createdAt}>
                     {format(parseISO(doc.createdAt), 'dd.MM.yyyy')}
                   </time>
-                </h4>
+                </h3>
               </div>
             </div>
           </DialogTrigger>
