@@ -27,12 +27,9 @@ const FetchRecentNews = async (props: Props) => {
   return (
     <>
       {data.docs.map((doc: any, index) => (
-        <Dialog>
+        <Dialog key={index}>
           <DialogTrigger>
-            <div
-              key={index}
-              className="w-full h-fit grid grid-cols-2  relative bg-secondary p-1 rounded-lg shadow-md shadow-blue-300 hover:-translate-y-1 hover:shadow-md hover:shadow-primary transition-all gap-2"
-            >
+            <div className="w-full h-fit grid grid-cols-2  relative bg-secondary p-1 rounded-lg shadow-md shadow-blue-300 hover:-translate-y-1 hover:shadow-md hover:shadow-primary transition-all gap-2">
               <div className="w-full h-full  ">
                 <Image
                   src={doc.thumbnail}

@@ -10,14 +10,15 @@ import {
 type Props = {
   className?: string
   size?: string
+  bgTransparency?: string
 }
 
-const ContactButton = ({ className, size }: Props) => {
+const ContactButton = ({ className, size, bgTransparency }: Props) => {
   return (
     <Dialog>
       <DialogTrigger>
         <div
-          className={`bg-transparent p-5 border-2 rounded-md border-primary w-fit h-4 text-sm flex hover:bg-primary/10 transition-all  items-center ${className}  `}
+          className={`p-5 border-2 rounded-md border-primary w-fit h-4 text-sm flex hover:bg-primary/10 transition-all  items-center bg-background/50 ${className} `}
         >
           <div>Kontakt</div>
           <svg

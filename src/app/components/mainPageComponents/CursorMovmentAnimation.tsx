@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import Link from 'next/link'
-import { useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import ContactButton from '../ui/ContactButton'
 
@@ -13,6 +13,7 @@ const CursorMovmentAnimation = (props: Props) => {
   const refOfSection = useRef<HTMLDivElement>(null)
   const x = useMotionValue(0)
   const y = useMotionValue(0)
+  const [windowWidth, setWindowWidth] = useState(0)
 
   const transformPostionX = useTransform(x, [-0.5, 0.5], [-2, 2])
   const transformPostionY = useTransform(y, [-0.5, 0.5], [-2, 2])
@@ -22,6 +23,12 @@ const CursorMovmentAnimation = (props: Props) => {
     x.set((e.clientX - rect.left) / rect.width - 0.5)
     y.set((e.clientY - rect.top) / rect.height - 0.5)
   }
+  useLayoutEffect(() => {
+    setWindowWidth(window.innerWidth)
+    window.addEventListener('resize', () => {
+      setWindowWidth(window.innerWidth)
+    })
+  }, [])
   return (
     <motion.div
       className=" h-fit w-full pb-10 transition-all overflow-hidden px-5  md:px-20 relative min-h-[600px] flex items-center "
@@ -44,7 +51,7 @@ const CursorMovmentAnimation = (props: Props) => {
             <Link href="#discover" className=" flex items-center">
               <Button className="p-6 text-lg">Zwiedzaj</Button>
             </Link>
-            <ContactButton className="p-6 text-lg" />
+            <ContactButton className="p-6 text-lg text-foreground bg-white/70" />
           </div>
         </h1>
       </div>
@@ -52,94 +59,97 @@ const CursorMovmentAnimation = (props: Props) => {
       {/*PLUS IMAGE*/}
       <div className=" bg-[url('/plus.svg')] hidden sm:block size-28 absolute opacity-50 top-20 left-0 translate-x-1/2 -translate-y-1/2 -z-20 "></div>
       {/*Interactive Imgaes*/}
-      <div className=" h-fit absolute hidden -z-10 top-0 right-0  overflow-hidden md:flex justify-end">
-        <div className=" size-fit relative [perspective:150px] ">
-          <motion.div
-            style={{
-              rotateX: transformPostionX,
-              rotateY: transformPostionY,
-              transformStyle: 'preserve-3d',
-              transition: `all 2s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
-            }}
-            className=" object-cover h-fit w-fit"
-          >
-            <Image
-              src="/img/mainPage/notebook-front-color.png"
-              alt="zloczew"
-              width={600}
-              height={600}
-              quality={100}
-              className="hidden lg:block"
-              priority={true}
-            />
-            <Image
-              src="/img/mainPage/notebook-front-premium.png"
-              alt="zloczew"
-              width={600}
-              height={600}
-              quality={100}
-              className="block lg:hidden "
-              priority={true}
-            />
-          </motion.div>
-          <motion.div
-            style={{
-              rotateX: transformPostionX,
-              rotateY: transformPostionY,
-              transformStyle: 'preserve-3d',
-              transition: `all 2s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
-            }}
-            className="w-fit h-fit absolute top-0 right-20"
-          >
-            <Image
-              src="/img/mainPage/calender-dynamic-color.png"
-              alt="zloczew"
-              width={180}
-              height={180}
-              priority={true}
-              className="object-cover "
-            />
-          </motion.div>
+      {windowWidth > 768 && (
+        <div className=" h-fit absolute hidden -z-10 top-0 right-0  overflow-hidden md:flex justify-end">
+          <div className=" size-fit relative [perspective:150px] ">
+            <motion.div
+              style={{
+                rotateX: transformPostionX,
+                rotateY: transformPostionY,
+                transformStyle: 'preserve-3d',
+                transition: `all 2s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
+              }}
+              className=" object-cover h-fit w-fit"
+            >
+              {windowWidth > 1024 ? (
+                <Image
+                  src="/img/mainPage/notebook-front-color.png"
+                  alt="zloczew"
+                  width={600}
+                  height={600}
+                  quality={100}
+                  priority={true}
+                />
+              ) : (
+                <Image
+                  src="/img/mainPage/notebook-front-premium.png"
+                  alt="zloczew"
+                  width={600}
+                  height={600}
+                  quality={100}
+                  priority={true}
+                />
+              )}
+            </motion.div>
+            <motion.div
+              style={{
+                rotateX: transformPostionX,
+                rotateY: transformPostionY,
+                transformStyle: 'preserve-3d',
+                transition: `all 2s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
+              }}
+              className="w-fit h-fit absolute top-0 right-20"
+            >
+              <Image
+                src="/img/mainPage/calender-dynamic-color.png"
+                alt="zloczew"
+                width={180}
+                height={180}
+                priority={true}
+                className="object-cover "
+              />
+            </motion.div>
 
-          <motion.div
-            style={{
-              rotateX: transformPostionX,
-              rotateY: transformPostionY,
-              transformStyle: 'preserve-3d',
-              transition: `all 2s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
-            }}
-            className="w-fit h-fit absolute bottom-10 left-10"
-          >
-            <Image
-              src="/img/mainPage/thumb-up-dynamic-color.png"
-              alt="zloczew"
-              width={180}
-              height={180}
-              priority={true}
-              className="object-cover "
-            />
-          </motion.div>
-          <motion.div
-            style={{
-              rotateX: transformPostionX,
-              rotateY: transformPostionY,
-              transformStyle: 'preserve-3d',
-              transition: `all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
-              translateX: '-50%',
-            }}
-            className="absolute object-contain w-fit h-fit bottom-5 left-1/2 -z-10 opacity-5 "
-          >
-            <Image
-              src="/img/mainPage/Ellipse.png"
-              alt="zloczew"
-              width={300}
-              height={300}
-              priority={true}
-              className="object-cover "
-            />
-          </motion.div>
+            <motion.div
+              style={{
+                rotateX: transformPostionX,
+                rotateY: transformPostionY,
+                transformStyle: 'preserve-3d',
+                transition: `all 2s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
+              }}
+              className="w-fit h-fit absolute bottom-10 left-10"
+            >
+              <Image
+                src="/img/mainPage/thumb-up-dynamic-color.png"
+                alt="zloczew"
+                width={180}
+                height={180}
+                priority={true}
+                className="object-cover "
+              />
+            </motion.div>
+            <motion.div
+              style={{
+                rotateX: transformPostionX,
+                rotateY: transformPostionY,
+                transformStyle: 'preserve-3d',
+                transition: `all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
+                translateX: '-50%',
+              }}
+              className="absolute object-contain w-fit h-fit bottom-5 left-1/2 -z-10 opacity-5 "
+            >
+              <Image
+                src="/img/mainPage/Ellipse.png"
+                alt="zloczew"
+                width={300}
+                height={300}
+                priority={true}
+                className="object-cover "
+              />
+            </motion.div>
+          </div>
         </div>
-      </div>
+      )}
     </motion.div>
   )
 }

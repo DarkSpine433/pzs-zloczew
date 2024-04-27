@@ -68,18 +68,6 @@ const page = (props: Props) => {
           </Section>
         </div>
       </div>
-      {/* <Section maxWidth="max-w-[1440px] " className=" ">
-        <div className=" w-full h-max flex justify-center">
-          <Image
-            src="/img/mainPage/pzs-1.png"
-            alt="zloczew"
-            width={2000}
-            height={2000}
-            quality={100}
-            className="object-contain w-max "
-          />
-        </div>
-      </Section> */}
     </div>
   )
 }
