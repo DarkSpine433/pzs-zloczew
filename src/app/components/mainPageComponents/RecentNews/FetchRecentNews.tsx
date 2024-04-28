@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 type Props = {}
 
 const FetchRecentNews = async (props: Props) => {
+  noStore()
   const payload = await getPayloadHMR({ config: configPromise })
   const data = await payload.find({
     collection: 'news',

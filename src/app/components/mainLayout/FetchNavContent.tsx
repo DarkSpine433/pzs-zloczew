@@ -30,7 +30,7 @@ const FetchNavContent = async () => {
     <div className="py-5">
       <menu className="flex flex-col gap-3">
         {newest - latest !== 0 ? (
-          <Accordion type="" collapsible>
+          <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
               <AccordionTrigger className="text-lg font-semibold">Aktualności</AccordionTrigger>
               <AccordionContent>
