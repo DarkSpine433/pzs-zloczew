@@ -13,17 +13,10 @@ export const Offer: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      label: 'Tytuł',
-      type: 'text',
-    },
-    {
       name: 'Content', // required
       label: 'Kontent Strony',
       type: 'blocks', // required
       minRows: 1,
-      maxRows: 20,
-
       blocks: [ImageUrl, RichTextBlock],
     },
   ],

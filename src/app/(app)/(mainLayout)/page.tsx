@@ -1,5 +1,3 @@
-import dynamic from 'next/dynamic'
-
 import CursorMovmentAnimation from '@/app/components/mainPageComponents/CursorMovmentAnimation'
 
 import MarqueeComponent from '@/app/components/mainPageComponents/MarqueeComponent'

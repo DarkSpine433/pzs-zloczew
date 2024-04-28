@@ -8,12 +8,13 @@ import { fileURLToPath } from 'url'
 
 import { Users } from './collections/Users'
 import { Pages } from './collections/Pages'
-import { Media } from './collections/Media'
+
 import Nav from './collections/Nav'
 import { Offer } from './collections/Offer'
 import { Blocks } from './collections/Blocks'
 import { News } from './collections/News'
-import { Test } from './components/collection/Test'
+
+import { Contact } from './collections/Contact'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -22,7 +23,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Pages, Media, Offer, Blocks, News],
+  collections: [Users, Pages, Offer, Blocks, News, Contact],
   globals: [Nav],
   editor: lexicalEditor({}),
   // plugins: [payloadCloud()], // TODO: Re-enable when cloud supports 3.0

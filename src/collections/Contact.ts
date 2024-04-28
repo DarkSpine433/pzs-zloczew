@@ -8,8 +8,8 @@ import { Iframe } from './blocks/Iframe'
 export const Contact: CollectionConfig = {
   slug: 'contact',
   labels: {
-    singular: 'Podstrony',
-    plural: 'Podstrony',
+    singular: 'Kontakt',
+    plural: 'Kontakt',
   },
 
   access: {
@@ -17,17 +17,8 @@ export const Contact: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      label: 'Tytuł',
-      type: 'text',
-    },
-    {
-      name: 'Content', // required
-      label: 'Kontent Strony',
-      type: 'blocks', // required
-      minRows: 1,
-      maxRows: 20,
-
+      name: 'test',
+      type: 'blocks',
       blocks: [ImageUrl, RichTextBlock, Iframe],
     },
   ],

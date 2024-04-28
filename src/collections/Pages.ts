@@ -26,7 +26,6 @@ export const Pages: CollectionConfig = {
       label: 'Kontent Strony',
       type: 'blocks', // required
       minRows: 1,
-      maxRows: 20,
 
       blocks: [ImageUrl, RichTextBlock, Iframe],
     },

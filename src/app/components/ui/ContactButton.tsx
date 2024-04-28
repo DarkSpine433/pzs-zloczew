@@ -40,11 +40,11 @@ const ContactButton = ({ className, size, bgTransparency }: Props) => {
       <DialogContent className="max-w-96 max-h-96">
         <DialogHeader>
           <DialogTitle>Kontakt</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your account and remove your
-            data from our servers.
-          </DialogDescription>
+          <DialogDescription>Dane Kontaktowe Naszej Szkoły</DialogDescription>
         </DialogHeader>
+        {data.docs.map((doc: any, index) => (
+          <div></div>
+        ))}
       </DialogContent>
     </Dialog>
   )

@@ -14,7 +14,7 @@ const page = ({ params }: Props) => {
   return (
     <>
       <div className=" overflow-x-hidden max-w-screen-2xl mx-auto flex flex-col lg:flex-row justify-center items-center lg:items-start gap-5 px-3">
-        <div className="max-w-7xl w-fit h-fit  rounded-xl flex flex-col gap-2">
+        <div className="max-w-7xl w-fit h-fit rounded-xl flex flex-col gap-2">
           <FetchContent id={params.id} />
         </div>
         <div className=" h-fit bg-primary/5 pb-20 rounded-xl max-w-7xl w-fit px-1 lg:w-72  border-y border-primary/10  ">
@@ -23,7 +23,7 @@ const page = ({ params }: Props) => {
               Aktualności
             </h2>
           </div>
-          <RecentNews className=" md:grid-cols-1" />
+          <RecentNews className=" md:flex md:flex-col" />
         </div>
       </div>
     </>

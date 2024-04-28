@@ -59,6 +59,7 @@ const Nav = (props: Props) => {
         <Link href="https://uonetplus.vulcan.net.pl/powiatsieradzki/" target="_blanks">
           <Button className="p-5 px-7">Dziennik</Button>
         </Link>
+        <FetchNavContent />
         <div className="border-l pl-3 hidden md:flex gap-3 ">
           <Link
             href="https://www.facebook.com/people/PZS-Z%C5%82oczew/61551036213821/"
