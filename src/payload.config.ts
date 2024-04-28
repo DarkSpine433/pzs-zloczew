@@ -23,8 +23,8 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Pages, Offer, Blocks, News, Contact],
-  globals: [Nav],
+  collections: [Users, Pages, Offer, Blocks, News, Contact, Nav],
+
   editor: lexicalEditor({}),
   // plugins: [payloadCloud()], // TODO: Re-enable when cloud supports 3.0
   secret: process.env.PAYLOAD_SECRET || '',

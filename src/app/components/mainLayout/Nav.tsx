@@ -18,7 +18,6 @@ import {
 //icons imports
 import { FaYoutube } from 'react-icons/fa'
 import { FaFacebook } from 'react-icons/fa'
-import ClientNav from './ClientNav'
 
 const FetchNavContent = dynamic(() => import('./FetchNavContent'), { ssr: false })
 
@@ -30,14 +29,14 @@ const ShowMenu = () => {
       <SheetTrigger asChild>
         <Button className="p-5 px-7">Menu</Button>
       </SheetTrigger>
-      <SheetContent side="left">
+      <SheetContent side="left" className="overflow-y-auto">
         <SheetHeader>
           <SheetTitle>Menu</SheetTitle>
           <SheetDescription>Tu znajdziesz czego szukasz.</SheetDescription>
         </SheetHeader>
-        <ClientNav>
-          <FetchNavContent />
-        </ClientNav>
+
+        <FetchNavContent />
+
         <SheetFooter>
           <div className="text-center py-5">
             Wykonana z ❤️ Przez{' '}
@@ -59,7 +58,7 @@ const Nav = (props: Props) => {
         <Link href="https://uonetplus.vulcan.net.pl/powiatsieradzki/" target="_blanks">
           <Button className="p-5 px-7">Dziennik</Button>
         </Link>
-        <FetchNavContent />
+
         <div className="border-l pl-3 hidden md:flex gap-3 ">
           <Link
             href="https://www.facebook.com/people/PZS-Z%C5%82oczew/61551036213821/"

@@ -1,23 +1,15 @@
-import type { GlobalConfig } from 'payload/types'
-import payload from 'payload'
+import type { CollectionConfig } from 'payload/types'
 
 import { GlobalBeforeValidateHook } from 'payload/types'
-import { title } from 'process'
 
-const BeforeChangeHook: GlobalBeforeValidateHook = async ({
-  data, // incoming data to update or create with
-}) => {
-  return data + 'test'
-}
-
-const Nav: GlobalConfig = {
+const Nav: CollectionConfig = {
   slug: 'nav',
-  label: 'Nawigacja',
+  labels: {
+    singular: 'Nawigacja',
+    plural: 'Nawigacja',
+  },
   access: {
     read: () => true,
-  },
-  hooks: {
-    afterChange: [BeforeChangeHook],
   },
 
   fields: [

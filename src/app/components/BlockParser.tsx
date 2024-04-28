@@ -27,8 +27,8 @@ const BlockParser = ({ block }: { block: any }) => {
       <Image
         src={block.ImageUrl}
         alt={block.alt}
-        height={400}
-        width={400}
+        height={900}
+        width={900}
         key={block.id}
         quality={100}
         loading="lazy"
