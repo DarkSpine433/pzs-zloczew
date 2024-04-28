@@ -7,6 +7,7 @@ import RecentNews from '@/app/components/mainPageComponents/RecentNews/RecentNew
 import Section from '@/app/components/mainPageComponents/Section'
 
 import Cta from '@/app/components/mainPageComponents/Cta'
+import ContactButton from '@/app/components/ui/ContactButton'
 
 type Props = {}
 
@@ -15,7 +16,9 @@ const page = (props: Props) => {
     <div className=" overflow-x-hidden">
       <div className="w-full absolute top-0 left-0 bg-gradient-to-b from-primary/30 to-transparent h-dvh pointer-events-none -z-50"></div>
       <Section maxWidth="max-w-[1440px]">
-        <CursorMovmentAnimation />
+        <CursorMovmentAnimation>
+          <ContactButton className="p-6 text-lg text-foreground bg-white/70" />
+        </CursorMovmentAnimation>
       </Section>
       <div className="">
         <Section maxWidth="max-w-6xl z-10">

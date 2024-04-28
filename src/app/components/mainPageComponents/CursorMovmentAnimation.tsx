@@ -7,9 +7,11 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import ContactButton from '../ui/ContactButton'
 
-type Props = {}
+type Props = {
+  children: React.ReactNode
+}
 
-const CursorMovmentAnimation = (props: Props) => {
+const CursorMovmentAnimation = ({ children }: Props) => {
   const refOfSection = useRef<HTMLDivElement>(null)
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -51,7 +53,7 @@ const CursorMovmentAnimation = (props: Props) => {
             <Link href="#discover" className=" flex items-center">
               <Button className="p-6 text-lg">Zwiedzaj</Button>
             </Link>
-            <ContactButton className="p-6 text-lg text-foreground bg-white/70" />
+            {children}
           </div>
         </h1>
       </div>

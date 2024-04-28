@@ -17,7 +17,7 @@ export const Contact: CollectionConfig = {
   },
   fields: [
     {
-      name: 'test',
+      name: 'Content',
       type: 'blocks',
       blocks: [ImageUrl, RichTextBlock, Iframe],
     },

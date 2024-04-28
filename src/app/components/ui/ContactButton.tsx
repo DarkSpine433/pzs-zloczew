@@ -6,6 +6,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import ContactButtonContent from './ContactButtonContent'
 
 type Props = {
   className?: string
@@ -42,9 +43,7 @@ const ContactButton = ({ className, size, bgTransparency }: Props) => {
           <DialogTitle>Kontakt</DialogTitle>
           <DialogDescription>Dane Kontaktowe Naszej Szkoły</DialogDescription>
         </DialogHeader>
-        {data.docs.map((doc: any, index) => (
-          <div></div>
-        ))}
+        <ContactButtonContent />
       </DialogContent>
     </Dialog>
   )
