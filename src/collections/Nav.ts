@@ -1,31 +1,27 @@
-import type { CollectionConfig } from 'payload/types'
+import { GlobalConfig } from 'payload/types'
 
-import { GlobalBeforeValidateHook } from 'payload/types'
-
-const Nav: CollectionConfig = {
+const Nav: GlobalConfig = {
   slug: 'nav',
-  labels: {
-    singular: 'Nawigacja',
-    plural: 'Nawigacja',
-  },
+  label: 'Nawigacja',
   access: {
     read: () => true,
   },
-
   fields: [
     {
       name: 'nav',
-      label: 'Nawigacja',
       type: 'array',
+      required: true,
+
       fields: [
         {
           name: 'page',
           type: 'relationship',
-          relationTo: 'pages',
+          relationTo: 'pages', // "pages" is the slug of an existing collection
           required: true,
         },
       ],
     },
   ],
 }
+
 export default Nav

@@ -14,7 +14,8 @@ const BlockParser = ({ block }: { block: any }) => {
         key={block.id}
         className="
         text-left w-full text-lg font-semibold
-        [&>h2]:text-6xl [&>h2]:py-5
+        [&>h2]:text-5xl [&>h2]:py-5 [&>h2]:pt-20 [&>h2]:font-extrabold
+        [&>p]:text-2xl  [&>p]:py-2
         [&>hr]:w-full [&>hr]:h-[0.05rem] [&>hr]:bg-foreground [&>hr]:border-none [&>hr]:p-0
         "
       >

@@ -4,17 +4,20 @@ import { parseISO, format } from 'date-fns'
 
 import { unstable_noStore as noStore } from 'next/cache'
 import Image from 'next/image'
-import BlockParser from '../../BlockParser'
+import BlockParser from '@/app/components/BlockParser'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 
-type Props = {}
+type Props = {
+  NumberOfNewsToFetch: number
+}
 
-const FetchRecentNews = async (props: Props) => {
+const FetchRecentNews = async ({ NumberOfNewsToFetch }: Props) => {
   noStore()
   const payload = await getPayloadHMR({ config: configPromise })
   const data = await payload.find({
     collection: 'news',
-    limit: 5,
+    limit: NumberOfNewsToFetch,
+    sort: '-createdAt',
   })
 
   return (
@@ -22,7 +25,7 @@ const FetchRecentNews = async (props: Props) => {
       {data.docs.map((doc: any, index) => (
         <Dialog key={index}>
           <DialogTrigger>
-            <div className=" w-fit max-w-md h-fit grid grid-cols-1  relative bg-secondary p-2 rounded-lg shadow-md shadow-blue-300 hover:-translate-y-1 hover:shadow-md hover:shadow-primary transition-all gap-2 ">
+            <div className=" w-full md:w-80 max-w-96   h-fit min-h-96  relative bg-secondary p-2 rounded-lg shadow-md shadow-blue-300 hover:-translate-y-1 hover:shadow-md hover:shadow-primary transition-all gap-2 ">
               <div className="w-full h-full  ">
                 <Image
                   src={doc.thumbnail}
@@ -69,7 +72,7 @@ const FetchRecentNews = async (props: Props) => {
             <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent via-primary/50 to-transparent border-none p-0 " />
             <div className="   pt-5 space-y-10 flex justify-center items-center flex-col">
               {doc?.Content.map((block: any) => {
-                return <BlockParser block={block} key={block.id} />
+                return <BlockParser block={block} key={block.id + 'key' + index} />
               })}
               <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent via-primary/50 to-transparent border-none p-0 " />
             </div>

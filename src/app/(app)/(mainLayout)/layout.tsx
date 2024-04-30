@@ -18,7 +18,7 @@ export default function mainLayout({ children }: { children: React.ReactNode }) 
         </div>
       </nav>
 
-      <div className="  mx-auto  pb-10 pt-5">
+      <div className="mx-auto pb-10 pt-5">
         <main>{children}</main>
       </div>
 
