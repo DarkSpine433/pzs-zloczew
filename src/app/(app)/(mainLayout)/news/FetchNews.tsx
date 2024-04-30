@@ -49,14 +49,14 @@ const FetchRecentNews = async ({ NumberOfNewsToFetch }: Props) => {
           </DialogTrigger>
           <DialogContent className=" px-6 sm:px-10  h-[90%] max-h-[900px] max-w-3xl w-[98%] sm:w-11/12 overflow-y-scroll shadow-md shadow-primary/70 rounded-lg">
             <div
-              className={`w-full text-pretty text-left  sm:px-0 h-60 relative  flex flex-col justify-center items-center overflow-hidden rounded-xl `}
+              className={`w-full text-pretty text-left  sm:px-0 h-max relative  flex flex-col justify-center items-center overflow-hidden rounded-xl `}
             >
               <Image
                 src={doc.thumbnail}
                 alt="miniatura"
                 width={300}
                 height={300}
-                className="rounded-lg w-full h-60 object-cover overflow-hidden aspect-video absolute top-0 left-0 -z-10 pointer-events-none blur-sm"
+                className="rounded-lg w-full h-full object-cover overflow-hidden aspect-video absolute top-0 left-0 -z-10 pointer-events-none blur-sm"
               />
               <div className="bg-foreground/70 w-full h-full p-5 text-background ">
                 <h2 className="text-4xl font-bold pb-5">{doc.title}</h2>
