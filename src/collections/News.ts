@@ -4,7 +4,7 @@ import type { CollectionConfig } from 'payload/types'
 import { ImageUrl } from './blocks/ImageUrl'
 import { RichTextBlock } from './blocks/RichTextBlock'
 import { Iframe } from './blocks/Iframe'
-import { Test } from '../components/collection/Test'
+import { GenerateWithOpenAiText } from '../components/collection/GenerateWithOpenAiText'
 export const News: CollectionConfig = {
   slug: 'news',
   labels: {
@@ -35,7 +35,7 @@ export const News: CollectionConfig = {
       type: 'ui',
       admin: {
         components: {
-          Field: Test,
+          Field: GenerateWithOpenAiText,
         },
       },
     },

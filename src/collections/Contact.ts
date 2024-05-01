@@ -1,11 +1,11 @@
 // @ts-nocheck
-import type { CollectionConfig } from 'payload/types'
+import type { GlobalConfig } from 'payload/types'
 
 import { ImageUrl } from './blocks/ImageUrl'
 import { RichTextBlock } from './blocks/RichTextBlock'
 import { Iframe } from './blocks/Iframe'
 
-export const Contact: CollectionConfig = {
+export const Contact: GlobalConfig = {
   slug: 'contact',
   labels: {
     singular: 'Kontakt',

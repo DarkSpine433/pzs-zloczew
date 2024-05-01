@@ -1,13 +1,10 @@
-import type { CollectionConfig } from 'payload/types'
+import type { GlobalConfig } from 'payload/types'
 import { ImageUrl } from './blocks/ImageUrl'
 import { RichTextBlock } from './blocks/RichTextBlock'
 
-export const Offer: CollectionConfig = {
+export const Offer: GlobalConfig = {
   slug: 'offer',
-  labels: {
-    singular: 'Oferta Szkoły',
-    plural: 'Oferta Szkoły',
-  },
+  label: 'Oferta Szkoły',
   access: {
     read: () => true,
   },

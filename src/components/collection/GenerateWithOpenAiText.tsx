@@ -3,7 +3,7 @@ import React from 'react'
 
 type Props = {}
 
-export const Test: React.FC = (props: Props) => {
+export const GenerateWithOpenAiText: React.FC = (props: Props) => {
   return (
     <React.Fragment>
       <h4>

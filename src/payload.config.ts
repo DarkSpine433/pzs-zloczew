@@ -11,7 +11,7 @@ import { Pages } from './collections/Pages'
 
 import Nav from './collections/Nav'
 import { Offer } from './collections/Offer'
-import { Blocks } from './collections/Blocks'
+
 import { News } from './collections/News'
 
 import { Contact } from './collections/Contact'
@@ -23,8 +23,8 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Pages, Offer, Blocks, News, Contact],
-  globals: [Nav],
+  collections: [Users, Pages, News],
+  globals: [Nav, Offer, Contact],
 
   editor: lexicalEditor({}),
   // plugins: [payloadCloud()], // TODO: Re-enable when cloud supports 3.0
