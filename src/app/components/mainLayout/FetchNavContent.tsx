@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@payload-config'
 import { SheetClose } from '@/components/ui/sheet'
+import Socials from './Socials'
 
 const FetchNavContent = async () => {
   noStore()
@@ -29,6 +30,15 @@ const FetchNavContent = async () => {
             <li>Aktualności</li>
           </SheetClose>
         </Link>
+        <Link href={'/news'}>
+          <SheetClose className="w-full border-b-2 border-primary rounded-lg px-3 py-3 bg-secondary/60 hover:bg-secondary hover:px-3.5 hover:border-primary/50 transition-all shadow-sm shadow-primary/50 text-left lowercase first-letter:uppercase  font-semibold">
+            <li>Kontakt</li>
+          </SheetClose>
+        </Link>
+        <li className=" flex gap-3">
+          <Socials />
+        </li>
+
         {data.nav.map((item: any) => {
           return (
             <Link key={item.page.id} href={'/p/' + item.page.id} className="">

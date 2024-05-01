@@ -38,7 +38,7 @@ const ContactButton = ({ className, size, bgTransparency }: Props) => {
           </svg>
         </div>
       </DialogTrigger>
-      <DialogContent className="max-w-96 max-h-96">
+      <DialogContent className="w-11/12 max-w-screen-2xl h-3/4">
         <DialogHeader>
           <DialogTitle>Kontakt</DialogTitle>
           <DialogDescription>Dane Kontaktowe Naszej Szkoły</DialogDescription>
