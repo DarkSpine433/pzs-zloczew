@@ -55,7 +55,7 @@ const Nav = (props: Props) => {
         <Link href="https://uonetplus.vulcan.net.pl/powiatsieradzki/" target="_blanks">
           <Button className="p-5 px-7">Dziennik</Button>
         </Link>
-        <div className="flex gap-3 border-l pl-3">
+        <div className="hidden md:flex gap-3 border-l pl-3 ">
           <Socials />
         </div>
       </div>

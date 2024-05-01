@@ -10,7 +10,6 @@ const Nav: GlobalConfig = {
     {
       name: 'nav',
       type: 'array',
-      required: true,
 
       fields: [
         {

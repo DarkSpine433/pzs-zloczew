@@ -1,16 +1,9 @@
 'use client'
 
-import { useRef, useState, useLayoutEffect } from 'react'
+import { useState, useLayoutEffect } from 'react'
 import { Button } from '@/components/ui/button'
 
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import NewFilterComponent from './NewFilterComponent'
 
 type Props = {}
@@ -35,9 +28,9 @@ const NewsFilter = (props: Props) => {
     <>
       {windowWidth >= 1024 ? (
         <aside
-          className={`sticky top-20 left-0  h-4/5  z-10 justify-center    min-w-52 transition-all w-96 bg-secondary p-10 rounded-xl flex flex-col`}
+          className={`sticky top-20 left-0  h-4/5  z-10 justify-center  min-w-52 transition-all w-96 bg-secondary/20 p-10 rounded-md  flex flex-col border border-primary/20`}
         >
-          <NewFilterComponent />
+          <NewFilterComponent isSheet={false} />
         </aside>
       ) : (
         <Sheet>
@@ -63,8 +56,13 @@ const NewsFilter = (props: Props) => {
               </svg>
             </Button>
           </SheetTrigger>
-          <SheetContent className="w-full sm:w-96" side={windowWidth >= 640 ? 'left' : 'bottom'}>
-            <NewFilterComponent />
+          <SheetContent
+            className={`overflow-y-auto  max-h-[100dvh] ${
+              windowWidth > 640 ? 'h-fit flex items-end w-96' : 'w-full h-fit'
+            }`}
+            side={'bottom'}
+          >
+            <NewFilterComponent isSheet />
           </SheetContent>
         </Sheet>
       )}

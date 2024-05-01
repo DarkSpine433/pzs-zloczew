@@ -9,6 +9,7 @@ import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@payload-config'
 import { SheetClose } from '@/components/ui/sheet'
 import Socials from './Socials'
+import GlobalNotFounded from '../GlobalNotFounded'
 
 const FetchNavContent = async () => {
   noStore()
@@ -35,23 +36,24 @@ const FetchNavContent = async () => {
             <li>Kontakt</li>
           </SheetClose>
         </Link>
-        <li className=" flex gap-3">
+        <li className=" flex md:hidden gap-3 justify-center">
           <Socials />
         </li>
+        <hr className=" border-none w-full max-w-screen-2xl h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent p-0 m-0 mb-5" />
 
-        {data.nav.map((item: any) => {
-          return (
-            <Link key={item.page.id} href={'/p/' + item.page.id} className="">
-              <SheetClose className="w-full border-b-2 border-primary rounded-lg px-3 py-3 bg-secondary/60 hover:bg-secondary hover:px-3.5 hover:border-primary/50 transition-all shadow-sm shadow-primary/50 text-left lowercase first-letter:uppercase  font-semibold">
-                <li>{item.page.title}</li>
-              </SheetClose>
-            </Link>
-          )
-        })}
-        <Link href="/">
-          <li>asdf</li>
-        </Link>
-        <li>asdf</li>
+        {!data.nav || data.nav.length === 0 ? (
+          <></>
+        ) : (
+          data.nav.map((item: any) => {
+            return (
+              <Link key={item.page.id} href={'/p/' + item.page.id} className="">
+                <SheetClose className="w-full border-b-2 border-primary rounded-lg px-3 py-3 bg-secondary/60 hover:bg-secondary hover:px-3.5 hover:border-primary/50 transition-all shadow-sm shadow-primary/50 text-left lowercase first-letter:uppercase  font-semibold">
+                  <li>{item.page.title}</li>
+                </SheetClose>
+              </Link>
+            )
+          })
+        )}
       </menu>
     </div>
   )

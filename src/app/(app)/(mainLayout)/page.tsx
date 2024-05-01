@@ -65,7 +65,7 @@ const page = (props: Props) => {
                 Aktualności
               </h2>
             </div>
-            <RecentNews />
+            <RecentNews repetation={10} />
           </Section>
         </div>
       </div>

@@ -7,10 +7,7 @@ import { Iframe } from './blocks/Iframe'
 
 export const Contact: GlobalConfig = {
   slug: 'contact',
-  labels: {
-    singular: 'Kontakt',
-    plural: 'Kontakt',
-  },
+  label: 'Kontakt',
 
   access: {
     read: () => true,
