@@ -9,7 +9,7 @@ export const StaticNavLinks = [
   },
   {
     title: 'Projekty',
-    url: '/projcects',
+    url: '/projects',
   },
   {
     title: 'Kontakt',

@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 
 //Other Ui Components Import
 import { Button } from '@/components/ui/button'
@@ -49,11 +50,16 @@ const ShowMenu = () => {
 
 const Nav = (props: Props) => {
   return (
-    <div className="w-full flex justify-around items-center py-3.5">
+    <div className="w-full flex justify-around items-center py-0.5">
       <ShowMenu />
+      <Link href="/">
+        <Image src="/logo.png" alt="logo" width={80} height={80} />
+      </Link>
       <div className=" flex gap-3 ">
         <Link href="https://uonetplus.vulcan.net.pl/powiatsieradzki/" target="_blanks">
-          <Button className="p-5 px-7">Dziennik</Button>
+          <Button className="p-5 px-7 text-white" variant={'outline'}>
+            Dziennik
+          </Button>
         </Link>
         <div className="hidden md:flex gap-3 border-l pl-3 ">
           <Socials />
