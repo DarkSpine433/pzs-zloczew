@@ -37,7 +37,7 @@ const ShowMenu = () => {
         <SheetFooter>
           <div className="text-center py-5">
             Wykonana z ❤️ Przez{' '}
-            <Link href="https://ds-craft.vercel.app/" className="underline" target="_blank">
+            <Link href="https://bit.ly/ds-craft" className="underline" target="_blank">
               DS-Craft
             </Link>
           </div>

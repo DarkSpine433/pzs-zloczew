@@ -13,7 +13,7 @@ type Props = {}
 
 const page = (props: Props) => {
   return (
-    <div className=" overflow-x-hidden">
+    <div className=" overflow-x-hidden pb-10">
       <div className="w-full absolute top-0 left-0 bg-gradient-to-b from-primary/30 to-transparent h-dvh pointer-events-none -z-50"></div>
       <Section maxWidth="max-w-[1440px]">
         <CursorMovmentAnimation>
@@ -58,7 +58,7 @@ const page = (props: Props) => {
             </div>
           </Section>
 
-          <Section className=" bg-background" maxWidth="max-w-6xl ">
+          <Section className=" bg-background mb-5" maxWidth="max-w-6xl ">
             <div className="relative ">
               <hr className="w-full h-[0.1rem] bg-gradient-to-r from-transparent from-10% to-90% via-primary to-transparent border-none p-0  absolute top-0 m-0 " />
               <h2 className=" scroll-m-20 text-center pb-20 font-extrabold text-4xl py-5 uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">

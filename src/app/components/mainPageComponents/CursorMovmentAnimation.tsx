@@ -5,7 +5,6 @@ import { motion, useMotionValue, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import { useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import ContactButton from '../ui/ContactButton'
 
 type Props = {
   children: React.ReactNode
@@ -17,8 +16,8 @@ const CursorMovmentAnimation = ({ children }: Props) => {
   const y = useMotionValue(0)
   const [windowWidth, setWindowWidth] = useState(0)
 
-  const transformPostionX = useTransform(x, [-0.5, 0.5], [-2, 2])
-  const transformPostionY = useTransform(y, [-0.5, 0.5], [-2, 2])
+  const transformPostionX = useTransform(x, [-0.5, 0.5], [-3, 3])
+  const transformPostionY = useTransform(y, [-0.5, 0.5], [-3, 3])
 
   const handleMouseMove = (e: any) => {
     const rect = refOfSection.current?.getBoundingClientRect()!
@@ -69,7 +68,7 @@ const CursorMovmentAnimation = ({ children }: Props) => {
                 rotateX: transformPostionX,
                 rotateY: transformPostionY,
                 transformStyle: 'preserve-3d',
-                transition: `all 2s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
+                transition: `all 1s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
               }}
               className=" object-cover h-fit w-fit"
             >
@@ -98,7 +97,7 @@ const CursorMovmentAnimation = ({ children }: Props) => {
                 rotateX: transformPostionX,
                 rotateY: transformPostionY,
                 transformStyle: 'preserve-3d',
-                transition: `all 2s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
+                transition: `all 1s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
               }}
               className="w-fit h-fit absolute top-0 right-20"
             >
@@ -117,7 +116,7 @@ const CursorMovmentAnimation = ({ children }: Props) => {
                 rotateX: transformPostionX,
                 rotateY: transformPostionY,
                 transformStyle: 'preserve-3d',
-                transition: `all 2s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
+                transition: `all 1s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
               }}
               className="w-fit h-fit absolute bottom-10 left-10"
             >

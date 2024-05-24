@@ -26,7 +26,7 @@ export default function mainLayout({ children }: { children: React.ReactNode }) 
       </div>
 
       <footer className="bg-foreground text-background z-50">
-        <div className=" max-w-[1440px] mx-auto">
+        <div className=" max-w-4xl   mx-auto">
           <Footer />
         </div>
       </footer>
