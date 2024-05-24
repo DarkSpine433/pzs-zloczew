@@ -45,7 +45,7 @@ const Footer = (props: Props) => {
             <h2 className="">Dla Botów</h2>
             <div className=" flex flex-col flex-wrap ">
               <Link
-                href={'/sitemap'}
+                href={'/sitemap.xml'}
                 className="py-5 pr-5 first-letter:uppercase lowercase first-letter:text-primary text-gray-500 transition-all hover:translate-x-1 w-fit h-fit hover:text-primary hover:first-letter:text-white"
               >
                 Sitemap
