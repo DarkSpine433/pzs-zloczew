@@ -2,8 +2,9 @@ import { parseISO, format } from 'date-fns'
 
 import { unstable_noStore as noStore } from 'next/cache'
 import Image from 'next/image'
-import BlockParser from '../../BlockParser'
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+
+import Link from 'next/link'
+import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card'
 
 type Props = {
   data: any
@@ -15,8 +16,8 @@ const FetchRecentNews = async ({ data }: Props) => {
   return (
     <>
       {data.docs.map((doc: any, index: number) => (
-        <Dialog key={index}>
-          <DialogTrigger className=" w-full max-w-96 mx-auto flex flex-col h-max min-h-96  relative bg-secondary p-2 rounded-lg shadow-md shadow-blue-300 hover:-translate-y-1 hover:shadow-md hover:shadow-primary transition-all gap-2 ">
+        <Link key={index} href={`/news/p/${doc.id}`} className="h-96 max-w-96 ">
+          <Card>
             <div className="w-full h-full  ">
               <Image
                 src={doc.thumbnail}
@@ -26,48 +27,22 @@ const FetchRecentNews = async ({ data }: Props) => {
                 className="rounded-lg w-96 h-64 object-cover overflow-hidden aspect-square "
               />
             </div>
-            <div className="w-full text-pretty text-left px-3">
-              <h2 className="text-[1.08rem] font-bold pb-5 ">{doc.title}</h2>
 
-              <h3 className="text-sm text-gray-900 ">
-                Data:&nbsp;
-                <time dateTime={doc.createdAt}>
-                  {format(parseISO(doc.createdAt), 'dd.MM.yyyy')}
-                </time>
-              </h3>
-            </div>
-          </DialogTrigger>
-          <DialogContent className=" px-6 sm:px-10  h-[90%] max-h-[900px] max-w-3xl w-[98%] sm:w-11/12 overflow-y-scroll shadow-md shadow-primary/70 rounded-lg">
-            <div
-              className={`w-full text-pretty text-left  sm:px-0 h-max relative  flex flex-col justify-center items-center overflow-hidden rounded-xl `}
-            >
-              <Image
-                src={doc.thumbnail}
-                alt="miniatura"
-                width={300}
-                height={300}
-                className="rounded-lg w-full h-full object-cover overflow-hidden aspect-video absolute top-0 left-0 -z-10 pointer-events-none blur-sm"
-              />
-              <div className="bg-foreground/70 w-full h-full p-5 text-background ">
-                <h2 className="text-4xl font-bold pb-5">{doc.title}</h2>
-
-                <h3 className="text-sm text-gray-400 ">
+            <CardContent className="mt-5">
+              <CardTitle>
+                <h2 className="text-[1.08rem] font-bold pb-5 ">{doc.title}</h2>
+              </CardTitle>
+              <CardDescription>
+                <h3 className="text-sm text-gray-900 ">
                   Data:&nbsp;
                   <time dateTime={doc.createdAt}>
                     {format(parseISO(doc.createdAt), 'dd.MM.yyyy')}
                   </time>
                 </h3>
-              </div>
-            </div>
-            <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent via-primary/50 to-transparent border-none p-0 " />
-            <div className="   pt-5 space-y-10 flex justify-center items-center flex-col">
-              {doc?.Content.map((block: any) => {
-                return <BlockParser block={block} key={block.id + 'key' + index} />
-              })}
-              <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent via-primary/50 to-transparent border-none p-0 " />
-            </div>
-          </DialogContent>
-        </Dialog>
+              </CardDescription>
+            </CardContent>
+          </Card>
+        </Link>
       ))}
     </>
   )

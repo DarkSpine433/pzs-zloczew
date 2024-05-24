@@ -53,7 +53,9 @@ const NewFilterComponent = ({ isSheet }: Props) => {
           </>
         ) : (
           <>
-            <Button className=" py-5 w-full">Zastosuj</Button>
+            <Button className=" py-5 w-full" onClick={handleFiltring}>
+              Zastosuj
+            </Button>
 
             <Link href="/news">
               <Button className=" py-5" variant={'destructive'}>

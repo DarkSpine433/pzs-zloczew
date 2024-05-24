@@ -25,9 +25,9 @@ const RecentNews = async ({ className }: Props) => {
   })
   return (
     <>
-      <div className="px-2">
+      <div className="px-2 flex flex-col justify-center">
         <div
-          className={`grid gap-10 justify-center pb-2 [&>h2]:text-sm md:grid-cols-3 ${className}`}
+          className={`grid gap-10 grid-cols-1 mx-auto  w-fit  sm:grid-cols-2 pb-2 [&>h2]:text-sm md:grid-cols-3 ${className}`}
         >
           <FetchRecentNews data={data} />
         </div>
