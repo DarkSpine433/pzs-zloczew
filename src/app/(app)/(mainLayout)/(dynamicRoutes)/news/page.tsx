@@ -44,10 +44,11 @@ const page = ({ searchParams }: Props) => {
         </h1>
         <h3 className="bg-clip-text text-left text-sm md:text-base text-gray-500/20 tracking-widest bg-[url('/img/news/grain.jpg')] mt-10  max-w-4xl mx-auto  px-6">
           <ol className=" [&>li]:first-letter:uppercase [&>li]:first-letter:text-primary flex flex-col gap-2">
+            <li>Najnowsze informacje i wydarzenia życia szkoły.</li>
             <li>
-              Najnowsze informacje i wydarzenia życia szkoły Regularnie publikujemy wiadomości o
-              osiągnięciach uczniów, relacje z wydarzeń szkolnych, informacje o nadchodzących
-              konkursach oraz ogłoszenia dla rodziców i uczniów.
+              Regularnie publikujemy wiadomości o osiągnięciach uczniów, relacje z wydarzeń
+              szkolnych, informacje o nadchodzących konkursach oraz ogłoszenia dla rodziców i
+              uczniów.
             </li>
             <li>
               Nasza strona jest najlepszym źródłem, aby być na bieżąco z tym, co dzieje się w naszej
@@ -60,7 +61,7 @@ const page = ({ searchParams }: Props) => {
       <div className="max-w-screen-2xl w-full mx-auto flex lg:gap-10 px-5  justify-center ">
         <NewsFilter />
         {searchParams.test}
-        <div className="grid grid-cols-1  sm:grid-cols-2 xl:grid-cols-3   gap-10  mx-auto w-full h-fit justify-center items-center ">
+        <div className="grid grid-cols-1  sm:grid-cols-2 xl:grid-cols-3 w-fit   gap-10  max-w-7xl mx-auto  h-fit justify-center items-center ">
           <FetchNews NumberOfNewsToFetch={NumberOfNewsToFetch} searchParams={searchParams} />
         </div>
       </div>
