@@ -36,9 +36,44 @@ const page = (props: Props) => {
             <div className="relative pt-10 pb-20  rounded-lg border-primary/20">
               <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent from-10% to-90% via-primary to-transparent border-none p-0  absolute top-0 m-0 " />
               <div className=" absolute rounded-full size-[80rem] left-1/2 top-0 -translate-x-1/2  -translate-y-1/2 -z-20 pointer-events-none  bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)]  "></div>
-              <h2 className=" scroll-m-20 text-center font-extrabold text-4xl pb-14 uppercase text-transparent bg-clip-text bg-gradient-to-r from-blue-800 via-blue-500 to-blue-800 from-20% to-80%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
+
+              <h2 className=" scroll-m-20 text-center font-extrabold text-4xl pb-4 uppercase text-transparent bg-clip-text bg-gradient-to-r from-blue-800 via-blue-500 to-blue-800 from-20% to-80%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
                 Oferta Naszej Szkoły
               </h2>
+
+              <div className=" gap-2 [&>div]:rounded-lg [&>div]:py-1 pb-10 mx-auto  max-w-7xl flex  flex-wrap items-center justify-center  px-2  ">
+                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-100 text-sm border bg-blue-100 border-blue-300 text-blue-700 w-fit mb-4 sm:mb-0 transition-all">
+                  Dyscyplina
+                </div>
+                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-200 text-sm border bg-blue-200 border-blue-400 text-blue-800 w-fit mb-4 sm:mb-0 transition-all">
+                  Kreatywność
+                </div>
+                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-300 text-sm border bg-blue-300 border-blue-500 text-blue-900 w-fit mb-4 sm:mb-0 transition-all">
+                  Bezpieczeństwo
+                </div>
+                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-100 text-sm border bg-blue-100 border-blue-300 text-blue-700 w-fit mb-4 sm:mb-0 transition-all">
+                  Motywacja
+                </div>
+                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-200 text-sm border bg-blue-200 border-blue-400 text-blue-800 w-fit mb-4 sm:mb-0 transition-all">
+                  Wsparcie
+                </div>
+                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-300 text-sm border bg-blue-300 border-blue-500 text-blue-900 w-fit mb-4 sm:mb-0 transition-all">
+                  Integracja
+                </div>
+                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-100 text-sm border bg-blue-100 border-blue-300 text-blue-700 w-fit mb-4 sm:mb-0 transition-all">
+                  Rozwój
+                </div>
+                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-200 text-sm border bg-blue-200 border-blue-400 text-blue-800 w-fit mb-4 sm:mb-0 transition-all">
+                  Odkrywanie
+                </div>
+                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-300 text-sm border bg-blue-300 border-blue-500 text-blue-900 w-fit mb-4 sm:mb-0 transition-all">
+                  Nauka
+                </div>
+                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-100 text-sm border bg-blue-100 border-blue-300 text-blue-700 w-fit mb-4 sm:mb-0 transition-all">
+                  Przyjaźń
+                </div>
+              </div>
+
               <GetOffer />
               <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent from-10% to-90% via-primary to-transparent border-none p-0  absolute bottom-0 m-0 " />
             </div>

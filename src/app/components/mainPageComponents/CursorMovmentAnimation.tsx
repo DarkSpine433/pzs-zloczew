@@ -32,7 +32,7 @@ const CursorMovmentAnimation = ({ children }: Props) => {
   }, [])
   return (
     <motion.div
-      className=" h-fit w-full pb-10 transition-all overflow-hidden px-5  md:px-20 relative min-h-[600px] flex items-center "
+      className=" h-fit w-full pb-10 transition-all overflow-hidden px-5  md:px-20 relative items-center flex   min-h-[600px] sm:items-center "
       ref={refOfSection}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => {
