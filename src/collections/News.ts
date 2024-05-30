@@ -2,6 +2,7 @@
 import type { CollectionConfig } from 'payload/types'
 
 import { ImageUrl } from './blocks/ImageUrl'
+
 import { RichTextBlock } from './blocks/RichTextBlock'
 import { Iframe } from './blocks/Iframe'
 import { GenerateWithOpenAiText } from '../components/collection/GenerateWithOpenAiText'
@@ -44,6 +45,7 @@ export const News: CollectionConfig = {
       label: 'Miniaturka Link',
       type: 'text',
     },
+
     {
       name: 'Content', // required
       label: 'Kontent Strony',

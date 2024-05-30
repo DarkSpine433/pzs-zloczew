@@ -5,7 +5,12 @@ type Props = {}
 const BlockParser = ({ block }: { block: any }) => {
   if (block.blockType === 'iframe') {
     return (
-      <iframe src={block.Iframe} frameBorder="0" key={block.id} className="w-full min-h-[600px]" />
+      <iframe
+        src={block.Iframe}
+        frameBorder="0"
+        key={block.id}
+        className="w-full min-h-[600px] rounded-xl border-0 shadow-md"
+      />
     )
   }
   if (block.blockType === 'text') {

@@ -15,12 +15,35 @@ const FetchContent = async ({ id }: { id: string }) => {
 
   return (
     <>
-      <div className="bg-primary/5 py-3  border-b border-primary/50  rounded-xl">
-        <h1 className="text-4xl sm:text-5xl font-extrabold px-3 py-5 uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)] ">
+      <div
+        className=" bg-[url('/img/pagesImg/h1.jpg')]
+            relative
+            overflow-hidden
+            block
+            z-10
+         
+            bg-cover
+            bg-no-repeat
+            bg-center
+
+            after:content-['']
+            after:absolute
+            after:inset-0
+            after:block
+            after:bg-gradient-to-br
+            after:from-black/70
+            after:to-gray-black/30
+          
+            after:z-[-5]
+            
+            border-b-8 shadow-lg  border-gray-500 py-20 mb-20 after:top-0 after:left-0 after:w-full after:h-full after:bg-black/50 "
+      >
+        <h1 className="text-center font-extrabold text-[3rem] sm:text-7xl  bg-clip-text text-background/40   tracking-widest bg-[url('/img/news/grain.jpg')] ">
           {data.title}
         </h1>
       </div>
-      <div className="px-3 bg-primary/10 border-b border-primary/50  py-10 flex gap-4 flex-col items-center   rounded-xl">
+
+      <div className="mt-10 px-3   py-10 flex gap-4 flex-col items-center max-w-6xl mx-auto  rounded-xl">
         {data?.Content.map((block: any, index: number) => {
           return <BlockParser block={block} key={block.id + index + 'key'} />
         })}

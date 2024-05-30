@@ -15,6 +15,7 @@ import { Offer } from './collections/Offer'
 import { News } from './collections/News'
 
 import { Contact } from './collections/Contact'
+import { Media } from './collections/Media'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,9 +24,8 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Pages, News],
+  collections: [Users, Pages, News, Media],
   globals: [Nav, Offer, Contact],
-
   editor: lexicalEditor({}),
   // plugins: [payloadCloud()], // TODO: Re-enable when cloud supports 3.0
   secret: process.env.PAYLOAD_SECRET || '',

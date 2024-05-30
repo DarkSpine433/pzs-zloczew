@@ -5,7 +5,8 @@ import { uploadFile } from '@/app/actions/uploadFile'
 import { Button } from '@/components/ui/button'
 import { deleteFile } from '@/app/actions/deleteFile'
 
-const page = () => {
+type Props = {}
+export const UploadFile: React.FC = (props: Props) => {
   const [fileSrc, setFilseSrc] = useState<String | null>(null)
   const [fileName, setFileName] = useState<[] | null>(null)
   const [imageSrc, setImageSrc] = useState<String | null>(null)
@@ -59,7 +60,7 @@ const page = () => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <form className="flex flex-col gap-3 mx-auto max-w-4xl  mt-3">
         <input type="file" name="fileUpload" id="fileUpload" onChange={handleChange} />
         {uploadMassage[1] === 200 ? (
@@ -96,8 +97,6 @@ const page = () => {
           </div>
         )}
       </form>
-    </>
+    </React.Fragment>
   )
 }
-
-export default page

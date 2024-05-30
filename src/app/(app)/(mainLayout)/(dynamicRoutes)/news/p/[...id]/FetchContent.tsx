@@ -16,7 +16,7 @@ const FetchContent = async ({ id }: { id: string }) => {
   })
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       <div
         id="test"
         style={{
@@ -49,13 +49,13 @@ const FetchContent = async ({ id }: { id: string }) => {
         >
           {data.title}
         </h1>
-        <h3 className="bg-clip-text text-left text-sm md:text-base text-gray-500/20  bg-[url('/img/news/grain.jpg')] mt-16  first-letter:text-primary  max-w-3xl px-5 mx-auto">
+        <h3 className="bg-clip-text text-left text-sm md:text-base text-gray-500 mt-16  first-letter:text-primary  max-w-3xl px-5 mx-auto">
           Data Utworzenia:&nbsp;
           <time dateTime={data.createdAt}>{format(parseISO(data.createdAt), 'dd.MM.yyyy')}</time>
         </h3>
       </div>
 
-      <div className=" px-4 pb-24 flex gap-10 flex-col items-center max-w-5xl mx-auto   rounded-xl">
+      <div className=" px-4 pb-24 flex gap-10 flex-col items-center max-w-5xl mx-auto   rounded-xl min-w-[800px]">
         {data?.Content.map((block: any, index: number) => {
           return <BlockParser block={block} key={block.id + index + 'key'} />
         })}
