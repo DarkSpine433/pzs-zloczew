@@ -13,7 +13,7 @@ type Props = {
 const page = ({ params }: Props) => {
   return (
     <>
-      <FetchContent id={params.id} />{' '}
+      <FetchContent id={params.id} />
       <hr className="block w-full h-[3px] bg-gray-300 border-0 p-0 mb-20" />
       <Section className=" bg-background" maxWidth="max-w-6xl ">
         <h2 className="  py-5 bg-clip-text text-primary/90 text-5xl sm:text-6xl font-extrabold  bg-[url('/img/news/grain.jpg')]  max-w-6xl text-center mx-auto uppercase">

@@ -43,7 +43,7 @@ const FetchContent = async ({ id }: { id: string }) => {
         </h1>
       </div>
 
-      <div className="mt-10 px-3   py-10 flex gap-4 flex-col items-center max-w-6xl mx-auto  rounded-xl">
+      <div className="mt-10 px-3   py-10 flex gap-4 flex-col items-center max-w-6xl w-full mx-auto  rounded-xl">
         {data?.Content.map((block: any, index: number) => {
           return <BlockParser block={block} key={block.id + index + 'key'} />
         })}

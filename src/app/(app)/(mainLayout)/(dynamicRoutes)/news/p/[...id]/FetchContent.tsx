@@ -42,7 +42,7 @@ const FetchContent = async ({ id }: { id: string }) => {
           
             after:z-[-5]
            
-            border-b-8 shadow-lg  border-gray-500 py-12 mb-20 after:top-0 after:left-0 after:w-full after:h-full after:bg-black/70 `}
+            border-b-8 shadow-lg  border-gray-500 py-12 after:top-0 after:left-0 after:w-full after:h-full after:bg-black/70 `}
       >
         <h1
           className={`text-center font-extrabold text-[2rem] sm:text-[3rem]  bg-clip-text text-background/40 bg-[url('/img/news/grain.jpg')]   max-w-5xl px-3 mx-auto`}
@@ -55,7 +55,7 @@ const FetchContent = async ({ id }: { id: string }) => {
         </h3>
       </div>
 
-      <div className=" px-4 pb-24 flex gap-10 flex-col items-center max-w-5xl mx-auto   rounded-xl min-w-[800px]">
+      <div className=" px-4 pb-24 flex gap-10 flex-col items-center max-w-5xl mx-auto rounded-xl mt-10">
         {data?.Content.map((block: any, index: number) => {
           return <BlockParser block={block} key={block.id + index + 'key'} />
         })}
