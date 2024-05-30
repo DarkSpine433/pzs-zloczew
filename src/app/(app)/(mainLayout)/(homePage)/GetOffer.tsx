@@ -17,7 +17,7 @@ const GetOffer = async (props: Props) => {
     return <GlobalNotFounded />
   }
   return (
-    <div className="flex flex-wrap items-center justify-center gap-10">
+    <div className="flex flex-wrap items-center justify-center gap-10 px-3">
       {getOffer.Content.map((offer) => {
         return (
           <Image
@@ -28,7 +28,7 @@ const GetOffer = async (props: Props) => {
             height={450}
             key={offer.id}
             quality={100}
-            className="outline-4 outline-blue-500 outline border-blue-500 hover:scale-[1.02] hover:outline-8 transition-all shadow-md shadow-blue-500"
+            className=" transition-all shadow-md shadow-primary rounded-xl hover:shadow-lg hover:shadow-primary hover:-translate-y-1"
           />
         )
       })}

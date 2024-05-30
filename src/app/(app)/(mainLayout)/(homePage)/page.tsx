@@ -31,12 +31,12 @@ const page = (props: Props) => {
 
           <MarqueeComponent />
         </Section>
-        <div className="px-2 overflow-hidden">
+        <div>
           <Section className=" mt-20  overflow-hidden">
-            <div className="relative py-20 border-b rounded-lg border-primary/20">
+            <div className="relative pt-10 pb-20  rounded-lg border-primary/20">
               <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent from-10% to-90% via-primary to-transparent border-none p-0  absolute top-0 m-0 " />
               <div className=" absolute rounded-full size-[80rem] left-1/2 top-0 -translate-x-1/2  -translate-y-1/2 -z-20 pointer-events-none  bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)]  "></div>
-              <h2 className=" scroll-m-20 text-center font-extrabold text-4xl pb-10 uppercase text-transparent bg-clip-text bg-gradient-to-b from-primary via-foreground to-primary from-40% to-60%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
+              <h2 className=" scroll-m-20 text-center font-extrabold text-4xl pb-14 uppercase text-transparent bg-clip-text bg-gradient-to-r from-blue-800 via-blue-500 to-blue-800 from-20% to-80%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
                 Oferta Naszej Szkoły
               </h2>
               <GetOffer />
@@ -44,7 +44,7 @@ const page = (props: Props) => {
             </div>
           </Section>
 
-          <Section maxWidth="max-w-[1440px] " className=" pt-32 ">
+          <Section maxWidth="max-w-[1440px] px-3 " className=" border-t pt-20 ">
             <div className="relative">
               <div className=" w-full h-max flex justify-center ">
                 <h2 className=" text-5xl sm:text-8xl  font-extrabold text-center uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60% max-w-4xl ">
@@ -57,16 +57,17 @@ const page = (props: Props) => {
               <div className=" absolute rounded-full  w-[60rem] h-[50rem] left-1/2 bottom-0 -translate-x-1/2  translate-y-1/2 -z-20 pointer-events-none  bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_70%)]  "></div>
             </div>
           </Section>
-
-          <Section className=" bg-background mb-5" maxWidth="max-w-6xl ">
-            <div className="relative ">
-              <hr className="w-full h-[0.1rem] bg-gradient-to-r from-transparent from-10% to-90% via-primary to-transparent border-none p-0  absolute top-0 m-0 " />
-              <h2 className=" scroll-m-20 text-center pb-20 font-extrabold text-4xl py-5 uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
-                Aktualności
-              </h2>
-            </div>
-            <RecentNews repetation={10} />
-          </Section>
+          <div className="px-2">
+            <Section className=" bg-background mb-5 " maxWidth="max-w-6xl ">
+              <div className="relative ">
+                <hr className="w-full h-[0.1rem] bg-gradient-to-r from-transparent from-10% to-90% via-primary to-transparent border-none p-0  absolute top-0 m-0 " />
+                <h2 className=" scroll-m-20 text-center pb-20 font-extrabold text-4xl py-5 uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
+                  Aktualności
+                </h2>
+              </div>
+              <RecentNews repetation={10} />
+            </Section>
+          </div>
         </div>
       </div>
     </div>
