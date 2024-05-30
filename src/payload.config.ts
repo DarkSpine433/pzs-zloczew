@@ -8,9 +8,13 @@ import { fileURLToPath } from 'url'
 
 import { Users } from './collections/Users'
 import { Pages } from './collections/Pages'
-import { Media } from './collections/Media'
-import Header from './collections/Header'
 
+import Nav from './collections/Nav'
+import { Offer } from './collections/Offer'
+
+import { News } from './collections/News'
+
+import { Contact } from './collections/Contact'
 import { Media } from './collections/Media'
 
 const filename = fileURLToPath(import.meta.url)
@@ -20,14 +24,8 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-<<<<<<< Updated upstream
-  collections: [Users, Pages, Media],
-  globals: [Header],
-=======
   collections: [Users, Pages, News, Media],
   globals: [Nav, Offer, Contact],
-
->>>>>>> Stashed changes
   editor: lexicalEditor({}),
   // plugins: [payloadCloud()], // TODO: Re-enable when cloud supports 3.0
   secret: process.env.PAYLOAD_SECRET || '',

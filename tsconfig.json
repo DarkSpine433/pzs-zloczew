@@ -23,16 +23,12 @@
       "@payload-config": ["./src/payload.config.ts"]
     }
   },
-<<<<<<< Updated upstream
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-=======
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/actions/GetOffer"
+    "src/app/api/GetOffer"
   ],
->>>>>>> Stashed changes
   "exclude": ["node_modules"]
 }

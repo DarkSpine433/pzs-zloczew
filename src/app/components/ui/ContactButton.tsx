@@ -1,0 +1,52 @@
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+import ContactButtonContent from './ContactButtonContent'
+
+type Props = {
+  className?: string
+  size?: string
+  bgTransparency?: string
+}
+
+const ContactButton = ({ className, size, bgTransparency }: Props) => {
+  return (
+    <Dialog>
+      <DialogTrigger>
+        <div
+          className={`p-5 border-2 rounded-md border-primary w-fit h-4 text-sm flex hover:bg-primary/10 transition-all  items-center bg-background/50 ${className} `}
+        >
+          <div>Kontakt</div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="black"
+            className={`ml-2 size-5 ${size}`}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M20.25 3.75v4.5m0-4.5h-4.5m4.5 0-6 6m3 12c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 0 1 4.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 0 0-.38 1.21 12.035 12.035 0 0 0 7.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 0 1 1.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 0 1-2.25 2.25h-2.25Z"
+            />
+          </svg>
+        </div>
+      </DialogTrigger>
+      <DialogContent className="w-11/12 max-w-screen-2xl h-3/4">
+        <DialogHeader>
+          <DialogTitle>Kontakt</DialogTitle>
+          <DialogDescription>Dane Kontaktowe Naszej Szkoły</DialogDescription>
+        </DialogHeader>
+        <ContactButtonContent />
+      </DialogContent>
+    </Dialog>
+  )
+}
+
+export default ContactButton

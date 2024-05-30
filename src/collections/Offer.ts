@@ -1,17 +1,20 @@
-import type { CollectionConfig } from 'payload/types'
+import type { GlobalConfig } from 'payload/types'
+import { ImageUrl } from './blocks/ImageUrl'
+import { RichTextBlock } from './blocks/RichTextBlock'
 
-export const Offer: CollectionConfig = {
-  slug: 'posts',
+export const Offer: GlobalConfig = {
+  slug: 'offer',
+  label: 'Oferta Szkoły',
+  access: {
+    read: () => true,
+  },
   fields: [
     {
-      name: 'title',
-      type: 'text',
-      required: true,
-    },
-
-    {
-      name: 'content',
-      type: 'richText',
+      name: 'Content', // required
+      label: 'Kontent Strony',
+      type: 'blocks', // required
+      minRows: 1,
+      blocks: [ImageUrl, RichTextBlock],
     },
   ],
 }

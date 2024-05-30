@@ -1,11 +1,13 @@
+import dynamic from 'next/dynamic'
+import Image from 'next/image'
+
+//Other Ui Components Import
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import React from 'react'
 
 //menu imports
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetFooter,
@@ -13,10 +15,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
+import Socials from './Socials'
 
-//icons imports
-import { FaYoutube } from 'react-icons/fa'
-import { FaFacebook } from 'react-icons/fa'
+const FetchNavContent = dynamic(() => import('./FetchNavContent'), { ssr: false })
 
 type Props = {}
 
@@ -26,24 +27,18 @@ const ShowMenu = () => {
       <SheetTrigger asChild>
         <Button className="p-5 px-7">Menu</Button>
       </SheetTrigger>
-      <SheetContent side="left">
+      <SheetContent side="left" className="overflow-y-auto">
         <SheetHeader>
           <SheetTitle>Menu</SheetTitle>
           <SheetDescription>Tu znajdziesz czego szukasz.</SheetDescription>
         </SheetHeader>
-        <div className="py-5">
-          <menu>
-            <Link href="/">
-              <li>asdf</li>
-            </Link>
-            <li>asdf</li>
-          </menu>
-        </div>
+
+        <FetchNavContent />
 
         <SheetFooter>
           <div className="text-center py-5">
             Wykonana z ❤️ Przez{' '}
-            <Link href="https://ds-craft.vercel.app/" className="underline" target="_blank">
+            <Link href="https://bit.ly/ds-craft" className="underline" target="_blank">
               DS-Craft
             </Link>
           </div>
@@ -55,27 +50,19 @@ const ShowMenu = () => {
 
 const Nav = (props: Props) => {
   return (
-    <div className="w-full flex justify-around items-center py-3.5">
+    <div className="w-full flex justify-around items-center py-0.5">
       <ShowMenu />
-
+      <Link href="/">
+        <Image src="/logo.png" alt="logo" width={80} height={80} />
+      </Link>
       <div className=" flex gap-3 ">
         <Link href="https://uonetplus.vulcan.net.pl/powiatsieradzki/" target="_blanks">
-          <Button className="p-5 px-7">Dziennik</Button>
+          <Button className="p-5 px-7 text-white" variant={'outline'}>
+            Dziennik
+          </Button>
         </Link>
-        <div className="border-l pl-3 hidden md:flex gap-3 ">
-          <Link
-            href="https://www.facebook.com/people/PZS-Z%C5%82oczew/61551036213821/"
-            target="_blanks"
-          >
-            <Button className="py-5">
-              <FaFacebook />
-            </Button>
-          </Link>
-          <Link href="https://www.youtube.com/channel/UCUub2QdjjKFoww2u2ZeVpKA" target="_blanks">
-            <Button className="py-5 bg-red-600">
-              <FaYoutube />
-            </Button>
-          </Link>
+        <div className="hidden md:flex gap-3 border-l pl-3 ">
+          <Socials />
         </div>
       </div>
     </div>
