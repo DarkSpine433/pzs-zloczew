@@ -50,20 +50,18 @@ const ShowMenu = () => {
 
 const Nav = (props: Props) => {
   return (
-    <div className="w-full flex justify-around items-center py-0.5">
-      <ShowMenu />
+    <div className="w-full flex gap-5 justify-around items-center py-0.5">
       <Link href="/">
-        <Image src="/logo.png" alt="logo" width={80} height={80} />
+        <Image src="/logo.png" alt="logo" width={70} height={70} />
       </Link>
+
       <div className=" flex gap-3 ">
         <Link href="https://uonetplus.vulcan.net.pl/powiatsieradzki/" target="_blanks">
           <Button className="p-5 px-7 text-white" variant={'outline'}>
             Dziennik
           </Button>
         </Link>
-        <div className="hidden md:flex gap-3 border-l pl-3 ">
-          <Socials />
-        </div>
+        <ShowMenu />
       </div>
     </div>
   )

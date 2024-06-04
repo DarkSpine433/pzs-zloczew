@@ -15,7 +15,7 @@ export const metadata = {
 export default function mainLayout({ children }: { children: React.ReactNode }) {
   return (
     <div>
-      <nav className="backdrop-blur-sm bg-foreground border-b-2 shadow-md  text-background sticky top-0 left-0 z-50">
+      <nav className="bg-foreground w-fit px-10 mx-auto rounded-b-2xl border-b-2 shadow-md  text-background sticky top-0 left-0 z-50">
         <div className=" max-w-[1440px] mx-auto">
           <Nav />
         </div>

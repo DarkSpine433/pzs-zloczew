@@ -1,7 +1,6 @@
 'use server'
 
 import { Octokit } from '@octokit/core'
-import { win32 } from 'path/posix'
 
 type Props = {
   fileSrc: String | null
@@ -22,7 +21,7 @@ export const uploadFile = async ({ fileSrc, fileName }: Props) => {
     try {
       const crypto = require('crypto')
       const PathGenerated =
-        'New' + crypto.randomBytes(20).toString('hex') + '.' + fileName[fileName.length - 1]
+        crypto.randomBytes(20).toString('hex') + '.' + fileName[fileName.length - 1]
       const { status, data } = await octokit.request(
         `PUT /repos/${Owner}/${Repo}/contents/${PathGenerated}`,
         {
@@ -40,7 +39,7 @@ export const uploadFile = async ({ fileSrc, fileName }: Props) => {
           },
         },
       )
-      console.log(status)
+
       return {
         message: `Uploaded File`,
         status: 200,
