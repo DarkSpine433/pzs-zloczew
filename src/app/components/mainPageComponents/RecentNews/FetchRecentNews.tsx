@@ -16,7 +16,7 @@ const FetchRecentNews = async ({ data }: Props) => {
   return (
     <>
       {data.docs.map((doc: any, index: number) => (
-        <Link key={index} href={`/news/p/${doc.id}`} className="h-96 max-w-96 ">
+        <Link key={index + doc.id} href={`/news/p/${doc.id}`} className="h-96 max-w-96 ">
           <Card className="transition-all hover:shadow-md hover:-translate-y-1 hover:[&>img]:scale-105 group overflow-hidden  ">
             <div className="w-full h-full overflow-hidden   ">
               <Image

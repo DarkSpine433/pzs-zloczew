@@ -12,9 +12,10 @@ const Footer = (props: Props) => {
           <div className="flex flex-col px-3">
             <h2 className="">Szybka Nawigacja</h2>
             <div className=" flex flex-col  flex-wrap pl-1 ">
-              {StaticNavLinks.map((nav) => {
+              {StaticNavLinks.map((nav, index) => {
                 return (
                   <Link
+                    key={nav.title + nav.url + index}
                     href={nav.url.toLowerCase()}
                     className="py-5 pr-5 first-letter:uppercase lowercase first-letter:text-primary text-gray-500 transition-all hover:translate-x-1 w-fit h-fit hover:text-primary hover:first-letter:text-white"
                   >
