@@ -9,7 +9,7 @@ const BlockParser = ({ block }: { block: any }) => {
         src={block.Iframe}
         allowFullScreen={true}
         key={block.id}
-        className="h-[600px] w-full overflow-scroll rounded-xl border-0 shadow-md"
+        className="h-[600px] w-full rounded-xl border-0 object-fill shadow-md"
       />
     );
   }

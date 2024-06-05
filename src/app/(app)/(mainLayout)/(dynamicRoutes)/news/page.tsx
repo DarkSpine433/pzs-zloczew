@@ -2,13 +2,14 @@ import SkeletonNews from "@/app/components/mainPageComponents/SkeletonNews";
 
 import dynamic from "next/dynamic";
 import NewsFilter from "./NewsFilter";
+import { Suspense } from "react";
 
 const NumberOfNewsToFetch = 30;
 
 const FetchNews = dynamic(() => import("./FetchNews"), {
   ssr: false,
   loading: () => (
-    <SkeletonNews repeat={NumberOfNewsToFetch} width="w-80" height="h-96" />
+    <SkeletonNews repeat={NumberOfNewsToFetch} className="size-80" />
   ),
 });
 type Props = {
@@ -45,10 +46,12 @@ const page = ({ searchParams }: Props) => {
         <NewsFilter />
         {searchParams.test}
         <div className="mx-auto grid h-fit w-fit max-w-7xl grid-cols-1 items-center justify-center gap-10 sm:grid-cols-2 xl:grid-cols-3">
-          <FetchNews
-            NumberOfNewsToFetch={NumberOfNewsToFetch}
-            searchParams={searchParams}
-          />
+          <Suspense>
+            <FetchNews
+              NumberOfNewsToFetch={NumberOfNewsToFetch}
+              searchParams={searchParams}
+            />
+          </Suspense>
         </div>
       </div>
     </>

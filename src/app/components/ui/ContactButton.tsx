@@ -7,6 +7,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import ContactButtonContent from "./ContactButtonContent";
+import { Suspense } from "react";
 
 type Props = {
   className?: string;
@@ -43,7 +44,9 @@ const ContactButton = ({ className, size, bgTransparency }: Props) => {
           <DialogTitle>Kontakt</DialogTitle>
           <DialogDescription>Dane Kontaktowe Naszej Szkoły</DialogDescription>
         </DialogHeader>
-        <ContactButtonContent />
+        <Suspense fallback={null}>
+          <ContactButtonContent />
+        </Suspense>
       </DialogContent>
     </Dialog>
   );

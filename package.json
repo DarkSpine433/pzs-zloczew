@@ -17,6 +17,7 @@
     "node": ">=18.19.0"
   },
   "dependencies": {
+    "@cyntler/react-doc-viewer": "^1.16.1",
     "@hookform/resolvers": "^3.3.4",
     "@octokit/core": "^6.1.2",
     "@octokit/rest": "^20.1.1",

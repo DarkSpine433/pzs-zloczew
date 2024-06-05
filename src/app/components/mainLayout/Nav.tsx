@@ -15,14 +15,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import Socials from "./Socials";
 import { StaticNavLinks } from "./StaticNavLinks";
-import { Card } from "../ui/card";
 import { Input } from "@/components/ui/input";
-
-const FetchNavContent = dynamic(() => import("./FetchNavContent"), {
-  ssr: false,
-});
+import { Suspense } from "react";
+import FetchNavContent from "./FetchNavContent";
 
 type Props = {};
 
@@ -37,9 +33,9 @@ const ShowMenu = () => {
           <SheetTitle>Menu</SheetTitle>
           <SheetDescription>Tu znajdziesz czego szukasz.</SheetDescription>
         </SheetHeader>
-
-        <FetchNavContent />
-
+        <Suspense fallback={null}>
+          <FetchNavContent />
+        </Suspense>
         <SheetFooter>
           <div className="py-5 text-center">
             Wykonana z ❤️ Przez{" "}

@@ -1,11 +1,8 @@
 import CursorMovmentAnimation from "@/app/components/mainPageComponents/CursorMovmentAnimation";
-
 import MarqueeComponent from "@/app/components/mainPageComponents/MarqueeComponent";
 import GetOffer from "./GetOffer";
-
-import RecentNews from "@/app/components/mainPageComponents/RecentNews/RecentNews";
+import RecentNews from "@/app/components/news/recentNews/RecentNews";
 import Section from "@/app/components/mainPageComponents/Section";
-
 import Cta from "@/app/components/mainPageComponents/Cta";
 import ContactButton from "@/app/components/ui/ContactButton";
 
@@ -13,7 +10,7 @@ type Props = {};
 
 const page = (props: Props) => {
   return (
-    <div className="overflow-x-hidden pb-10">
+    <div className="pb-10">
       <div className="pointer-events-none absolute left-0 top-0 -z-50 h-dvh w-full bg-gradient-to-b from-primary/30 to-transparent"></div>
       <Section maxWidth="max-w-[1440px]">
         <CursorMovmentAnimation>
@@ -75,6 +72,7 @@ const page = (props: Props) => {
               </div>
 
               <GetOffer />
+
               <hr className="absolute bottom-0 m-0 h-[0.1rem] w-full border-none bg-gradient-to-r from-transparent from-10% via-primary to-transparent to-90% p-0" />
             </div>
           </Section>

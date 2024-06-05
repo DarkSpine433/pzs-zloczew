@@ -2,8 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { useEffect } from "react";
 
 export default function Error({
   error,

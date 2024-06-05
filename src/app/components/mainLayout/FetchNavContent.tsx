@@ -11,6 +11,7 @@ import { SheetClose } from "@/components/ui/sheet";
 import Socials from "./Socials";
 
 import { StaticNavLinks } from "./StaticNavLinks";
+import PayLoadErrorHandling from "../PayLoadErrorHandling";
 
 const FetchNavContent = async () => {
   noStore();
@@ -40,19 +41,15 @@ const FetchNavContent = async () => {
         </li>
         <hr className="m-0 mb-5 h-[1px] w-full max-w-screen-2xl border-none bg-gradient-to-r from-transparent via-primary/50 to-transparent p-0" />
 
-        {!data.nav || data.nav.length === 0 ? (
-          <></>
-        ) : (
-          data.nav.map((item: any) => {
-            return (
-              <Link key={item.page.id} href={"/p/" + item.page.id} className="">
-                <SheetClose className="w-full rounded-lg border-b-2 border-primary bg-secondary/60 px-3 py-3 text-left font-semibold lowercase shadow-sm shadow-primary/50 transition-all first-letter:uppercase hover:border-primary/50 hover:bg-secondary hover:px-3.5">
-                  <li>{item.page.title}</li>
-                </SheetClose>
-              </Link>
-            );
-          })
-        )}
+        <PayLoadErrorHandling data={data.nav}>
+          {data.nav.map((item: any) => {
+            <Link key={item.page.id} href={"/p/" + item.page.id} className="">
+              <SheetClose className="w-full rounded-lg border-b-2 border-primary bg-secondary/60 px-3 py-3 text-left font-semibold lowercase shadow-sm shadow-primary/50 transition-all first-letter:uppercase hover:border-primary/50 hover:bg-secondary hover:px-3.5">
+                <li>{item.page.title}</li>
+              </SheetClose>
+            </Link>;
+          })}
+        </PayLoadErrorHandling>
       </menu>
     </div>
   );

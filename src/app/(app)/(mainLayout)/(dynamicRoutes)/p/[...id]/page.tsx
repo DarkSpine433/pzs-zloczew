@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import FetchContent from "./FetchContent";
 import Section from "@/app/components/mainPageComponents/Section";
 const RecentNews = dynamic(
-  () => import("@/app/components/mainPageComponents/RecentNews/RecentNews"),
+  () => import("@/app/components/news/recentNews/RecentNews"),
   { ssr: false },
 );
 

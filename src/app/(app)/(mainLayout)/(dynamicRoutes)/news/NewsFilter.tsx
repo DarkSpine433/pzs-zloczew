@@ -14,7 +14,6 @@ const NewsFilter = (props: Props) => {
   useLayoutEffect(() => {
     const asideLayoutListener = () => {
       setWindowWidth(window.innerWidth);
-      console.log(windowWidth);
     };
     asideLayoutListener();
     window.addEventListener("resize", asideLayoutListener);

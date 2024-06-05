@@ -2,7 +2,7 @@ import { unstable_noStore as noStore } from "next/cache";
 import BlockParser from "@/app/components/BlockParser";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
-import { getPayload } from "payload";
+
 import { format, parseISO } from "date-fns";
 
 type Props = {};

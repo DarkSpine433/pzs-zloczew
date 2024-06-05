@@ -1,25 +1,20 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
 
-import { unstable_noStore as noStore } from "next/cache";
-
-import TemplateNews from "@/app/components/news/TemplateNews";
+import TemplateNews from "../TemplateNews";
 
 type Props = {
-  NumberOfNewsToFetch: number;
-  searchParams: any;
+  repetition: number;
 };
-
-const FetchNews = async ({ NumberOfNewsToFetch, searchParams }: Props) => {
+const FetchRecentNews = async ({ repetition }: Props) => {
   noStore();
   const payload = await getPayloadHMR({ config: configPromise });
   const data: any = await payload.find({
     collection: "news",
-    limit: NumberOfNewsToFetch,
+    limit: repetition,
     sort: "-createdAt",
-    where: {},
   });
-
   return (
     <>
       <TemplateNews data={data.docs} />
@@ -27,4 +22,4 @@ const FetchNews = async ({ NumberOfNewsToFetch, searchParams }: Props) => {
   );
 };
 
-export default FetchNews;
+export default FetchRecentNews;

@@ -1,85 +1,97 @@
-'use client'
-import React, { useState, ChangeEvent } from 'react'
+"use client";
+import React, { useState, ChangeEvent } from "react";
 
-import { uploadFile } from '@/app/actions/uploadFile'
-import { Button } from '@/components/ui/button'
-import { deleteFile } from '@/app/actions/deleteFile'
-import Image from 'next/image'
-import { Input } from '@/components/ui/input'
-import DeleteFiles from './DeleteFiles'
+import { uploadFile } from "@/app/actions/uploadFile";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { Input } from "@/components/ui/input";
 
 const Upload_and_Delete_Files = () => {
-  const [fileSrc, setFilseSrc] = useState<String | null>(null)
-  const [fileName, setFileName] = useState<[] | null>(null)
-  const [fileNameNoEdited, setFileNameNoEdited] = useState<String | null>(null)
-  const [imageSrc, setImageSrc] = useState<String | null>(null)
-  const [uploadMassage, setUploadMassage] = useState([null])
-  const [isPending, setIsPending] = useState<boolean>(false)
+  const [fileSrc, setFilseSrc] = useState<String | null>(null);
+  const [fileName, setFileName] = useState<[] | null>(null);
+  const [fileNameNoEdited, setFileNameNoEdited] = useState<String | null>(null);
+  const [imageSrc, setImageSrc] = useState<String | null>(null);
+  const [uploadMassage, setUploadMassage] = useState([null]);
+  const [isPending, setIsPending] = useState<boolean>(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file: any = e.target.files?.[0]
+    const file: any = e.target.files?.[0];
 
     if (file) {
-      setUploadMassage([null])
-      const reader: any = new FileReader()
+      setUploadMassage([null]);
+      const reader: any = new FileReader();
       reader.onload = () => {
-        setFileNameNoEdited(file.name)
-        setFileName(file.name.split('.'))
+        setFileNameNoEdited(file.name);
+        setFileName(file.name.split("."));
         if (reader.result) {
-          setImageSrc(reader.result.split(',')[0] as string)
-          setFilseSrc(reader.result.split(',')[1] as string)
+          setImageSrc(reader.result.split(",")[0] as string);
+          setFilseSrc(reader.result.split(",")[1] as string);
         }
-      }
-      reader.readAsDataURL(file)
+      };
+      reader.readAsDataURL(file);
     }
-  }
+  };
 
   const uploadFileHandler = async () => {
-    setIsPending(true)
-    const isUploaded: any = await uploadFile({ fileSrc: fileSrc, fileName: fileName })
-    setUploadMassage([isUploaded.message, isUploaded.status])
+    setIsPending(true);
+    const isUploaded: any = await uploadFile({
+      fileSrc: fileSrc,
+      fileName: fileName,
+    });
+    setUploadMassage([isUploaded.message, isUploaded.status]);
     if (isUploaded.status === 200) {
-      location.reload()
+      location.reload();
     }
-    setIsPending(false)
-  }
+    setIsPending(false);
+  };
 
   return (
     <>
-      <form className="flex flex-col gap-3 mx-auto max-w-4xl  mt-3">
-        <Input type="file" name="fileUpload" id="fileUpload" onChange={handleChange} />
+      <form className="mx-auto mt-3 flex max-w-4xl flex-col gap-3">
+        <Input
+          type="file"
+          name="fileUpload"
+          id="fileUpload"
+          onChange={handleChange}
+        />
         {uploadMassage[1] === 200 ? (
-          <h2 className="text-green-500 uppercase font-extrabold">{uploadMassage[0]}</h2>
+          <h2 className="font-extrabold uppercase text-green-500">
+            {uploadMassage[0]}
+          </h2>
         ) : uploadMassage[1] === null || uploadMassage[0] === null ? (
           <></>
         ) : (
           <h2 className="text-red-500"> Error: {uploadMassage[0]}</h2>
         )}
         {imageSrc && fileSrc && (
-          <div className={`flex flex-col gap-3 ${isPending ? 'animate-pulse' : ''}`}>
-            <div className=" h-fit max-h-96 w-fit ">
+          <div
+            className={`flex flex-col gap-3 ${isPending ? "animate-pulse" : ""}`}
+          >
+            <div className="h-fit max-h-96 w-fit">
               {fileNameNoEdited &&
-              fileNameNoEdited.match(/\.(jpg|jpeg|png|gif|bmp|tiff|webp|svg)$/i) ? (
+              fileNameNoEdited.match(
+                /\.(jpg|jpeg|png|gif|bmp|tiff|webp|svg)$/i,
+              ) ? (
                 <>
-                  <h2 className="text-3xl uppercase text-primary font-extrabold">
+                  <h2 className="text-3xl font-extrabold uppercase text-primary">
                     Preview Of Image!
                   </h2>
                   <Image
-                    src={imageSrc + ',' + fileSrc}
-                    alt={'Image'}
+                    src={imageSrc + "," + fileSrc}
+                    alt={"Image"}
                     width={100}
                     height={100}
-                    className="h-80 object-cover w-max-md w-fit rounded-lg"
+                    className="w-max-md h-80 w-fit rounded-lg object-cover"
                   />
                 </>
               ) : (
                 <>
-                  {' '}
-                  <h2 className="text-3xl uppercase text-primary font-extrabold">
+                  {" "}
+                  <h2 className="text-3xl font-extrabold uppercase text-primary">
                     No Preview For Files
                   </h2>
-                  <div className="w-60 h-fit p-3 flex flex-col break-words">
-                    <div className="flex flex-wrap  items-center">
+                  <div className="flex h-fit w-60 flex-col break-words p-3">
+                    <div className="flex flex-wrap items-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -101,7 +113,11 @@ const Upload_and_Delete_Files = () => {
               )}
             </div>
             <div>
-              <Button type="submit" onClick={uploadFileHandler} disabled={isPending}>
+              <Button
+                type="submit"
+                onClick={uploadFileHandler}
+                disabled={isPending}
+              >
                 Dodaj
               </Button>
             </div>
@@ -109,7 +125,7 @@ const Upload_and_Delete_Files = () => {
         )}
       </form>
     </>
-  )
-}
+  );
+};
 
-export default Upload_and_Delete_Files
+export default Upload_and_Delete_Files;
