@@ -1,30 +1,30 @@
-import CursorMovmentAnimation from '@/app/components/mainPageComponents/CursorMovmentAnimation'
+import CursorMovmentAnimation from "@/app/components/mainPageComponents/CursorMovmentAnimation";
 
-import MarqueeComponent from '@/app/components/mainPageComponents/MarqueeComponent'
-import GetOffer from './GetOffer'
+import MarqueeComponent from "@/app/components/mainPageComponents/MarqueeComponent";
+import GetOffer from "./GetOffer";
 
-import RecentNews from '@/app/components/mainPageComponents/RecentNews/RecentNews'
-import Section from '@/app/components/mainPageComponents/Section'
+import RecentNews from "@/app/components/mainPageComponents/RecentNews/RecentNews";
+import Section from "@/app/components/mainPageComponents/Section";
 
-import Cta from '@/app/components/mainPageComponents/Cta'
-import ContactButton from '@/app/components/ui/ContactButton'
+import Cta from "@/app/components/mainPageComponents/Cta";
+import ContactButton from "@/app/components/ui/ContactButton";
 
-type Props = {}
+type Props = {};
 
 const page = (props: Props) => {
   return (
-    <div className=" overflow-x-hidden pb-10">
-      <div className="w-full absolute top-0 left-0 bg-gradient-to-b from-primary/30 to-transparent h-dvh pointer-events-none -z-50"></div>
+    <div className="overflow-x-hidden pb-10">
+      <div className="pointer-events-none absolute left-0 top-0 -z-50 h-dvh w-full bg-gradient-to-b from-primary/30 to-transparent"></div>
       <Section maxWidth="max-w-[1440px]">
         <CursorMovmentAnimation>
-          <ContactButton className="p-6 text-lg text-foreground bg-white/70" />
+          <ContactButton className="bg-white/70 p-6 text-lg text-foreground" />
         </CursorMovmentAnimation>
       </Section>
       <div className="">
         <Section maxWidth="max-w-6xl z-10">
           <h2
             id="discover"
-            className=" scroll-m-20 text-center font-extrabold text-2xl py-5 uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]"
+            className="scroll-m-20 space-y-10 bg-gradient-to-r from-primary from-40% via-foreground to-primary to-60% bg-clip-text py-5 text-center text-2xl font-extrabold uppercase text-transparent drop-shadow-[0_1.2px_1.2px_hsl(--primary)]"
           >
             Opinie Naszych Uczniów
           </h2>
@@ -32,71 +32,71 @@ const page = (props: Props) => {
           <MarqueeComponent />
         </Section>
         <div>
-          <Section className=" mt-20  overflow-hidden">
-            <div className="relative pt-10 pb-20  rounded-lg border-primary/20">
-              <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent from-10% to-90% via-primary to-transparent border-none p-0  absolute top-0 m-0 " />
-              <div className=" absolute rounded-full size-[80rem] left-1/2 top-0 -translate-x-1/2  -translate-y-1/2 -z-20 pointer-events-none  bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)]  "></div>
+          <Section className="mt-20 overflow-hidden">
+            <div className="relative rounded-lg border-primary/20 pb-20 pt-10">
+              <hr className="absolute top-0 m-0 h-[0.1rem] w-full border-none bg-gradient-to-r from-transparent from-10% via-primary to-transparent to-90% p-0" />
+              <div className="pointer-events-none absolute left-1/2 top-0 -z-20 size-[80rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)]"></div>
 
-              <h2 className=" scroll-m-20 text-center font-extrabold text-4xl pb-4 uppercase text-transparent bg-clip-text bg-gradient-to-r from-blue-800 via-blue-500 to-blue-800 from-20% to-80%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
+              <h2 className="scroll-m-20 space-y-10 bg-gradient-to-r from-blue-800 from-20% via-blue-500 to-blue-800 to-80% bg-clip-text pb-4 text-center text-4xl font-extrabold uppercase text-transparent drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
                 Oferta Naszej Szkoły
               </h2>
 
-              <div className=" gap-2 [&>div]:rounded-lg [&>div]:py-1 pb-10 mx-auto  max-w-7xl flex  flex-wrap items-center justify-center  px-2  ">
-                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-100 text-sm border bg-blue-100 border-blue-300 text-blue-700 w-fit mb-4 sm:mb-0 transition-all">
+              <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-2 px-2 pb-10 [&>div]:rounded-lg [&>div]:py-1">
+                <div className="mb-4 w-fit border border-blue-300 bg-blue-100 px-2 text-sm text-blue-700 shadow-md shadow-blue-100 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Dyscyplina
                 </div>
-                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-200 text-sm border bg-blue-200 border-blue-400 text-blue-800 w-fit mb-4 sm:mb-0 transition-all">
+                <div className="mb-4 w-fit border border-blue-400 bg-blue-200 px-2 text-sm text-blue-800 shadow-md shadow-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Kreatywność
                 </div>
-                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-300 text-sm border bg-blue-300 border-blue-500 text-blue-900 w-fit mb-4 sm:mb-0 transition-all">
+                <div className="mb-4 w-fit border border-blue-500 bg-blue-300 px-2 text-sm text-blue-900 shadow-md shadow-blue-300 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Bezpieczeństwo
                 </div>
-                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-100 text-sm border bg-blue-100 border-blue-300 text-blue-700 w-fit mb-4 sm:mb-0 transition-all">
+                <div className="mb-4 w-fit border border-blue-300 bg-blue-100 px-2 text-sm text-blue-700 shadow-md shadow-blue-100 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Motywacja
                 </div>
-                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-200 text-sm border bg-blue-200 border-blue-400 text-blue-800 w-fit mb-4 sm:mb-0 transition-all">
+                <div className="mb-4 w-fit border border-blue-400 bg-blue-200 px-2 text-sm text-blue-800 shadow-md shadow-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Wsparcie
                 </div>
-                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-300 text-sm border bg-blue-300 border-blue-500 text-blue-900 w-fit mb-4 sm:mb-0 transition-all">
+                <div className="mb-4 w-fit border border-blue-500 bg-blue-300 px-2 text-sm text-blue-900 shadow-md shadow-blue-300 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Integracja
                 </div>
-                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-100 text-sm border bg-blue-100 border-blue-300 text-blue-700 w-fit mb-4 sm:mb-0 transition-all">
+                <div className="mb-4 w-fit border border-blue-300 bg-blue-100 px-2 text-sm text-blue-700 shadow-md shadow-blue-100 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Rozwój
                 </div>
-                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-200 text-sm border bg-blue-200 border-blue-400 text-blue-800 w-fit mb-4 sm:mb-0 transition-all">
+                <div className="mb-4 w-fit border border-blue-400 bg-blue-200 px-2 text-sm text-blue-800 shadow-md shadow-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Odkrywanie
                 </div>
-                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-300 text-sm border bg-blue-300 border-blue-500 text-blue-900 w-fit mb-4 sm:mb-0 transition-all">
+                <div className="mb-4 w-fit border border-blue-500 bg-blue-300 px-2 text-sm text-blue-900 shadow-md shadow-blue-300 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Nauka
                 </div>
-                <div className="px-2 hover:-translate-y-0.5 hover:shadow-lg shadow-md shadow-blue-100 text-sm border bg-blue-100 border-blue-300 text-blue-700 w-fit mb-4 sm:mb-0 transition-all">
+                <div className="mb-4 w-fit border border-blue-300 bg-blue-100 px-2 text-sm text-blue-700 shadow-md shadow-blue-100 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Przyjaźń
                 </div>
               </div>
 
               <GetOffer />
-              <hr className=" w-full h-[0.1rem] bg-gradient-to-r from-transparent from-10% to-90% via-primary to-transparent border-none p-0  absolute bottom-0 m-0 " />
+              <hr className="absolute bottom-0 m-0 h-[0.1rem] w-full border-none bg-gradient-to-r from-transparent from-10% via-primary to-transparent to-90% p-0" />
             </div>
           </Section>
 
-          <Section maxWidth="max-w-[1440px] px-3 " className=" border-t pt-20 ">
+          <Section maxWidth="max-w-[1440px] px-3 " className="border-t pt-20">
             <div className="relative">
-              <div className=" w-full h-max flex justify-center ">
-                <h2 className=" text-5xl sm:text-8xl  font-extrabold text-center uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60% max-w-4xl ">
+              <div className="flex h-max w-full justify-center">
+                <h2 className="max-w-4xl bg-gradient-to-r from-primary from-40% via-foreground to-primary to-60% bg-clip-text text-center text-5xl font-extrabold uppercase text-transparent sm:text-8xl">
                   Rozpocznij swoją przygodę edukacyjną z nami!
                 </h2>
               </div>
-              <div className=" py-20 z-50">
+              <div className="z-50 py-20">
                 <Cta />
               </div>
-              <div className=" absolute rounded-full  w-[60rem] h-[50rem] left-1/2 bottom-0 -translate-x-1/2  translate-y-1/2 -z-20 pointer-events-none  bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_70%)]  "></div>
+              <div className="pointer-events-none absolute bottom-0 left-1/2 -z-20 h-[50rem] w-[60rem] -translate-x-1/2 translate-y-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_70%)]"></div>
             </div>
           </Section>
           <div className="px-2">
-            <Section className=" bg-background mb-5 " maxWidth="max-w-6xl ">
-              <div className="relative ">
-                <hr className="w-full h-[0.1rem] bg-gradient-to-r from-transparent from-10% to-90% via-primary to-transparent border-none p-0  absolute top-0 m-0 " />
-                <h2 className=" scroll-m-20 text-center pb-20 font-extrabold text-4xl py-5 uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-foreground to-primary from-40% to-60%  space-y-10 drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
+            <Section className="mb-5 bg-background" maxWidth="max-w-6xl ">
+              <div className="relative">
+                <hr className="absolute top-0 m-0 h-[0.1rem] w-full border-none bg-gradient-to-r from-transparent from-10% via-primary to-transparent to-90% p-0" />
+                <h2 className="scroll-m-20 space-y-10 bg-gradient-to-r from-primary from-40% via-foreground to-primary to-60% bg-clip-text py-5 pb-20 text-center text-4xl font-extrabold uppercase text-transparent drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
                   Aktualności
                 </h2>
               </div>
@@ -106,7 +106,7 @@ const page = (props: Props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

@@ -1,19 +1,19 @@
-import { unstable_noStore as noStore } from 'next/cache'
-import { getPayloadHMR } from '@payloadcms/next/utilities'
-import configPromise from '@payload-config'
-import BlockParser from '../BlockParser'
-import GlobalNotFounded from '../GlobalNotFounded'
+import { unstable_noStore as noStore } from "next/cache";
+import { getPayloadHMR } from "@payloadcms/next/utilities";
+import configPromise from "@payload-config";
+import BlockParser from "../BlockParser";
+import GlobalNotFounded from "../GlobalNotFounded";
 
-type Props = {}
+type Props = {};
 
 const ContactButtonContent = async (props: Props) => {
-  noStore()
-  const payload = await getPayloadHMR({ config: configPromise })
+  noStore();
+  const payload = await getPayloadHMR({ config: configPromise });
   const data: any = await payload.findGlobal({
-    slug: 'contact',
-  })
+    slug: "contact",
+  });
   if (!data.Content || data.Content.length === 0) {
-    return <GlobalNotFounded />
+    return <GlobalNotFounded />;
   }
 
   return (
@@ -22,7 +22,7 @@ const ContactButtonContent = async (props: Props) => {
         <BlockParser block={block} />
       ))}
     </>
-  )
-}
+  );
+};
 
-export default ContactButtonContent
+export default ContactButtonContent;

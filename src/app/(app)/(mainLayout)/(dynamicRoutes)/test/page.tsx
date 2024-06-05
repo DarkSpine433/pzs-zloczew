@@ -1,37 +1,39 @@
-import { fetchFiles } from '@/app/actions/fetchFiles'
-import Image from 'next/image'
-import DeleteFiles from '@/app/components/github_repo_action/DeleteFiles'
-import Upload_and_Delete_Files from '@/app/components/github_repo_action/Upload_and_Delete_Files'
+import { unstable_noStore as noStore } from "next/cache";
+
+import { fetchFiles } from "@/app/actions/fetchFiles";
+import Image from "next/image";
+import DeleteFiles from "@/app/components/github_repo_action/DeleteFiles";
+import Upload_and_Delete_Files from "@/app/components/github_repo_action/Upload_and_Delete_Files";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
+} from "@/components/ui/dialog";
 
 const page = async () => {
-  const { download_url, sha, name }: any = await fetchFiles()
+  noStore();
+  const { download_url, sha, name }: any = await fetchFiles();
   return (
     <div className="flex flex-col">
       <Dialog>
-        <DialogTrigger className="fixed bottom-10 right-10 bg-primary rounded-2xl shadow-primary shadow-sm hover:shadow-md hover:shadow-primary hover:-translate-y-0.5 transition-all  text-xl font-extrabold text-white hover:text-primary hover:bg-primary-foreground border border-primary">
-          <div className="uppercase p-5 ">Dodaj plik</div>
+        <DialogTrigger className="fixed bottom-10 right-10 rounded-2xl border border-primary bg-primary text-xl font-extrabold text-white shadow-sm shadow-primary transition-all hover:-translate-y-0.5 hover:bg-primary-foreground hover:text-primary hover:shadow-md hover:shadow-primary">
+          <div className="p-5 uppercase">Dodaj plik</div>
         </DialogTrigger>
-        <DialogContent className=" max-w-7xl h-5/6">
+        <DialogContent className="h-5/6 max-w-7xl">
           <DialogHeader>
-            <DialogTitle className=" uppercase">Dodaj plik</DialogTitle>
+            <DialogTitle className="uppercase">Dodaj plik</DialogTitle>
             <Upload_and_Delete_Files />
           </DialogHeader>
         </DialogContent>
       </Dialog>
 
-      <div className=" flex flex-wrap gap-0.5 justify-center  max-w-screen-xl mx-auto py-5 px-3 overflow-hidden rounded-xl">
+      <div className="mx-auto flex max-w-screen-xl flex-wrap justify-center gap-0.5 overflow-hidden rounded-xl px-3 py-5">
         {download_url.map((item: string, index: number) => (
           <div
             key={item + index}
-            className="flex flex-col gap-5 w-fit h-60  bg-background rounded-xl max-w-md relative group  "
+            className="group relative flex h-60 w-fit max-w-md flex-col gap-5 rounded-xl bg-background"
           >
             {name[index].match(/\.(jpg|jpeg|png|gif|bmp|tiff|webp|svg)$/i) ? (
               <>
@@ -41,16 +43,16 @@ const page = async () => {
                   alt={item}
                   width={300}
                   height={300}
-                  className="h-full w-fit rounded-lg  "
+                  className="h-full w-fit rounded-lg"
                 />
-                <div className=" absolute flex justify-center items-center opacity-0 group-hover:opacity-100 transition-all w-full h-full group-hover:bg-black/60 rounded-lg">
+                <div className="absolute flex h-full w-full items-center justify-center rounded-lg opacity-0 transition-all group-hover:bg-black/60 group-hover:opacity-100">
                   <DeleteFiles sha={sha[index]} path={name[index]} />
                 </div>
               </>
             ) : (
               <>
-                <div className="size-60 p-3 flex flex-col justify-center  break-words">
-                  <div className="flex flex-wrap justify-center items-center">
+                <div className="flex size-60 flex-col justify-center break-words p-3">
+                  <div className="flex flex-wrap items-center justify-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -69,7 +71,7 @@ const page = async () => {
                   </div>
                   <div className="break-words">{name[index]}</div>
                 </div>
-                <div className=" absolute flex justify-center items-center opacity-0 group-hover:opacity-100 transition-all w-full h-full group-hover:bg-black/60 rounded-lg">
+                <div className="absolute flex h-full w-full items-center justify-center rounded-lg opacity-0 transition-all group-hover:bg-black/60 group-hover:opacity-100">
                   <DeleteFiles
                     sha={sha[index]}
                     path={name[index]}
@@ -82,7 +84,7 @@ const page = async () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

@@ -1,44 +1,44 @@
-'use client'
+"use client";
 
-import { useState, useLayoutEffect } from 'react'
-import { Button } from '@/components/ui/button'
+import { useState, useLayoutEffect } from "react";
+import { Button } from "@/components/ui/button";
 
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import NewFilterComponent from './NewFilterComponent'
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import NewFilterComponent from "./NewFilterComponent";
 
-type Props = {}
+type Props = {};
 
 const NewsFilter = (props: Props) => {
-  const [windowWidth, setWindowWidth] = useState<number>(1400)
+  const [windowWidth, setWindowWidth] = useState<number>(1400);
 
   useLayoutEffect(() => {
     const asideLayoutListener = () => {
-      setWindowWidth(window.innerWidth)
-      console.log(windowWidth)
-    }
-    asideLayoutListener()
-    window.addEventListener('resize', asideLayoutListener)
+      setWindowWidth(window.innerWidth);
+      console.log(windowWidth);
+    };
+    asideLayoutListener();
+    window.addEventListener("resize", asideLayoutListener);
 
     return () => {
-      window.removeEventListener('resize', asideLayoutListener)
-    }
-  }, [])
+      window.removeEventListener("resize", asideLayoutListener);
+    };
+  }, []);
 
   return (
     <>
       {windowWidth >= 1024 ? (
         <aside
-          className={`sticky top-20 left-0  h-4/5  z-10 justify-center  min-w-52 transition-all w-96 bg-secondary/20 p-10 rounded-md  flex flex-col border border-primary/20`}
+          className={`sticky left-0 top-20 z-10 flex h-4/5 w-96 min-w-52 flex-col justify-center rounded-md border border-primary/20 bg-secondary/20 p-10 transition-all`}
         >
           <NewFilterComponent isSheet={false} />
         </aside>
       ) : (
         <Sheet>
           <SheetTrigger>
-            {' '}
+            {" "}
             <Button
-              variant={'secondary'}
-              className=" p-4 py-6 rounded-full fixed bottom-5 left-5 z-10 "
+              variant={"secondary"}
+              className="fixed bottom-5 left-5 z-10 rounded-full p-4 py-6"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ const NewsFilter = (props: Props) => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="h-6 w-6"
               >
                 <path
                   strokeLinecap="round"
@@ -57,17 +57,17 @@ const NewsFilter = (props: Props) => {
             </Button>
           </SheetTrigger>
           <SheetContent
-            className={`overflow-y-auto  max-h-[100dvh] ${
-              windowWidth > 640 ? 'h-fit flex items-end w-96' : 'w-full h-fit'
+            className={`max-h-[100dvh] overflow-y-auto ${
+              windowWidth > 640 ? "flex h-fit w-96 items-end" : "h-fit w-full"
             }`}
-            side={'bottom'}
+            side={"bottom"}
           >
             <NewFilterComponent isSheet />
           </SheetContent>
         </Sheet>
       )}
     </>
-  )
-}
+  );
+};
 
-export default NewsFilter
+export default NewsFilter;

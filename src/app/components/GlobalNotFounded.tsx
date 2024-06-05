@@ -1,11 +1,11 @@
-type Props = {}
+type Props = {};
 
 const GlobalNotFounded = (props: Props) => {
   return (
-    <div className="flex justify-center items-center text-center  text-4xl font-extrabold min-h-96 animate-pulse">
+    <div className="flex min-h-96 animate-pulse items-center justify-center text-center text-4xl font-extrabold">
       Czeka na dodanie przez administratora
     </div>
-  )
-}
+  );
+};
 
-export default GlobalNotFounded
+export default GlobalNotFounded;

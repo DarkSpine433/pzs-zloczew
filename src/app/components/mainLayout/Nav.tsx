@@ -1,9 +1,9 @@
-import dynamic from 'next/dynamic'
-import Image from 'next/image'
+import dynamic from "next/dynamic";
+import Image from "next/image";
 
 //Other Ui Components Import
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 //menu imports
 import {
@@ -14,12 +14,17 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/components/ui/sheet'
-import Socials from './Socials'
+} from "@/components/ui/sheet";
+import Socials from "./Socials";
+import { StaticNavLinks } from "./StaticNavLinks";
+import { Card } from "../ui/card";
+import { Input } from "@/components/ui/input";
 
-const FetchNavContent = dynamic(() => import('./FetchNavContent'), { ssr: false })
+const FetchNavContent = dynamic(() => import("./FetchNavContent"), {
+  ssr: false,
+});
 
-type Props = {}
+type Props = {};
 
 const ShowMenu = () => {
   return (
@@ -36,35 +41,56 @@ const ShowMenu = () => {
         <FetchNavContent />
 
         <SheetFooter>
-          <div className="text-center py-5">
-            Wykonana z ❤️ Przez{' '}
-            <Link href="https://bit.ly/ds-craft" className="underline" target="_blank">
+          <div className="py-5 text-center">
+            Wykonana z ❤️ Przez{" "}
+            <Link
+              href="https://bit.ly/ds-craft"
+              className="underline"
+              target="_blank"
+            >
               DS-Craft
             </Link>
           </div>
         </SheetFooter>
       </SheetContent>
     </Sheet>
-  )
-}
+  );
+};
 
 const Nav = (props: Props) => {
   return (
-    <div className="w-full flex gap-5 justify-around items-center py-0.5">
-      <Link href="/">
-        <Image src="/logo.png" alt="logo" width={70} height={70} />
-      </Link>
-
-      <div className=" flex gap-3 ">
-        <Link href="https://uonetplus.vulcan.net.pl/powiatsieradzki/" target="_blanks">
-          <Button className="p-5 px-7 text-white" variant={'outline'}>
-            Dziennik
-          </Button>
+    <div className="flex w-full items-center justify-between gap-5 py-0.5">
+      <div className="flex items-center gap-6">
+        <Link href="/" className="flex items-center">
+          <Image src="/logo.png" alt="logo" width={50} height={50} />
+          <h2 className="text-2xl font-bold uppercase text-primary">
+            pzs ZŁoczew
+          </h2>
         </Link>
+
+        <div className="flex self-center font-semibold text-gray-500">
+          {StaticNavLinks.map((link, index) => (
+            <>
+              {index > 0 && (
+                <Link
+                  key={link.title}
+                  href={link.url}
+                  className="rounded-lg px-3 py-1 transition-all hover:bg-secondary hover:text-primary"
+                >
+                  {link.title}
+                </Link>
+              )}
+            </>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex gap-5">
+        <Input type="text" placeholder="Szukaj" />
         <ShowMenu />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Nav
+export default Nav;

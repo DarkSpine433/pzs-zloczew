@@ -1,67 +1,49 @@
-import { unstable_noStore as noStore } from 'next/cache'
-import BlockParser from '@/app/components/BlockParser'
-import { getPayloadHMR } from '@payloadcms/next/utilities'
-import configPromise from '@payload-config'
-import { getPayload } from 'payload'
-import { format, parseISO } from 'date-fns'
+import { unstable_noStore as noStore } from "next/cache";
+import BlockParser from "@/app/components/BlockParser";
+import { getPayloadHMR } from "@payloadcms/next/utilities";
+import configPromise from "@payload-config";
+import { getPayload } from "payload";
+import { format, parseISO } from "date-fns";
 
-type Props = {}
+type Props = {};
 
 const FetchContent = async ({ id }: { id: string }) => {
-  noStore()
-  const payload = await getPayloadHMR({ config: configPromise })
+  noStore();
+  const payload = await getPayloadHMR({ config: configPromise });
   const data: any = await payload.findByID({
     id: id,
-    collection: 'news',
-  })
+    collection: "news",
+  });
 
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col">
       <div
         id="test"
         style={{
           backgroundImage: `url(${data.thumbnail})`,
         }}
-        className={` 
-            relative
-            overflow-hidden
-            block
-            z-10
-         
-            bg-cover
-            bg-no-repeat
-            bg-center
-
-            after:content-['']
-            after:absolute
-            after:inset-0
-            after:block
-            after:bg-gradient-to-br
-            after:from-black/80
-            after:to-gray-black/50
-          
-            after:z-[-5]
-           
-            border-b-8 shadow-lg  border-gray-500 py-12 after:top-0 after:left-0 after:w-full after:h-full after:bg-black/70 `}
+        className={`after:to-gray-black/50 relative z-10 block overflow-hidden border-b-8 border-gray-500 bg-cover bg-center bg-no-repeat py-12 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-black/70 after:bg-gradient-to-br after:from-black/80 after:content-['']`}
       >
         <h1
-          className={`text-center font-extrabold text-[2rem] sm:text-[3rem]  bg-clip-text text-background/40 bg-[url('/img/news/grain.jpg')]   max-w-5xl px-3 mx-auto`}
+          className={`mx-auto max-w-5xl bg-[url('/img/news/grain.jpg')] bg-clip-text px-3 text-center text-[2rem] font-extrabold text-background/40 sm:text-[3rem]`}
         >
           {data.title}
         </h1>
-        <h3 className="bg-clip-text text-left text-sm md:text-base text-gray-500 mt-16  first-letter:text-primary  max-w-3xl px-5 mx-auto">
+        <h3 className="mx-auto mt-16 max-w-3xl bg-clip-text px-5 text-left text-sm text-gray-500 first-letter:text-primary md:text-base">
           Data Utworzenia:&nbsp;
-          <time dateTime={data.createdAt}>{format(parseISO(data.createdAt), 'dd.MM.yyyy')}</time>
+          <time dateTime={data.createdAt}>
+            {format(parseISO(data.createdAt), "dd.MM.yyyy")}
+          </time>
         </h3>
       </div>
 
-      <div className=" px-4 pb-24 flex gap-10 flex-col items-center max-w-5xl mx-auto rounded-xl mt-10">
+      <div className="mx-auto mt-10 flex max-w-5xl flex-col items-center gap-10 rounded-xl px-4 pb-24">
         {data?.Content.map((block: any, index: number) => {
-          return <BlockParser block={block} key={block.id + index + 'key'} />
+          return <BlockParser block={block} key={block.id + index + "key"} />;
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FetchContent
+export default FetchContent;
