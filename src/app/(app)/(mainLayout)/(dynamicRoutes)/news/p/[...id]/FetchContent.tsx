@@ -5,10 +5,7 @@ import configPromise from "@payload-config";
 
 import { format, parseISO } from "date-fns";
 
-type Props = {};
-
 const FetchContent = async ({ id }: { id: string }) => {
-  noStore();
   const payload = await getPayloadHMR({ config: configPromise });
   const data: any = await payload.findByID({
     id: id,

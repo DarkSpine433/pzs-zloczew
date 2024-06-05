@@ -14,7 +14,6 @@ import { StaticNavLinks } from "./StaticNavLinks";
 import PayLoadErrorHandling from "../PayLoadErrorHandling";
 
 const FetchNavContent = async () => {
-  noStore();
   const payload = await getPayloadHMR({ config: configPromise });
   const data: any = await payload.findGlobal({
     slug: "nav",

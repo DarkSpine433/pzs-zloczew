@@ -1,11 +1,12 @@
 import CursorMovmentAnimation from "@/app/components/mainPageComponents/CursorMovmentAnimation";
 import MarqueeComponent from "@/app/components/mainPageComponents/MarqueeComponent";
-import GetOffer from "./GetOffer";
+
 import RecentNews from "@/app/components/news/recentNews/RecentNews";
 import Section from "@/app/components/mainPageComponents/Section";
 import Cta from "@/app/components/mainPageComponents/Cta";
 import ContactButton from "@/app/components/ui/ContactButton";
-
+import dynamic from "next/dynamic";
+const GetOffer = dynamic(() => import("./GetOffer"));
 type Props = {};
 
 const page = (props: Props) => {

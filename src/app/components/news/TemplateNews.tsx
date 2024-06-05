@@ -53,18 +53,14 @@ const TemplateNews = ({ data }: Props) => {
               </div>
 
               <CardContent className="mt-5">
-                <CardTitle>
-                  <h2 className="pb-5 text-[1.08rem] font-bold transition-all group-hover:text-primary">
-                    {doc.title}
-                  </h2>
+                <CardTitle className="pb-5 text-[1.08rem] font-bold transition-all group-hover:text-primary">
+                  {doc.title}
                 </CardTitle>
-                <CardDescription>
-                  <h3 className="text-sm text-gray-900">
-                    Data:&nbsp;
-                    <time dateTime={doc.createdAt}>
-                      {format(parseISO(doc.createdAt), "dd.MM.yyyy")}
-                    </time>
-                  </h3>
+                <CardDescription className="text-sm text-gray-900">
+                  Data:&nbsp;
+                  <time dateTime={doc.createdAt}>
+                    {format(parseISO(doc.createdAt), "dd.MM.yyyy")}
+                  </time>
                 </CardDescription>
               </CardContent>
             </Card>

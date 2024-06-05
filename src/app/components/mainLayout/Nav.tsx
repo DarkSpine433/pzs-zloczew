@@ -17,8 +17,7 @@ import {
 } from "@/components/ui/sheet";
 import { StaticNavLinks } from "./StaticNavLinks";
 import { Input } from "@/components/ui/input";
-import FetchNavContent from "./FetchNavContent";
-
+const FetchNavContent = dynamic(() => import("./FetchNavContent"));
 type Props = {};
 
 const ShowMenu = () => {

@@ -4,6 +4,7 @@ import RecentNews from "@/app/components/news/recentNews/RecentNews";
 import Section from "@/app/components/mainPageComponents/Section";
 const FetchContent = dynamic(() => import("./FetchContent"), {
   ssr: false,
+
   loading: () => (
     <div className="relative h-dvh">
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse">

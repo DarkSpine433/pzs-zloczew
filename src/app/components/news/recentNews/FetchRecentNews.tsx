@@ -8,7 +8,6 @@ type Props = {
   repetition: number;
 };
 const FetchRecentNews = async ({ repetition }: Props) => {
-  noStore();
   const payload = await getPayloadHMR({ config: configPromise });
   const data: any = await payload.find({
     collection: "news",

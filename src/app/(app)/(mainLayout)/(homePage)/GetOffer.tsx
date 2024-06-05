@@ -9,7 +9,6 @@ import PayLoadErrorHandling from "@/app/components/PayLoadErrorHandling";
 type Props = {};
 
 const GetOffer = async (props: Props) => {
-  noStore();
   const payload = await getPayloadHMR({ config: configPromise });
   const getOffer = await payload.findGlobal({
     slug: "offer",
