@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/sheet";
 import { StaticNavLinks } from "./StaticNavLinks";
 import { Input } from "@/components/ui/input";
-import { Suspense } from "react";
 import FetchNavContent from "./FetchNavContent";
 
 type Props = {};
@@ -33,9 +32,9 @@ const ShowMenu = () => {
           <SheetTitle>Menu</SheetTitle>
           <SheetDescription>Tu znajdziesz czego szukasz.</SheetDescription>
         </SheetHeader>
-        <Suspense fallback={null}>
-          <FetchNavContent />
-        </Suspense>
+
+        <FetchNavContent />
+
         <SheetFooter>
           <div className="py-5 text-center">
             Wykonana z ❤️ Przez{" "}
