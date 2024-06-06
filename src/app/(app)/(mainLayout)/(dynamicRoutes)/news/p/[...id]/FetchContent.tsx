@@ -1,4 +1,3 @@
-import { unstable_noStore as noStore } from "next/cache";
 import BlockParser from "@/app/components/BlockParser";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
@@ -36,7 +35,11 @@ const FetchContent = async ({ id }: { id: string }) => {
 
       <div className="mx-auto mt-10 flex max-w-5xl flex-col items-center gap-10 rounded-xl px-4 pb-24">
         {data?.Content.map((block: any, index: number) => {
-          return <BlockParser block={block} key={block.id + index + "key"} />;
+          return (
+            <div className="first-letter:text-3xl first-letter:font-bold first-letter:uppercase first-letter:text-primary">
+              <BlockParser block={block} key={block.id + index + "key"} />
+            </div>
+          );
         })}
       </div>
     </div>

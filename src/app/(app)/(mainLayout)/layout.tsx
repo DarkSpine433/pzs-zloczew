@@ -25,7 +25,7 @@ export default function mainLayout({
         </div>
       </nav>
 
-      <div className="mx-auto pb-10">
+      <div className="mx-auto overflow-x-hidden pb-10">
         <main>{children}</main>
       </div>
 

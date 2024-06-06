@@ -24,7 +24,9 @@ const TemplateNews = ({ data }: Props) => {
           >
             <Card className="group overflow-hidden transition-all hover:-translate-y-1 hover:shadow-md hover:[&>img]:scale-105">
               <div className="flex h-full w-full items-center justify-center overflow-hidden">
-                {doc.thumbnail.match(
+                {doc.thumbnail != undefined &&
+                doc.thumbnail != "" &&
+                doc.thumbnail.match(
                   /\.(jpg|jpeg|png|gif|bmp|tiff|webp|svg)$/i,
                 ) ? (
                   <Image
@@ -41,7 +43,7 @@ const TemplateNews = ({ data }: Props) => {
                     viewBox="0 0 24 24"
                     strokeWidth="0.2"
                     stroke="currentColor"
-                    className="h-full w-full"
+                    className="h-64 scale-125"
                   >
                     <path
                       strokeLinecap="round"
