@@ -18,7 +18,7 @@ const page = async () => {
   return (
     <div className="flex flex-col">
       <Dialog>
-        <DialogTrigger className="fixed bottom-10 right-10 rounded-2xl border border-primary bg-primary text-xl font-extrabold text-white shadow-sm shadow-primary transition-all hover:-translate-y-0.5 hover:bg-primary-foreground hover:text-primary hover:shadow-md hover:shadow-primary">
+        <DialogTrigger className="fixed bottom-10 right-10 z-20 rounded-2xl border border-primary bg-primary text-xl font-extrabold text-white shadow-sm shadow-primary transition-all hover:-translate-y-0.5 hover:bg-primary-foreground hover:text-primary hover:shadow-md hover:shadow-primary">
           <div className="p-5 uppercase">Dodaj plik</div>
         </DialogTrigger>
         <DialogContent className="h-5/6 max-w-7xl">
@@ -29,7 +29,7 @@ const page = async () => {
         </DialogContent>
       </Dialog>
 
-      <div className="mx-auto flex max-w-screen-xl flex-wrap justify-center gap-0.5 overflow-hidden rounded-xl px-3 py-5">
+      <div className="mx-auto flex min-h-[600px] max-w-screen-xl flex-wrap justify-center gap-0.5 overflow-hidden rounded-xl px-3 py-5">
         {download_url.map((item: string, index: number) => (
           <div
             key={item + index}

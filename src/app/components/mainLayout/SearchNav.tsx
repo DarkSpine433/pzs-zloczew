@@ -12,14 +12,14 @@ type Props = {};
 const SearchNav = (props: Props) => {
   return (
     <Dialog>
-      <DialogTrigger className="group flex w-12 justify-center rounded-full border border-gray-600 px-2 py-2 transition-all hover:border-primary hover:bg-foreground sm:px-3 sm:py-2">
+      <DialogTrigger className="group flex w-12 justify-center rounded-full border border-gray-700 py-3 transition-all hover:border-primary hover:bg-foreground sm:py-2.5">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="white"
-          className="size-6 group-hover:stroke-white"
+          className="size-5 group-hover:stroke-white sm:size-6"
         >
           <path
             strokeLinecap="round"

@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Props = {
   object: [];
@@ -40,7 +41,7 @@ const SearchHandlerClientOutput = ({
                 )}
               </div>
             ) : (
-              <>nie znaleziono</>
+              <div>nie znaleziono</div>
             )}
           </div>
         </div>

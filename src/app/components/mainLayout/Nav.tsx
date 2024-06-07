@@ -24,7 +24,7 @@ const ShowMenu = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="p-5 px-7">Menu</Button>
+        <Button className="px-5 sm:p-5 sm:px-7">Menu</Button>
       </SheetTrigger>
       <SheetContent side="left" className="overflow-y-auto">
         <SheetHeader>
@@ -53,10 +53,10 @@ const ShowMenu = () => {
 
 const Nav = (props: Props) => {
   return (
-    <div className="flex w-full items-center gap-5 py-0.5">
+    <div className="flex w-full items-center gap-2 py-1 sm:py-0.5">
       <Link
         href="/"
-        className="flex flex-1 items-center self-center justify-self-center"
+        className="hidden flex-1 items-center self-center justify-self-center sm:flex"
       >
         <Image
           src="/logo.png"
@@ -85,12 +85,13 @@ const Nav = (props: Props) => {
         ))}
       </div>
 
-      <div className="flex flex-1 items-center justify-end gap-5">
-        <div className="hidden sm:block">
+      <div className="flex flex-1 items-center justify-between gap-5 sm:justify-end">
+        <div className="order-2 sm:order-1">
           <SearchNav />
         </div>
-
-        <ShowMenu />
+        <div className="order-1">
+          <ShowMenu />
+        </div>
       </div>
     </div>
   );
