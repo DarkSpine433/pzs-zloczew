@@ -11,18 +11,24 @@ export const fetchFiles = async () => {
     auth: GitHub_TOKEN,
   })
   try {
-    const { status, data } = await octokit.request(`GET /repos/${Owner}/${Repo}/readme`, {
+    const { data } = await octokit.request(`GET /repos/${Owner}/${Repo}/contents/`, {
       owner: `${Owner}`,
       repo: `${Repo}`,
+      path: '',
       headers: {
         'X-GitHub-Api-Version': '2022-11-28',
       },
     })
-    console.log(data, status)
+    const name = data.map((item: any) => item.name)
+    const sha = data.map((item: any) => item.sha)
+    const download_url = data.map((item: any) => item.download_url)
+
     return {
       message: `Uploaded File`,
       status: 200,
-      sha: data.content.sha,
+      download_url: download_url,
+      sha: sha,
+      name: name,
     }
   } catch (err: any) {
     return { message: 'Filed to Fetch Files' + err, status: 409 }

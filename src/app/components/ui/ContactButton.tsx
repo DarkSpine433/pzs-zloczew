@@ -5,21 +5,22 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import ContactButtonContent from './ContactButtonContent'
+} from "@/components/ui/dialog";
+import ContactButtonContent from "./ContactButtonContent";
+import { Suspense } from "react";
 
 type Props = {
-  className?: string
-  size?: string
-  bgTransparency?: string
-}
+  className?: string;
+  size?: string;
+  bgTransparency?: string;
+};
 
 const ContactButton = ({ className, size, bgTransparency }: Props) => {
   return (
     <Dialog>
       <DialogTrigger>
         <div
-          className={`p-5 border-2 rounded-md border-primary w-fit h-4 text-sm flex hover:bg-primary/10 transition-all  items-center bg-background/50 ${className} `}
+          className={`flex h-4 w-fit items-center rounded-md border-2 border-primary bg-background/50 p-5 text-sm transition-all hover:bg-primary/10 ${className} `}
         >
           <div>Kontakt</div>
           <svg
@@ -38,15 +39,17 @@ const ContactButton = ({ className, size, bgTransparency }: Props) => {
           </svg>
         </div>
       </DialogTrigger>
-      <DialogContent className="w-11/12 max-w-screen-2xl h-3/4">
+      <DialogContent className="h-3/4 w-11/12 max-w-screen-2xl">
         <DialogHeader>
           <DialogTitle>Kontakt</DialogTitle>
           <DialogDescription>Dane Kontaktowe Naszej Szkoły</DialogDescription>
         </DialogHeader>
-        <ContactButtonContent />
+        <Suspense fallback={null}>
+          <ContactButtonContent />
+        </Suspense>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
 
-export default ContactButton
+export default ContactButton;

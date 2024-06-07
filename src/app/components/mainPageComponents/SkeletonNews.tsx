@@ -1,16 +1,14 @@
-import { Skeleton } from '@/components/ui/skeleton'
+import { Skeleton } from "@/components/ui/skeleton";
 type Props = {
-  repeat?: number
-  className?: string
-  width?: string
-  height?: string
-}
+  repeat?: number;
+  className?: string;
+};
 
-const SkeletonNews = ({ repeat, className, width, height }: Props) => {
+const SkeletonNews = async ({ repeat, className }: Props) => {
   const skeletons = [...Array(repeat)].map(() => {
-    return <Skeleton className={`${width} ${height} rounded-xl`} />
-  })
-  return skeletons
-}
+    return <Skeleton className={`rounded-xl ${className}`} />;
+  });
+  return skeletons;
+};
 
-export default SkeletonNews
+export default SkeletonNews;

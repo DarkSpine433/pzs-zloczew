@@ -1,103 +1,90 @@
-'use client'
-import React, { useState, ChangeEvent } from 'react'
+import { unstable_noStore as noStore } from "next/cache";
 
-import { uploadFile } from '@/app/actions/uploadFile'
-import { Button } from '@/components/ui/button'
-import { deleteFile } from '@/app/actions/deleteFile'
+import { fetchFiles } from "@/app/actions/fetchFiles";
+import Image from "next/image";
+import DeleteFiles from "@/app/components/github_repo_action/DeleteFiles";
+import Upload_and_Delete_Files from "@/app/components/github_repo_action/Upload_and_Delete_Files";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
-const page = () => {
-  const [fileSrc, setFilseSrc] = useState<String | null>(null)
-  const [fileName, setFileName] = useState<[] | null>(null)
-  const [imageSrc, setImageSrc] = useState<String | null>(null)
-  const [uploadMassage, setUploadMassage] = useState([null])
-  const [isPending, setIsPending] = useState<boolean>(false)
-  const [sha, setSha] = useState<String | null>(null)
-  const [path, setPath] = useState<String | null>(null)
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file: any = e.target.files?.[0]
-
-    if (file) {
-      setUploadMassage([null])
-      const reader: any = new FileReader()
-      reader.onload = () => {
-        setFileName(file.name.split('.'))
-        if (reader.result) {
-          setImageSrc(reader.result.split(',')[0] as string)
-          setFilseSrc(reader.result.split(',')[1] as string)
-        }
-      }
-      reader.readAsDataURL(file)
-    }
-  }
-
-  const uploadFileHandler = async () => {
-    setIsPending(true)
-    const isUploaded: any = await uploadFile({ fileSrc: fileSrc, fileName: fileName })
-    setUploadMassage([isUploaded.message, isUploaded.status])
-    if (isUploaded.status === 200) {
-      setSha(isUploaded.sha)
-      setPath(isUploaded.path)
-    }
-    setIsPending(false)
-  }
-
-  const deleteFileHandler = async () => {
-    setIsPending(true)
-    if (fileSrc && fileName && sha && path) {
-      const isUploaded: any = await deleteFile({ sha: sha!, path: path! })
-      setUploadMassage([isUploaded.message, isUploaded.status])
-    }
-    setFilseSrc(null)
-    setFileName(null)
-    setImageSrc(null)
-
-    setIsPending(false)
-    setSha(null)
-    setPath(null)
-
-    setIsPending(false)
-  }
-
+const page = async () => {
+  noStore();
+  const { download_url, sha, name }: any = await fetchFiles();
   return (
-    <>
-      <form className="flex flex-col gap-3 mx-auto max-w-4xl  mt-3">
-        <input type="file" name="fileUpload" id="fileUpload" onChange={handleChange} />
-        {uploadMassage[1] === 200 ? (
-          <h2 className="text-green-500 uppercase font-extrabold">{uploadMassage[0]}</h2>
-        ) : uploadMassage[1] === null || uploadMassage[0] === null ? (
-          <>
-            <div className="first-letter:text-primary first-letter:uppercase">Wybierz Plki</div>
-            <div className="first-letter:text-primary first-letter:uppercase">
-              Po wybraniu pliku kliknij zapisz żeby zapisać lub usuń żeby usunąć plik
-            </div>
-          </>
-        ) : (
-          <h2 className="text-red-500"> Error: {uploadMassage[0]}</h2>
-        )}
-        {imageSrc && fileSrc && (
-          <div className={`flex flex-col gap-3 ${isPending ? 'animate-pulse' : ''}`}>
-            <div>
-              <h2 className="text-3xl uppercase text-primary font-bold">Preview Of File!</h2>
-              <img className="max-w-96 max-h-96 " src={imageSrc + ',' + fileSrc} />
-            </div>
-            <div className=" flex gap-3">
-              <Button type="submit" onClick={uploadFileHandler} disabled={isPending}>
-                Zapisz
-              </Button>
-              <Button
-                type="reset"
-                disabled={isPending}
-                variant={'destructive'}
-                onClick={deleteFileHandler}
-              >
-                Usuń
-              </Button>
-            </div>
-          </div>
-        )}
-      </form>
-    </>
-  )
-}
+    <div className="flex flex-col">
+      <Dialog>
+        <DialogTrigger className="fixed bottom-10 right-10 z-20 rounded-2xl border border-primary bg-primary text-xl font-extrabold text-white shadow-sm shadow-primary transition-all hover:-translate-y-0.5 hover:bg-primary-foreground hover:text-primary hover:shadow-md hover:shadow-primary">
+          <div className="p-5 uppercase">Dodaj plik</div>
+        </DialogTrigger>
+        <DialogContent className="h-5/6 max-w-7xl">
+          <DialogHeader>
+            <DialogTitle className="uppercase">Dodaj plik</DialogTitle>
+            <Upload_and_Delete_Files />
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
 
-export default page
+      <div className="mx-auto flex min-h-[600px] max-w-screen-xl flex-wrap justify-center gap-0.5 overflow-hidden rounded-xl px-3 py-5">
+        {download_url.map((item: string, index: number) => (
+          <div
+            key={item + index}
+            className="group relative flex h-60 w-fit max-w-md flex-col gap-5 rounded-xl bg-background"
+          >
+            {name[index].match(/\.(jpg|jpeg|png|gif|bmp|tiff|webp|svg)$/i) ? (
+              <>
+                <Image
+                  src={item}
+                  key={item + index}
+                  alt={item}
+                  width={300}
+                  height={300}
+                  className="h-full w-fit rounded-lg"
+                />
+                <div className="absolute flex h-full w-full items-center justify-center rounded-lg opacity-0 transition-all group-hover:bg-black/60 group-hover:opacity-100">
+                  <DeleteFiles sha={sha[index]} path={name[index]} />
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex size-60 flex-col justify-center break-words p-3">
+                  <div className="flex flex-wrap items-center justify-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="size-10"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+                      />
+                    </svg>
+                    <span className="font-extrabold uppercase">FIlLE</span>
+                  </div>
+                  <div className="break-words">{name[index]}</div>
+                </div>
+                <div className="absolute flex h-full w-full items-center justify-center rounded-lg opacity-0 transition-all group-hover:bg-black/60 group-hover:opacity-100">
+                  <DeleteFiles
+                    sha={sha[index]}
+                    path={name[index]}
+                    download_url={download_url[index]}
+                  />
+                </div>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default page;

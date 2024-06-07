@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from "next/link";
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 export const GenerateWithOpenAiText: React.FC = (props: Props) => {
   return (
@@ -13,5 +13,5 @@ export const GenerateWithOpenAiText: React.FC = (props: Props) => {
         </Link>
       </h4>
     </React.Fragment>
-  )
-}
+  );
+};

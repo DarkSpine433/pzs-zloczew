@@ -1,9 +1,9 @@
-import { FaYoutube } from 'react-icons/fa'
-import { FaFacebook } from 'react-icons/fa'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
+import { FaYoutube } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-type Props = {}
+type Props = {};
 
 const Socials = (props: Props) => {
   return (
@@ -22,12 +22,15 @@ const Socials = (props: Props) => {
         target="_blanks"
         title="YouTube"
       >
-        <Button className="py-5 bg-red-600 shadow-md shadow-red-600/60" title="YouTube">
+        <Button
+          className="bg-red-600 py-5 shadow-md shadow-red-600/60"
+          title="YouTube"
+        >
           <FaYoutube size={20} />
         </Button>
       </Link>
     </>
-  )
-}
+  );
+};
 
-export default Socials
+export default Socials;
