@@ -16,7 +16,7 @@ const RecentNews = ({ className, repetation }: Props) => {
     <>
       <div className="flex flex-col justify-center px-2 pb-10">
         <div
-          className={`mx-auto grid w-fit grid-cols-1 gap-10 gap-y-20 pb-2 sm:grid-cols-2 md:grid-cols-3 [&>h2]:text-sm ${className}`}
+          className={`mx-auto grid w-fit grid-cols-1 gap-5 pb-2 sm:grid-cols-2 md:grid-cols-3 [&>h2]:text-sm ${className}`}
         >
           <FetchRecentNews repetition={repetation ? repetation : 10} />
         </div>

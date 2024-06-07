@@ -20,7 +20,7 @@ const TemplateNews = ({ data }: Props) => {
           <Link
             key={index + doc.id}
             href={`/news/p/${doc.id}`}
-            className="h-96 max-w-96"
+            className="h-fit max-w-96"
           >
             <Card className="group overflow-hidden transition-all hover:-translate-y-1 hover:shadow-md hover:[&>img]:scale-105">
               <div className="flex h-full w-full items-center justify-center overflow-hidden">
