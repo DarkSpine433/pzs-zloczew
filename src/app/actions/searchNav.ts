@@ -23,7 +23,8 @@ export const searchNav = async ({ title }: Props) => {
       },
     },
   });
-  SearchEngineArray.pages.push(docs);
+  docs.map((doc) => SearchEngineArray.pages.push(doc));
+
   var { docs }: { docs: any[] } = await payload.find({
     collection: "news",
     sort: "-createdAt",
@@ -34,7 +35,7 @@ export const searchNav = async ({ title }: Props) => {
       },
     },
   });
-  SearchEngineArray.news.push(docs);
+  docs.map((doc) => SearchEngineArray.news.push(doc));
 
   return SearchEngineArray;
 };
