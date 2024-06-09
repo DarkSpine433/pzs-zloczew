@@ -24,7 +24,20 @@ const ShowMenu = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="px-5 sm:p-5 sm:px-7">Menu</Button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-8 cursor-pointer stroke-background hover:stroke-primary"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3.75 9h16.5m-16.5 6.75h16.5"
+          />
+        </svg>
       </SheetTrigger>
       <SheetContent side="left" className="overflow-y-auto">
         <SheetHeader>
@@ -53,17 +66,17 @@ const ShowMenu = () => {
 
 const Nav = (props: Props) => {
   return (
-    <div className="flex w-full items-center gap-2 py-1 sm:py-0.5">
+    <div className="flex w-full items-center gap-2">
       <Link
         href="/"
-        className="hidden flex-1 items-center self-center justify-self-center sm:flex"
+        className="flex-1 items-center self-center justify-self-center sm:flex"
       >
         <Image
           src="/logo.png"
           alt="logo"
           width={50}
           height={50}
-          className="size-16"
+          className="size-10"
         />
         <h2 className="hidden text-2xl font-bold uppercase text-primary lg:block">
           pzs ZŁoczew
@@ -85,13 +98,10 @@ const Nav = (props: Props) => {
         ))}
       </div>
 
-      <div className="flex flex-1 items-center justify-between gap-5 sm:justify-end">
-        <div className="order-2 sm:order-1">
-          <SearchNav />
-        </div>
-        <div className="order-1">
-          <ShowMenu />
-        </div>
+      <div className="flex flex-1 items-center justify-end gap-3">
+        <SearchNav />
+
+        <ShowMenu />
       </div>
     </div>
   );

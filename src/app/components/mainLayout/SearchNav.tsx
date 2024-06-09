@@ -12,14 +12,13 @@ type Props = {};
 const SearchNav = (props: Props) => {
   return (
     <Dialog>
-      <DialogTrigger className="group flex w-12 justify-center rounded-full border border-gray-700 py-3 transition-all hover:border-primary hover:bg-foreground sm:py-2.5">
+      <DialogTrigger className="">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth="1.5"
-          stroke="white"
-          className="size-5 group-hover:stroke-white sm:size-6"
+          className="size-6 cursor-pointer stroke-gray-400 hover:stroke-primary"
         >
           <path
             strokeLinecap="round"
@@ -28,18 +27,10 @@ const SearchNav = (props: Props) => {
           />
         </svg>
       </DialogTrigger>
-      <DialogContent className="gap5 flex h-5/6 w-11/12 max-w-7xl flex-col p-0">
-        <DialogHeader className="h-fit bg-gray-100 p-5">
-          <DialogTitle>Zasady korzystania z pola wyszukiwania</DialogTitle>
-          <DialogDescription>
-            Sprawdź poprawność wpisywanych słów, aby uniknąć literówek i błędów
-            ortograficznych. Wprowadzenie poprawnych fraz zwiększa szansę na
-            znalezienie odpowiednich wyników.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="h-fit p-5">
+      <DialogContent className="h-[95%] w-11/12 max-w-7xl flex-col p-0">
+        <div className="h-fit px-3 pt-10">
           <div className="mx-auto max-w-sm">
-            <SearchHandlerClient>w</SearchHandlerClient>
+            <SearchHandlerClient />
           </div>
         </div>
       </DialogContent>

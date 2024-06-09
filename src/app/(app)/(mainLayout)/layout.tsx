@@ -19,7 +19,7 @@ export default function mainLayout({
 }) {
   return (
     <div>
-      <nav className="sticky left-0 top-0 z-50 mx-auto w-full bg-foreground/90 px-10 py-1 text-background shadow-md">
+      <nav className="sticky left-0 top-0 z-50 mx-auto w-full bg-foreground px-10 py-1 text-background shadow-md">
         <div className="mx-auto max-w-[1200px]">
           <Nav />
         </div>
