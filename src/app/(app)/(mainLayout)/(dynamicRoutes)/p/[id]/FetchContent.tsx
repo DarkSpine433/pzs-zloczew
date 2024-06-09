@@ -1,4 +1,3 @@
-import { unstable_noStore as noStore } from "next/cache";
 import BlockParser from "@/app/components/BlockParser";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
@@ -6,7 +5,6 @@ import configPromise from "@payload-config";
 type Props = {};
 
 const FetchContent = async ({ id }: { id: string }) => {
-  noStore();
   const payload = await getPayloadHMR({ config: configPromise });
   const data: any = await payload.findByID({
     collection: "pages",

@@ -1,12 +1,12 @@
-import { unstable_noStore as noStore } from "next/cache";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
 
 import TemplateNews from "../TemplateNews";
-
+export const revalidate = 3600;
 type Props = {
   repetition: number;
 };
+
 const FetchRecentNews = async ({ repetition }: Props) => {
   const payload = await getPayloadHMR({ config: configPromise });
   const data: any = await payload.find({

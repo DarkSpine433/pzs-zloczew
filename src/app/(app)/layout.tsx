@@ -10,7 +10,7 @@ const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
-
+export const revalidate = 600;
 export default function RootLayout({
   children,
 }: {

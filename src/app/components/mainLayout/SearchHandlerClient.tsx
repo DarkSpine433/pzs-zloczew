@@ -4,7 +4,6 @@ import { searchNav } from "@/app/actions/searchNav";
 import { useEffect, useState } from "react";
 
 import SearchHandlerClientOutput from "./SearchHandlerClientOutput";
-import { Skeleton } from "@/components/ui/skeleton";
 import SpinerLoader from "../SpinerLoader";
 type Props = {
   children: React.ReactNode;
