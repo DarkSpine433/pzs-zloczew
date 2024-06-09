@@ -1,21 +1,14 @@
 import SkeletonNews from "@/app/components/mainPageComponents/SkeletonNews";
-
 import dynamic from "next/dynamic";
+const FetchNews = dynamic(() => import("./FetchNews"), {
+  ssr: false,
+  loading: () => <SkeletonNews repeat={10} className="size-60" />,
+});
 import NewsFilter from "./NewsFilter";
 
 const NumberOfNewsToFetch = 30;
 
-const FetchNews = dynamic(() => import("./FetchNews"), {
-  ssr: false,
-  loading: () => (
-    <SkeletonNews repeat={NumberOfNewsToFetch} className="size-80" />
-  ),
-});
-type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-const page = ({ searchParams }: Props) => {
+const page = () => {
   return (
     <>
       <div className="after:to-gray-black/30 relative z-10 mb-20 block overflow-hidden border-b-8 border-gray-500 bg-[url('/img/news/thumbnail.jpg')] bg-cover bg-center bg-no-repeat py-20 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-black/50 after:bg-gradient-to-br after:from-black/70 after:content-['']">
@@ -43,12 +36,9 @@ const page = ({ searchParams }: Props) => {
       </div>
       <div className="mx-auto flex w-full max-w-screen-2xl justify-center px-5 lg:gap-10">
         <NewsFilter />
-        {searchParams.test}
+
         <div className="mx-auto grid h-fit w-fit max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 xl:grid-cols-3">
-          <FetchNews
-            NumberOfNewsToFetch={NumberOfNewsToFetch}
-            searchParams={searchParams}
-          />
+          <FetchNews NumberOfNewsToFetch={NumberOfNewsToFetch} />
         </div>
       </div>
     </>

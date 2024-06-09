@@ -7,7 +7,7 @@ export const GenerateWithOpenAiText: React.FC = (props: Props) => {
   return (
     <React.Fragment>
       <h4>
-        Wygeneruj Opis Za Pomocą AI -&nbsp;
+        Wygeneruj Za Pomocą AI -&nbsp;
         <Link href="https://chat.openai.com/" target="_blank">
           Generuj
         </Link>

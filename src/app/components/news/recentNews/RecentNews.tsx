@@ -8,7 +8,6 @@ type Props = {
 
 const RecentNews = ({ className, repetation }: Props) => {
   const FetchRecentNews = dynamic(() => import("./FetchRecentNews"), {
-    ssr: false,
     loading: () => <SkeletonNews repeat={repetation} className="size-60" />,
   });
 
