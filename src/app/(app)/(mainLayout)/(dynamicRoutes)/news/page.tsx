@@ -6,8 +6,6 @@ const FetchNews = dynamic(() => import("./FetchNews"), {
 });
 import NewsFilter from "./NewsFilter";
 
-const NumberOfNewsToFetch = 30;
-
 const page = () => {
   return (
     <>
@@ -38,7 +36,7 @@ const page = () => {
         <NewsFilter />
 
         <div className="mx-auto grid h-fit w-fit max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 xl:grid-cols-3">
-          <FetchNews NumberOfNewsToFetch={NumberOfNewsToFetch} />
+          <FetchNews />
         </div>
       </div>
     </>

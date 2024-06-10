@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 
 type Props = {
-  data: [];
+  data: any[];
 };
 
 const TemplateNews = ({ data }: Props) => {
