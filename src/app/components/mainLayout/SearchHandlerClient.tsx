@@ -5,11 +5,9 @@ import { useEffect, useState } from "react";
 
 import SearchHandlerClientOutput from "./SearchHandlerClientOutput";
 import SpinerLoader from "../SpinerLoader";
-type Props = {
-  children: React.ReactNode;
-};
+type Props = {};
 
-const SearchHandlerClient = ({ children }: Props) => {
+const SearchHandlerClient = ({}: Props) => {
   const [value, setValue] = useState("");
   const [data, setData] = useState<any>({});
   const [loading, setLoading] = useState(false);
