@@ -6,10 +6,15 @@ const FetchNews = dynamic(() => import("./FetchNews"), {
 });
 import NewsFilter from "./NewsFilter";
 
-const page = () => {
+const page = ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
+  console.log(searchParams);
   return (
     <>
-      <div className="after:to-gray-black/30 relative z-10 mb-20 block overflow-hidden border-b-8 border-gray-500 bg-[url('/img/news/thumbnail.jpg')] bg-cover bg-center bg-no-repeat py-20 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-black/50 after:bg-gradient-to-br after:from-black/70 after:content-['']">
+      <div className="after:to-gray-black/30 relative z-10 block overflow-hidden border-b-8 border-gray-500 bg-[url('/img/news/thumbnail.jpg')] bg-cover bg-center bg-no-repeat py-20 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-black/50 after:bg-gradient-to-br after:from-black/70 after:content-['']">
         <h1 className="bg-[url('/img/news/grain.jpg')] bg-clip-text text-center text-[3rem] font-extrabold tracking-widest text-background/40 sm:text-7xl md:text-8xl lg:text-9xl">
           Aktualności
         </h1>
@@ -32,12 +37,13 @@ const page = () => {
           </ol>
         </h3>
       </div>
-      <div className="mx-auto flex w-full max-w-screen-2xl justify-center px-5 lg:gap-10">
+      <div
+        className="mx-auto flex w-full max-w-screen-2xl justify-center px-5 pt-20 lg:gap-10"
+        id="NewsTop"
+      >
         <NewsFilter />
 
-        <div className="mx-auto grid h-fit w-fit max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 xl:grid-cols-3">
-          <FetchNews />
-        </div>
+        <FetchNews page={Number(searchParams.page)} />
       </div>
     </>
   );

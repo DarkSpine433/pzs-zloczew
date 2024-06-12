@@ -10,14 +10,13 @@ type Props = {
 
 export const fetchNews = async ({ limit, page }: Props) => {
   const payload = await getPayloadHMR({ config: configPromise });
-  const data = await payload.find({
+  return await payload.find({
     collection: "news",
     limit: limit,
     page: page,
     pagination: true,
+
     sort: "-createdAt",
     where: {},
   });
-
-  return data;
 };
