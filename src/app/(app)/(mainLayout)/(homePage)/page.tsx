@@ -93,12 +93,8 @@ const page = (props: Props) => {
           </Section>
           <div className="px-2">
             <Section className="mb-5 bg-background" maxWidth="max-w-6xl ">
-              <div className="relative">
-                <hr className="absolute top-0 m-0 h-[0.1rem] w-full border-none bg-gradient-to-r from-transparent from-10% via-primary to-transparent to-90% p-0" />
-                <h2 className="scroll-m-20 space-y-10 bg-gradient-to-r from-primary from-40% via-foreground to-primary to-60% bg-clip-text py-5 pb-20 text-center text-4xl font-extrabold uppercase text-transparent drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
-                  Aktualności
-                </h2>
-              </div>
+              <hr className="absolute top-0 m-0 h-[0.1rem] w-full border-none bg-gradient-to-r from-transparent from-10% via-primary to-transparent to-90% p-0" />
+
               <RecentNews repetation={10} />
             </Section>
           </div>

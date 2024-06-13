@@ -28,12 +28,12 @@ const BlockParser = ({ block }: { block: any }) => {
       <Image
         src={block.ImageUrl}
         alt={block.alt}
-        height={700}
-        width={700}
+        height={600}
+        width={600}
         key={block.id}
         quality={100}
         loading="lazy"
-        className="rounded-lg border-primary object-cover shadow-sm shadow-primary"
+        className="max-h-[600px] self-center rounded-lg border-primary bg-primary object-contain shadow-sm shadow-primary"
       />
     );
   }
