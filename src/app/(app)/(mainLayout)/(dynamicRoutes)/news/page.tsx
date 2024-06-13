@@ -1,7 +1,6 @@
 import SkeletonNews from "@/app/components/mainPageComponents/SkeletonNews";
 import dynamic from "next/dynamic";
 const FetchNews = dynamic(() => import("./FetchNews"), {
-  ssr: false,
   loading: () => <SkeletonNews repeat={10} className="size-60" />,
 });
 import NewsFilter from "./NewsFilter";

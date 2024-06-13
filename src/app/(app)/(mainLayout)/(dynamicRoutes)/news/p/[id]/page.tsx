@@ -15,12 +15,13 @@ const page = ({ params }: Props) => {
   return (
     <>
       <FetchContent id={params.id} />
-      <hr className="mb-20 block h-[3px] w-full border-0 bg-gray-300 p-0" />
+      <hr className="mb-10 mt-0 block h-[1px] w-full border-0 bg-gray-300 p-0" />
+
       <Section className="bg-background" maxWidth="max-w-6xl ">
-        <h2 className="mx-auto max-w-6xl bg-[url('/img/news/grain.jpg')] bg-clip-text py-5 text-center text-5xl font-extrabold uppercase text-primary/90 sm:text-6xl">
+        <h2 className="scroll-m-20 space-y-10 bg-gradient-to-r from-primary from-40% via-foreground to-primary to-60% bg-clip-text pb-10 text-center text-4xl font-extrabold uppercase text-transparent drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
           Aktualności
         </h2>
-        <div className="rounded-xl border-t border-primary pt-6">
+        <div className="">
           <RecentNews repetation={10} />
         </div>
       </Section>
