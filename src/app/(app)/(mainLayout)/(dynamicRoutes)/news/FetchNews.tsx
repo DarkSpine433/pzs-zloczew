@@ -1,23 +1,16 @@
 import TemplateNews from "@/app/components/news/TemplateNews";
 import { fetchNews } from "@/app/actions/fetchNews";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 
 import PayLoadErrorHandling from "@/app/components/PayLoadErrorHandling";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import PagginationInput from "@/app/components/news/PagginationInput";
 
 const FetchNews = async ({ page }: { page: number }) => {
   var page = !page ? 1 : page;
+  const whereToGOId = "#NewsTop";
   const data = await fetchNews({
-    limit: 6,
+    limit: 20,
     page: page ? page : 1,
   });
 
@@ -36,7 +29,9 @@ const FetchNews = async ({ page }: { page: number }) => {
           <div className="flex w-full flex-col items-center justify-center gap-5 text-center">
             <div className="text-3xl">Nie Ma Strony Nr:{page}</div>
             <Button>
-              <Link href="/news?page=1">Wróć na stronę pierwszą</Link>
+              <Link href={`/news?page=1${whereToGOId}`}>
+                Wróć na stronę pierwszą
+              </Link>
             </Button>
           </div>
         }
@@ -45,52 +40,14 @@ const FetchNews = async ({ page }: { page: number }) => {
           <div className="mx-auto grid h-fit w-fit max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 xl:grid-cols-3">
             <TemplateNews data={data.docs} />
           </div>
-          <Pagination className="">
-            <PaginationContent>
-              {page != 1 && (
-                <PaginationItem>
-                  <PaginationPrevious
-                    href={`?${new URLSearchParams({ page: (data.page! - 1 >= 1 ? data.page! - 1 : 1).toString() })}`}
-                  />
-                </PaginationItem>
-              )}
-
-              {numberOfPages.map((page, i) => {
-                return (
-                  <PaginationItem
-                    key={i}
-                    className={
-                      page != data.page ? "" : "pointer-events-none opacity-30"
-                    }
-                  >
-                    <PaginationLink
-                      href={`?${new URLSearchParams({ page: page.toString() })}#NewsTop`}
-                    >
-                      {page}
-                    </PaginationLink>
-                  </PaginationItem>
-                );
-              })}
-
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink
-                  href={`?${new URLSearchParams({ page: data.totalPages.toString() })}#NewsTop`}
-                >
-                  {data.totalPages}
-                </PaginationLink>
-              </PaginationItem>
-              {page != data.totalPages && (
-                <PaginationItem>
-                  <PaginationNext
-                    href={`?${new URLSearchParams({ page: (data.page! + 1 <= data.totalPages ? data.page! + 1 : data.totalPages).toString() })}#NewsTop`}
-                  />
-                </PaginationItem>
-              )}
-            </PaginationContent>
-          </Pagination>
+          {data.totalPages > 1 && (
+            <PagginationInput
+              data={data}
+              page={page}
+              numberOfPages={numberOfPages}
+              whereToGOId={whereToGOId}
+            />
+          )}
         </div>
       </PayLoadErrorHandling>
     </>
