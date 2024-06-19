@@ -1,5 +1,3 @@
-import dynamic from "next/dynamic";
-
 import Footer from "@/app/components/mainLayout/Footer";
 import Nav from "@/app/components/mainLayout/Nav";
 import "../globals.css";
@@ -25,10 +23,11 @@ export default function mainLayout({
         </div>
       </nav>
 
-      <div className="mx-auto overflow-x-hidden pb-10">
+      <div className="mx-auto overflow-x-hidden">
         <main>{children}</main>
       </div>
 
+      <hr className="pointer-events-none m-0 block h-[5px] w-full border-0 bg-gray-300 p-0" />
       <footer className="z-50 bg-foreground text-background">
         <div className="mx-auto max-w-7xl">
           <Footer />
