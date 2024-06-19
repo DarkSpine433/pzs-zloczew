@@ -1,22 +1,29 @@
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
+import { unstable_noStore } from "next/cache";
+import dynamic from "next/dynamic";
+import SkeletonNews from "../../mainPageComponents/SkeletonNews";
 
-import TemplateNews from "../TemplateNews";
-export const revalidate = 3600;
 type Props = {
   repetition: number;
 };
-
+const TemplateNews = dynamic(() => import("../TemplateNews"), {
+  ssr: false,
+  loading: () => <SkeletonNews className="size-72 md:size-60 lg:size-80" />,
+});
 const FetchRecentNews = async ({ repetition }: Props) => {
   const payload = await getPayloadHMR({ config: configPromise });
-  const data: any = await payload.find({
+  const data = await payload.find({
     collection: "news",
     limit: repetition,
+    pagination: true,
     sort: "-createdAt",
   });
   return (
     <>
-      <TemplateNews data={data.docs} />
+      {data.docs.map((doc: any, index: number) => {
+        return <TemplateNews doc={doc} index={index} />;
+      })}
     </>
   );
 };

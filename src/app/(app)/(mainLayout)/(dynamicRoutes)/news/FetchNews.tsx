@@ -1,20 +1,37 @@
-import TemplateNews from "@/app/components/news/TemplateNews";
 import { fetchNews } from "@/app/actions/fetchNews";
-
 import PayLoadErrorHandling from "@/app/components/PayLoadErrorHandling";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import PagginationInput from "@/app/components/news/PagginationInput";
+
+import dynamic from "next/dynamic";
+import SkeletonNews from "@/app/components/mainPageComponents/SkeletonNews";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const TemplateNews = dynamic(
+  () => import("@/app/components/news/TemplateNews"),
+  {
+    ssr: false,
+    loading: () => <SkeletonNews className="size-80" />,
+  },
+);
+
+const PagginationInput = dynamic(
+  () => import("@/app/components/news/PagginationInput"),
+  {
+    ssr: false,
+    loading: () => <Skeleton className="mx-auto h-20 w-80" />,
+  },
+);
 
 const FetchNews = async ({ page }: { page: number }) => {
   var page = !page ? 1 : page;
   const whereToGOId = "#NewsTop";
   const data = await fetchNews({
-    limit: 20,
+    limit: 3,
     page: page ? page : 1,
   });
 
-  const numberOfPages = [...Array(data.totalPages > 3 ? 3 : data.totalPages)]
+  const numberOfPages = [...Array(5)]
     .map((_, i) => i + 1)
     .filter((x) => x < data.totalPages);
 
@@ -36,9 +53,11 @@ const FetchNews = async ({ page }: { page: number }) => {
           </div>
         }
       >
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-10 pb-20">
           <div className="mx-auto grid h-fit w-fit max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 xl:grid-cols-3">
-            <TemplateNews data={data.docs} />
+            {data.docs.map((doc: any, index: number) => {
+              return <TemplateNews doc={doc} index={index} />;
+            })}
           </div>
           {data.totalPages > 1 && (
             <PagginationInput
