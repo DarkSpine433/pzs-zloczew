@@ -79,15 +79,15 @@ const PagginationInput = ({
           {numberOfPages.map((page, i) => {
             const PagesNum =
               data.page - Math.floor(numberOfPages.length / 2) + i;
-            const isMaxReachShowMoreNewerPages =
+            const isMaxReachToShowMoreNewerPages =
               data.totalPages - data.page <
               Math.floor(numberOfPages.length / 2);
 
-            const calc = isMaxReachShowMoreNewerPages
+            const calc = isMaxReachToShowMoreNewerPages
               ? Math.floor(numberOfPages.length / 2) -
                 (data.totalPages - data.page)
               : 0;
-            const ShowPagesNum = isMaxReachShowMoreNewerPages
+            const ShowPagesNum = isMaxReachToShowMoreNewerPages
               ? PagesNum - calc
               : PagesNum;
             return i + 1 > Math.floor(numberOfPages.length / 2) + calc ? (
@@ -123,12 +123,12 @@ const PagginationInput = ({
 
           {numberOfPages.map((page, i) => {
             const PagesNum = data.page + i + 1;
-            const isMinReachShowMoreOlderPages =
+            const isMinReachToShowMoreOlderPages =
               data.page - Math.floor(numberOfPages.length / 2) < 1;
 
             return i + 1 >
               Math.floor(numberOfPages.length / 2) +
-                (isMinReachShowMoreOlderPages
+                (isMinReachToShowMoreOlderPages
                   ? Math.floor(numberOfPages.length / 2) - data.page + 1
                   : 0) ? null : (
               <>

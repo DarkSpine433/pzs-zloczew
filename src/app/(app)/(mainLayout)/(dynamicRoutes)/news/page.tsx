@@ -8,7 +8,7 @@ const page = ({
 }) => {
   return (
     <>
-      <div className="after:to-gray-black/30 relative z-10 block overflow-hidden border-b-8 border-gray-500 bg-[url('/img/news/thumbnail.jpg')] bg-cover bg-center bg-no-repeat py-20 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-black/50 after:bg-gradient-to-br after:from-black/70 after:content-['']">
+      <div className="after:to-gray-black/30 relative z-10 block overflow-hidden border-b-8 border-gray-500 bg-[url('/img/news/thumbnail.webp')] bg-cover bg-center bg-no-repeat py-20 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-black/50 after:bg-gradient-to-br after:from-black/70 after:content-['']">
         <h1 className="bg-[url('/img/news/grain.jpg')] bg-clip-text text-center text-[3rem] font-extrabold tracking-widest text-background/40 sm:text-7xl md:text-8xl lg:text-9xl">
           Aktualności
         </h1>
