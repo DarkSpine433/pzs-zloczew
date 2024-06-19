@@ -18,9 +18,11 @@ const RecentNews = ({ className, repetation }: Props) => {
         >
           <FetchRecentNews repetition={repetation ? 6 : 6} />
         </div>
-        <Button className="mx-auto mt-10 flex items-center justify-center text-center">
-          <Link href="/news">Zobacz Więcej</Link>
-        </Button>
+        <Link href="/news">
+          <Button className="mx-auto mt-10 flex items-center justify-center text-center">
+            Zobacz Więcej
+          </Button>
+        </Link>
       </div>
     </>
   );

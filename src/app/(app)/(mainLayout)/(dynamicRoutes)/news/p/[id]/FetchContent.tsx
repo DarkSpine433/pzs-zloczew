@@ -12,7 +12,7 @@ const FetchContent = async ({ id }: { id: string }) => {
   });
 
   return (
-    <div className="flex flex-col">
+    <>
       <div
         id="test"
         style={{
@@ -38,7 +38,7 @@ const FetchContent = async ({ id }: { id: string }) => {
           return <BlockParser block={block} key={block.id + index + "key"} />;
         })}
       </div>
-    </div>
+    </>
   );
 };
 
