@@ -14,6 +14,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import PagginationInputClient from "./PagginationInputClient";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   data: any;
@@ -34,9 +36,28 @@ const PagginationInput = ({
         Jesteś na stronie nr:&nbsp;
         <b className="text-lg text-primary">{page}</b>
       </div>
-      {data.totalPages > numberOfPages.length && (
-        <PagginationInputClient data={data} whereToGOId={whereToGOId} />
-      )}
+      <div className="w-full space-y-2">
+        <div className="mx-auto flex w-fit gap-2 text-sm">
+          <Link href={`?${new URLSearchParams({ page: "1" })}${whereToGOId}`}>
+            <Button className="rounded-t-lg bg-primary px-4 text-background">
+              min: 1
+            </Button>
+          </Link>
+          <Link
+            href={`?${new URLSearchParams({ page: data.totalPages.toString() })}${whereToGOId}`}
+          >
+            <Button
+              variant={"outline"}
+              className="text-backgroun rounded-t-lg px-4 text-foreground"
+            >
+              max: {data.totalPages}
+            </Button>
+          </Link>
+        </div>
+        {data.totalPages > numberOfPages.length && (
+          <PagginationInputClient data={data} whereToGOId={whereToGOId} />
+        )}
+      </div>
       <Pagination>
         <PaginationContent>
           {page != 1 && (
@@ -58,15 +79,28 @@ const PagginationInput = ({
           {numberOfPages.map((page, i) => {
             const PagesNum =
               data.page - Math.floor(numberOfPages.length / 2) + i;
-            return i + 1 > Math.floor(numberOfPages.length / 2) ? null : (
+            const isMaxReachShowMoreNewerPages =
+              data.totalPages - data.page <
+              Math.floor(numberOfPages.length / 2);
+
+            const calc = isMaxReachShowMoreNewerPages
+              ? Math.floor(numberOfPages.length / 2) -
+                (data.totalPages - data.page)
+              : 0;
+            const ShowPagesNum = isMaxReachShowMoreNewerPages
+              ? PagesNum - calc
+              : PagesNum;
+            return i + 1 > Math.floor(numberOfPages.length / 2) + calc ? (
+              <></>
+            ) : (
               <>
                 {PagesNum >= 1 && (
                   <PaginationItem key={i}>
                     <PaginationLink
-                      title={`Strona ${PagesNum}`}
-                      href={`?${new URLSearchParams({ page: PagesNum.toString() })}${whereToGOId}`}
+                      title={`Strona ${ShowPagesNum}`}
+                      href={`?${new URLSearchParams({ page: ShowPagesNum.toString() })}${whereToGOId}`}
                     >
-                      {PagesNum}
+                      {ShowPagesNum}
                     </PaginationLink>
                   </PaginationItem>
                 )}
@@ -89,7 +123,14 @@ const PagginationInput = ({
 
           {numberOfPages.map((page, i) => {
             const PagesNum = data.page + i + 1;
-            return i + 1 > Math.floor(numberOfPages.length / 2) ? null : (
+            const isMinReachShowMoreOlderPages =
+              data.page - Math.floor(numberOfPages.length / 2) < 1;
+
+            return i + 1 >
+              Math.floor(numberOfPages.length / 2) +
+                (isMinReachShowMoreOlderPages
+                  ? Math.floor(numberOfPages.length / 2) - data.page + 1
+                  : 0) ? null : (
               <>
                 {PagesNum > data.totalPages || (
                   <PaginationItem key={i}>

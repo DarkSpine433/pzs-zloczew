@@ -15,7 +15,7 @@ const PagginationInputClient = ({ data, whereToGOId }: Props) => {
   return (
     <div className="mx-auto flex w-full max-w-60 flex-col items-center justify-center gap-2 md:flex-row">
       <Input
-        className={`border-foreground/30 invalid:border-red-500 focus-within:border-foreground/50`}
+        className={`border-primary invalid:border-red-500 focus-within:border-primary/50`}
         name="page"
         type="number"
         min={1}
@@ -29,13 +29,14 @@ const PagginationInputClient = ({ data, whereToGOId }: Props) => {
         }}
         placeholder="Wpisz"
       />
+
       <Link
         href={
           page != ""
             ? `?${new URLSearchParams({ page: page.toString() })}${whereToGOId}`
             : "#"
         }
-        className={`w-full ${
+        className={`w-full md:w-3/6 ${
           page === "" || isOverRange ? "pointer-events-none opacity-80" : ""
         }`}
       >
