@@ -1,7 +1,6 @@
 "use server";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "../../payload.config";
-import { redirect } from "next/navigation";
 
 type Props = {
   limit: number;

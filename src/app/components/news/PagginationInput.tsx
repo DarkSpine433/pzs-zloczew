@@ -1,6 +1,3 @@
-import { Input } from "@/components/ui/input";
-import { redirect } from "next/navigation";
-
 import {
   Pagination,
   PaginationContent,
@@ -16,7 +13,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
 import PagginationInputClient from "./PagginationInputClient";
 
 type Props = {

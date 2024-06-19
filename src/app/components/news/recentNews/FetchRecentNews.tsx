@@ -1,6 +1,5 @@
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
-import { unstable_noStore } from "next/cache";
 import dynamic from "next/dynamic";
 import SkeletonNews from "../../mainPageComponents/SkeletonNews";
 
