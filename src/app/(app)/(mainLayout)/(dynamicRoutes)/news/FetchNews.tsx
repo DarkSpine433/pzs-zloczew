@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 import SkeletonNews from "@/app/components/mainPageComponents/SkeletonNews";
 import { Skeleton } from "@/components/ui/skeleton";
+import { FetchUrlObject } from "@/lib/FetchUrlObject";
 
 const TemplateNews = dynamic(
   () => import("@/app/components/news/TemplateNews"),
@@ -23,12 +24,18 @@ const PagginationInput = dynamic(
   },
 );
 
-const FetchNews = async ({ page }: { page: number }) => {
+const FetchNews = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
+  const searchParamsObject = { ...searchParams };
+  var { page, year }: any = searchParamsObject;
   var page = !page ? 1 : page;
-  const whereToGOId = "#NewsTop";
   const data = await fetchNews({
     limit: 3,
     page: page ? page : 1,
+    filter: year ? { year: year } : { year: "" },
   });
 
   const numberOfPages = [...Array(5)]
@@ -46,7 +53,9 @@ const FetchNews = async ({ page }: { page: number }) => {
           <div className="flex w-full flex-col items-center justify-center gap-5 text-center">
             <div className="text-3xl">Nie Ma Strony Nr:{page}</div>
             <Button>
-              <Link href={`/news?page=1${whereToGOId}`}>
+              <Link
+                href={`/news${FetchUrlObject({ keyData: ["page"], valueData: ["1"], searchParamsObject: searchParams })}`}
+              >
                 Wróć na stronę pierwszą
               </Link>
             </Button>
@@ -64,7 +73,7 @@ const FetchNews = async ({ page }: { page: number }) => {
               data={data}
               page={page}
               numberOfPages={numberOfPages}
-              whereToGOId={whereToGOId}
+              searchParams={searchParamsObject}
             />
           )}
         </div>

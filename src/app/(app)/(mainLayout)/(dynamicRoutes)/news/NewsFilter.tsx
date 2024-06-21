@@ -1,9 +1,11 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import NewFilterComponent from "./NewFilterComponent";
 
-type Props = {};
+type Props = {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
-const NewsFilter = (props: Props) => {
+const NewsFilter = ({ searchParams }: Props) => {
   return (
     <>
       <Sheet>
@@ -25,7 +27,10 @@ const NewsFilter = (props: Props) => {
           Filtry
         </SheetTrigger>
         <SheetContent className={`max-h-[100dvh] overflow-y-auto`}>
-          <NewFilterComponent isSheet />
+          <NewFilterComponent
+            whereToGOId="#NewsTop"
+            searchParams={searchParams}
+          />
         </SheetContent>
       </Sheet>
     </>

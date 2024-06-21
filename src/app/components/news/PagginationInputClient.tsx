@@ -1,15 +1,16 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { FetchUrlObject } from "@/lib/FetchUrlObject";
 import Link from "next/link";
 import React, { useState } from "react";
 
 type Props = {
   data: any;
-  whereToGOId: string;
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
-const PagginationInputClient = ({ data, whereToGOId }: Props) => {
+const PagginationInputClient = ({ data, searchParams }: Props) => {
   const [page, setPage] = useState("");
   const [isOverRange, setIsOverRange] = useState(false);
   return (
@@ -33,7 +34,7 @@ const PagginationInputClient = ({ data, whereToGOId }: Props) => {
       <Link
         href={
           page != ""
-            ? `?${new URLSearchParams({ page: page.toString() })}${whereToGOId}`
+            ? `${FetchUrlObject({ keyData: ["page"], valueData: [page], searchParamsObject: searchParams })}`
             : "#"
         }
         className={`w-full md:w-3/6 ${

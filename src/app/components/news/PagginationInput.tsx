@@ -16,19 +16,20 @@ import {
 import PagginationInputClient from "./PagginationInputClient";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { FetchUrlObject } from "@/lib/FetchUrlObject";
 
 type Props = {
   data: any;
   page: number;
   numberOfPages: number[];
-  whereToGOId: string;
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 const PagginationInput = ({
   data,
   page,
   numberOfPages,
-  whereToGOId,
+  searchParams,
 }: Props) => {
   return (
     <div className="flex flex-col gap-3">
@@ -38,13 +39,23 @@ const PagginationInput = ({
       </div>
       <div className="w-full space-y-2">
         <div className="mx-auto flex w-fit gap-2 text-sm">
-          <Link href={`?${new URLSearchParams({ page: "1" })}${whereToGOId}`}>
+          <Link
+            href={FetchUrlObject({
+              keyData: ["page"],
+              valueData: ["1"],
+              searchParamsObject: searchParams,
+            })}
+          >
             <Button className="rounded-t-lg bg-primary px-4 text-background">
               min: 1
             </Button>
           </Link>
           <Link
-            href={`?${new URLSearchParams({ page: data.totalPages.toString() })}${whereToGOId}`}
+            href={FetchUrlObject({
+              keyData: ["page"],
+              valueData: [data.totalPages.toString()],
+              searchParamsObject: searchParams,
+            })}
           >
             <Button
               variant={"outline"}
@@ -55,7 +66,7 @@ const PagginationInput = ({
           </Link>
         </div>
         {data.totalPages > numberOfPages.length && (
-          <PagginationInputClient data={data} whereToGOId={whereToGOId} />
+          <PagginationInputClient data={data} searchParams={searchParams} />
         )}
       </div>
       <Pagination>
@@ -67,7 +78,13 @@ const PagginationInput = ({
                   <PaginationItem>
                     <PaginationPrevious
                       aria-label="Poprzednia strona"
-                      href={`?${new URLSearchParams({ page: (data.page! - 1 >= 1 ? data.page! - 1 : 1).toString() })}${whereToGOId}`}
+                      href={FetchUrlObject({
+                        keyData: ["page"],
+                        valueData: [
+                          (data.page! - 1 >= 1 ? data.page! - 1 : 1).toString(),
+                        ],
+                        searchParamsObject: searchParams,
+                      })}
                     />
                   </PaginationItem>
                 </TooltipTrigger>
@@ -76,7 +93,7 @@ const PagginationInput = ({
             </TooltipProvider>
           )}
 
-          {numberOfPages.map((page, i) => {
+          {numberOfPages.map((_, i) => {
             const PagesNum =
               data.page - Math.floor(numberOfPages.length / 2) + i;
             const isMaxReachToShowMoreNewerPages =
@@ -98,7 +115,11 @@ const PagginationInput = ({
                   <PaginationItem key={i}>
                     <PaginationLink
                       title={`Strona ${ShowPagesNum}`}
-                      href={`?${new URLSearchParams({ page: ShowPagesNum.toString() })}${whereToGOId}`}
+                      href={FetchUrlObject({
+                        keyData: ["page"],
+                        valueData: [ShowPagesNum.toString().toString()],
+                        searchParamsObject: searchParams,
+                      })}
                     >
                       {ShowPagesNum}
                     </PaginationLink>
@@ -115,7 +136,11 @@ const PagginationInput = ({
           >
             <PaginationLink
               title={`Strona ${data.page}`}
-              href={`?${new URLSearchParams({ page: data.page.toString() })}${whereToGOId}`}
+              href={FetchUrlObject({
+                keyData: ["page"],
+                valueData: [data.page.toString()],
+                searchParamsObject: searchParams,
+              })}
             >
               {data.page}
             </PaginationLink>
@@ -136,7 +161,11 @@ const PagginationInput = ({
                   <PaginationItem key={i}>
                     <PaginationLink
                       title={`Strona ${PagesNum}`}
-                      href={`?${new URLSearchParams({ page: PagesNum.toString() })}${whereToGOId}`}
+                      href={FetchUrlObject({
+                        keyData: ["page"],
+                        valueData: [PagesNum.toString()],
+                        searchParamsObject: searchParams,
+                      })}
                     >
                       {PagesNum}
                     </PaginationLink>
@@ -153,7 +182,16 @@ const PagginationInput = ({
                   <PaginationItem>
                     <PaginationNext
                       aria-label="Następna strona"
-                      href={`?${new URLSearchParams({ page: (data.page! + 1 <= data.totalPages ? data.page! + 1 : data.totalPages).toString() })}${whereToGOId}`}
+                      href={FetchUrlObject({
+                        keyData: ["page"],
+                        valueData: [
+                          (data.page! + 1 <= data.totalPages
+                            ? data.page! + 1
+                            : data.totalPages
+                          ).toString(),
+                        ],
+                        searchParamsObject: searchParams,
+                      })}
                     />
                   </PaginationItem>
                 </TooltipTrigger>
