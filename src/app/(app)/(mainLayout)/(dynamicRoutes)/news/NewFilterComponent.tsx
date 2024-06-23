@@ -46,7 +46,6 @@ const NewFilterComponent = async ({ whereToGOId, searchParams }: Props) => {
     );
   };
 
-  console.log(newDate, lastData);
   return (
     <div className="flex flex-col gap-5 py-5">
       <h2 className="text-xl font-extrabold">Filtry</h2>

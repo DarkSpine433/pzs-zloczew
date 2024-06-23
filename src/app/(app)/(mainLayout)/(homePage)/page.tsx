@@ -8,7 +8,7 @@ import ContactButton from "@/app/components/ui/ContactButton";
 import dynamic from "next/dynamic";
 const GetOffer = dynamic(() => import("./GetOffer"));
 type Props = {};
-export const revalidate = 1800;
+
 const page = (props: Props) => {
   return (
     <div className="pb-10">
