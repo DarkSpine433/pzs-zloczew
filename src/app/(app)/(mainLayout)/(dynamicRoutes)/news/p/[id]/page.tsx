@@ -1,11 +1,6 @@
 import RecentNews from "@/app/components/news/recentNews/RecentNews";
 import Section from "@/app/components/mainPageComponents/Section";
-import dynamic from "next/dynamic";
-const FetchContent = dynamic(() => import("./FetchContent"), {
-  loading: () => <SpinerLoader />,
-});
-
-import SpinerLoader from "@/app/components/SpinerLoader";
+import FetchContent from "./FetchContent";
 
 type Props = {
   params: { id: string };
