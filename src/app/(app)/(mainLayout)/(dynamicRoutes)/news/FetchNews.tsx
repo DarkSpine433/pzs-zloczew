@@ -11,7 +11,6 @@ import { FetchUrlObject } from "@/lib/FetchUrlObject";
 const TemplateNews = dynamic(
   () => import("@/app/components/news/TemplateNews"),
   {
-    ssr: false,
     loading: () => <SkeletonNews className="size-80" />,
   },
 );
@@ -19,7 +18,6 @@ const TemplateNews = dynamic(
 const PagginationInput = dynamic(
   () => import("@/app/components/news/PagginationInput"),
   {
-    ssr: false,
     loading: () => <Skeleton className="mx-auto h-20 w-80" />,
   },
 );
