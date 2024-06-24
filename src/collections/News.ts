@@ -65,7 +65,8 @@ export const News: CollectionConfig = {
     },
     {
       name: "createdYear",
-      type: "number",
+      type: "text",
+      hidden: true,
       defaultValue: () => new Date().getUTCFullYear().toString(),
     },
   ],
