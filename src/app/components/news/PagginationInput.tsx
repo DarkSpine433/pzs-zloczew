@@ -31,44 +31,49 @@ const PagginationInput = ({
   numberOfPages,
   searchParams,
 }: Props) => {
+  const isNumberOfPagesIsMoreThanNumberOfPagesToShow =
+    data.totalPages > numberOfPages.length;
   return (
     <div className="flex flex-col gap-3">
       <div className="mx-auto w-max">
         Jesteś na stronie nr:&nbsp;
         <b className="text-lg text-primary">{page}</b>
       </div>
-      <div className="w-full space-y-2">
-        <div className="mx-auto flex w-fit gap-2 text-sm">
-          <Link
-            href={FetchUrlObject({
-              keyData: ["page"],
-              valueData: ["1"],
-              searchParamsObject: searchParams,
-            })}
-          >
-            <Button className="rounded-t-lg bg-primary px-4 text-background">
-              min: 1
-            </Button>
-          </Link>
-          <Link
-            href={FetchUrlObject({
-              keyData: ["page"],
-              valueData: [data.totalPages.toString()],
-              searchParamsObject: searchParams,
-            })}
-          >
-            <Button
-              variant={"outline"}
-              className="text-backgroun rounded-t-lg px-4 text-foreground"
-            >
-              max: {data.totalPages}
-            </Button>
-          </Link>
-        </div>
-        {data.totalPages > numberOfPages.length && (
-          <PagginationInputClient data={data} searchParams={searchParams} />
-        )}
-      </div>
+      {isNumberOfPagesIsMoreThanNumberOfPagesToShow && (
+        <>
+          <div className="w-full space-y-2">
+            <div className="mx-auto flex w-fit gap-2 text-sm">
+              <Link
+                href={FetchUrlObject({
+                  keyData: ["page"],
+                  valueData: ["1"],
+                  searchParamsObject: searchParams,
+                })}
+              >
+                <Button className="rounded-t-lg bg-primary px-4 text-background">
+                  min: 1
+                </Button>
+              </Link>
+              <Link
+                href={FetchUrlObject({
+                  keyData: ["page"],
+                  valueData: [data.totalPages.toString()],
+                  searchParamsObject: searchParams,
+                })}
+              >
+                <Button
+                  variant={"outline"}
+                  className="text-backgroun rounded-t-lg px-4 text-foreground"
+                >
+                  max: {data.totalPages}
+                </Button>
+              </Link>
+            </div>
+
+            <PagginationInputClient data={data} searchParams={searchParams} />
+          </div>
+        </>
+      )}
       <Pagination>
         <PaginationContent>
           {page != 1 && (
@@ -92,89 +97,115 @@ const PagginationInput = ({
               </Tooltip>
             </TooltipProvider>
           )}
+          {isNumberOfPagesIsMoreThanNumberOfPagesToShow ? (
+            <>
+              {numberOfPages.map((_, i) => {
+                const PagesNum =
+                  data.page - Math.floor(numberOfPages.length / 2) + i;
+                const isMaxReachToShowMoreNewerPages =
+                  data.totalPages - data.page <
+                  Math.floor(numberOfPages.length / 2);
 
-          {numberOfPages.map((_, i) => {
-            const PagesNum =
-              data.page - Math.floor(numberOfPages.length / 2) + i;
-            const isMaxReachToShowMoreNewerPages =
-              data.totalPages - data.page <
-              Math.floor(numberOfPages.length / 2);
-
-            const calc = isMaxReachToShowMoreNewerPages
-              ? Math.floor(numberOfPages.length / 2) -
-                (data.totalPages - data.page)
-              : 0;
-            const ShowPagesNum = isMaxReachToShowMoreNewerPages
-              ? PagesNum - calc
-              : PagesNum;
-            return i + 1 > Math.floor(numberOfPages.length / 2) + calc ? (
-              <></>
-            ) : (
-              <>
-                {PagesNum >= 1 && (
-                  <PaginationItem key={i}>
-                    <PaginationLink
-                      title={`Strona ${ShowPagesNum}`}
-                      href={FetchUrlObject({
-                        keyData: ["page"],
-                        valueData: [ShowPagesNum.toString().toString()],
-                        searchParamsObject: searchParams,
-                      })}
-                    >
-                      {ShowPagesNum}
-                    </PaginationLink>
-                  </PaginationItem>
-                )}
-              </>
-            );
-          })}
-
-          <PaginationItem
-            className={
-              page != data.page ? "" : "pointer-events-none opacity-30"
-            }
-          >
-            <PaginationLink
-              title={`Strona ${data.page}`}
-              href={FetchUrlObject({
-                keyData: ["page"],
-                valueData: [data.page.toString()],
-                searchParamsObject: searchParams,
+                const calc = isMaxReachToShowMoreNewerPages
+                  ? Math.floor(numberOfPages.length / 2) -
+                    (data.totalPages - data.page)
+                  : 0;
+                const ShowPagesNum = isMaxReachToShowMoreNewerPages
+                  ? PagesNum - calc
+                  : PagesNum;
+                return i + 1 > Math.floor(numberOfPages.length / 2) + calc ? (
+                  <></>
+                ) : (
+                  <>
+                    {PagesNum >= 1 && (
+                      <PaginationItem key={i}>
+                        <PaginationLink
+                          title={`Strona ${ShowPagesNum}`}
+                          href={FetchUrlObject({
+                            keyData: ["page"],
+                            valueData: [ShowPagesNum.toString().toString()],
+                            searchParamsObject: searchParams,
+                          })}
+                        >
+                          {ShowPagesNum}
+                        </PaginationLink>
+                      </PaginationItem>
+                    )}
+                  </>
+                );
               })}
-            >
-              {data.page}
-            </PaginationLink>
-          </PaginationItem>
 
-          {numberOfPages.map((page, i) => {
-            const PagesNum = data.page + i + 1;
-            const isMinReachToShowMoreOlderPages =
-              data.page - Math.floor(numberOfPages.length / 2) < 1;
+              <PaginationItem
+                className={
+                  page != data.page ? "" : "pointer-events-none opacity-30"
+                }
+              >
+                <PaginationLink
+                  title={`Strona ${data.page}`}
+                  href={FetchUrlObject({
+                    keyData: ["page"],
+                    valueData: [data.page.toString()],
+                    searchParamsObject: searchParams,
+                  })}
+                >
+                  {data.page}
+                </PaginationLink>
+              </PaginationItem>
 
-            return i + 1 >
-              Math.floor(numberOfPages.length / 2) +
-                (isMinReachToShowMoreOlderPages
-                  ? Math.floor(numberOfPages.length / 2) - data.page + 1
-                  : 0) ? null : (
-              <>
-                {PagesNum > data.totalPages || (
-                  <PaginationItem key={i}>
+              {numberOfPages.map((page, i) => {
+                const PagesNum = data.page + i + 1;
+                const isMinReachToShowMoreOlderPages =
+                  data.page - Math.floor(numberOfPages.length / 2) < 1;
+
+                return i + 1 >
+                  Math.floor(numberOfPages.length / 2) +
+                    (isMinReachToShowMoreOlderPages
+                      ? Math.floor(numberOfPages.length / 2) - data.page + 1
+                      : 0) ? null : (
+                  <>
+                    {PagesNum > data.totalPages || (
+                      <PaginationItem key={i}>
+                        <PaginationLink
+                          title={`Strona ${PagesNum}`}
+                          href={FetchUrlObject({
+                            keyData: ["page"],
+                            valueData: [PagesNum.toString()],
+                            searchParamsObject: searchParams,
+                          })}
+                        >
+                          {PagesNum}
+                        </PaginationLink>
+                      </PaginationItem>
+                    )}
+                  </>
+                );
+              })}
+            </>
+          ) : (
+            numberOfPages.map((page, i) => {
+              return (
+                page <= data.totalPages && (
+                  <PaginationItem
+                    key={i}
+                    className={
+                      page != data.page ? "" : "pointer-events-none opacity-30"
+                    }
+                  >
                     <PaginationLink
-                      title={`Strona ${PagesNum}`}
+                      title={`Strona ${page}`}
                       href={FetchUrlObject({
                         keyData: ["page"],
-                        valueData: [PagesNum.toString()],
+                        valueData: [page.toString()],
                         searchParamsObject: searchParams,
                       })}
                     >
-                      {PagesNum}
+                      {page}
                     </PaginationLink>
                   </PaginationItem>
-                )}
-              </>
-            );
-          })}
-
+                )
+              );
+            })
+          )}
           {page != data.totalPages && (
             <TooltipProvider>
               <Tooltip delayDuration={200}>

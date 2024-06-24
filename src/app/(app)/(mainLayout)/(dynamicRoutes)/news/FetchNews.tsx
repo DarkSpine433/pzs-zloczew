@@ -4,8 +4,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import dynamic from "next/dynamic";
-import SkeletonNews from "@/app/components/mainPageComponents/SkeletonNews";
-import { Skeleton } from "@/components/ui/skeleton";
 import { FetchUrlObject } from "@/lib/FetchUrlObject";
 
 const TemplateNews = dynamic(
@@ -21,19 +19,16 @@ const FetchNews = async ({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
-  console.log(searchParams);
   const searchParamsObject = { ...searchParams };
   var { page, year }: any = searchParamsObject;
   var page = !page ? 1 : page;
   const data = await fetchNews({
-    limit: 3,
+    limit: 6,
     page: page ? page : 1,
     filter: year ? { year: year } : { year: "" },
   });
 
-  const numberOfPages = [...Array(5)]
-    .map((_, i) => i + 1)
-    .filter((x) => x < data.totalPages);
+  const numberOfPages = [...Array(5)].map((_, i) => i + 1);
 
   return (
     <>
