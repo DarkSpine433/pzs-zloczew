@@ -53,7 +53,7 @@ const NewFilterComponent = async ({ whereToGOId, searchParams }: Props) => {
       <form action={filterHandler} className="flex flex-col gap-3">
         <div className="pl-1">
           <h3 className="text-lg font-semibold">Rok</h3>
-          <div className="ml-3 flex flex-col flex-wrap gap-2 border-l py-3">
+          <div className="ml-3 flex flex-col flex-wrap gap-5 border-l py-3">
             {[...Array(newDate - lastData + 1)].map((_, i) => (
               <div
                 className="flex h-fit w-fit items-center border-b pl-3"

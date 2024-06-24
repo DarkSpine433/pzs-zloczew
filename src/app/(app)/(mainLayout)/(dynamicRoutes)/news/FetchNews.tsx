@@ -23,7 +23,7 @@ const FetchNews = async ({
   var { page, year }: any = searchParamsObject;
   var page = !page ? 1 : page;
   const data = await fetchNews({
-    limit: 6,
+    limit: 2,
     page: page ? page : 1,
     filter: year ? { year: year } : { year: "" },
   });

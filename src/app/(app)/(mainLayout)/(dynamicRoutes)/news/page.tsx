@@ -4,7 +4,6 @@ import SpinerLoader from "@/app/components/SpinerLoader";
 
 const FetchNews = dynamic(() => import("./FetchNews"), {
   loading: () => <SpinerLoader />,
-  ssr: false,
 });
 
 const page = ({
