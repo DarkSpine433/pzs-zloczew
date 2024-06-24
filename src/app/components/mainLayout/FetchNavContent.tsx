@@ -25,7 +25,7 @@ const FetchNavContent = async () => {
         {StaticNavLinks.map((nav, index) => {
           return (
             <Link
-              href={nav.url.toLowerCase()}
+              href={nav.url.toString().toLowerCase()}
               key={nav.title + index + nav.url}
             >
               <SheetClose className="w-full rounded-lg border-b-4 border-primary bg-secondary/60 px-3 py-3 text-left font-semibold uppercase shadow-sm shadow-primary transition-all hover:border-primary hover:bg-secondary hover:px-3.5">

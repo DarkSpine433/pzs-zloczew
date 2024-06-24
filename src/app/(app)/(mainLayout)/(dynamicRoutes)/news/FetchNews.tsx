@@ -10,16 +10,10 @@ import { FetchUrlObject } from "@/lib/FetchUrlObject";
 
 const TemplateNews = dynamic(
   () => import("@/app/components/news/TemplateNews"),
-  {
-    loading: () => <SkeletonNews className="size-80" />,
-  },
 );
 
 const PagginationInput = dynamic(
   () => import("@/app/components/news/PagginationInput"),
-  {
-    loading: () => <Skeleton className="mx-auto h-20 w-80" />,
-  },
 );
 
 const FetchNews = async ({
@@ -27,6 +21,7 @@ const FetchNews = async ({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
+  console.log(searchParams);
   const searchParamsObject = { ...searchParams };
   var { page, year }: any = searchParamsObject;
   var page = !page ? 1 : page;

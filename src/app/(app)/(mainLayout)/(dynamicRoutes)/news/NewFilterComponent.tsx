@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@/payload.config";
 import { FetchUrlObject } from "@/lib/FetchUrlObject";
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 type Props = {
   whereToGOId: string;
   searchParams: { [key: string]: string | string[] | undefined };
@@ -37,7 +37,7 @@ const NewFilterComponent = async ({ whereToGOId, searchParams }: Props) => {
       searchParamsObject: searchParams,
     });
 
-    return redirect(
+    return permanentRedirect(
       FetchUrlObject({
         keyData: ["page", "year"],
         valueData: ["1", year.join(",")],
@@ -86,8 +86,7 @@ const NewFilterComponent = async ({ whereToGOId, searchParams }: Props) => {
               Zastosuj
             </Button>{" "}
           </SheetClose>
-          <Link href={"/news?page=1#NewsTop"}>
-            {" "}
+          <Link href={"/news?_"}>
             <SheetClose>
               <Button type="reset" className="py-5" variant={"destructive"}>
                 Resetuj

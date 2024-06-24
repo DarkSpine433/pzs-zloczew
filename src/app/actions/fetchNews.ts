@@ -21,6 +21,7 @@ export const fetchNews = async ({ limit, page, filter }: Props) => {
       },
     ],
   };
+  console.log(filter.year);
   return await payload.find({
     collection: "news",
     limit: limit,
