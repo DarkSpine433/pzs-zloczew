@@ -13,7 +13,7 @@ const page = ({
 }) => {
   return (
     <>
-      <div className="after:to-gray-black/30 relative z-10 block space-y-5 overflow-hidden border-b-8 border-gray-500 bg-[url('/img/news/thumbnail.webp')] bg-cover bg-center bg-no-repeat py-5 pb-14 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-foreground/60 after:bg-gradient-to-b after:from-foreground after:content-[''] sm:space-y-10 sm:py-20">
+      <div className="after:to-gray-black/30 relative z-10 block space-y-5 overflow-hidden border-b-8 border-gray-500 bg-[url('https://i.ibb.co/YtSsL18/news.webp')] bg-cover bg-center bg-no-repeat py-5 pb-14 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-foreground/60 after:bg-gradient-to-b after:from-foreground after:content-[''] sm:space-y-10 sm:py-20">
         <h1 className="bg-[url('/img/news/grain.jpg')] bg-clip-text text-center text-[3rem] font-extrabold tracking-widest text-background/40 sm:text-7xl md:text-8xl lg:text-9xl">
           Aktualności
         </h1>
