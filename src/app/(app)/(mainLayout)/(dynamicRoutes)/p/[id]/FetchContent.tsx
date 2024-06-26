@@ -13,13 +13,21 @@ const FetchContent = async ({ id }: { id: string }) => {
 
   return (
     <>
-      <div className="after:to-gray-black/30 relative z-10 mb-20 block overflow-hidden border-b-8 border-gray-500 bg-[url('/img/pagesImg/h1.jpg')] bg-cover bg-center bg-no-repeat py-20 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-black/50 after:bg-gradient-to-br after:from-black/70 after:content-['']">
-        <h1 className="bg-[url('/img/news/grain.jpg')] bg-clip-text text-center text-[3rem] font-extrabold tracking-widest text-background/40 sm:text-7xl">
+      <div
+        id="test"
+        style={{
+          backgroundImage: `url(${data.thumbnail})`,
+        }}
+        className={`after:to-gray-black/50 relative z-10 block overflow-hidden border-b-8 border-gray-500 bg-cover bg-center bg-no-repeat py-12 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-foreground/70 after:bg-gradient-to-b after:from-foreground after:content-['']`}
+      >
+        <h1
+          className={`mx-auto max-w-5xl bg-[url('/img/news/grain.jpg')] bg-clip-text px-3 py-3 text-center text-4xl font-extrabold uppercase tracking-wide text-background/40 sm:text-6xl`}
+        >
           {data.title}
         </h1>
       </div>
 
-      <div className="mx-auto mt-10 flex w-full max-w-6xl flex-col items-center gap-4 rounded-xl px-3 py-10">
+      <div className="mx-auto flex max-w-5xl flex-col gap-10 border-x px-3 pb-10 pt-10 sm:px-10">
         {data?.Content.map((block: any, index: number) => {
           return <BlockParser block={block} key={block.id + index + "key"} />;
         })}

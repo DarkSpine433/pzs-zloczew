@@ -17,10 +17,10 @@ const SearchHandlerClientOutput = ({
     <>
       {object && (
         <div>
-          <h3 className="border-b text-2xl font-bold lowercase first-letter:uppercase">
+          <h3 className="pb-2 text-2xl font-bold lowercase first-letter:uppercase">
             {titleSection}
           </h3>
-          <div className="mt-3 flex flex-col gap-3">
+          <div className="flex flex-col flex-wrap gap-3 rounded-md border px-2 py-3">
             {object.length > 0 ? (
               <div className="flex flex-col gap-3">
                 {object.map(

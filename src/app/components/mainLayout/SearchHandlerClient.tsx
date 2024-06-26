@@ -35,9 +35,14 @@ const SearchHandlerClient = ({}: Props) => {
     };
   }, [value]);
   return (
-    <div>
-      <Input placeholder="Wyszukaj" onChange={handleChange} />
-      <div className="-t mt-3 flex flex-col gap-3 p-3">
+    <>
+      {" "}
+      <Input
+        placeholder="Wyszukaj"
+        onChange={handleChange}
+        className="mx-auto w-full border-0 bg-background shadow shadow-primary"
+      />
+      <div className="flex h-96 w-full flex-col gap-5 overflow-y-scroll bg-background p-3">
         {!loading ? (
           <>
             <SearchHandlerClientOutput
@@ -53,11 +58,11 @@ const SearchHandlerClient = ({}: Props) => {
           </>
         ) : (
           <>
-            <SpinerLoader className="max-h-52" />
+            <SpinerLoader />
           </>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
