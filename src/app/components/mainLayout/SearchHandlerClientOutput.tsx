@@ -16,7 +16,7 @@ const SearchHandlerClientOutput = ({
   return (
     <>
       {object && (
-        <div>
+        <div className="p-3">
           <h3 className="pb-2 text-2xl font-bold lowercase first-letter:uppercase">
             {titleSection}
           </h3>
@@ -40,7 +40,7 @@ const SearchHandlerClientOutput = ({
                 )}
               </div>
             ) : (
-              <div>nie znaleziono</div>
+              <div className="p-3">nie znaleziono</div>
             )}
           </div>
         </div>
