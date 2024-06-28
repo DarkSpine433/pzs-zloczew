@@ -1,9 +1,10 @@
 import dynamic from "next/dynamic";
-import NewsFilter from "./NewsFilter";
-import SpinerLoader from "@/app/components/SpinerLoader";
+import FetchNews from "./FetchNews";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const FetchNews = dynamic(() => import("./FetchNews"), {
-  loading: () => <SpinerLoader />,
+const NewsFilter = dynamic(() => import("./NewsFilter"), {
+  ssr: false,
+  loading: () => <Skeleton className="mx-auto h-14 w-72" />,
 });
 
 const page = ({

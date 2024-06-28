@@ -1,10 +1,6 @@
-import SpinerLoader from "@/app/components/SpinerLoader";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import NewFilterComponent from "./NewFilterComponent";
 
-import dynamic from "next/dynamic";
-const NewFilterComponent = dynamic(() => import("./NewFilterComponent"), {
-  loading: () => <SpinerLoader />,
-});
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };

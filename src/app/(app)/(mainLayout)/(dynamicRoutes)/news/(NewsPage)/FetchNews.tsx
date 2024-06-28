@@ -6,12 +6,22 @@ import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 import { FetchUrlObject } from "@/lib/FetchUrlObject";
 
+import { Skeleton } from "@/components/ui/skeleton";
+
 const TemplateNews = dynamic(
   () => import("@/app/components/news/TemplateNews"),
+  {
+    loading: () => <Skeleton className="size-72" />,
+    ssr: false,
+  },
 );
 
 const PagginationInput = dynamic(
   () => import("@/app/components/news/PagginationInput"),
+  {
+    ssr: false,
+    loading: () => <Skeleton className="mx-auto h-10 w-72" />,
+  },
 );
 
 const FetchNews = async ({
