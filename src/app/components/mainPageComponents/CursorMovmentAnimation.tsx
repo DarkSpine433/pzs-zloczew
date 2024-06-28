@@ -32,7 +32,7 @@ const CursorMovmentAnimation = ({ children }: Props) => {
   }, []);
   return (
     <motion.div
-      className="relative flex h-fit min-h-[600px] w-full items-center overflow-hidden px-5 pb-10 transition-all sm:items-center md:px-20"
+      className="relative flex h-fit min-h-[600px] w-full items-center overflow-hidden px-5 pb-10 transition-all sm:items-center md:px-10 lg:px-28"
       ref={refOfSection}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => {
@@ -40,6 +40,7 @@ const CursorMovmentAnimation = ({ children }: Props) => {
         y.set(0);
       }}
     >
+      {" "}
       <div className="w-[600px]">
         <h1 className="text inline-block space-y-10 bg-gradient-to-tl from-primary from-40% via-foreground to-primary to-60% bg-clip-text text-5xl font-bold text-transparent drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
           <div className="text-5xl font-extrabold uppercase sm:text-8xl">
@@ -58,12 +59,11 @@ const CursorMovmentAnimation = ({ children }: Props) => {
           </div>
         </h1>
       </div>
-
       {/*PLUS IMAGE*/}
-      <div className="absolute left-0 top-20 -z-20 hidden size-28 -translate-y-1/2 translate-x-1/2 bg-[url('/plus.svg')] opacity-50 sm:block"></div>
+      <div className="absolute left-3 top-20 -z-20 hidden size-28 -translate-y-1/2 translate-x-1/2 bg-[url('/plus.svg')] opacity-50 sm:block"></div>
       {/*Interactive Imgaes*/}
-      {windowWidth > 768 && (
-        <div className="absolute right-0 top-0 -z-10 hidden h-fit justify-end overflow-hidden md:flex">
+      {windowWidth > 900 && (
+        <div className="absolute -right-24 top-0 -z-10 hidden h-fit justify-end overflow-hidden md:flex lg:-right-20 xl:right-0">
           <div className="relative size-fit [perspective:150px]">
             <motion.div
               style={{

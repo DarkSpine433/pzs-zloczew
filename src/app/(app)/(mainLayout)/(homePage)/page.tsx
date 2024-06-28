@@ -13,11 +13,13 @@ const page = (props: Props) => {
   return (
     <div className="pb-10">
       <div className="pointer-events-none absolute left-0 top-0 -z-50 h-dvh w-full bg-gradient-to-b from-primary/30 to-transparent"></div>
-      <Section maxWidth="max-w-[1440px]">
+      <Section maxWidth="max-w-[1440px] relative h-fit">
         <CursorMovmentAnimation>
           <ContactButton className="bg-white/70 p-6 text-lg text-foreground" />
         </CursorMovmentAnimation>
+        <div className="pointer-events-none absolute -right-[48rem] -top-[28rem] -z-20 size-[80rem] rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)] md:size-[96rem] lg:-right-[31rem]"></div>
       </Section>
+
       <div className="">
         <Section maxWidth="max-w-6xl z-10">
           <h2
