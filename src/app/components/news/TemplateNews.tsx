@@ -8,6 +8,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+import FavouriteButtonClient from "./FavouriteButtonClient";
+
 type Props = {
   doc: any;
   index?: number;
@@ -15,13 +17,12 @@ type Props = {
 
 const TemplateNews = async ({ doc, index }: Props) => {
   return (
-    <>
-      <Link
-        key={index + doc.id}
-        href={`/news/p/${doc.id}`}
-        className="h-fit max-w-96"
-      >
-        <Card className="group overflow-hidden transition-all hover:-translate-y-1 hover:shadow-md hover:[&>img]:scale-105">
+    <div
+      key={index + doc.id}
+      className="group relative h-fit w-fit overflow-hidden rounded-lg"
+    >
+      <Link href={`/news/p/${doc.id}`}>
+        <Card className="overflow-hidden transition-all hover:shadow-md">
           <div className="flex h-full w-full items-center justify-center overflow-hidden">
             {doc.thumbnail != undefined &&
             doc.thumbnail != "" &&
@@ -31,25 +32,26 @@ const TemplateNews = async ({ doc, index }: Props) => {
                 alt="miniatura"
                 width={300}
                 height={300}
-                className="aspect-square h-64 w-96 overflow-hidden rounded-lg object-cover transition-all"
+                className="aspect-square h-64 w-96 overflow-hidden rounded-lg object-cover transition-all duration-500 group-hover:scale-105"
               />
             ) : null}
           </div>
 
           <CardContent className="mt-5">
-            <CardTitle className="pb-5 text-[1.08rem] font-bold transition-all group-hover:text-primary">
-              {doc.title}
+            <CardTitle className="pb-5 font-bold text-[/701.08rem] transition-all group-hover:text-primary">
+              <div className="pr-2">{doc.title}</div>
             </CardTitle>
             <CardDescription className="text-sm text-gray-900">
               Data:&nbsp;
-              <time dateTime={doc.createdAt}>
+              <time dateTime={doc.createdAt} className="text-primary/70">
                 {format(parseISO(doc.createdAt), "dd.MM.yyyy")}
               </time>
             </CardDescription>
           </CardContent>
         </Card>
       </Link>
-    </>
+      <FavouriteButtonClient id={doc.id} />
+    </div>
   );
 };
 
