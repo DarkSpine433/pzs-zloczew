@@ -29,10 +29,7 @@ const FavouriteButtonClient = ({ id }: Props) => {
     setLoading(false);
   };
   useEffect(() => {
-    const favourites = async () => {
-      setIsFavourite(await fetchFavourites({ id: id }));
-    };
-    favourites();
+    setIsFavourite(fetchFavourites({ id: id })!);
   }, [id]);
   return (
     <form
