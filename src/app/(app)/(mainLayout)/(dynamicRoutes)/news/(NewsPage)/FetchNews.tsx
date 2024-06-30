@@ -61,7 +61,7 @@ const FetchNews = async ({
         }
       >
         <div className="flex flex-col gap-10 pb-20">
-          <div className="mx-auto grid h-fit w-fit max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="mx-auto grid h-fit w-full max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {data.docs.map((doc: any, index: number) => {
               return <TemplateNews doc={doc} index={index} />;
             })}

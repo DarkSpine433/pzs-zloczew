@@ -15,6 +15,10 @@ const StaticNav = [
     title: "Kontakt",
     url: "/contact",
   },
+  {
+    title: "Polubione",
+    url: "/favourites",
+  },
 ];
 
 export const StaticNavLinksWithoutPrefix = StaticNav;

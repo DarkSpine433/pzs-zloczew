@@ -15,11 +15,11 @@ type Props = {
   index?: number;
 };
 
-const TemplateNews = async ({ doc, index }: Props) => {
+const TemplateNews = ({ doc, index }: Props) => {
   return (
     <div
       key={index + doc.id}
-      className="group relative h-fit w-fit overflow-hidden rounded-lg"
+      className="group relative h-fit w-full overflow-hidden rounded-lg"
     >
       <Link href={`/news/p/${doc.id}`}>
         <Card className="overflow-hidden transition-all hover:shadow-md">
