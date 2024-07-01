@@ -16,8 +16,8 @@ const StaticNav = [
     url: "/contact",
   },
   {
-    title: "Polubione",
-    url: "/favourites",
+    title: "Zapisane",
+    url: "/saved",
   },
 ];
 
