@@ -5,10 +5,9 @@ import {
   fetchFavourites,
 } from "@/app/actions/favouriteNewsAction";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect, use, useLayoutEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -17,13 +16,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import Link from "next/link";
 
 type Props = {
   id: string;
+  isBlock?: boolean;
+  className?: string;
 };
 
-const FavouriteButtonClient = ({ id }: Props) => {
+const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
   const [isFavourite, setIsFavourite] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isDialogFavouriteAccept, setIsDialogFavouriteAccept] = useState(false);
@@ -61,13 +61,13 @@ const FavouriteButtonClient = ({ id }: Props) => {
       {isDialogFavouriteAccept ? (
         <form
           onSubmit={addFavouriteHandler}
-          className={`absolute right-3 top-2 transition-all ${loading ? "opacity-0" : "opacity-100"}`}
+          className={`${isBlock ? "" : "absolute right-5 top-2"} transition-all ${loading ? "opacity-0" : "opacity-100"}`}
         >
           <Button
             variant={"secondary"}
             type="submit"
             name="favourite"
-            className="group rounded-xl px-4 py-6 text-primary shadow shadow-primary transition-all hover:shadow-lg hover:shadow-primary hover:outline hover:outline-2 hover:outline-primary"
+            className={`group rounded-xl px-4 py-6 text-primary shadow shadow-primary transition-all hover:shadow-lg hover:shadow-primary hover:outline hover:outline-2 hover:outline-primary ${className}`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -90,13 +90,13 @@ const FavouriteButtonClient = ({ id }: Props) => {
           <AlertDialogTrigger>
             <form
               onSubmit={addFavouriteHandler}
-              className={`absolute right-3 top-2 transition-all ${loading ? "opacity-0" : "opacity-100"}`}
+              className={`${isBlock ? "" : "absolute right-5 top-2"} transition-all ${loading ? "opacity-0" : "opacity-100"}`}
             >
               <Button
                 variant={"secondary"}
                 type="submit"
                 name="favourite"
-                className="group rounded-xl px-4 py-6 text-primary shadow shadow-primary transition-all hover:shadow-lg hover:shadow-primary hover:outline hover:outline-2 hover:outline-primary"
+                className={`group rounded-xl px-4 py-6 text-primary shadow shadow-primary transition-all hover:shadow-lg hover:shadow-primary hover:outline hover:outline-2 hover:outline-primary ${className}`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
