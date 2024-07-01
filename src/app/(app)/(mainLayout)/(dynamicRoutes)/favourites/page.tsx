@@ -27,35 +27,36 @@ const page = (props: Props) => {
         setFavourites([{ title: "Nie udało się wczytać listy ulubionych" }]);
       }
     };
-
-    fetchFavouritesClient();
+    if (
+      localStorage.getItem("FavouriteNews") === null ||
+      localStorage.getItem("FavouriteNews") === undefined ||
+      localStorage.getItem("FavouriteNews") === ""
+    ) {
+    } else {
+      fetchFavouritesClient();
+    }
   }, []);
 
   return (
     <div className="mx-auto flex min-h-[600px] max-w-screen-xl flex-col px-14">
-      {localStorage.getItem("FavouriteNews") === null ||
-      localStorage.getItem("FavouriteNews") === undefined ||
-      localStorage.getItem("FavouriteNews") === "" ? null : (
-        <Carousel
-          opts={{
-            dragFree: true,
-          }}
-          className=""
-        >
-          <h2 className="py-5 text-3xl font-bold">Aktualności</h2>
-          <CarouselContent>
-            {favourites.map((value, index) => (
-              <CarouselItem className="max-w-96">
-                <TemplateNews index={index} key={index} doc={value}>
-                  {value.title}
-                </TemplateNews>
-              </CarouselItem>
-            ))}{" "}
-          </CarouselContent>{" "}
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
-      )}
+      <Carousel
+        opts={{
+          dragFree: true,
+        }}
+        className=""
+      >
+        <h2 className="py-5 text-3xl font-bold">Aktualności</h2>
+        <CarouselContent>
+          {favourites.map((value: any, index: number) => (
+            <CarouselItem className="max-w-96">
+              <TemplateNews index={index} key={index} doc={value} />
+            </CarouselItem>
+          ))}{" "}
+        </CarouselContent>{" "}
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+
       <div className="flex"></div>
     </div>
   );
