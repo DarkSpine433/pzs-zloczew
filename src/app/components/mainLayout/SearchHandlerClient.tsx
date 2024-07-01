@@ -4,7 +4,7 @@ import { searchNav } from "@/app/actions/searchNav";
 import { useEffect, useState } from "react";
 
 import SearchHandlerClientOutput from "./SearchHandlerClientOutput";
-import SpinerLoader from "../SpinerLoader";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { DialogClose } from "@radix-ui/react-dialog";
 type Props = {};
 
@@ -36,7 +36,7 @@ const SearchHandlerClient = ({}: Props) => {
     };
   }, [value]);
   return (
-    <>
+    <ScrollArea className="h-96 w-[600px] max-w-3xl rounded-md border p-4">
       <div className="sticky top-0 z-50 mx-auto h-fit w-full">
         <Input
           placeholder="Wyszukaj"
@@ -76,7 +76,7 @@ const SearchHandlerClient = ({}: Props) => {
           />
         </>
       </div>
-    </>
+    </ScrollArea>
   );
 };
 
