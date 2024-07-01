@@ -5,7 +5,7 @@ import {
   fetchFavourites,
 } from "@/app/actions/favouriteNewsAction";
 import { Button } from "@/components/ui/button";
-import { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect, useEffect } from "react";
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -16,52 +16,61 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { create } from "zustand";
+import { stat } from "fs";
 
 type Props = {
   id: string;
   isBlock?: boolean;
   className?: string;
 };
+type Store = {
+  arrayOfFavouriteItems: string[];
+  increasePopulation: () => void;
+};
+const useStore = create<Store>()((set) => ({
+  arrayOfFavouriteItems:
+    localStorage.getItem("FavouriteNews")?.split(",") || [],
 
+  increasePopulation: () =>
+    set((state) => ({
+      arrayOfFavouriteItems:
+        localStorage.getItem("FavouriteNews")?.split(",") || [],
+    })),
+}));
 const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
-  const [isFavourite, setIsFavourite] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const arrayOfFavouriteItems = useStore(
+    (state) => state.arrayOfFavouriteItems,
+  );
+  const test2 = useStore((state) => state.increasePopulation);
+  console.log(arrayOfFavouriteItems);
+
   const [isDialogFavouriteAccept, setIsDialogFavouriteAccept] = useState(false);
-  const addFavouriteHandler = async (
-    event: React.FormEvent<HTMLFormElement>,
-  ) => {
-    event.preventDefault();
+  const addFavouriteHandler = () => {
     localStorage.getItem("isDialogFavouriteAccept")
       ? setIsDialogFavouriteAccept(true)
       : setIsDialogFavouriteAccept(false);
-    setLoading(true);
-    try {
-      await favouriteDeleateOrAdd({ id: id });
 
-      setIsFavourite(!isFavourite);
+    try {
+      favouriteDeleateOrAdd({ id: id });
+      test2();
     } catch (error) {
       console.log(error);
     }
-    setLoading(false);
   };
-  useLayoutEffect(() => {
+
+  useEffect(() => {
     localStorage.getItem("isDialogFavouriteAccept")
       ? setIsDialogFavouriteAccept(true)
       : setIsDialogFavouriteAccept(false);
-  }, [
-    localStorage.getItem("isDialogFavouriteAccept"),
-    isDialogFavouriteAccept,
-  ]);
+  }, [localStorage.getItem("isDialogFavouriteAccept")]);
 
-  useLayoutEffect(() => {
-    setIsFavourite(fetchFavourites({ id: id })!);
-  }, [id]);
   return (
     <>
       {isDialogFavouriteAccept ? (
-        <form
-          onSubmit={addFavouriteHandler}
-          className={`${isBlock ? "" : "absolute right-5 top-2"} transition-all ${loading ? "opacity-0" : "opacity-100"}`}
+        <div
+          onClick={addFavouriteHandler}
+          className={`${isBlock ? "" : "absolute right-5 top-2"} transition-all`}
         >
           <Button
             variant={"secondary"}
@@ -75,7 +84,7 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className={`size-6 ${isFavourite ? "fill-primary" : ""}`}
+              className={`size-6 ${arrayOfFavouriteItems.includes(id) ? "fill-primary" : ""}`}
             >
               <path
                 strokeLinecap="round"
@@ -84,13 +93,13 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
               />
             </svg>
           </Button>
-        </form>
+        </div>
       ) : (
         <AlertDialog>
           <AlertDialogTrigger>
             <form
-              onSubmit={addFavouriteHandler}
-              className={`${isBlock ? "" : "absolute right-5 top-2"} transition-all ${loading ? "opacity-0" : "opacity-100"}`}
+              onClick={addFavouriteHandler}
+              className={`${isBlock ? "" : "absolute right-5 top-2"} transition-all`}
             >
               <Button
                 variant={"secondary"}
@@ -104,7 +113,7 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className={`size-6 ${isFavourite ? "fill-primary" : ""}`}
+                  className={`size-6 ${arrayOfFavouriteItems.includes(id) ? "fill-primary" : ""}`}
                 >
                   <path
                     strokeLinecap="round"

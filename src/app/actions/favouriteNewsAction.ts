@@ -26,6 +26,6 @@ export const favouriteDeleateOrAdd = ({ id }: Props) => {
   }
 };
 
-export const fetchFavourites = ({ id }: Props) => {
-  return localStorage.getItem("FavouriteNews")?.includes(id);
+export const fetchFavourites = () => {
+  return localStorage.getItem("FavouriteNews");
 };
