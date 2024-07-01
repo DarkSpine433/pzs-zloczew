@@ -20,7 +20,7 @@ const SearchNav = (props: Props) => {
           />
         </svg>
       </DialogTrigger>
-      <DialogContent className="h-fit w-fit">
+      <DialogContent className="h-5/6 max-h-[700px] w-11/12 max-w-[800px]">
         <SearchHandlerClient />
       </DialogContent>
     </Dialog>

@@ -36,7 +36,7 @@ const SearchHandlerClient = ({}: Props) => {
     };
   }, [value]);
   return (
-    <ScrollArea className="h-96 w-[600px] max-w-3xl rounded-md border p-4">
+    <ScrollArea className="h-full w-full rounded-md border p-4">
       <div className="sticky top-0 z-50 mx-auto h-fit w-full">
         <Input
           placeholder="Wyszukaj"
