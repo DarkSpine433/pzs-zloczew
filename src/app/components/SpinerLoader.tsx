@@ -4,8 +4,8 @@ type Props = {
 
 const SpinerLoader = ({ className }: Props) => {
   return (
-    <div className={` ${className} relative h-dvh`}>
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse">
+    <div className={` ${className} flex h-full items-center justify-center`}>
+      <div className="animate-pulse items-center justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

@@ -4,7 +4,8 @@ import { searchNav } from "@/app/actions/searchNav";
 import { useEffect, useState } from "react";
 
 import SearchHandlerClientOutput from "./SearchHandlerClientOutput";
-import SpinerLoader from "../SpinerLoader";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { DialogClose } from "@radix-ui/react-dialog";
 type Props = {};
 
 const SearchHandlerClient = ({}: Props) => {
@@ -35,29 +36,47 @@ const SearchHandlerClient = ({}: Props) => {
     };
   }, [value]);
   return (
-    <div>
-      <Input placeholder="Wyszukaj" onChange={handleChange} />
-      <div className="-t mt-3 flex flex-col gap-3 p-3">
-        {!loading ? (
-          <>
-            <SearchHandlerClientOutput
-              object={data.pages}
-              titleSection="Strony"
-              linkPrefix="p"
+    <ScrollArea className="h-full w-full rounded-md border p-4">
+      <div className="sticky top-0 z-50 mx-auto h-fit w-full">
+        <Input
+          placeholder="Wyszukaj"
+          onChange={handleChange}
+          className="roul-xl border-0 bg-background py-7 pl-8 text-xl shadow shadow-primary sm:text-2xl"
+        />
+        <DialogClose className="absolute right-3 top-2 z-50 size-10">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-8"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18 18 6M6 6l12 12"
             />
-            <SearchHandlerClientOutput
-              object={data.news}
-              titleSection="Aktualności"
-              linkPrefix="news/p"
-            />
-          </>
-        ) : (
-          <>
-            <SpinerLoader className="max-h-52" />
-          </>
-        )}
+          </svg>
+        </DialogClose>
       </div>
-    </div>
+      <div
+        className={`${loading ? "opacity-0" : "opacity-100"} flex h-fit flex-col gap-5 bg-background transition-all`}
+      >
+        <>
+          <SearchHandlerClientOutput
+            object={data.pages}
+            titleSection="Strony"
+            linkPrefix="p"
+          />
+          <SearchHandlerClientOutput
+            object={data.news}
+            titleSection="Aktualności"
+            linkPrefix="news/p"
+          />
+        </>
+      </div>
+    </ScrollArea>
   );
 };
 

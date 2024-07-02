@@ -5,10 +5,23 @@ import configPromise from "../../payload.config";
 type Props = {
   limit: number;
   page: number;
+  filter: {
+    year: string;
+  };
 };
 
-export const fetchNews = async ({ limit, page }: Props) => {
+export const fetchNews = async ({ limit, page, filter }: Props) => {
   const payload = await getPayloadHMR({ config: configPromise });
+  const query = {
+    and: [
+      filter.year && {
+        createdYear: {
+          in: filter.year,
+        },
+      },
+    ],
+  };
+  console.log(filter.year);
   return await payload.find({
     collection: "news",
     limit: limit,
@@ -16,6 +29,7 @@ export const fetchNews = async ({ limit, page }: Props) => {
     pagination: true,
 
     sort: "-createdAt",
-    where: {},
+    // @ts-ignore
+    where: query,
   });
 };

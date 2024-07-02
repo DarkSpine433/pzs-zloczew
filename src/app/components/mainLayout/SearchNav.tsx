@@ -1,11 +1,4 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import SearchHandlerClient from "./SearchHandlerClient";
 type Props = {};
 
@@ -27,12 +20,8 @@ const SearchNav = (props: Props) => {
           />
         </svg>
       </DialogTrigger>
-      <DialogContent className="h-[95%] w-11/12 max-w-7xl flex-col p-0">
-        <div className="h-fit px-3 pt-10">
-          <div className="mx-auto max-w-sm">
-            <SearchHandlerClient />
-          </div>
-        </div>
+      <DialogContent className="h-5/6 max-h-[700px] w-11/12 max-w-[800px]">
+        <SearchHandlerClient />
       </DialogContent>
     </Dialog>
   );

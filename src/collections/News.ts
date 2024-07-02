@@ -63,5 +63,11 @@ export const News: CollectionConfig = {
 
       blocks: [ImageUrl, RichTextBlock, Iframe],
     },
+    {
+      name: "createdYear",
+      type: "text",
+      hidden: true,
+      defaultValue: () => new Date().getUTCFullYear().toString(),
+    },
   ],
 };
