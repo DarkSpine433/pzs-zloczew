@@ -131,7 +131,7 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
       ) : (
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <form
+            <div
               onClick={addFavouriteHandler}
               className={`${isBlock ? "" : "absolute right-5 top-2"} transition-all`}
             >
@@ -156,7 +156,7 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
                   />
                 </svg>
               </Button>
-            </form>
+            </div>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
