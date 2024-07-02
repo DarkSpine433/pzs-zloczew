@@ -94,14 +94,15 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
             name="favourite"
             className={`group rounded-xl px-4 py-6 text-primary shadow shadow-primary transition-all hover:shadow-lg hover:shadow-primary hover:outline hover:outline-2 hover:outline-primary ${className}`}
           >
-            {arrayOfFavouriteItems.includes(id) ? (
+            {arrayOfFavouriteItems !== undefined &&
+            arrayOfFavouriteItems.includes(id) ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className={`size-6 ${arrayOfFavouriteItems.includes(id) ? "fill-primary" : ""}`}
+                className={`size-6 ${arrayOfFavouriteItems !== undefined && arrayOfFavouriteItems.includes(id) ? "fill-primary" : ""}`}
               >
                 <path
                   strokeLinecap="round"
@@ -146,7 +147,7 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  className={`size-6 ${arrayOfFavouriteItems.includes(id) ? "fill-primary" : ""}`}
+                  className={`size-6 ${arrayOfFavouriteItems !== undefined && arrayOfFavouriteItems.includes(id) ? "fill-primary" : ""}`}
                 >
                   <path
                     strokeLinecap="round"
