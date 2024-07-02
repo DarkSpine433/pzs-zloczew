@@ -19,7 +19,7 @@ const RecentNews = ({ className, repetation }: Props) => {
           <FetchRecentNews repetition={repetation ? 6 : 6} />
         </div>
         <Link
-          href="/news"
+          href="/news?_"
           className="mx-auto mt-10 flex w-fit items-center justify-center text-center"
         >
           <Button>Zobacz Więcej</Button>

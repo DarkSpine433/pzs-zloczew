@@ -47,8 +47,6 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
     (state) => state.arrayOfFavouriteItems,
   );
   const test2 = useStore((state) => state.increasePopulation);
-  console.log(arrayOfFavouriteItems);
-
   const [isDialogFavouriteAccept, setIsDialogFavouriteAccept] = useState(false);
   const addFavouriteHandler = () => {
     if (
