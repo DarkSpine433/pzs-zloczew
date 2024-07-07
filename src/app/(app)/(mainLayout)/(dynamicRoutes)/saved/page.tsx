@@ -76,8 +76,8 @@ const page = (props: Props) => {
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious className="-left-4 size-12 bg-background/90 p-3" />
-                  <CarouselNext className="-right-4 size-12 bg-background/90 p-3" />
+                  <CarouselPrevious className="-left-4 size-12 p-3" />
+                  <CarouselNext className="-right-4 size-12 p-3" />
                 </>
               ) : (
                 <div className="h-80">
@@ -100,7 +100,7 @@ const page = (props: Props) => {
           opts={{
             dragFree: true,
           }}
-          className="rounded-xl border border-primary bg-secondary px-3 pb-3"
+          className="rounded-lg border border-primary bg-secondary/50 px-3 pb-3 shadow-lg"
         >
           <h2 className="py-5 text-3xl font-bold">Aktualności</h2>
           {isLoading ? (
@@ -108,7 +108,7 @@ const page = (props: Props) => {
               <SpinerLoader />
             </div>
           ) : (
-            <>
+            <div className="min-h-80">
               {favourites.news ? (
                 <>
                   <CarouselContent>
@@ -118,13 +118,24 @@ const page = (props: Props) => {
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious className="-left-4 z-50 size-12 bg-background/50 p-3" />
-                  <CarouselNext className="-right-4 z-50 size-12 bg-background/50 p-3" />
+                  <CarouselPrevious className="-left-4 size-12 p-3" />
+                  <CarouselNext className="-right-4 size-12 p-3" />
                 </>
               ) : (
-                favourites.newsMessage
+                <div className="h-80">
+                  {favourites.newsMessage && (
+                    <div className="flex h-full w-full flex-col items-center justify-center gap-5">
+                      <div className="text-xl font-semibold text-destructive">
+                        {favourites.newsMessage}
+                      </div>
+                      <Link href="/news">
+                        <Button>Zobacz Więcej</Button>
+                      </Link>
+                    </div>
+                  )}
+                </div>
               )}
-            </>
+            </div>
           )}
         </Carousel>
       </div>
