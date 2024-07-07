@@ -57,12 +57,13 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
       localStorage.getItem("isDialogFavouriteAccept")
         ? setIsDialogFavouriteAccept(true)
         : setIsDialogFavouriteAccept(false);
-
-      try {
-        favouriteDeleateOrAdd({ id: id });
-        test2();
-      } catch (error) {
-        console.log(error);
+      if (localStorage.getItem("isDialogFavouriteAccept") === "true") {
+        try {
+          favouriteDeleateOrAdd({ id: id });
+          test2();
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
   };
@@ -128,9 +129,8 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
         </div>
       ) : (
         <AlertDialog>
-          <AlertDialogTrigger asChild>
+          <AlertDialogTrigger onClick={addFavouriteHandler} asChild>
             <div
-              onClick={addFavouriteHandler}
               className={`${isBlock ? "" : "absolute right-5 top-2"} transition-all`}
             >
               <Button
@@ -156,7 +156,7 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
               </Button>
             </div>
           </AlertDialogTrigger>
-          <AlertDialogContent>
+          <AlertDialogContent className="max-h-dvh overflow-y-scroll">
             <AlertDialogHeader>
               <AlertDialogTitle className="text-xl font-extrabold uppercase tracking-wide text-red-400 underline">
                 Uwaga!
@@ -183,6 +183,7 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
               <AlertDialogCancel
                 onClick={() => {
                   localStorage.setItem("isDialogFavouriteAccept", "true");
+                  addFavouriteHandler();
                 }}
               >
                 Rozumiem

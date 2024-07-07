@@ -10,17 +10,21 @@ import {
 } from "@/components/ui/carousel";
 import { fetchFavourites } from "@/app/actions/fetchFavourites";
 import TemplateNews from "@/app/components/news/TemplateNews";
+import { title } from "process";
+import { BarLoader, HashLoader, RotateLoader } from "react-spinners";
+import SpinerLoader from "@/app/components/SpinerLoader";
 
 type Props = {};
 
 const page = (props: Props) => {
-  const [favourites, setFavourites] = useState<any>([]);
+  const [favourites, setFavourites] = useState<any>({});
+  const [isLoading, setIsLoading] = useState(true);
   useLayoutEffect(() => {
     const fetchFavouritesClient = async () => {
       try {
         setFavourites(
           await fetchFavourites({
-            ids: localStorage.getItem("FavouriteNews")?.toString()!,
+            idsNews: localStorage.getItem("FavouriteNews")?.toString()!,
           }),
         );
       } catch (err) {
@@ -32,33 +36,86 @@ const page = (props: Props) => {
       localStorage.getItem("FavouriteNews") === undefined ||
       localStorage.getItem("FavouriteNews") === ""
     ) {
+      setFavourites({ newsMessage: "Nie udało się wczytać listy ulubionych" });
     } else {
       fetchFavouritesClient();
     }
+    setIsLoading(false);
   }, []);
 
   return (
-    <div className="mx-auto flex min-h-[600px] max-w-screen-xl flex-col px-14">
-      <Carousel
-        opts={{
-          dragFree: true,
-        }}
-        className=""
-      >
-        <h2 className="py-5 text-3xl font-bold">Aktualności</h2>
-        <CarouselContent>
-          {favourites.map((value: any, index: number) => (
-            <CarouselItem className="max-w-96">
-              <TemplateNews index={index} key={index} doc={value} />
-            </CarouselItem>
-          ))}{" "}
-        </CarouselContent>{" "}
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-
-      <div className="flex"></div>
-    </div>
+    <>
+      {" "}
+      <div className="after:to-gray-black/30 ] relative z-10 block space-y-5 overflow-hidden border-b-8 border-gray-400 bg-cover bg-center bg-no-repeat py-5 pb-14 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-foreground/60 after:bg-gradient-to-b after:from-foreground after:content-[''] sm:space-y-10 sm:py-20">
+        <h1 className="text-center text-[3rem] font-extrabold tracking-widest text-background sm:text-7xl md:text-8xl lg:text-9xl">
+          Zapisane
+        </h1>
+      </div>
+      <div className="mx-auto my-5 flex min-h-[600px] max-w-screen-xl flex-col gap-10 px-5">
+        <Carousel
+          opts={{
+            dragFree: true,
+          }}
+          className="rounded-lg border border-primary bg-secondary/50 px-3 pb-3 shadow-lg"
+        >
+          <h2 className="py-5 text-3xl font-bold">Aktualności</h2>
+          {isLoading ? (
+            <div className="h-80">
+              <SpinerLoader />
+            </div>
+          ) : (
+            <div className="min-h-80">
+              {favourites.news ? (
+                <>
+                  <CarouselContent>
+                    {favourites.news.map((value: any, index: number) => (
+                      <CarouselItem className="max-w-96" key={index + value.id}>
+                        <TemplateNews index={index} key={index} doc={value} />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="-left-4 size-12 bg-background/90 p-3" />
+                  <CarouselNext className="-right-4 size-12 bg-background/90 p-3" />
+                </>
+              ) : (
+                favourites.newsMessage
+              )}
+            </div>
+          )}
+        </Carousel>
+        <Carousel
+          opts={{
+            dragFree: true,
+          }}
+          className="rounded-xl border border-primary bg-secondary px-3 pb-3"
+        >
+          <h2 className="py-5 text-3xl font-bold">Aktualności</h2>
+          {isLoading ? (
+            <div className="h-80">
+              <SpinerLoader />
+            </div>
+          ) : (
+            <>
+              {favourites.news ? (
+                <>
+                  <CarouselContent>
+                    {favourites.news.map((value: any, index: number) => (
+                      <CarouselItem className="max-w-96" key={index + value.id}>
+                        <TemplateNews index={index} key={index} doc={value} />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="-left-4 z-50 size-12 bg-background/50 p-3" />
+                  <CarouselNext className="-right-4 z-50 size-12 bg-background/50 p-3" />
+                </>
+              ) : (
+                favourites.newsMessage
+              )}
+            </>
+          )}
+        </Carousel>
+      </div>
+    </>
   );
 };
 
