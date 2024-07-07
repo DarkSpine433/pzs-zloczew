@@ -13,6 +13,8 @@ import TemplateNews from "@/app/components/news/TemplateNews";
 import { title } from "process";
 import { BarLoader, HashLoader, RotateLoader } from "react-spinners";
 import SpinerLoader from "@/app/components/SpinerLoader";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 type Props = {};
 
@@ -36,7 +38,7 @@ const page = (props: Props) => {
       localStorage.getItem("FavouriteNews") === undefined ||
       localStorage.getItem("FavouriteNews") === ""
     ) {
-      setFavourites({ newsMessage: "Nie udało się wczytać listy ulubionych" });
+      setFavourites({ newsMessage: "Brak zapisanych artykułów" });
     } else {
       fetchFavouritesClient();
     }
@@ -78,7 +80,18 @@ const page = (props: Props) => {
                   <CarouselNext className="-right-4 size-12 bg-background/90 p-3" />
                 </>
               ) : (
-                favourites.newsMessage
+                <div className="h-80">
+                  {favourites.newsMessage && (
+                    <div className="flex h-full w-full flex-col items-center justify-center gap-5">
+                      <div className="text-xl font-semibold text-destructive">
+                        {favourites.newsMessage}
+                      </div>
+                      <Link href="/news">
+                        <Button>Zobacz Więcej</Button>
+                      </Link>
+                    </div>
+                  )}
+                </div>
               )}
             </div>
           )}
