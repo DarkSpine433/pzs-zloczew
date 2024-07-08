@@ -13,10 +13,6 @@ const page = ({ params }: Props) => {
       <div className="flex flex-col">
         <FetchContent id={params.id} />
       </div>
-      <hr className="m-0 block h-[5px] w-full border-0 bg-gray-300 p-0" />
-      <Section className="" maxWidth="max-w-6xl ">
-        <RecentNews />
-      </Section>
     </>
   );
 };

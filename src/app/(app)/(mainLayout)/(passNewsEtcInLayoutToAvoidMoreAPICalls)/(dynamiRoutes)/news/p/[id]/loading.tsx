@@ -8,7 +8,7 @@ const loading = (props: Props) => {
   return (
     <div className="flex w-full flex-col gap-5">
       <div className="h-52 w-full bg-foreground">
-        <div className="mx-auto flex h-full max-w-2xl flex-col justify-center gap-14">
+        <div className="mx-auto flex h-full max-w-2xl flex-col justify-center gap-14 px-5">
           <Skeleton className="h-10 w-full self-center" />
           <Skeleton className="h-5 w-1/2" />
         </div>

@@ -7,11 +7,10 @@ import configPromise from "@/payload.config";
 import { FetchUrlObject } from "@/lib/FetchUrlObject";
 import { permanentRedirect } from "next/navigation";
 type Props = {
-  whereToGOId: string;
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-const NewFilterComponent = async ({ whereToGOId, searchParams }: Props) => {
+const NewFilterComponent = async ({ searchParams }: Props) => {
   const payload = await getPayloadHMR({ config: configPromise });
   const { docs } = await payload.find({
     collection: "news",
