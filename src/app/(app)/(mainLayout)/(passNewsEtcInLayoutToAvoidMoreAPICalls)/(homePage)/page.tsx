@@ -1,12 +1,14 @@
 import CursorMovmentAnimation from "@/app/components/mainPageComponents/CursorMovmentAnimation";
 import MarqueeComponent from "@/app/components/mainPageComponents/MarqueeComponent";
 
-import RecentNews from "@/app/components/news/recentNews/RecentNews";
 import Section from "@/app/components/mainPageComponents/Section";
 import Cta from "@/app/components/mainPageComponents/Cta";
 import ContactButton from "@/app/components/ui/ContactButton";
 import dynamic from "next/dynamic";
 const GetOffer = dynamic(() => import("./GetOffer"));
+
+export const revalidate = 21600;
+
 type Props = {};
 
 const page = (props: Props) => {
@@ -93,13 +95,6 @@ const page = (props: Props) => {
               <div className="pointer-events-none absolute bottom-0 left-1/2 -z-20 h-[50rem] w-[60rem] -translate-x-1/2 translate-y-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_70%)]"></div>
             </div>
           </Section>
-          <div className="px-2">
-            <Section className="mb-5 bg-background" maxWidth="max-w-6xl ">
-              <hr className="absolute top-0 m-0 h-[0.1rem] w-full border-none bg-gradient-to-r from-transparent from-10% via-primary to-transparent to-90% p-0" />
-
-              <RecentNews repetation={10} />
-            </Section>
-          </div>
         </div>
       </div>
     </div>

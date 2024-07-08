@@ -3,18 +3,23 @@ import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "../../payload.config";
 
 type Props = {
-  ids: string;
+  idsNews: string;
 };
 
-export const fetchFavourites = async ({ ids }: Props) => {
+export const fetchFavourites = async ({ idsNews }: Props) => {
+  var favourites: { news: any[] } = {
+    news: [],
+  };
   const payload = await getPayloadHMR({ config: configPromise });
   var { docs } = await payload.find({
     collection: "news",
     where: {
       id: {
-        in: ids.split(","),
+        in: idsNews.split(","),
       },
     },
   });
-  return docs;
+  favourites.news = docs;
+
+  return favourites;
 };

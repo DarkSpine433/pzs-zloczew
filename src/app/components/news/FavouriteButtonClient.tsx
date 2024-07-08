@@ -47,8 +47,6 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
     (state) => state.arrayOfFavouriteItems,
   );
   const test2 = useStore((state) => state.increasePopulation);
-  console.log(arrayOfFavouriteItems);
-
   const [isDialogFavouriteAccept, setIsDialogFavouriteAccept] = useState(false);
   const addFavouriteHandler = () => {
     if (
@@ -59,12 +57,13 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
       localStorage.getItem("isDialogFavouriteAccept")
         ? setIsDialogFavouriteAccept(true)
         : setIsDialogFavouriteAccept(false);
-
-      try {
-        favouriteDeleateOrAdd({ id: id });
-        test2();
-      } catch (error) {
-        console.log(error);
+      if (localStorage.getItem("isDialogFavouriteAccept") === "true") {
+        try {
+          favouriteDeleateOrAdd({ id: id });
+          test2();
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
   };
@@ -130,9 +129,8 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
         </div>
       ) : (
         <AlertDialog>
-          <AlertDialogTrigger asChild>
+          <AlertDialogTrigger onClick={addFavouriteHandler} asChild>
             <div
-              onClick={addFavouriteHandler}
               className={`${isBlock ? "" : "absolute right-5 top-2"} transition-all`}
             >
               <Button
@@ -145,20 +143,20 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  strokeWidth="1.5"
+                  strokeWidth={1.5}
                   stroke="currentColor"
-                  className={`size-6 ${arrayOfFavouriteItems !== undefined && arrayOfFavouriteItems.includes(id) ? "fill-primary" : ""}`}
+                  className="size-6"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+                    d="m3 3 1.664 1.664M21 21l-1.5-1.5m-5.485-1.242L12 17.25 4.5 21V8.742m.164-4.078a2.15 2.15 0 0 1 1.743-1.342 48.507 48.507 0 0 1 11.186 0c1.1.128 1.907 1.077 1.907 2.185V19.5M4.664 4.664 19.5 19.5"
                   />
                 </svg>
               </Button>
             </div>
           </AlertDialogTrigger>
-          <AlertDialogContent>
+          <AlertDialogContent className="max-h-dvh overflow-y-scroll">
             <AlertDialogHeader>
               <AlertDialogTitle className="text-xl font-extrabold uppercase tracking-wide text-red-400 underline">
                 Uwaga!
@@ -185,6 +183,7 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
               <AlertDialogCancel
                 onClick={() => {
                   localStorage.setItem("isDialogFavouriteAccept", "true");
+                  addFavouriteHandler();
                 }}
               >
                 Rozumiem

@@ -27,10 +27,7 @@ const page = ({ params }: Props) => {
     <>
       <FetchContent id={params.id} />
 
-      <hr className="m-0 block h-[2px] w-full border-0 bg-gray-300 p-0" />
-      <Section className="bg-background" maxWidth="max-w-6xl ">
-        <RecentNews />
-      </Section>
+      <hr className="m-0 block h-[2px] w-full border-0 bg-primary/10 p-0" />
     </>
   );
 };

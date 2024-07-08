@@ -32,7 +32,8 @@ const TemplateNews = ({ doc, index }: Props) => {
                 alt="miniatura"
                 width={300}
                 height={300}
-                className="aspect-square h-64 w-96 overflow-hidden rounded-lg object-cover transition-all duration-500 group-hover:scale-105"
+                quality={100}
+                className="aspect-square h-64 w-full overflow-hidden rounded-lg object-cover transition-all duration-500 group-hover:scale-105"
               />
             ) : null}
           </div>
