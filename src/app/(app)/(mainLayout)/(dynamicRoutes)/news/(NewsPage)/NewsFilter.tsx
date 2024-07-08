@@ -27,10 +27,7 @@ const NewsFilter = ({ searchParams }: Props) => {
           Filtry
         </SheetTrigger>
         <SheetContent className={`max-h-[100dvh] overflow-y-auto`}>
-          <NewFilterComponent
-            whereToGOId="#NewsTop"
-            searchParams={searchParams}
-          />
+          <NewFilterComponent searchParams={searchParams} />
         </SheetContent>
       </Sheet>
     </>
