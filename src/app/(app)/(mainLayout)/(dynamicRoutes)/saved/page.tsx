@@ -42,7 +42,7 @@ const Page = (props: Props) => {
 
   return (
     <>
-      <div className="relative z-10 block space-y-5 overflow-hidden border-b-8 border-gray-400 bg-cover bg-center bg-no-repeat py-5 pb-14 shadow-lg sm:space-y-10 sm:py-20">
+      <div className="className={`after:to-gray-black/50 after:content-['']`} relative z-10 block space-y-5 overflow-hidden border-b-8 border-gray-500 bg-cover bg-center bg-no-repeat py-5 pb-14 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-foreground/70 after:bg-gradient-to-b after:from-foreground sm:space-y-10 sm:py-20">
         <h1 className="text-center text-[3rem] font-extrabold tracking-widest text-background sm:text-7xl md:text-8xl lg:text-9xl">
           Zapisane
         </h1>

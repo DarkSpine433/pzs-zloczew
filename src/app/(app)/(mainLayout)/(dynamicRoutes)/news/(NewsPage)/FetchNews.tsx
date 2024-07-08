@@ -9,7 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 const TemplateNews = dynamic(
   () => import("@/app/components/news/TemplateNews"),
   {
-    loading: () => <Skeleton className="size-72" />,
+    loading: () => <Skeleton className="h-72 w-full" />,
     ssr: false,
   },
 );
