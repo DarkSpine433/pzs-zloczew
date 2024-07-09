@@ -18,7 +18,7 @@ const FetchContent = async ({ id }: { id: string }) => {
         style={{
           backgroundImage: `url(${data.thumbnail})`,
         }}
-        className={`after:to-gray-black/50 relative z-10 block overflow-hidden border-b-8 border-gray-500 bg-cover bg-center bg-no-repeat py-12 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-foreground/70 after:bg-gradient-to-b after:from-foreground after:content-['']`}
+        className={`after:to-gray-black/50 overflow-hidden-500 relative z-10 block bg-cover bg-center bg-no-repeat py-12 shadow-lg outline outline-4 outline-primary after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-foreground/70 after:bg-gradient-to-b after:from-foreground after:content-['']`}
       >
         <h1
           className={`mx-auto max-w-5xl bg-[url('/img/news/grain.jpg')] bg-clip-text px-3 py-3 text-center text-4xl font-extrabold uppercase tracking-wide text-background/40 sm:text-6xl`}

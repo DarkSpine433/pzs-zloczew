@@ -15,7 +15,14 @@ const PayLoadErrorHandling = ({
   stopAnimation,
   children,
 }: Props) => {
-  if (!data || data.length === 0 || data === undefined || data === null) {
+  if (
+    !data ||
+    data.length === 0 ||
+    data === undefined ||
+    data === null ||
+    data === "undefined" ||
+    typeof data === "undefined"
+  ) {
     return (
       <>
         {showText && (

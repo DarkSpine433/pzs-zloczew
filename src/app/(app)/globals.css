@@ -89,7 +89,7 @@ hr {
     }
 
     ul {
-      @apply list-none;
+      @apply list-disc;
     }
     ol {
       @apply list-decimal;
@@ -100,7 +100,7 @@ hr {
 
     ul,
     ol {
-      @apply ml-5 list-inside list-disc;
+      @apply ml-5 list-inside;
     }
 
     p {
@@ -114,8 +114,7 @@ hr {
       @apply my-5 border-gray-300;
     }
     p {
-      text-align: left !important;
-      @apply break-words text-left text-2xl tracking-wide;
+      @apply break-words text-2xl tracking-wide;
     }
   }
 }

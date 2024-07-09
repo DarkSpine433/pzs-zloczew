@@ -36,6 +36,23 @@ const BlockParser = ({ block }: { block: any }) => {
 
               return <Component>{props.children}</Component>;
             },
+            paragraph(props) {
+              return (
+                <p
+                  style={{
+                    //@ts-ignore
+                    textAlign:
+                      props.format === "justify"
+                        ? "left"
+                        : props.format === undefined
+                          ? "left"
+                          : props.format.toString(),
+                  }}
+                >
+                  {props.children}
+                </p>
+              );
+            },
           }}
         />
       </div>
