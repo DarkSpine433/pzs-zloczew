@@ -33,7 +33,7 @@ const FetchNews = async ({
   const yearFilter = Array.isArray(year) ? year[0] : year || "";
 
   const data = await fetchNews({
-    limit: 2,
+    limit: 20,
     page: Number(page),
     filter: { year: yearFilter },
   });
@@ -71,7 +71,7 @@ const FetchNews = async ({
       stopAnimation
     >
       <div className="flex flex-col gap-10 pb-20">
-        <div className="mx-auto grid h-fit w-full max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="mx-auto grid h-fit w-full max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {data.docs.map((doc: any, index: number) => (
             <TemplateNews key={doc.id} doc={doc} index={index} />
           ))}

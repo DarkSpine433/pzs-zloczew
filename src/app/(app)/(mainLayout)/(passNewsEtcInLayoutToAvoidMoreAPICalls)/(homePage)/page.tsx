@@ -35,9 +35,9 @@ const page = (props: Props) => {
         </Section>
         <div>
           <Section className="mt-20 overflow-hidden">
-            <div className="relative rounded-lg border-primary/20 pb-20 pt-10">
+            <div className="relative rounded-lg border-t border-primary/30 bg-secondary/50 pb-20 pt-10">
               <hr className="absolute top-0 m-0 h-[0.1rem] w-full border-none bg-gradient-to-r from-transparent from-10% via-primary to-transparent to-90% p-0" />
-              <div className="pointer-events-none absolute left-1/2 top-0 -z-20 size-[80rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)]"></div>
+              <div className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[130rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)]"></div>
 
               <h2 className="scroll-m-20 space-y-10 bg-gradient-to-r from-blue-800 from-20% via-blue-500 to-blue-800 to-80% bg-clip-text pb-4 text-center text-4xl font-extrabold uppercase text-transparent drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
                 Oferta Naszej Szkoły
@@ -82,7 +82,7 @@ const page = (props: Props) => {
             </div>
           </Section>
 
-          <Section maxWidth="max-w-[1440px] px-3 " className="border-t pt-20">
+          <Section maxWidth="max-w-[1440px] px-3 " className="pt-20">
             <div className="relative">
               <div className="flex h-max w-full justify-center">
                 <h2 className="max-w-4xl bg-gradient-to-r from-primary from-40% via-foreground to-primary to-60% bg-clip-text text-center text-5xl font-extrabold uppercase text-transparent sm:text-8xl">

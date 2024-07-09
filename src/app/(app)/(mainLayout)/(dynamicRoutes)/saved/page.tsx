@@ -78,7 +78,7 @@ const Page = (props: Props) => {
                       <div className="text-xl font-semibold text-destructive">
                         {favourites.newsMessage}
                       </div>
-                      <Link href="/news">
+                      <Link href="/news?_">
                         <Button>Zobacz Więcej</Button>
                       </Link>
                     </div>

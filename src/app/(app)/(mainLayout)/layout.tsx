@@ -27,7 +27,6 @@ export default function mainLayout({
         <main>{children}</main>
       </div>
 
-      <hr className="pointer-events-none m-0 block h-[5px] w-full border-0 bg-gray-300 p-0" />
       <footer className="z-50 bg-foreground text-background">
         <div className="mx-auto max-w-7xl">
           <Footer />

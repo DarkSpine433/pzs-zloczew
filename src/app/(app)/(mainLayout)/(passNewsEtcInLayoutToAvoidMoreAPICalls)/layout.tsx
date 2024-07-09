@@ -17,8 +17,8 @@ export default function mainLayout({
   return (
     <div>
       {children}
-      <div className="px-2">
-        <Section className="mb-5 bg-background" maxWidth="max-w-6xl ">
+      <div className="border-t border-primary/20 bg-secondary/50">
+        <Section className="" maxWidth="max-w-6xl ">
           <hr className="absolute -top-0.5 m-0 h-[0.1rem] w-full border-none bg-gradient-to-r from-transparent from-10% via-primary to-transparent to-90% p-0" />
 
           <RecentNews repetation={10} />
