@@ -1,5 +1,10 @@
 import parse from "html-react-parser";
 import Image from "next/image";
+import {
+  PayloadLexicalReactRenderer,
+  defaultElementRenderers,
+} from "@atelier-disko/payload-lexical-react-renderer";
+import "@/app/(app)/globals.css";
 type Props = {};
 
 const BlockParser = ({ block }: { block: any }) => {
@@ -13,13 +18,26 @@ const BlockParser = ({ block }: { block: any }) => {
       />
     );
   }
-  if (block.blockType === "text") {
+  if (
+    block.blockType === "text" &&
+    block.nameOfYourRichTextField_html !== "undefined"
+  ) {
     return (
       <div
         key={block.id}
-        className="w-full text-left text-lg font-semibold [&>h2]:pb-1 [&>h2]:pt-10 [&>h2]:text-5xl [&>h2]:font-extrabold [&>hr]:h-[0.05rem] [&>hr]:w-full [&>hr]:border-none [&>hr]:bg-foreground [&>hr]:p-0 [&>p>a]:break-all [&>p>a]:text-primary [&>p>a]:hover:text-primary/70 [&>p]:py-2 [&>p]:text-2xl"
+        className="blockParserClass text-left text-xl [&>ul>ul>li]:list-none"
       >
-        {parse(block.nameOfYourRichTextField_html)}
+        <PayloadLexicalReactRenderer
+          content={block.nameOfYourRichTextField}
+          elementRenderers={{
+            ...defaultElementRenderers,
+            heading: (props) => {
+              const Component: any = props.tag === "h1" ? "h2" : props.tag;
+
+              return <Component>{props.children}</Component>;
+            },
+          }}
+        />
       </div>
     );
   }

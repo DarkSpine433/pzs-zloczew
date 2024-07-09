@@ -17,6 +17,7 @@
     "node": ">=18.19.0"
   },
   "dependencies": {
+    "@atelier-disko/payload-lexical-react-renderer": "^1.0.4",
     "@cyntler/react-doc-viewer": "^1.16.1",
     "@hookform/resolvers": "^3.3.4",
     "@octokit/core": "^6.1.2",
