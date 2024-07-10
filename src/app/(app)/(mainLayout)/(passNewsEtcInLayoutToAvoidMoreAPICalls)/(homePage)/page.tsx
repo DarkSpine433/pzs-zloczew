@@ -85,8 +85,8 @@ const page = (props: Props) => {
           <Section maxWidth="max-w-[1440px] px-3 " className="pt-20">
             <div className="relative">
               <div className="flex h-max w-full justify-center">
-                <h2 className="max-w-4xl bg-gradient-to-r from-primary from-40% via-foreground to-primary to-60% bg-clip-text text-center text-5xl font-extrabold uppercase text-transparent sm:text-8xl">
-                  Rozpocznij swoją przygodę edukacyjną z nami!
+                <h2 className="max-w-4xl bg-gradient-to-r from-primary from-40% via-foreground to-primary to-60% bg-clip-text text-center text-[3.2rem] font-extrabold uppercase text-transparent [line-height:1] sm:text-7xl md:text-8xl">
+                  <strong>Rozpocznij swoją przygodę edukacyjną z nami!</strong>
                 </h2>
               </div>
               <div className="z-50 py-20">
