@@ -3,14 +3,13 @@ import Link from "next/link";
 type Props = {
   className?: string;
   size?: string;
-  bgTransparency?: string;
 };
 
-const ContactButton = ({ className, size, bgTransparency }: Props) => {
+const ContactButton = ({ className, size }: Props) => {
   return (
     <Link
       href={"/contact?_"}
-      className={`flex h-4 w-fit items-center rounded-md border-2 border-primary bg-background/50 p-5 text-sm transition-all hover:bg-primary/10 ${className} `}
+      className={`flex h-4 w-fit items-center rounded-md border-2 border-primary bg-background/10 p-5 text-sm transition-all hover:bg-primary/10 ${className} `}
     >
       <div>Kontakt</div>
       <svg

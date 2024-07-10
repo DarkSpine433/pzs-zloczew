@@ -32,7 +32,7 @@ const CursorMovmentAnimation = ({ children }: Props) => {
   }, []);
   return (
     <motion.div
-      className="relative flex h-fit min-h-[600px] w-full items-center overflow-hidden px-5 pb-10 transition-all sm:items-center md:px-10 lg:px-28"
+      className="relative flex h-fit min-h-[600px] w-full items-center overflow-hidden px-5 pb-10 transition-all sm:items-center lg:px-10 xl:px-28"
       ref={refOfSection}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => {
@@ -41,28 +41,28 @@ const CursorMovmentAnimation = ({ children }: Props) => {
       }}
     >
       {" "}
-      <div className="w-[600px]">
-        <h1 className="text inline-block space-y-10 bg-gradient-to-tl from-primary from-40% via-foreground to-primary to-60% bg-clip-text text-5xl font-bold text-transparent drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
-          <div className="text-5xl font-extrabold uppercase sm:text-8xl">
-            PZS ZŁOCZEw
-          </div>
-          <div className="text-2xl sm:text-3xl">
+      <div className="flex w-full flex-col items-center justify-center gap-10 text-center lg:w-[600px] lg:items-start lg:justify-normal lg:text-left">
+        <div className="text inline-block max-w-2xl space-y-10 bg-gradient-to-tl from-primary from-40% via-foreground to-primary to-60% bg-clip-text text-5xl font-bold text-transparent drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
+          <h1 className="text-6xl uppercase tracking-widest sm:text-8xl">
+            <strong>PZS ZŁOCZEW</strong>
+          </h1>
+          <h2 className="text-2xl sm:text-3xl">
             Cieszymy się, że jesteś tutaj! Dowiedz się więcej o naszej szkole,
             naszych wartościach i bogatej historii. Znajdź informacje, które Cię
             interesują i dołącz do naszej wspaniałej społeczności.
-          </div>
-          <div className="flex items-center gap-5">
-            <Link href="#discover" className="flex items-center">
-              <Button className="p-6 text-lg">Zwiedzaj</Button>
-            </Link>
-            {children}
-          </div>
-        </h1>
+          </h2>
+        </div>{" "}
+        <div className="flex items-center gap-5">
+          <Link href="#discover" className="flex items-center">
+            <Button className="p-6 text-lg">Zwiedzaj</Button>
+          </Link>
+          {children}
+        </div>
       </div>
       {/*PLUS IMAGE*/}
-      <div className="absolute left-3 top-20 -z-20 hidden size-28 -translate-y-1/2 translate-x-1/2 bg-[url('/plus.svg')] opacity-50 sm:block"></div>
+      <div className="absolute left-0 top-0 -z-20 size-28 h-48 w-full bg-[url('/plus.svg')] bg-repeat px-5 opacity-15 sm:block sm:h-40"></div>
       {/*Interactive Imgaes*/}
-      {windowWidth > 900 && (
+      {windowWidth >= 1024 && (
         <div className="absolute -right-24 top-0 -z-10 hidden h-fit justify-end overflow-hidden md:flex lg:-right-20 xl:right-0">
           <div className="relative size-fit [perspective:150px]">
             <motion.div
@@ -74,25 +74,14 @@ const CursorMovmentAnimation = ({ children }: Props) => {
               }}
               className="h-fit w-fit object-cover"
             >
-              {windowWidth > 1024 ? (
-                <Image
-                  src="/img/mainPage/notebook-front-color.png"
-                  alt="zloczew"
-                  width={600}
-                  height={600}
-                  quality={100}
-                  priority={true}
-                />
-              ) : (
-                <Image
-                  src="/img/mainPage/notebook-front-premium.png"
-                  alt="zloczew"
-                  width={600}
-                  height={600}
-                  quality={100}
-                  priority={true}
-                />
-              )}
+              <Image
+                src="/img/mainPage/notebook-front-color.png"
+                alt="zloczew"
+                width={600}
+                height={600}
+                quality={100}
+                priority={true}
+              />
             </motion.div>
             <motion.div
               style={{

@@ -17,9 +17,9 @@ const page = (props: Props) => {
       <div className="pointer-events-none absolute left-0 top-0 -z-50 h-dvh w-full bg-gradient-to-b from-primary/30 to-transparent"></div>
       <Section maxWidth="max-w-[1440px] relative h-fit">
         <CursorMovmentAnimation>
-          <ContactButton className="bg-white/70 p-6 text-lg text-foreground" />
+          <ContactButton className="bg-white/70 p-6 text-lg text-foreground opacity-80" />
         </CursorMovmentAnimation>
-        <div className="pointer-events-none absolute -right-[48rem] -top-[28rem] -z-20 size-[80rem] rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)] md:size-[96rem] lg:-right-[31rem]"></div>
+        <div className="] pointer-events-none absolute -top-[45rem] left-1/2 -z-20 size-[80rem] -translate-x-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)] md:-top-[28rem] md:left-full md:size-[96rem] lg:left-[80%]"></div>
       </Section>
 
       <div className="">
@@ -44,9 +44,6 @@ const page = (props: Props) => {
               </h2>
 
               <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-2 px-2 pb-10 [&>div]:rounded-lg [&>div]:py-1">
-                <div className="mb-4 w-fit border border-blue-300 bg-blue-100 px-2 text-sm text-blue-700 shadow-md shadow-blue-100 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
-                  Dyscyplina
-                </div>
                 <div className="mb-4 w-fit border border-blue-400 bg-blue-200 px-2 text-sm text-blue-800 shadow-md shadow-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Kreatywność
                 </div>
@@ -68,11 +65,14 @@ const page = (props: Props) => {
                 <div className="mb-4 w-fit border border-blue-400 bg-blue-200 px-2 text-sm text-blue-800 shadow-md shadow-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Odkrywanie
                 </div>
+                <div className="mb-4 w-fit border border-blue-300 bg-blue-100 px-2 text-sm text-blue-700 shadow-md shadow-blue-100 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
+                  Przyjaźń
+                </div>
                 <div className="mb-4 w-fit border border-blue-500 bg-blue-300 px-2 text-sm text-blue-900 shadow-md shadow-blue-300 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Nauka
                 </div>
                 <div className="mb-4 w-fit border border-blue-300 bg-blue-100 px-2 text-sm text-blue-700 shadow-md shadow-blue-100 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
-                  Przyjaźń
+                  Dyscyplina
                 </div>
               </div>
 

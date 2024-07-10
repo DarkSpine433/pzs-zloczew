@@ -27,7 +27,7 @@ const GetOffer = async (props: Props) => {
               height={450}
               key={offer.id}
               quality={100}
-              className="rounded-xl shadow-md shadow-primary transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-primary"
+              className="max-w-[450px] rounded-xl shadow-md shadow-primary transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-primary md:w-[45%] lg:w-[40%] xl:w-full"
             />
           );
         })}
