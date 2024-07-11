@@ -1,4 +1,4 @@
-import BlockParser from "@/app/components/BlockParser";
+import BlockParser from "@/app/components/blockParser/BlockParser";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
 

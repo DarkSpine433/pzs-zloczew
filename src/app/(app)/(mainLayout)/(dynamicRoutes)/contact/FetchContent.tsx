@@ -1,7 +1,7 @@
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@/payload.config";
 import PayLoadErrorHandling from "@/app/components/PayLoadErrorHandling";
-import BlockParser from "@/app/components/BlockParser";
+import BlockParser from "@/app/components/blockParser/BlockParser";
 type Props = {};
 
 const FetchContent = async (props: Props) => {

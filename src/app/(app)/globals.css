@@ -53,7 +53,12 @@ hr {
     --ring: 224.3 76.3% 48%;
   }
 }
-
+.fb-post {
+  top: 50%;
+  transform: translateY(-50%);
+  left: 50%;
+  transform: translateX(-50%);
+}
 @layer base {
   * {
     @apply border-border;

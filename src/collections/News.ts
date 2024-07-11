@@ -6,6 +6,8 @@ import { ImageUrl } from "./blocks/ImageUrl";
 import { RichTextBlock } from "./blocks/RichTextBlock";
 import { Iframe } from "./blocks/Iframe";
 import { GenerateWithOpenAiText } from "../components/collection/GenerateWithOpenAiText";
+import { SocialMediaPosts } from "./blocks/SocialMediaPosts";
+import { CustomCode } from "./blocks/CustomCode";
 export const News: CollectionConfig = {
   slug: "news",
   labels: {
@@ -61,7 +63,7 @@ export const News: CollectionConfig = {
       minRows: 1,
       maxRows: 20,
 
-      blocks: [ImageUrl, RichTextBlock, Iframe],
+      blocks: [ImageUrl, RichTextBlock, Iframe, SocialMediaPosts, CustomCode],
     },
     {
       name: "createdYear",
