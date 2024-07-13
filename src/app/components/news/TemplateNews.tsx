@@ -19,10 +19,10 @@ const TemplateNews = ({ doc, index }: Props) => {
   return (
     <div
       key={index + doc.id}
-      className="group relative h-fit w-full overflow-hidden rounded-lg"
+      className="group relative h-fit w-full overflow-hidden rounded-xl transition-all hover:shadow-md"
     >
       <Link href={`/news/p/${doc.id}`}>
-        <Card className="overflow-hidden transition-all hover:shadow-md">
+        <Card className="overflow-hidden shadow-none transition-all">
           <div className="flex h-full w-full items-center justify-center overflow-hidden">
             {doc.thumbnail != undefined &&
             doc.thumbnail != "" &&

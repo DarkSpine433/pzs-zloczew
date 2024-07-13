@@ -11,10 +11,5 @@ export default function mainLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <>
-      {children}
-      <hr className="m-0 block h-[2px] w-full border-0 bg-primary/10 p-0" />
-    </>
-  );
+  return <>{children}</>;
 }

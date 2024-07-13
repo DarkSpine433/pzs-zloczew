@@ -17,9 +17,9 @@ const page = (props: Props) => {
       <div className="pointer-events-none absolute left-0 top-0 -z-50 h-dvh w-full bg-gradient-to-b from-primary/30 to-transparent"></div>
       <Section maxWidth="max-w-[1440px] relative h-fit">
         <CursorMovmentAnimation>
-          <ContactButton className="bg-white/70 p-6 text-lg text-foreground" />
+          <ContactButton className="bg-white/70 p-6 text-lg text-foreground opacity-80" />
         </CursorMovmentAnimation>
-        <div className="pointer-events-none absolute -right-[48rem] -top-[28rem] -z-20 size-[80rem] rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)] md:size-[96rem] lg:-right-[31rem]"></div>
+        <div className="] pointer-events-none absolute -top-[45rem] left-1/2 -z-20 size-[80rem] -translate-x-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)] md:-top-[28rem] md:left-full md:size-[96rem] lg:left-[80%]"></div>
       </Section>
 
       <div className="">
@@ -35,18 +35,15 @@ const page = (props: Props) => {
         </Section>
         <div>
           <Section className="mt-20 overflow-hidden">
-            <div className="relative rounded-lg border-primary/20 pb-20 pt-10">
+            <div className="relative rounded-lg border-t border-primary/30 bg-secondary/50 pb-20 pt-10">
               <hr className="absolute top-0 m-0 h-[0.1rem] w-full border-none bg-gradient-to-r from-transparent from-10% via-primary to-transparent to-90% p-0" />
-              <div className="pointer-events-none absolute left-1/2 top-0 -z-20 size-[80rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)]"></div>
+              <div className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[130rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)]"></div>
 
               <h2 className="scroll-m-20 space-y-10 bg-gradient-to-r from-blue-800 from-20% via-blue-500 to-blue-800 to-80% bg-clip-text pb-4 text-center text-4xl font-extrabold uppercase text-transparent drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
                 Oferta Naszej Szkoły
               </h2>
 
               <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-2 px-2 pb-10 [&>div]:rounded-lg [&>div]:py-1">
-                <div className="mb-4 w-fit border border-blue-300 bg-blue-100 px-2 text-sm text-blue-700 shadow-md shadow-blue-100 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
-                  Dyscyplina
-                </div>
                 <div className="mb-4 w-fit border border-blue-400 bg-blue-200 px-2 text-sm text-blue-800 shadow-md shadow-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Kreatywność
                 </div>
@@ -68,11 +65,14 @@ const page = (props: Props) => {
                 <div className="mb-4 w-fit border border-blue-400 bg-blue-200 px-2 text-sm text-blue-800 shadow-md shadow-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Odkrywanie
                 </div>
+                <div className="mb-4 w-fit border border-blue-300 bg-blue-100 px-2 text-sm text-blue-700 shadow-md shadow-blue-100 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
+                  Przyjaźń
+                </div>
                 <div className="mb-4 w-fit border border-blue-500 bg-blue-300 px-2 text-sm text-blue-900 shadow-md shadow-blue-300 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
                   Nauka
                 </div>
                 <div className="mb-4 w-fit border border-blue-300 bg-blue-100 px-2 text-sm text-blue-700 shadow-md shadow-blue-100 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
-                  Przyjaźń
+                  Dyscyplina
                 </div>
               </div>
 
@@ -82,11 +82,11 @@ const page = (props: Props) => {
             </div>
           </Section>
 
-          <Section maxWidth="max-w-[1440px] px-3 " className="border-t pt-20">
+          <Section maxWidth="max-w-[1440px] px-3 " className="pt-20">
             <div className="relative">
               <div className="flex h-max w-full justify-center">
-                <h2 className="max-w-4xl bg-gradient-to-r from-primary from-40% via-foreground to-primary to-60% bg-clip-text text-center text-5xl font-extrabold uppercase text-transparent sm:text-8xl">
-                  Rozpocznij swoją przygodę edukacyjną z nami!
+                <h2 className="max-w-4xl bg-gradient-to-r from-primary from-40% via-foreground to-primary to-60% bg-clip-text text-center text-[3.2rem] font-extrabold uppercase text-transparent [line-height:1] sm:text-7xl md:text-8xl">
+                  <strong>Rozpocznij swoją przygodę edukacyjną z nami!</strong>
                 </h2>
               </div>
               <div className="z-50 py-20">

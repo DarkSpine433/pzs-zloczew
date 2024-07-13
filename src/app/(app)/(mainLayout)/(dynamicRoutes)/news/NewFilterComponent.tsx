@@ -29,17 +29,11 @@ const NewFilterComponent = async ({ searchParams }: Props) => {
 
   const filterHandler = async (formData: FormData) => {
     "use server";
-    const year = formData.getAll("year");
-    FetchUrlObject({
-      keyData: ["page", "year"],
-      valueData: ["1", year.join(",")],
-      searchParamsObject: searchParams,
-    });
 
     return permanentRedirect(
       FetchUrlObject({
         keyData: ["page", "year"],
-        valueData: ["1", year.join(",")],
+        valueData: ["1", formData.getAll("year").join(",")],
         searchParamsObject: searchParams,
       }),
     );

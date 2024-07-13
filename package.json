@@ -17,6 +17,7 @@
     "node": ">=18.19.0"
   },
   "dependencies": {
+    "@atelier-disko/payload-lexical-react-renderer": "^1.0.4",
     "@cyntler/react-doc-viewer": "^1.16.1",
     "@hookform/resolvers": "^3.3.4",
     "@octokit/core": "^6.1.2",
@@ -54,6 +55,7 @@
     "react-icons": "^5.1.0",
     "react-loader-spinner": "^6.1.6",
     "react-query": "^3.39.3",
+    "react-social-media-embed": "^2.5.13",
     "react-spinners": "^0.14.1",
     "sharp": "0.32.6",
     "tailwind-merge": "^2.2.2",

@@ -1,6 +1,6 @@
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
-import BlockParser from "../BlockParser";
+import BlockParser from "../blockParser/BlockParser";
 import PayLoadErrorHandling from "../PayLoadErrorHandling";
 
 export const revalidate = 43200;

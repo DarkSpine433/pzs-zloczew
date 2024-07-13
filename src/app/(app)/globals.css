@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
 hr {
   padding: 0;
   height: 0;
@@ -52,12 +53,74 @@ hr {
     --ring: 224.3 76.3% 48%;
   }
 }
-
+.fb-post {
+  top: 50%;
+  transform: translateY(-50%);
+  left: 50%;
+  transform: translateX(-50%);
+}
 @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .blockParserClass {
+    h2 {
+      @apply text-5xl font-bold text-gray-800;
+    }
+    h3 {
+      @apply text-4xl font-semibold text-gray-700;
+    }
+    h4 {
+      @apply text-xl font-medium text-gray-600;
+    }
+    h5 {
+      @apply text-lg font-normal text-gray-500;
+    }
+    h6 {
+      @apply text-sm font-light text-gray-400;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply my-3 font-extrabold text-primary;
+    }
+
+    ul {
+      @apply list-disc;
+    }
+    ol {
+      @apply list-decimal;
+    }
+    blockquote {
+      @apply my-1 border-l-4 border-gray-500 pl-4;
+    }
+
+    ul,
+    ol {
+      @apply ml-5 list-inside;
+    }
+
+    p {
+      @apply my-2;
+    }
+    a {
+      @apply break-all text-primary underline;
+    }
+
+    hr {
+      @apply my-5 border-gray-300;
+    }
+    p {
+      @apply break-words text-2xl tracking-wide;
+    }
   }
 }
