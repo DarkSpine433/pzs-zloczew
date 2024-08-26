@@ -14,12 +14,12 @@ type Props = {};
 const page = (props: Props) => {
   return (
     <div className="pb-10">
-      <div className="pointer-events-none absolute left-0 top-0 -z-50 h-dvh w-full bg-gradient-to-b from-primary/30 to-transparent"></div>
+      <div className="pointer-events-none absolute left-0 top-0 -z-50 hidden h-dvh w-full bg-gradient-to-b from-primary/30 to-transparent lg:block"></div>
       <Section maxWidth="max-w-[1440px] relative h-fit">
         <CursorMovmentAnimation>
           <ContactButton className="bg-white/70 p-6 text-lg text-foreground opacity-80" />
         </CursorMovmentAnimation>
-        <div className="] pointer-events-none absolute -top-[45rem] left-1/2 -z-20 size-[80rem] -translate-x-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)] md:-top-[28rem] md:left-full md:size-[96rem] lg:left-[80%]"></div>
+        <div className="pointer-events-none absolute -top-[45rem] left-1/2 -z-20 h-[80rem] w-[130rem] -translate-x-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)] md:-top-[28rem] md:left-full md:size-[96rem] lg:left-[80%]"></div>
       </Section>
 
       <div className="">
