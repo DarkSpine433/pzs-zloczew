@@ -36,12 +36,12 @@ const SearchHandlerClient = ({}: Props) => {
     };
   }, [value]);
   return (
-    <ScrollArea className={`h-full w-full rounded-md border`}>
-      <div className="fixed bottom-0 left-0 z-50 mx-auto h-fit w-full">
+    <ScrollArea className={`h-full w-full rounded-md`}>
+      <div className="fixed left-1/2 top-0 z-50 mx-auto h-fit w-full -translate-x-1/2 md:w-7/12">
         <Input
           placeholder="Wyszukaj"
           onChange={handleChange}
-          className="roul-xl border border-primary bg-background py-7 pl-8 text-xl shadow shadow-primary outline-none sm:text-2xl"
+          className="rounded-none rounded-b-xl border-none bg-background py-8 pl-8 pr-20 text-xl shadow shadow-primary outline-none sm:text-2xl md:px-5 md:py-7"
         />
       </div>
       <div className={`flex h-fit flex-col gap-5 bg-background transition-all`}>
@@ -66,7 +66,7 @@ const SearchHandlerClient = ({}: Props) => {
           </div>
         </div>
         <div
-          className={`${loading ? "scale-105 opacity-0" : "scale-100 opacity-100"} mb-20 transition-all`}
+          className={`${loading ? "mt-10 opacity-0" : "mt-14 scale-100 opacity-100"} transition-all`}
         >
           <SearchHandlerClientOutput
             object={data.pages}
