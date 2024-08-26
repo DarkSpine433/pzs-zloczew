@@ -60,9 +60,8 @@ const CursorMovmentAnimation = ({ children }: Props) => {
         </div>
       </div>
       {/*PLUS IMAGE*/}
-      <div className="absolute left-0 top-0 -z-20 size-28 h-48 w-full bg-[url('/plus.svg')] bg-repeat px-5 opacity-15 sm:block sm:h-40"></div>
       {/*Interactive Imgaes*/}
-      {windowWidth >= 1024 && (
+      {windowWidth >= 1024 ? (
         <div className="absolute -right-24 top-0 -z-10 hidden h-fit justify-end overflow-hidden md:flex lg:-right-20 xl:right-0">
           <div className="relative size-fit [perspective:150px]">
             <motion.div
@@ -140,6 +139,17 @@ const CursorMovmentAnimation = ({ children }: Props) => {
               />
             </motion.div>
           </div>
+        </div>
+      ) : (
+        <div className="absolute left-0 top-0 -z-40 h-fit w-full">
+          <Image
+            src="/img/mainPage/zsp_zloczew.jpeg"
+            alt="zloczew"
+            width={1000}
+            height={1000}
+            className="pointer-events-none absolute left-0 top-0 -z-50 h-[600px] w-full object-cover opacity-20"
+          />
+          <div className="absolute left-0 top-0 z-0 h-[600px] w-full bg-gradient-to-t from-white from-10% to-transparent"></div>
         </div>
       )}
     </motion.div>

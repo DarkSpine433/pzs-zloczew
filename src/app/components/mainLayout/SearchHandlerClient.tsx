@@ -36,34 +36,38 @@ const SearchHandlerClient = ({}: Props) => {
     };
   }, [value]);
   return (
-    <ScrollArea className="h-full w-full rounded-md border p-4">
-      <div className="sticky top-0 z-50 mx-auto h-fit w-full">
+    <ScrollArea className={`h-full w-full rounded-md border`}>
+      <div className="fixed bottom-0 left-0 z-50 mx-auto h-fit w-full">
         <Input
           placeholder="Wyszukaj"
           onChange={handleChange}
-          className="roul-xl border-0 bg-background py-7 pl-8 text-xl shadow shadow-primary sm:text-2xl"
+          className="roul-xl border border-primary bg-background py-7 pl-8 text-xl shadow shadow-primary outline-none sm:text-2xl"
         />
-        <DialogClose className="absolute right-3 top-2 z-50 size-10">
+      </div>
+      <div className={`flex h-fit flex-col gap-5 bg-background transition-all`}>
+        <div
+          className={`${loading ? "opacity-100 blur-none" : "opacity-0 blur-sm"} pointer-events-none absolute left-1/2 top-1/2 mx-auto flex w-fit -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center text-center transition-all`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            stroke="currentColor"
-            className="size-8"
+            className="size-10 animate-bounce stroke-primary"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M6 18 18 6M6 6l12 12"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
             />
           </svg>
-        </DialogClose>
-      </div>
-      <div
-        className={`${loading ? "opacity-0" : "opacity-100"} flex h-fit flex-col gap-5 bg-background transition-all`}
-      >
-        <>
+          <div className="font-semibold uppercase motion-reduce:animate-pulse">
+            <p>Wyszukiwanie...</p>
+          </div>
+        </div>
+        <div
+          className={`${loading ? "scale-105 opacity-0" : "scale-100 opacity-100"} mb-20 transition-all`}
+        >
           <SearchHandlerClientOutput
             object={data.pages}
             titleSection="Strony"
@@ -74,7 +78,7 @@ const SearchHandlerClient = ({}: Props) => {
             titleSection="Aktualności"
             linkPrefix="news/p"
           />
-        </>
+        </div>
       </div>
     </ScrollArea>
   );
