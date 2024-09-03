@@ -1,6 +1,6 @@
 import type { CollectionConfig } from "payload/types";
 
-export const Users: CollectionConfig = {
+const Users: CollectionConfig = {
   slug: "users",
   labels: {
     singular: "Użytkownik",
@@ -15,6 +15,9 @@ export const Users: CollectionConfig = {
     {
       name: "name",
       type: "text",
+      required: true,
     },
   ],
 };
+
+export default Users;
