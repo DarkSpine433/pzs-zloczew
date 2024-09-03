@@ -27,18 +27,14 @@ const FetchNews = async ({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
-  1;
   const { page = "1", year } = searchParams;
-
   const yearFilter = Array.isArray(year) ? year[0] : year || "";
-
+  const numberOfPages = Array.from({ length: 5 }, (_, i) => i + 1);
   const data = await fetchNews({
-    limit: 20,
+    limit: 1,
     page: Number(page),
     filter: { year: yearFilter },
   });
-
-  const numberOfPages = Array.from({ length: 5 }, (_, i) => i + 1);
 
   if (!data.docs.length) {
     return (
@@ -72,7 +68,7 @@ const FetchNews = async ({
     >
       <div className="flex flex-col gap-10 pb-20">
         <div className="mx-auto grid h-fit w-full max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {data.docs.map((doc: any, index: number) => (
+          {data.docs.map((doc, index) => (
             <TemplateNews key={doc.id} doc={doc} index={index} />
           ))}
         </div>

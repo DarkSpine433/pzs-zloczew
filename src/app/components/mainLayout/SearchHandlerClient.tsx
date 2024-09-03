@@ -36,51 +36,55 @@ const SearchHandlerClient = ({}: Props) => {
     };
   }, [value]);
   return (
-    <ScrollArea className={`h-full w-full rounded-md`}>
-      <div className="fixed left-1/2 top-0 z-50 mx-auto h-fit w-full -translate-x-1/2 md:w-7/12">
+    <div className="flex flex-col gap-0 overflow-hidden">
+      <div className="sticky top-0 z-50 h-fit w-full">
         <Input
           placeholder="Wyszukaj"
           onChange={handleChange}
-          className="rounded-none rounded-b-xl border-none bg-background py-8 pl-8 pr-20 text-xl shadow shadow-primary outline-none sm:text-2xl md:px-5 md:py-7"
+          className="rounded border-none bg-background py-8 pl-8 pr-20 text-xl shadow shadow-primary outline-none sm:text-2xl md:py-7"
         />
       </div>
-      <div className={`flex h-fit flex-col gap-5 bg-background transition-all`}>
-        <div
-          className={`${loading ? "opacity-100 blur-none" : "opacity-0 blur-sm"} pointer-events-none absolute left-1/2 top-1/2 mx-auto flex w-fit -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center text-center transition-all`}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            className="size-10 animate-bounce stroke-primary"
+      <div
+        className={`top-0 h-full w-full overflow-hidden rounded-md ${value ? "bg-background" : "bg-background"} transition-all`}
+      >
+        <div className={`flex h-full flex-col gap-5 transition-all`}>
+          <div
+            className={`${loading ? "opacity-100 blur-none" : "opacity-0 blur-sm"} pointer-events-none absolute left-1/2 top-1/2 mx-auto flex w-fit -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center text-center transition-all`}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-            />
-          </svg>
-          <div className="font-semibold uppercase motion-reduce:animate-pulse">
-            <p>Wyszukiwanie...</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              className="size-10 animate-bounce stroke-primary"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+            <div className="font-semibold uppercase motion-reduce:animate-pulse">
+              <p>Wyszukiwanie...</p>
+            </div>
           </div>
-        </div>
-        <div
-          className={`${loading ? "mt-10 opacity-0" : "mt-14 scale-100 opacity-100"} transition-all`}
-        >
-          <SearchHandlerClientOutput
-            object={data.pages}
-            titleSection="Strony"
-            linkPrefix="p"
-          />
-          <SearchHandlerClientOutput
-            object={data.news}
-            titleSection="Aktualności"
-            linkPrefix="news/p"
-          />
+          <ScrollArea
+            className={`${loading || !value ? "pointer-events-none -translate-y-2 opacity-0" : "scale-100 opacity-100"} h-full transition-all`}
+          >
+            <SearchHandlerClientOutput
+              object={data.pages}
+              titleSection="Strony"
+              linkPrefix="p"
+            />
+            <SearchHandlerClientOutput
+              object={data.news}
+              titleSection="Aktualności"
+              linkPrefix="news/p"
+            />
+          </ScrollArea>
         </div>
       </div>
-    </ScrollArea>
+    </div>
   );
 };
 

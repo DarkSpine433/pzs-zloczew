@@ -18,6 +18,7 @@ export const fetchFavourites = async ({ idsNews }: Props) => {
         in: idsNews.split(","),
       },
     },
+    limit: 50,
   });
   favourites.news = docs;
 

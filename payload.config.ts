@@ -1,7 +1,7 @@
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 // import { payloadCloud } from '@payloadcms/plugin-cloud'
 import { lexicalEditor } from "@payloadcms/richtext-lexical"; // editor-import
-
+import { seo } from "node_modules/@payloadcms/plugin-seo/dist";
 import path from "path";
 import { buildConfig } from "payload/config";
 // import sharp from 'sharp'
@@ -14,25 +14,20 @@ import Nav from "./collections/Nav";
 import { Offer } from "./collections/Offer";
 
 import { News } from "./collections/News";
-import dotenv from "dotenv";
 
 import { Contact } from "./collections/Contact";
 import { Media } from "./collections/Media";
-import { seo } from "node_modules/@payloadcms/plugin-seo/dist";
+import { Projects } from "./collections/Projects";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-
-dotenv.config({
-  path: path.resolve(__dirname, "../../.env"),
-});
 
 export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Pages, News, Media],
-  plugins: [],
+  collections: [Users, Pages, News, Media, Projects],
+  plugins: [seo({ collections: ["posts"] })],
   globals: [Nav, Offer, Contact],
   editor: lexicalEditor({}),
   // plugins: [payloadCloud()], // TODO: Re-enable when cloud supports 3.0

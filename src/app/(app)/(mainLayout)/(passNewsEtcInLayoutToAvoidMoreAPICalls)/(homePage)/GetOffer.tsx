@@ -29,7 +29,7 @@ const GetOffer = async (props: Props) => {
         {getOffer.Content.map((offer) => {
           return (
             <Dialog>
-              <DialogTrigger className="max-w-[450px] overflow-hidden rounded-xl shadow-md shadow-primary transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-primary md:w-[45%] lg:w-[40%] xl:w-full">
+              <DialogTrigger className="max-w-[450px] overflow-hidden rounded-xl shadow-md shadow-primary/70 transition-all hover:-translate-y-0.5 hover:shadow-md hover:shadow-primary md:w-[45%] lg:w-[40%] xl:w-full">
                 {" "}
                 <Image
                   key={offer.id}
