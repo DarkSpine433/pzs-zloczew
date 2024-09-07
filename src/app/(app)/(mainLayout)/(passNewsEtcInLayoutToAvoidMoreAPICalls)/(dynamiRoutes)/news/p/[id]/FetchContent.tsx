@@ -27,19 +27,40 @@ const FetchContent = async ({ id }: { id: string }) => {
         >
           {data.title}
         </h1>
-        <h3 className="mx-auto mt-16 flex max-w-4xl flex-wrap items-center gap-4 bg-clip-text px-5 text-left text-sm text-gray-400 first-letter:text-primary md:text-base">
+        <h3 className="mx-auto mt-16 flex max-w-4xl flex-col flex-wrap justify-start gap-4 bg-clip-text px-5 text-left text-sm text-gray-400 first-letter:text-primary sm:flex-row sm:items-center">
+          {data.author != undefined &&
+          data.author != "" &&
+          data.author.name != "" &&
+          data.author.name !== undefined ? (
+            <>
+              <div>
+                Autor:&nbsp;
+                <span className="font-semibold text-primary-foreground/80">
+                  {data.author.name}
+                </span>{" "}
+              </div>{" "}
+              <Separator
+                orientation="vertical"
+                className="hidden h-6 w-[1px] bg-gray-500 sm:block"
+              />
+            </>
+          ) : null}
+
           <div>
             {" "}
             Data Utworzenia:&nbsp;
-            <time dateTime={data.createdAt} className="text-blue-400">
+            <time
+              dateTime={data.createdAt}
+              className="font-semibold text-primary-foreground/80"
+            >
               {format(parseISO(data.createdAt), "dd.MM.yyyy")}
             </time>
           </div>
           <Separator
             orientation="vertical"
-            className="h-10 w-[1px] bg-gray-500"
+            className="hidden h-6 w-[1px] bg-gray-500 sm:block"
           />
-          <div className="relative flex h-fit w-fit gap-3">
+          <div className="relative flex h-fit w-fit gap-2">
             <ShareButton className="px-3 py-4" />
             <FavouriteButtonClient id={data.id} isBlock className="px-3 py-1" />
           </div>
