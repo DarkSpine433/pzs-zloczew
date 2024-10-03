@@ -38,15 +38,26 @@ const TemplateNews = ({ doc, index }: Props) => {
             ) : null}
           </div>
 
-          <CardContent className="mt-5">
-            <CardTitle className="pb-5 font-bold text-[/701.08rem] transition-all group-hover:text-primary">
+          <CardContent className="mt-5 space-y-3">
+            <CardTitle className="text-lg font-bold leading-6 text-primary/80 transition-all group-hover:text-primary">
               <div className="pr-2">{doc.title}</div>
             </CardTitle>
-            <CardDescription className="text-sm text-gray-900">
-              Data:&nbsp;
-              <time dateTime={doc.createdAt} className="text-primary/70">
-                {format(parseISO(doc.createdAt), "dd.MM.yyyy")}
-              </time>
+            <CardDescription className="space-y-1 text-sm">
+              {doc.author != undefined &&
+              doc.author != "" &&
+              doc.author.name != "" &&
+              doc.author.name !== undefined ? (
+                <div className="text-gray-600">
+                  Autor:&nbsp;
+                  <span className="font-semibold">{doc.author.name}</span>
+                </div>
+              ) : null}
+              <div className="text-gray-600">
+                Data:&nbsp;
+                <time dateTime={doc.createdAt} className="font-semibold">
+                  {format(parseISO(doc.createdAt), "dd.MM.yyyy")}
+                </time>
+              </div>
             </CardDescription>
           </CardContent>
         </Card>

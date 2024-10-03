@@ -17,7 +17,7 @@ const page = (props: Props) => {
       <div className="pointer-events-none absolute left-0 top-0 -z-50 hidden h-dvh w-full bg-gradient-to-b from-primary/30 to-transparent lg:block"></div>
       <Section maxWidth="max-w-[1440px] relative h-fit">
         <CursorMovmentAnimation>
-          <ContactButton className="bg-white/70 p-6 text-lg text-foreground opacity-80" />
+          <ContactButton className="bg-white p-6 text-lg text-foreground opacity-60" />
         </CursorMovmentAnimation>
         <div className="pointer-events-none absolute -top-[45rem] left-1/2 -z-20 h-[80rem] w-[130rem] -translate-x-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)] md:-top-[28rem] md:left-full md:size-[96rem] lg:left-[80%]"></div>
       </Section>
@@ -43,37 +43,112 @@ const page = (props: Props) => {
                 Oferta Naszej Szkoły
               </h2>
 
-              <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-2 px-2 pb-10 [&>div]:rounded-lg [&>div]:py-1">
-                <div className="mb-4 w-fit border border-blue-400 bg-blue-200 px-2 text-sm text-blue-800 shadow-md shadow-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
-                  Kreatywność
-                </div>
-                <div className="mb-4 w-fit border border-blue-500 bg-blue-300 px-2 text-sm text-blue-900 shadow-md shadow-blue-300 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
-                  Bezpieczeństwo
-                </div>
-                <div className="mb-4 w-fit border border-blue-300 bg-blue-100 px-2 text-sm text-blue-700 shadow-md shadow-blue-100 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
-                  Motywacja
-                </div>
-                <div className="mb-4 w-fit border border-blue-400 bg-blue-200 px-2 text-sm text-blue-800 shadow-md shadow-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
-                  Wsparcie
-                </div>
-                <div className="mb-4 w-fit border border-blue-500 bg-blue-300 px-2 text-sm text-blue-900 shadow-md shadow-blue-300 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
-                  Integracja
-                </div>
-                <div className="mb-4 w-fit border border-blue-300 bg-blue-100 px-2 text-sm text-blue-700 shadow-md shadow-blue-100 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
-                  Rozwój
-                </div>
-                <div className="mb-4 w-fit border border-blue-400 bg-blue-200 px-2 text-sm text-blue-800 shadow-md shadow-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
-                  Odkrywanie
-                </div>
-                <div className="mb-4 w-fit border border-blue-300 bg-blue-100 px-2 text-sm text-blue-700 shadow-md shadow-blue-100 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
-                  Przyjaźń
-                </div>
-                <div className="mb-4 w-fit border border-blue-500 bg-blue-300 px-2 text-sm text-blue-900 shadow-md shadow-blue-300 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
-                  Nauka
-                </div>
-                <div className="mb-4 w-fit border border-blue-300 bg-blue-100 px-2 text-sm text-blue-700 shadow-md shadow-blue-100 transition-all hover:-translate-y-0.5 hover:shadow-lg sm:mb-0">
-                  Dyscyplina
-                </div>
+              <div className="wave-container">
+                <style>
+                  {`
+                    @keyframes wave {
+                      0% { transform: translateY(0); }
+                      50% { transform: translateY(-1px); scale: 1.01; }
+                      100% { transform: translateY(0); }
+                    }
+
+                    .wave-container {
+                      display: flex;
+                      flex-wrap: wrap;
+                      justify-content: center;
+                      gap: 0.5rem;
+                      max-width: 112rem;
+                      padding-bottom: 2.5rem;
+                      margin: 0 auto;
+                    }
+
+                    .wave-item {
+                      margin-bottom: 1rem;
+                      width: fit-content;
+                      padding: 0.5rem;
+                      font-size: 0.875rem;
+                      text-align: center;
+                      border-radius: 0.5rem;
+                      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                      transition: all 0.3s ease;
+                      animation: wave 2s ease-in-out infinite;
+                    }
+
+                    .blue-200 {
+                      border: 1px solid #60a5fa;
+                      background-color: #bfdbfe;
+                      color: #1e40af;
+                      box-shadow: 0 4px 6px rgba(96, 165, 250, 0.4);
+                    }
+
+                    .blue-300 {
+                      border: 1px solid #3b82f6;
+                      background-color: #93c5fd;
+                      color: #1e3a8a;
+                      box-shadow: 0 4px 6px rgba(59, 130, 246, 0.4);
+                    }
+
+                    .blue-100 {
+                      border: 1px solid #93c5fd;
+                      background-color: #dbeafe;
+                      color: #1d4ed8;
+                      box-shadow: 0 4px 6px rgba(59, 130, 246, 0.1);
+                    }
+
+                    .wave-item:nth-child(1) {
+                      animation-delay: 0s;
+                    }
+
+                    .wave-item:nth-child(2) {
+                      animation-delay: 0.1s;
+                    }
+
+                    .wave-item:nth-child(3) {
+                      animation-delay: 0.2s;
+                    }
+
+                    .wave-item:nth-child(4) {
+                      animation-delay: 0.3s;
+                    }
+
+                    .wave-item:nth-child(5) {
+                      animation-delay: 0.4s;
+                    }
+
+                    .wave-item:nth-child(6) {
+                      animation-delay: 0.5s;
+                    }
+
+                    .wave-item:nth-child(7) {
+                      animation-delay: 0.6s;
+                    }
+
+                    .wave-item:nth-child(8) {
+                      animation-delay: 0.7s;
+                    }
+
+                    .wave-item:nth-child(9) {
+                      animation-delay: 0.8s;
+                    }
+
+                    .wave-item:nth-child(10) {
+                      animation-delay: 0.9s;
+                    } 
+                      .wave-item:nth-child(11) {
+                      animation-delay: 1s;
+                    }
+                  `}
+                </style>
+                <div className="wave-item blue-200">Kreatywność</div>
+                <div className="wave-item blue-300">Bezpieczeństwo</div>
+                <div className="wave-item blue-100">Motywacja</div>
+                <div className="wave-item blue-200">Wsparcie</div>
+                <div className="wave-item blue-300">Integracja</div>
+                <div className="wave-item blue-100">Rozwój</div>
+                <div className="wave-item blue-200">Odkrywanie</div>
+                <div className="wave-item blue-100">Przyjaźń</div>
+                <div className="wave-item blue-300">Nauka</div>
+                <div className="wave-item blue-100">Dyscyplina</div>
               </div>
 
               <GetOffer />

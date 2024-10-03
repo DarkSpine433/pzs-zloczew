@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import PreviewFile from "@/app/components/github_repo_action/PreviewFile";
 
 const page = async () => {
   noStore();
@@ -45,7 +46,12 @@ const page = async () => {
                   height={300}
                   className="h-full w-fit rounded-lg"
                 />
-                <div className="absolute flex h-full w-full items-center justify-center rounded-lg opacity-0 transition-all group-hover:bg-black/60 group-hover:opacity-100">
+                <div className="absolute flex h-full w-full flex-col items-center justify-center gap-3 rounded-lg opacity-0 transition-all group-hover:bg-black/60 group-hover:opacity-100">
+                  <PreviewFile
+                    sha={sha[index]}
+                    path={name[index]}
+                    FileSrc={item}
+                  />
                   <DeleteFiles sha={sha[index]} path={name[index]} />
                 </div>
               </>

@@ -54,7 +54,9 @@ const CursorMovmentAnimation = ({ children }: Props) => {
         </div>{" "}
         <div className="flex items-center gap-5">
           <Link href="#discover" className="flex items-center">
-            <Button className="p-6 text-lg">Zwiedzaj</Button>
+            <Button className="p-6 text-lg shadow shadow-primary">
+              Zwiedzaj
+            </Button>
           </Link>
           {children}
         </div>

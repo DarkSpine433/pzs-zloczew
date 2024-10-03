@@ -8,6 +8,8 @@ import { Iframe } from "./blocks/Iframe";
 import { GenerateWithOpenAiText } from "../components/collection/GenerateWithOpenAiText";
 import { SocialMediaPosts } from "./blocks/SocialMediaPosts";
 import { CustomCode } from "./blocks/CustomCode";
+import { Paggination } from "./blocks/Paggination";
+
 export const News: CollectionConfig = {
   slug: "news",
   labels: {
@@ -21,55 +23,89 @@ export const News: CollectionConfig = {
 
   fields: [
     {
-      name: "title",
-      label: "Tytuł",
-      type: "text",
-      required: true,
-      maxLength: 90,
-    },
-    {
-      name: "description",
-      label:
-        "Opis (Do wyszukiwarki żeby zwiększyć szanse na znależienie tego co użytkownik szuka)",
-      type: "text",
-      maxLength: 600,
-    },
-    {
-      name: "keywords",
-      label:
-        "Key Words (Do wyszukiwarki Na Stronie każde słowo odziel spacją żeby zwiększyć szanse na znależienie tego co użytkownik szuka)",
-      type: "text",
-      maxLength: 600,
-    },
-    {
-      name: "test",
-      type: "ui",
-      admin: {
-        components: {
-          Field: GenerateWithOpenAiText,
+      type: "tabs",
+      tabs: [
+        {
+          label: "Kontent Strony",
+          description: "Kontent Strony",
+
+          fields: [
+            {
+              name: "Content",
+              label: "Wstaw kontent dla strony",
+              type: "blocks",
+              blocks: [ImageUrl, RichTextBlock, Iframe, Paggination],
+            },
+          ],
         },
+
+        {
+          label: "Meta Dane",
+          description: "Meta Dane",
+          fields: [
+            {
+              name: "title",
+              label: "Tytuł",
+              type: "text",
+              required: true,
+              maxLength: 90,
+            },
+            {
+              name: "description",
+              label: "Opis",
+              type: "textarea",
+              required: true,
+              maxLength: 160,
+            },
+            {
+              name: "keywords",
+              label: "Key Words",
+              type: "text",
+              required: true,
+              maxLength: 160,
+            },
+            {
+              name: "test",
+              type: "ui",
+              admin: { components: { Field: GenerateWithOpenAiText } },
+            },
+            { name: "thumbnail", label: "Miniaturka Link", type: "text" },
+          ],
+        },
+      ],
+      required: true,
+    },
+    {
+      name: "author",
+      label: "Autor Postu",
+      admin: {
+        position: "sidebar",
       },
-    },
-    {
-      name: "thumbnail",
-      label: "Miniaturka Link",
-      type: "text",
-    },
-
-    {
-      name: "Content", // required
-      label: "Kontent Strony",
-      type: "blocks", // required
-      minRows: 1,
-      maxRows: 20,
-
-      blocks: [ImageUrl, RichTextBlock, Iframe, SocialMediaPosts, CustomCode],
+      type: "relationship",
+      relationTo: "users",
     },
     {
       name: "createdYear",
-      type: "text",
-      hidden: true,
-      defaultValue: () => new Date().getUTCFullYear().toString(),
+      label: "Rok utworzenia",
+      type: "number",
+      required: true,
+      admin: {
+        position: "sidebar",
+      },
+      min: 2000,
+      defaultValue: () => {
+        return Number(new Date().getUTCFullYear().toString());
+      },
+      hooks: {
+        beforeChange: [
+          ({ siblingData, value }) => {
+            if (siblingData._status === "published" || !value || value == "") {
+              return Number(new Date().getUTCFullYear());
+            }
+            return value;
+          },
+        ],
+      },
     },
   ],
 };

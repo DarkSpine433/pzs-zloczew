@@ -1,27 +1,29 @@
-import type { CollectionConfig } from 'payload/types'
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import path from "path";
+import { fileURLToPath } from "url";
 
-import { ImageUrl } from './blocks/ImageUrl'
-import { RichTextBlock } from './blocks/RichTextBlock'
-import { Iframe } from './blocks/Iframe'
-import { UploadFile } from '../components/collection/UploadFile'
+import { CollectionConfig } from "payload/types";
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 export const Media: CollectionConfig = {
-  slug: 'uploadfile', // required
-  labels: {
-    singular: 'Wrzuć plik lub zdjęcie nie większe niż 4MB',
-    plural: 'Wrzuć plik lub zdjęcie nie większe niż 4MB',
-  },
-
-  access: {
-    read: () => true,
-  },
+  slug: "media",
 
   fields: [
     {
-      name: 'title',
-      label: 'Tytuł',
-
-      type: 'text',
+      name: "alt",
+      type: "text",
+      required: true,
+    },
+    {
+      name: "caption",
+      type: "richText",
+      editor: lexicalEditor({}),
     },
   ],
-}
+  upload: {
+    // Upload to the public/media directory in Next.js making them publicly accessible even outside of Payload
+    staticDir: path.resolve(dirname, "../../../public/media"),
+  },
+};

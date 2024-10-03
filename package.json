@@ -26,6 +26,7 @@
     "@payloadcms/live-preview-react": "^0.2.0",
     "@payloadcms/next": "beta",
     "@payloadcms/plugin-cloud": "beta",
+    "@payloadcms/plugin-seo": "^3.0.0-beta.10",
     "@payloadcms/richtext-lexical": "^3.0.0-beta.10",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.1.1",
