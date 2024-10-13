@@ -50,7 +50,9 @@ export const fetchFiles = async () => {
 
     const dataConvertedSorted = dataConverted.sort((a: any, b: any) => {
       return (
+        //@ts-ignore
         new Date(b.date.split("|").join(" ")) -
+        //@ts-ignore
         new Date(a.date.split("|").join(" "))
       );
     });
