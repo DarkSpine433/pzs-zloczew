@@ -50,17 +50,16 @@ const page = async () => {
                   height={300}
                   className="h-full w-fit rounded-lg"
                 />
-                <div className="absolute flex h-full w-full flex-col items-center justify-center gap-3 rounded-lg opacity-0 transition-all group-hover:bg-black/60 group-hover:opacity-100">
+                <div className="absolute flex h-full w-full flex-col items-center justify-center gap-3 rounded-lg opacity-0 transition-all group-hover:bg-black/60 group-hover:opacity-100 group-hover:backdrop-blur">
                   <PreviewFile
                     sha={item.sha}
-                    path={item.name}
+                    path={item.id}
                     FileSrc={item.download_url}
                   />
                   <DeleteFiles
                     sha={item.sha}
-                    path={item.name}
+                    path={item.id}
                     download_url={item.download_url}
-                    id={item.id}
                   />
                 </div>
               </>
@@ -84,20 +83,21 @@ const page = async () => {
                     </svg>
                     <span className="font-extrabold uppercase">FIlLE</span>
                   </div>
-                  <div className="break-words">{item.name}</div>
+                  <div className="break-words">
+                    {item.id}.{item.filetype}
+                  </div>
                 </div>
                 <div className="absolute flex h-full w-full flex-col items-center justify-center gap-3 rounded-lg opacity-0 transition-all group-hover:bg-black/60 group-hover:opacity-100">
                   <PreviewOther
                     sha={item.sha}
-                    path={item.name}
+                    path={item.id}
                     fileSrc={item.download_url}
                     fileType={item.filetype}
                   />
                   <DeleteFiles
                     sha={item.sha}
-                    path={item.name}
+                    path={item.id}
                     download_url={item.download_url}
-                    id={item.id}
                   />
                 </div>
               </>
