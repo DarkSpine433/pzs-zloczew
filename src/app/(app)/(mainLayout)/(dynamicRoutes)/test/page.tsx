@@ -17,7 +17,7 @@ import PreviewOther from "@/app/components/github_repo_action/PreviewOther";
 const page = async () => {
   noStore();
   const { data }: any = await fetchFiles();
-  console.log(data);
+
   return (
     <div className="flex flex-col">
       <Dialog>

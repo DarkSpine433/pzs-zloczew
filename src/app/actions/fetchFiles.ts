@@ -34,7 +34,6 @@ export const fetchFiles = async () => {
       };
       let getRidOfExtention = item.split(".");
       getRidOfExtention.pop();
-
       const itemSplit = getRidOfExtention.join(".").split("_");
       itemSplit.map((item: any, index: number) => {
         if (itemSplit.length !== index) {
@@ -49,9 +48,16 @@ export const fetchFiles = async () => {
       return objecContainer;
     });
 
+    const dataConvertedSorted = dataConverted.sort((a: any, b: any) => {
+      return (
+        new Date(b.date.split("|").join(" ")) -
+        new Date(a.date.split("|").join(" "))
+      );
+    });
+
     return {
       status: 200,
-      data: dataConverted,
+      data: dataConvertedSorted,
     };
   } catch (err: any) {
     return { message: "Filed to Fetch Files" + err, status: 409 };

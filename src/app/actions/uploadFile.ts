@@ -1,6 +1,7 @@
 "use server";
 
 import { Octokit } from "@octokit/core";
+import { join } from "path";
 
 type Props = {
   fileSrc: String | null;
@@ -20,17 +21,13 @@ export const uploadFile = async ({ fileSrc, fileName }: Props) => {
     });
     try {
       const crypto = require("crypto");
+      const generateDate = `date=${new Date()
+        .toUTCString()
+        .split(" ")
+        .join("|")}`;
       const PathGenerated =
-        "date=" +
-        new Date().getUTCDate() +
-        "." +
-        (Number(new Date().getUTCMonth()) + 1).toString() +
-        "." +
-        new Date().getUTCFullYear() +
-        "_id=" +
-        crypto.randomBytes(10).toString("hex") +
-        "_filetype=" +
-        `${fileName[fileName.length - 1]}.${fileName[fileName.length - 1]}`;
+        (await generateDate) +
+        `_id=${crypto.randomBytes(10).toString("hex")}_filetype=${fileName[fileName.length - 1]}.${fileName[fileName.length - 1]}`;
 
       const { status, data } = await octokit.request(
         `PUT /repos/${Owner}/${Repo}/contents/${PathGenerated}`,
