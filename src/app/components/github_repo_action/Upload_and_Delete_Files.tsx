@@ -65,9 +65,9 @@ const Upload_and_Delete_Files = () => {
         )}
         {imageSrc && fileSrc && (
           <div
-            className={`flex flex-col gap-3 ${isPending ? "animate-pulse" : ""}`}
+            className={`flex max-w-96 flex-col gap-3 ${isPending ? "animate-pulse" : ""}`}
           >
-            <div className="h-fit max-h-96 w-fit">
+            <div className="h-fit w-full">
               {fileNameNoEdited &&
               fileNameNoEdited.match(
                 /\.(jpg|jpeg|png|gif|bmp|tiff|webp|svg)$/i,
@@ -81,17 +81,20 @@ const Upload_and_Delete_Files = () => {
                     alt={"Image"}
                     width={100}
                     height={100}
-                    className="w-max-md h-80 w-fit rounded-lg object-cover"
+                    className="w-max-md w-full rounded-lg object-cover"
                   />
                 </>
               ) : (
-                <>
+                <div className="flex flex-col items-center justify-center gap-3">
                   {" "}
                   <h2 className="text-3xl font-extrabold uppercase text-primary">
                     No Preview For Files
                   </h2>
-                  <div className="flex h-fit w-60 flex-col break-words p-3">
-                    <div className="flex flex-wrap items-center">
+                  <h3 className="text-xl text-gray-500">
+                    After uploading the file, you can view it.
+                  </h3>
+                  <div className="flex h-fit w-full flex-col break-words p-3">
+                    <div className="flex w-full flex-wrap items-center justify-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -106,17 +109,20 @@ const Upload_and_Delete_Files = () => {
                           d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
                         />
                       </svg>
-                      <span className="break-words font-bold">{fileName}</span>
+                      <span className="w-full break-words break-all text-center font-bold">
+                        {fileNameNoEdited}
+                      </span>
                     </div>
                   </div>
-                </>
+                </div>
               )}
             </div>
-            <div>
+            <div className="flex justify-center">
               <Button
                 type="submit"
                 onClick={uploadFileHandler}
                 disabled={isPending}
+                className="w-full"
               >
                 Dodaj
               </Button>
