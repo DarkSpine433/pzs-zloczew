@@ -1,35 +1,46 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import Image from "next/image";
 import DeleteFiles from "./DeleteFiles";
-
+import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import "@cyntler/react-doc-viewer/dist/index.css";
+import "./style.css";
 type Props = {
   sha: string;
   path: string;
-  FileSrc: string;
+  fileSrc: string;
+  fileType: string;
 };
 
-const PreviewFile = ({ sha, path, FileSrc }: Props) => {
+const PreviewOther = ({ sha, path, fileSrc, fileType }: Props) => {
+  const docs = [
+    {
+      uri: fileSrc.toString(),
+      fileType: fileType,
+      fileName: `${path}.${fileType}`,
+    },
+  ];
+  console.log(fileSrc, fileType);
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button className="w-full max-w-28 uppercase">Preview</Button>
       </DialogTrigger>
-      <DialogContent className="m-0 h-5/6 w-full max-w-7xl overflow-x-hidden rounded-xl border-0 p-0 outline-none sm:w-fit">
+      <DialogContent className="m-0 h-5/6 w-full max-w-7xl overflow-x-hidden rounded-xl border-0 p-0 outline-none">
         <DialogHeader>
-          <Image
-            src={FileSrc}
-            alt={FileSrc}
-            width={900}
-            height={900}
-            quality={100}
-            className="m-0 mx-auto h-full max-h-dvh w-full rounded-lg object-contain p-0"
+          <DocViewer
+            documents={docs}
+            initialActiveDocument={docs[0]}
+            pluginRenderers={DocViewerRenderers}
+            style={{ width: "100%", height: "100%" }}
           />
           <DialogTitle className="break-all px-2 text-left">
             <span className="inline-block text-primary">FIle Name:</span> &nbsp;
@@ -44,4 +55,4 @@ const PreviewFile = ({ sha, path, FileSrc }: Props) => {
   );
 };
 
-export default PreviewFile;
+export default PreviewOther;
