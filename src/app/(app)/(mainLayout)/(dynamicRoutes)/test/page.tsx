@@ -2,7 +2,7 @@ import { unstable_noStore as noStore } from "next/cache";
 
 import { fetchFiles } from "@/app/actions/fetchFiles";
 import Image from "next/image";
-import DeleteFiles from "@/app/components/github_repo_action/DeleteFiles";
+
 import Upload_and_Delete_Files from "@/app/components/github_repo_action/Upload_and_Delete_Files";
 import {
   Dialog,
@@ -11,8 +11,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import PreviewFile from "@/app/components/github_repo_action/PreviewFile";
-import PreviewOther from "@/app/components/github_repo_action/PreviewOther";
+import PreviewFile from "@/app/components/github_repo_action/preview/PreviewFile";
+
+import CardBlockClient from "./CardBlockClient";
+import DeleteFiles from "@/app/components/github_repo_action/DeleteFiles";
 
 const page = async () => {
   noStore();
@@ -34,9 +36,13 @@ const page = async () => {
 
       <div className="mx-auto flex min-h-[600px] max-w-screen-xl flex-wrap justify-center gap-0.5 overflow-hidden rounded-xl px-3 py-5">
         {data.map((item: any, index: number) => (
-          <div
-            key={item + index}
-            className="group relative flex h-60 w-fit max-w-md flex-col gap-5 rounded-xl bg-background"
+          <CardBlockClient
+            key={item.id + index}
+            sha={item.sha}
+            path={item.path}
+            fileType={item.filetype}
+            download_url={item.download_url}
+            id={item.id}
           >
             {/(jpeg|png|jpg|gif|bmp|webp|tiff|svg\+xml|x-icon|heic|heif|jp2|avif|vnd\.adobe\.photoshop)$/i.test(
               item.filetype,
@@ -50,18 +56,6 @@ const page = async () => {
                   height={300}
                   className="h-full w-fit rounded-lg"
                 />
-                <div className="absolute flex h-full w-full flex-col items-center justify-center gap-3 rounded-lg opacity-0 transition-all group-hover:bg-black/60 group-hover:opacity-100 group-hover:backdrop-blur">
-                  <PreviewFile
-                    sha={item.sha}
-                    path={item.id}
-                    FileSrc={item.download_url}
-                  />
-                  <DeleteFiles
-                    sha={item.sha}
-                    path={item.id}
-                    download_url={item.download_url}
-                  />
-                </div>
               </>
             ) : (
               <>
@@ -87,22 +81,9 @@ const page = async () => {
                     {item.id}.{item.filetype}
                   </div>
                 </div>
-                <div className="absolute flex h-full w-full flex-col items-center justify-center gap-3 rounded-lg opacity-0 transition-all group-hover:bg-black/60 group-hover:opacity-100">
-                  <PreviewOther
-                    sha={item.sha}
-                    path={item.id}
-                    fileSrc={item.download_url}
-                    fileType={item.filetype}
-                  />
-                  <DeleteFiles
-                    sha={item.sha}
-                    path={item.id}
-                    download_url={item.download_url}
-                  />
-                </div>
               </>
             )}
-          </div>
+          </CardBlockClient>
         ))}
       </div>
     </div>

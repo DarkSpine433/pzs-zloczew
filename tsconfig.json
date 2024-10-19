@@ -28,7 +28,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/api/GetOffer"
+    "src/app/api/GetOffer",
+    "src/app/components/github_repo_action/preview/PreviewDoc.jsx"
   ],
   "exclude": ["node_modules"]
 }
