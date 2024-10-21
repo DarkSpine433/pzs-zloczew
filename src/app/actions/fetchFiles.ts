@@ -40,7 +40,7 @@ export const fetchFiles = async () => {
     const sha = data.map((item: any) => item.sha);
     const download_url = data.map((item: any) => item.download_url);
     const path = data.map((item: any) => item.path);
-
+    console.log(sha);
     const dataConverted = name.map((item: any, index: number) => {
       let objecContainer: any = {
         sha: sha[index],
@@ -52,9 +52,26 @@ export const fetchFiles = async () => {
         let getRidOfExtention = item.split(".");
         getRidOfExtention.pop();
         const itemSplit = getRidOfExtention.join(".").split("_");
+
         itemSplit.map((item: any, index: number) => {
+          item.split("fileName");
           if (itemSplit.length !== index) {
-            const endItemSplit = item.split("=");
+            let endItemSplit = item.split("=");
+
+            //Proper Date Parsing
+            if (endItemSplit[0] === "date") {
+              endItemSplit[1] = endItemSplit[1].replaceAll("-", " ");
+            }
+            //Proper File Type
+            if (endItemSplit[0] === "filetype") {
+              endItemSplit[1] = endItemSplit[1].replace("-", "/");
+            }
+            //Proper File Name
+            if (index === 3) {
+              endItemSplit[1] = item
+                .replace("filename=", "")
+                .replaceAll("(-)", "_");
+            }
             objecContainer = {
               ...objecContainer,
               [endItemSplit[0]]: endItemSplit[1],
@@ -69,13 +86,12 @@ export const fetchFiles = async () => {
     const dataConvertedSorted = dataConverted.sort((a: any, b: any) => {
       if (a.date && b.date) {
         return (
-          new Date(b.date.split("|").join(" ")).getTime() -
-          new Date(a.date.split("|").join(" ")).getTime()
+          new Date(b.date.split("-").join(" ")).getTime() -
+          new Date(a.date.split("-").join(" ")).getTime()
         );
       }
       return 0;
     });
-    console.log(dataConvertedSorted);
     return {
       status: 200,
       data: dataConvertedSorted,

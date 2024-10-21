@@ -6,36 +6,52 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import Image from "next/image";
-import DeleteFiles from "../DeleteFiles";
+
 import PreviewDoc from "./PreviewDoc";
-import PreviewImage from "./PreviewImage";
 
 type Props = {
   sha: String;
+  fileName: String;
   path: String;
   FileSrc: any;
   fileType: String;
   id: String;
   children?: React.ReactNode;
+  date?: String;
 };
 
-const PreviewFile = ({ sha, path, FileSrc, fileType, children, id }: Props) => {
+const PreviewFile = ({
+  sha,
+  fileName,
+  path,
+  FileSrc,
+  fileType,
+  children,
+  id,
+  date,
+}: Props) => {
+  //@ts-ignore
+  const dt = new Date(date);
+  const dateObj = `${dt.getDate()}.${dt.getMonth() + 1}.${dt.getFullYear()}`;
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-full max-w-28 uppercase">Preview</Button>
+        <Button className="w-full max-w-96 uppercase">Preview</Button>
       </DialogTrigger>
-      <DialogContent className="m-0 h-5/6 w-[98%] max-w-7xl overflow-x-hidden rounded-xl border-0 p-0 outline-none">
+      <DialogContent className="m-0 h-5/6 max-h-[700px] w-[98%] max-w-7xl overflow-x-hidden rounded-xl border-0 p-0 outline-none">
         <DialogHeader>
           <PreviewDoc
             path={path as string}
-            fileSrc={sha}
+            fileSrc={FileSrc}
             fileType={fileType as string}
-            id={id}
+            fileName={fileName as string}
           />
-          <DialogTitle className="break-all px-2 text-left">
-            <div className="pb-3">{children}</div>
+          <h2 className="p-3 uppercase">
+            {" "}
+            Uploaded At: <b className="text-primary">{dateObj}</b>
+          </h2>
+          <DialogTitle className="w-full break-all p-5 text-left">
+            {children}
           </DialogTitle>
         </DialogHeader>
       </DialogContent>

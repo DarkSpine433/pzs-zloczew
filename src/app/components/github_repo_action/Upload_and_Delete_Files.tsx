@@ -1,135 +1,156 @@
+//@ts-nocheck
+
 "use client";
-import React, { useState, ChangeEvent } from "react";
-
-import { uploadFile } from "@/app/actions/uploadFile";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import React, { useState, ChangeEvent, useEffect } from "react";
+import {
+  getShaInfoToCheckIfFileAlreadyExists,
+  uploadFile,
+} from "@/app/actions/uploadFile";
+import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import "@cyntler/react-doc-viewer/dist/index.css";
+import "./style.css";
 import { Input } from "@/components/ui/input";
-
+import { Button } from "@/components/ui/button";
+import { sha1 } from "crypto-hash";
+import { set } from "date-fns";
+const crypto = require("crypto");
 const Upload_and_Delete_Files = () => {
-  const [fileSrc, setFilseSrc] = useState<String | null>(null);
-  const [fileName, setFileName] = useState<[] | null>(null);
-  const [fileNameNoEdited, setFileNameNoEdited] = useState<String | null>(null);
-  const [imageSrc, setImageSrc] = useState<String | null>(null);
-  const [uploadMassage, setUploadMassage] = useState([null]);
-  const [isPending, setIsPending] = useState<boolean>(false);
+  const [statusOfUpload, setStatusOfUpload] = useState<[]>([]);
+  const [statusMessage, setStatusMessage] = useState<[]>([]);
+  const [selectedDocs, segetFileInfoelectedDocs] = useState<File[]>([]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file: any = e.target.files?.[0];
 
     if (file) {
-      setUploadMassage([null]);
-      const reader: any = new FileReader();
-      reader.onload = () => {
-        setFileNameNoEdited(file.name);
-        setFileName(file.name.split("."));
-        if (reader.result) {
-          setImageSrc(reader.result.split(",")[0] as string);
-          setFilseSrc(reader.result.split(",")[1] as string);
-        }
-      };
-      reader.readAsDataURL(file);
+      e.target.files?.length &&
+        segetFileInfoelectedDocs(Array.from(e.target.files));
     }
   };
 
   const uploadFileHandler = async () => {
-    setIsPending(true);
-    const isUploaded: any = await uploadFile({
-      fileSrc: fileSrc,
-      fileName: fileName,
+    const promiseFunctionToGetInfoAboutFile = (file: any) => {
+      return new Promise((resolve, reject) => {
+        const reader: any = new FileReader();
+        reader.onerror = () => {
+          reader.abort();
+          reject(new Error("Problem parsing input file."));
+        };
+        reader.onload = () => {
+          resolve({
+            fileSrc: reader.result.split(",")[1] as string,
+            fileName: file.name,
+            fileType: file.type,
+          });
+        };
+        reader.readAsDataURL(file);
+      });
+    };
+    const setMessageAndStatus = (message: string, status: number) => {
+      setStatusOfUpload((prevItems) => [...prevItems, status]);
+      setStatusMessage((prevItems) => [...prevItems, message]);
+    };
+    const getGitHubSHA = async (base64: String) => {
+      const content = Buffer.from(base64, "base64");
+
+      // Create Git blob header (blob <size>\0)
+      const size = content.length;
+      const header = `blob ${size}\0`;
+
+      // Concatenate the header and content
+      const store = Buffer.concat([Buffer.from(header, "utf8"), content]);
+
+      // Generate SHA-1 hash
+      const sha1 = crypto.createHash("sha1");
+      sha1.update(store);
+
+      // Return the hash in hex format
+      return sha1.digest("hex");
+    };
+
+    selectedDocs.forEach(async (file, index) => {
+      try {
+        const getFileInfo: any = await promiseFunctionToGetInfoAboutFile(file);
+        const gitHubSha = await getGitHubSHA(getFileInfo.fileSrc);
+        const checkIfFileExists =
+          await getShaInfoToCheckIfFileAlreadyExists(gitHubSha);
+
+        if (checkIfFileExists) {
+          return setMessageAndStatus("Already uploaded", 409);
+        } else {
+          const isUploaded: any = await uploadFile({
+            fileSrc: getFileInfo.fileSrc,
+            fileName: getFileInfo.fileName,
+            fileType: getFileInfo.fileType,
+          });
+          console.log(getGitHubSHA(getFileInfo.fileSrc), "-", isUploaded.sha);
+          //@ts-ignore
+
+          if (selectedDocs.length - 1 === index) {
+            return [
+              setMessageAndStatus(isUploaded.message, isUploaded.status),
+              location.reload(),
+            ];
+          }
+          return setMessageAndStatus(isUploaded.message, isUploaded.status);
+        }
+      } catch (err) {
+        console.log(err, 12);
+      }
     });
-    setUploadMassage([isUploaded.message, isUploaded.status]);
-    if (isUploaded.status === 200) {
-      location.reload();
-    }
-    setIsPending(false);
   };
 
   return (
     <>
-      <form className="mx-auto mt-3 flex max-w-4xl flex-col gap-3">
+      <div className="mx-auto mt-3 flex w-fit flex-col gap-3">
         <Input
+          multiple
           type="file"
           name="fileUpload"
           id="fileUpload"
           onChange={handleChange}
         />
-        {uploadMassage[1] === 200 ? (
-          <h2 className="font-extrabold uppercase text-green-500">
-            {uploadMassage[0]}
-          </h2>
-        ) : uploadMassage[1] === null || uploadMassage[0] === null ? (
-          <></>
-        ) : (
-          <h2 className="text-red-500"> Error: {uploadMassage[0]}</h2>
-        )}
-        {imageSrc && fileSrc && (
-          <div
-            className={`flex max-w-96 flex-col gap-3 ${isPending ? "animate-pulse" : ""}`}
-          >
-            <div className="h-fit w-full">
-              {fileNameNoEdited &&
-              fileNameNoEdited.match(
-                /\.(jpg|jpeg|png|gif|bmp|tiff|webp|svg)$/i,
-              ) ? (
-                <>
-                  <h2 className="text-3xl font-extrabold uppercase text-primary">
-                    Preview Of Image!
-                  </h2>
-                  <Image
-                    src={imageSrc + "," + fileSrc}
-                    alt={"Image"}
-                    width={100}
-                    height={100}
-                    className="w-max-md w-full rounded-lg object-cover"
-                  />
-                </>
-              ) : (
-                <div className="flex flex-col items-center justify-center gap-3">
-                  {" "}
-                  <h2 className="text-3xl font-extrabold uppercase text-primary">
-                    No Preview For Files
-                  </h2>
-                  <h3 className="text-xl text-gray-500">
-                    After uploading the file, you can view it.
-                  </h3>
-                  <div className="flex h-fit w-full flex-col break-words p-3">
-                    <div className="flex w-full flex-wrap items-center justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        className="size-10"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
-                        />
-                      </svg>
-                      <span className="w-full break-words break-all text-center font-bold">
-                        {fileNameNoEdited}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="flex justify-center">
-              <Button
-                type="submit"
-                onClick={uploadFileHandler}
-                disabled={isPending}
-                className="w-full"
-              >
-                Dodaj
-              </Button>
-            </div>
+
+        <DocViewer
+          documents={selectedDocs.map((file) => ({
+            uri: window.URL.createObjectURL(file),
+            fileName: file.name,
+          }))}
+          style={{ width: "100%", height: "100%" }}
+          pluginRenderers={DocViewerRenderers}
+        />
+        {selectedDocs.length > 0 && (
+          <div>
+            <h3 className="">Uploaded Files</h3>
+            <ol className="list-inside list-decimal border-l border-black">
+              {selectedDocs.map((file, index) => {
+                return (
+                  <li
+                    className={`w-fit border-b border-b-black px-3 ${
+                      statusOfUpload[index] !== 200 && statusOfUpload[index] > 0
+                        ? "bg-destructive"
+                        : statusOfUpload[index] === 200 && "bg-green-500"
+                    }`}
+                  >
+                    {file.name}
+                    {statusOfUpload[index] > 0 &&
+                      statusMessage[index].length > 0 && (
+                        <>
+                          {statusMessage[index]} Status: {statusOfUpload[index]}{" "}
+                        </>
+                      )}
+                  </li>
+                );
+              })}
+            </ol>
           </div>
         )}
-      </form>
+        {selectedDocs.length > 0 && (
+          <Button type="submit" onClick={uploadFileHandler} className="w-full">
+            Upload
+          </Button>
+        )}
+      </div>
     </>
   );
 };

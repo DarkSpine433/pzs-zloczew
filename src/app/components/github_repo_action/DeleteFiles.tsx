@@ -6,6 +6,7 @@ type Props = {
   sha: String;
   path: String;
   download_url?: URL;
+  fileName?: String;
   id?: String;
   className?: String;
   fileType: String;
@@ -18,6 +19,7 @@ const DeleteFiles = ({
   sha,
   path,
   download_url,
+  fileName,
   id,
   className,
   fileType,
@@ -27,13 +29,13 @@ const DeleteFiles = ({
 }: Props) => {
   return (
     <div
-      className={`flex h-fit w-full max-w-28 items-center justify-center gap-3 ${className} ${isRow ? "flex-row" : ""}`}
+      className={`mx-auto flex h-fit w-full max-w-96 items-center justify-center gap-3 ${className} ${isRow ? "flex-row" : "flex-col"}`}
     >
-      {download_url && (
+      {download_url && fileName && (
         //@ts-ignore
         <a
           href={base64! as string}
-          download={path}
+          download={fileName}
           className={`${base64 !== "" ? "" : "pointer-events-none opacity-80"} h-full w-full`}
           aria-disabled={base64 !== "" ? true : false}
         >
@@ -52,6 +54,7 @@ const DeleteFiles = ({
       <Button
         onClick={() => deleteFileHandler(sha, path)}
         variant={"destructive"}
+        className="w-full uppercase"
       >
         Delete
       </Button>

@@ -11,33 +11,27 @@ import {
 } from "@/components/ui/dialog";
 import Image from "next/image";
 import DeleteFiles from "../DeleteFiles";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import "@cyntler/react-doc-viewer/dist/index.css";
+import styled from "styled-components";
 import "../style.css";
 type Props = {
   path: string;
   fileSrc: any;
   fileType: string;
-  id: String;
+  fileName: string;
 };
 
-const PreviewDoc = ({ path, fileSrc, fileType, id }: Props) => {
-  const [blob, setBlob] = useState(null);
-  useEffect(() => {
-    fetch(fileSrc)
-      .then((res) => res.blob())
-      .then(setBlob);
-  }, []);
-
-  console.log(blob);
+const PreviewDoc = ({ path, fileSrc, fileType, fileName }: Props) => {
   const docs = [
     {
-      uri: blob ? `${window.URL.createObjectURL(blob)}` : "",
+      uri: fileSrc,
       fileType: fileType,
-      fileName: `${id}.${fileType}`,
+      fileName: fileName,
     },
   ];
+
   return (
     // <Dialog>
     //   <DialogTrigger asChild>
@@ -46,14 +40,13 @@ const PreviewDoc = ({ path, fileSrc, fileType, id }: Props) => {
     //   <DialogContent className="m-0 h-5/6 w-full max-w-7xl overflow-x-hidden rounded-xl border-0 p-0 outline-none">
     //     <DialogHeader>
     <>
-      {blob ? (
+      {fileSrc ? (
         <>
-          {" "}
           <DocViewer
+            language="pl"
             documents={docs}
             initialActiveDocument={docs[0]}
             pluginRenderers={DocViewerRenderers}
-            style={{ width: "100%", height: "100%" }}
           />
         </>
       ) : null}
