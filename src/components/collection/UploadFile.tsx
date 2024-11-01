@@ -34,6 +34,7 @@ export const UploadFile: React.FC = (props: Props) => {
   const uploadFileHandler = async () => {
     setIsPending(true);
     const isUploaded: any = await uploadFile({
+      fileType: "SET TYPE TO VARIEBLE TO HANDLE IT.",
       fileSrc: fileSrc,
       fileName: fileName,
     });
