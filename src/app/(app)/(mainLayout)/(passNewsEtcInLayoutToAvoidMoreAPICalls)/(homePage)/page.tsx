@@ -23,7 +23,7 @@ const page = (props: Props) => {
       </Section>
 
       <div className="">
-        <Section maxWidth="max-w-6xl z-10">
+        <Section maxWidth="max-w-6xl z-10 min-h-40">
           <h2
             id="discover"
             className="scroll-m-20 space-y-10 bg-gradient-to-r from-primary from-40% via-foreground to-primary to-60% bg-clip-text py-5 text-center text-2xl font-extrabold uppercase text-transparent drop-shadow-[0_1.2px_1.2px_hsl(--primary)]"

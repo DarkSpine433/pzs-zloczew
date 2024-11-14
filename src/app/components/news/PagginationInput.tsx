@@ -35,9 +35,10 @@ const PagginationInput = ({
     data.totalPages > numberOfPages.length;
   return (
     <div className="flex flex-col gap-3">
-      <div className="mx-auto w-max">
-        Jesteś na stronie nr:&nbsp;
-        <b className="text-lg text-primary">{page}</b>
+      <div className="w-max">
+        Strona:&nbsp;
+        <b className="text-lg text-primary/70">{page}</b>/{" "}
+        <b className="text-lg text-primary">{data.totalPages}</b>
       </div>
       {isNumberOfPagesIsMoreThanNumberOfPagesToShow && (
         <>

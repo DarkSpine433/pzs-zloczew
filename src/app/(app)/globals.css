@@ -59,12 +59,21 @@ hr {
   left: 50%;
   transform: translateX(-50%);
 }
+.instagram-media {
+  width: 100% !important;
+}
+.EmbedIsBroken {
+  display: none !important;
+}
+.heightFullCalc {
+  min-height: calc(100vh - 1500px);
+}
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply overflow-x-hidden bg-background text-foreground;
   }
 }
 

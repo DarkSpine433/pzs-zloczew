@@ -10,8 +10,12 @@ import configPromise from "@payload-config";
 import { SheetClose } from "@/components/ui/sheet";
 import Socials from "./Socials";
 
-import { StaticNavLinks } from "./StaticNavLinks";
+const StaticNavLinks = dynamic(() => import("./StaticNavLinks"), {
+  ssr: false,
+});
+
 import PayLoadErrorHandling from "../PayLoadErrorHandling";
+import dynamic from "next/dynamic";
 
 const FetchNavContent = async () => {
   const payload = await getPayloadHMR({ config: configPromise });
@@ -22,18 +26,10 @@ const FetchNavContent = async () => {
   return (
     <div className="py-5">
       <menu className="flex flex-col gap-3">
-        {StaticNavLinks.map((nav, index) => {
-          return (
-            <Link
-              href={nav.url.toString().toLowerCase()}
-              key={nav.title + index + nav.url}
-            >
-              <SheetClose className="w-full rounded-lg border-b-4 border-primary bg-secondary/60 px-3 py-3 text-left font-semibold uppercase shadow-sm shadow-primary transition-all hover:border-primary hover:bg-secondary hover:px-3.5">
-                <li>{nav.title}</li>
-              </SheetClose>
-            </Link>
-          );
-        })}
+        <StaticNavLinks
+          className="w-full rounded-lg border-b-4 border-primary bg-secondary/60 px-3 py-3 text-left font-semibold uppercase shadow-sm shadow-primary transition-all hover:border-primary hover:bg-secondary hover:px-3.5"
+          sheet={true}
+        />
 
         <li className="flex justify-center gap-3 md:hidden">
           <Socials />

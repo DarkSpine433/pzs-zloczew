@@ -54,8 +54,22 @@ const CursorMovmentAnimation = ({ children }: Props) => {
         </div>{" "}
         <div className="flex items-center gap-5">
           <Link href="#discover" className="flex items-center">
-            <Button className="p-6 text-lg shadow shadow-primary">
+            <Button className="group p-6 text-lg shadow shadow-primary hover:bg-transparent hover:text-primary">
               Zwiedzaj
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="ml-1 size-5 transition-all group-hover:rotate-90 group-hover:scale-105 group-hover:text-primary"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                />
+              </svg>
             </Button>
           </Link>
           {children}
@@ -63,96 +77,101 @@ const CursorMovmentAnimation = ({ children }: Props) => {
       </div>
       {/*PLUS IMAGE*/}
       {/*Interactive Imgaes*/}
-      {windowWidth >= 1024 ? (
-        <div className="absolute -right-24 top-0 -z-10 hidden h-fit justify-end overflow-hidden md:flex lg:-right-20 xl:right-0">
-          <div className="relative size-fit [perspective:150px]">
-            <motion.div
-              style={{
-                rotateX: transformPostionX,
-                rotateY: transformPostionY,
-                transformStyle: "preserve-3d",
-                transition: `all 1s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
-              }}
-              className="h-fit w-fit object-cover"
-            >
-              <Image
-                src="/img/mainPage/notebook-front-color.png"
-                alt="zloczew"
-                width={600}
-                height={600}
-                quality={100}
-                priority={true}
-              />
-            </motion.div>
-            <motion.div
-              style={{
-                rotateX: transformPostionX,
-                rotateY: transformPostionY,
-                transformStyle: "preserve-3d",
-                transition: `all 1s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
-              }}
-              className="absolute right-20 top-0 h-fit w-fit"
-            >
-              <Image
-                src="/img/mainPage/calender-dynamic-color.png"
-                alt="zloczew"
-                width={180}
-                height={180}
-                priority={true}
-                className="object-cover"
-              />
-            </motion.div>
+      {windowWidth !== 0 && (
+        <>
+          {windowWidth >= 1024 ? (
+            <div className="absolute -right-24 top-0 -z-10 hidden h-fit justify-end overflow-hidden md:flex lg:-right-20 xl:right-0">
+              <div className="relative size-fit [perspective:150px]">
+                <motion.div
+                  style={{
+                    rotateX: transformPostionX,
+                    rotateY: transformPostionY,
+                    transformStyle: "preserve-3d",
+                    transition: `all 1s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
+                  }}
+                  className="h-fit w-fit object-cover"
+                >
+                  <Image
+                    src="/img/mainPage/notebook-front-color.png"
+                    alt="zloczew"
+                    width={600}
+                    height={600}
+                    quality={100}
+                    priority={true}
+                  />
+                </motion.div>
+                <motion.div
+                  style={{
+                    rotateX: transformPostionX,
+                    rotateY: transformPostionY,
+                    transformStyle: "preserve-3d",
+                    transition: `all 1s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
+                  }}
+                  className="absolute right-20 top-0 h-fit w-fit"
+                >
+                  <Image
+                    src="/img/mainPage/calender-dynamic-color.png"
+                    alt="zloczew"
+                    width={180}
+                    height={180}
+                    priority={true}
+                    className="object-cover"
+                  />
+                </motion.div>
 
-            <motion.div
-              style={{
-                rotateX: transformPostionX,
-                rotateY: transformPostionY,
-                transformStyle: "preserve-3d",
-                transition: `all 1s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
-              }}
-              className="absolute bottom-10 left-10 h-fit w-fit"
-            >
+                <motion.div
+                  style={{
+                    rotateX: transformPostionX,
+                    rotateY: transformPostionY,
+                    transformStyle: "preserve-3d",
+                    transition: `all 1s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
+                  }}
+                  className="absolute bottom-10 left-10 h-fit w-fit"
+                >
+                  <Image
+                    src="/img/mainPage/thumb-up-dynamic-color.png"
+                    alt="zloczew"
+                    width={180}
+                    height={180}
+                    priority={true}
+                    className="object-cover"
+                  />
+                </motion.div>
+                <motion.div
+                  style={{
+                    rotateX: transformPostionX,
+                    rotateY: transformPostionY,
+                    transformStyle: "preserve-3d",
+                    transition: `all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
+                    translateX: "-50%",
+                  }}
+                  className="absolute bottom-5 left-1/2 -z-10 h-fit w-fit object-contain opacity-5"
+                >
+                  <Image
+                    src="/img/mainPage/Ellipse.png"
+                    alt="zloczew"
+                    width={300}
+                    height={300}
+                    priority={true}
+                    className="object-cover"
+                  />
+                </motion.div>
+              </div>
+            </div>
+          ) : (
+            <div className="absolute left-0 top-0 -z-40 h-fit w-full">
               <Image
-                src="/img/mainPage/thumb-up-dynamic-color.png"
+                src="/img/mainPage/zsp_zloczew.jpeg"
                 alt="zloczew"
-                width={180}
-                height={180}
+                width={1000}
+                height={1000}
                 priority={true}
-                className="object-cover"
+                className="pointer-events-none absolute left-0 top-0 -z-50 h-[600px] w-full object-cover opacity-20"
               />
-            </motion.div>
-            <motion.div
-              style={{
-                rotateX: transformPostionX,
-                rotateY: transformPostionY,
-                transformStyle: "preserve-3d",
-                transition: `all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1)  `,
-                translateX: "-50%",
-              }}
-              className="absolute bottom-5 left-1/2 -z-10 h-fit w-fit object-contain opacity-5"
-            >
-              <Image
-                src="/img/mainPage/Ellipse.png"
-                alt="zloczew"
-                width={300}
-                height={300}
-                priority={true}
-                className="object-cover"
-              />
-            </motion.div>
-          </div>
-        </div>
-      ) : (
-        <div className="absolute left-0 top-0 -z-40 h-fit w-full">
-          <Image
-            src="/img/mainPage/zsp_zloczew.jpeg"
-            alt="zloczew"
-            width={1000}
-            height={1000}
-            className="pointer-events-none absolute left-0 top-0 -z-50 h-[600px] w-full object-cover opacity-20"
-          />
-          <div className="absolute left-0 top-0 z-0 h-[600px] w-full bg-gradient-to-t from-white from-10% to-transparent"></div>
-        </div>
+              <div className="absolute left-0 top-0 z-0 h-[600px] w-full bg-gradient-to-t from-white from-10% to-transparent"></div>
+            </div>
+          )}
+        </>
       )}
     </motion.div>
   );

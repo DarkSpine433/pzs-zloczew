@@ -14,34 +14,14 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { create } from "zustand";
+import useStore from "@/lib/GlobalStateFavouriteNews";
 
 type Props = {
   id: string;
   isBlock?: boolean;
   className?: string;
 };
-type Store = {
-  arrayOfFavouriteItems: string[];
-  increasePopulation: () => void;
-};
-const useStore = create<Store>()((set) => ({
-  arrayOfFavouriteItems:
-    typeof window !== "undefined" &&
-    typeof localStorage !== null &&
-    typeof localStorage !== undefined
-      ? localStorage.getItem("FavouriteNews")?.split(",")!
-      : [],
 
-  increasePopulation: () =>
-    set(() => ({
-      arrayOfFavouriteItems:
-        typeof window !== "undefined" &&
-        typeof localStorage !== null &&
-        typeof localStorage !== undefined
-          ? localStorage.getItem("FavouriteNews")?.split(",")
-          : [],
-    })),
-}));
 const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
   const arrayOfFavouriteItems = useStore(
     (state) => state.arrayOfFavouriteItems,
@@ -67,6 +47,7 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
       }
     }
   };
+  console.log(arrayOfFavouriteItems);
 
   useEffect(() => {
     if (

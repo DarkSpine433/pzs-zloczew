@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 
 //Other Ui Components Import
-import { Button } from "@/components/ui/button";
+
 import Link from "next/link";
 import SearchNav from "./SearchNav";
 //menu imports
@@ -15,8 +15,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { StaticNavLinks } from "./StaticNavLinks";
+import SkeletonNews from "../mainPageComponents/SkeletonNews";
 
+const StaticNavLinks = dynamic(() => import("./StaticNavLinks"), {
+  ssr: false,
+  loading: () => (
+    <SkeletonNews repeat={5} className="ml-5 h-7 w-20 rounded-sm" />
+  ),
+});
 const FetchNavContent = dynamic(() => import("./FetchNavContent"));
 type Props = {};
 
@@ -74,28 +80,16 @@ const Nav = (props: Props) => {
         <Image
           src="/logo.png"
           alt="logo"
-          width={50}
-          height={50}
-          className="size-10"
+          width={100}
+          height={100}
+          className="size-10 lg:size-14"
         />
-        <h2 className="hidden text-2xl font-bold uppercase text-primary lg:block">
+        <h2 className="text-md hidden font-bold uppercase text-primary sm:block lg:hidden">
           pzs ZŁoczew
         </h2>
       </Link>
-      <div className="hidden justify-end gap-5 font-semibold text-gray-500 md:flex">
-        {StaticNavLinks.map((link, index) => (
-          <>
-            {index > 0 && (
-              <Link
-                key={link.title}
-                href={link.url}
-                className="rounded-lg px-3 py-1 transition-all hover:bg-secondary hover:text-primary"
-              >
-                {link.title}
-              </Link>
-            )}
-          </>
-        ))}
+      <div className="hidden justify-end gap-5 font-semibold text-gray-500 transition-all lg:flex">
+        <StaticNavLinks className="rounded-lg px-3 py-2.5 transition-all hover:bg-secondary hover:text-primary" />
       </div>
 
       <div className="flex flex-1 items-center justify-end gap-3">

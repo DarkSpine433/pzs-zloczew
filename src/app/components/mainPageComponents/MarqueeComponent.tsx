@@ -43,6 +43,8 @@ const MarqueeComponent = (props: Props) => {
       gradientWidth={30}
       speed={40}
       pauseOnHover
+      pauseOnClick
+      gradientColor="#EEF3FE"
     >
       {Opinions.map(({ imie, opinia }) => (
         <div

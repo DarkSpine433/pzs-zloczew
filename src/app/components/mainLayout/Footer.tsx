@@ -1,10 +1,10 @@
 import Link from "next/link";
 import React from "react";
-import { StaticNavLinks } from "./StaticNavLinks";
+import StaticNavLinks from "./StaticNavLinks";
 import Image from "next/image";
 type Props = {};
 
-const Footer = (props: Props) => {
+const Footer = async (props: Props) => {
   return (
     <>
       <div className="z-40 flex w-full flex-row flex-wrap justify-center gap-y-10 pt-10">
@@ -12,17 +12,7 @@ const Footer = (props: Props) => {
           <div className="flex flex-col px-3">
             <h2 className="">Szybka Nawigacja</h2>
             <div className="flex flex-col flex-wrap pl-1">
-              {StaticNavLinks.map((nav, index) => {
-                return (
-                  <Link
-                    key={nav.title + nav.url + index}
-                    href={nav.url.toLowerCase()}
-                    className="h-fit w-fit py-5 pr-5 lowercase text-gray-500 transition-all first-letter:uppercase first-letter:text-primary hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
-                  >
-                    {nav.title}
-                  </Link>
-                );
-              })}
+              <StaticNavLinks className="h-fit w-fit py-5 pr-5 lowercase text-gray-500 transition-all first-letter:uppercase first-letter:text-primary hover:translate-x-1 hover:text-primary hover:first-letter:text-white" />
             </div>
           </div>
           <div className="flex flex-col px-3">
