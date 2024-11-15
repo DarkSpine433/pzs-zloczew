@@ -19,7 +19,10 @@
   "dependencies": {
     "@atelier-disko/payload-lexical-react-renderer": "^1.0.4",
     "@cyntler/react-doc-viewer": "^1.17.0",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@hookform/resolvers": "^3.3.4",
+    "@mui/material": "^6.1.7",
     "@octokit/core": "^6.1.2",
     "@octokit/rest": "^20.1.1",
     "@payloadcms/db-mongodb": "beta",
@@ -48,6 +51,7 @@
     "dateformat": "^5.0.3",
     "embla-carousel-react": "^8.0.2",
     "framer-motion": "^11.1.1",
+    "holy-loader": "^2.3.11",
     "html-react-parser": "^5.1.10",
     "next": "14.2.0-canary.23",
     "payload": "^3.0.0-beta.10",

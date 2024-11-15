@@ -45,7 +45,7 @@ const ShowMenu = () => {
           />
         </svg>
       </SheetTrigger>
-      <SheetContent side="left" className="overflow-y-auto">
+      <SheetContent side="right" className="overflow-y-auto">
         <SheetHeader>
           <SheetTitle>Menu</SheetTitle>
           <SheetDescription>Tu znajdziesz czego szukasz.</SheetDescription>
@@ -72,7 +72,7 @@ const ShowMenu = () => {
 
 const Nav = (props: Props) => {
   return (
-    <div className="flex w-full items-center gap-2">
+    <div className="z-50 flex w-full items-center gap-2">
       <Link
         href="/"
         className="flex-1 items-center self-center justify-self-center sm:flex"
@@ -82,14 +82,14 @@ const Nav = (props: Props) => {
           alt="logo"
           width={100}
           height={100}
-          className="size-10 lg:size-14"
+          className="size-10 lg:size-12"
         />
         <h2 className="text-md hidden font-bold uppercase text-primary sm:block lg:hidden">
           pzs ZŁoczew
         </h2>
       </Link>
       <div className="hidden justify-end gap-5 font-semibold text-gray-500 transition-all lg:flex">
-        <StaticNavLinks className="rounded-lg px-3 py-2.5 transition-all hover:bg-secondary hover:text-primary" />
+        <StaticNavLinks className="rounded-lg px-3 py-1.5 transition-all hover:bg-secondary hover:text-primary" />
       </div>
 
       <div className="flex flex-1 items-center justify-end gap-3">

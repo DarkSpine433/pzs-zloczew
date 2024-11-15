@@ -9,7 +9,7 @@ const NewsFilter = ({ searchParams }: Props) => {
   return (
     <>
       <Sheet>
-        <SheetTrigger className="flex w-full max-w-96 items-center justify-center self-center rounded-md border bg-secondary p-3 text-lg font-semibold uppercase shadow shadow-primary transition-all hover:translate-y-0.5 hover:shadow-inner hover:shadow-primary/30">
+        <SheetTrigger className="flex w-full max-w-40 items-center justify-center self-center rounded-md border bg-secondary p-2 text-lg font-semibold uppercase shadow shadow-primary transition-all hover:translate-y-0.5 hover:shadow-inner hover:shadow-primary/30">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

@@ -40,6 +40,9 @@ const PreviewFile = ({
       </DialogTrigger>
       <DialogContent className="m-0 h-5/6 max-h-[700px] w-[98%] max-w-7xl overflow-x-hidden rounded-xl border-0 p-0 outline-none">
         <DialogHeader>
+          <style>{`#header-bar {
+display: block !important;
+}`}</style>
           <PreviewDoc
             path={path as string}
             fileSrc={FileSrc}

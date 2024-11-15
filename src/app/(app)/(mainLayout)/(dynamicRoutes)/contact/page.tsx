@@ -26,7 +26,7 @@ const page = (props: Props) => {
           </div>
         </h3>
       </div>
-      <div className="mx-auto min-h-[600px] max-w-6xl border-x px-3 pt-10">
+      <div className="mx-auto min-h-[600px] max-w-6xl border-x px-3 py-10">
         <FetchContent />
       </div>
     </>

@@ -21,9 +21,16 @@ type Props = {
   fileSrc: any;
   fileType: string;
   fileName: string;
+  className?: string;
 };
 
-const PreviewDoc = ({ path, fileSrc, fileType, fileName }: Props) => {
+const PreviewDoc = ({
+  path,
+  fileSrc,
+  fileType,
+  fileName,
+  className,
+}: Props) => {
   const docs = [
     {
       uri: fileSrc,
@@ -47,6 +54,7 @@ const PreviewDoc = ({ path, fileSrc, fileType, fileName }: Props) => {
             documents={docs}
             initialActiveDocument={docs[0]}
             pluginRenderers={DocViewerRenderers}
+            className={`${className}`}
           />
         </>
       ) : null}

@@ -34,16 +34,11 @@ const PagginationInput = ({
   const isNumberOfPagesIsMoreThanNumberOfPagesToShow =
     data.totalPages > numberOfPages.length;
   return (
-    <div className="flex flex-col gap-3">
-      <div className="w-max">
-        Strona:&nbsp;
-        <b className="text-lg text-primary/70">{page}</b>/{" "}
-        <b className="text-lg text-primary">{data.totalPages}</b>
-      </div>
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-3">
       {isNumberOfPagesIsMoreThanNumberOfPagesToShow && (
         <>
-          <div className="w-full space-y-2">
-            <div className="mx-auto flex w-fit gap-2 text-sm">
+          <div className="mx-auto flex w-full max-w-7xl justify-center space-y-2">
+            {/* <div className="mx-auto flex w-fit gap-2 text-sm">
               <Link
                 href={FetchUrlObject({
                   keyData: ["page"],
@@ -69,7 +64,7 @@ const PagginationInput = ({
                   max: {data.totalPages}
                 </Button>
               </Link>
-            </div>
+            </div> */}
 
             <PagginationInputClient data={data} searchParams={searchParams} />
           </div>

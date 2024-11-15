@@ -41,8 +41,6 @@ const page = ({
         className="mx-auto flex w-full max-w-screen-2xl flex-col justify-center gap-10 px-5 pt-20"
         id="NewsTop"
       >
-        <NewsFilter searchParams={searchParams} />
-
         <FetchNews searchParams={searchParams} />
       </div>
     </>

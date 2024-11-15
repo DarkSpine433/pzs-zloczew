@@ -5,7 +5,7 @@ import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Head from "next/head";
 import Link from "next/link";
-
+import HolyLoader from "holy-loader";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -44,6 +44,7 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
+        <HolyLoader color="#2563EB" zIndex={50} />
         {children}
       </body>
     </html>

@@ -57,7 +57,7 @@ const CardBlockClient = ({
 
   return (
     <div
-      className="group relative flex h-60 w-fit max-w-md flex-col gap-5 rounded-xl bg-background shadow-md"
+      className="group relative flex h-fit w-full flex-col rounded-xl bg-background shadow-md sm:w-auto"
       onMouseEnter={async () => {
         if (!isLoaded && download_url) {
           setIsLoaded(true);

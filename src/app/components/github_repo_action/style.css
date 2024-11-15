@@ -3,18 +3,14 @@
   overflow: visible;
   margin: auto 0;
 }
-#msdoc-renderer {
-  height: 100% !important;
-  overflow: visible !important;
-  width: clamp(1rem, 100vw, 1200px) !important;
-}
+
 #header-bar {
   background-color: var(--primary);
   padding: 16px 20px;
   padding-right: 60px;
   text-wrap: wrap;
   word-wrap: break-word;
-  width: clamp(1rem, 100vw, 1200px);
+  z-index: 0;
 }
 #file-name {
   text-wrap: wrap;
