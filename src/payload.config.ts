@@ -1,49 +1,82 @@
-import { mongooseAdapter } from "@payloadcms/db-mongodb";
-// import { payloadCloud } from '@payloadcms/plugin-cloud'
-import {
-  BlocksFeature,
-  LinkFeature,
-  UploadFeature,
-  lexicalEditor,
-} from "@payloadcms/richtext-lexical";
-import path from "path";
-import { buildConfig } from "payload/config";
-// import sharp from 'sharp'
-import { fileURLToPath } from "url";
+// storage-adapter-import-placeholder
+import { mongooseAdapter } from '@payloadcms/db-mongodb'
 
-import Users from "./collections/Users";
-import { Pages } from "./collections/Pages";
-import Nav from "./collections/Nav";
-import { Offer } from "./collections/Offer";
-import { News } from "./collections/News";
-import { Contact } from "./collections/Contact";
-import { Media } from "./collections/Media";
-import SchoolJournal from "./collections/SchoolJournal";
+import sharp from 'sharp' // sharp-import
+import path from 'path'
+import { buildConfig } from 'payload'
+import { fileURLToPath } from 'url'
 
-const filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(filename);
+import { Categories } from './collections/Categories'
+import { Media } from './collections/Media'
+import { Pages } from './collections/Pages'
+
+import { Users } from './collections/Users'
+
+import { Header } from './Header/config'
+import { plugins } from './plugins'
+import { defaultLexical } from '@/fields/defaultLexical'
+import { getServerSideURL } from './utilities/getURL'
+import { Offer } from './collections/Offer'
+import { Contact } from './collections/Contact'
+import { SchoolJournal } from './collections/SchoolJournal'
+import { News } from './collections/News'
+import { Posts } from './collections/Posts'
+
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
 
 export default buildConfig({
   admin: {
+    components: {
+      // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
+      // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
+      beforeLogin: ['@/components/BeforeLogin'],
+      // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
+      // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
+      beforeDashboard: ['@/components/BeforeDashboard'],
+    },
+    importMap: {
+      baseDir: path.resolve(dirname),
+    },
     user: Users.slug,
+    livePreview: {
+      breakpoints: [
+        {
+          label: 'Mobile',
+          name: 'mobile',
+          width: 375,
+          height: 667,
+        },
+        {
+          label: 'Tablet',
+          name: 'tablet',
+          width: 768,
+          height: 1024,
+        },
+        {
+          label: 'Desktop',
+          name: 'desktop',
+          width: 1440,
+          height: 900,
+        },
+      ],
+    },
   },
-  collections: [Users, Pages, News, Media],
-  globals: [Nav, Offer, Contact, SchoolJournal],
-  editor: lexicalEditor({}),
-  // plugins: [payloadCloud()], // TODO: Re-enable when cloud supports 3.0
-  secret: process.env.PAYLOAD_SECRET || "",
-  typescript: {
-    outputFile: path.resolve(dirname, "payload-types.ts"),
-  },
+  // This config helps us configure global or default features that the other editors can inherit
+  editor: defaultLexical,
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI || "",
+    url: process.env.DATABASE_URI || '',
   }),
-  // Sharp is now an optional dependency -
-  // if you want to resize images, crop, set focal point, etc.
-  // make sure to install it and pass it to the config.
-
-  // This is temporary - we may make an adapter pattern
-  // for this before reaching 3.0 stable
-
-  // sharp,
-});
+  collections: [Pages, News, Media, Categories, Users, Posts],
+  cors: [getServerSideURL()].filter(Boolean),
+  globals: [Header, Offer, Contact, SchoolJournal],
+  plugins: [
+    ...plugins,
+    // storage-adapter-placeholder
+  ],
+  secret: process.env.PAYLOAD_SECRET,
+  sharp,
+  typescript: {
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
+  },
+})

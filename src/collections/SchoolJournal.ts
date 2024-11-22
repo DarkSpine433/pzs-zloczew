@@ -1,18 +1,16 @@
-import { GlobalConfig } from "payload/types";
+import type { GlobalConfig } from 'payload'
 
-const SchoolJournal: GlobalConfig = {
-  slug: "schooljournal",
-  label: "Link Do Dziennika",
+export const SchoolJournal: GlobalConfig = {
+  slug: 'schooljournal',
+  label: 'Link Do Dziennika',
   access: {
     read: () => true,
   },
   fields: [
     {
-      name: "link",
-      label: "Link Do Dziennika",
-      type: "text",
+      name: 'link',
+      label: 'Link Do Dziennika',
+      type: 'text',
     },
   ],
-};
-
-export default SchoolJournal;
+}

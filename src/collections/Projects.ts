@@ -1,17 +1,17 @@
-import type { CollectionConfig } from "payload/types";
+import type { CollectionConfig } from 'payload'
 
 export const Projects: CollectionConfig = {
-  slug: "projects",
+  slug: 'projects',
   fields: [
     {
-      name: "title",
-      type: "text",
+      name: 'title',
+      type: 'text',
     },
     {
-      name: "author",
-      label: "Post Author",
-      type: "relationship",
-      relationTo: "users",
+      name: 'author',
+      label: 'Post Author',
+      type: 'relationship',
+      relationTo: 'users',
     },
   ],
-};
+}

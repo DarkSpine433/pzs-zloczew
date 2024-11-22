@@ -1,27 +1,24 @@
 //disable cache
-import { unstable_noStore as noStore } from "next/cache";
+import { unstable_noStore as noStore } from 'next/cache'
 
 //Other Ui Components Import
-import Link from "next/link";
+import Link from 'next/link'
 
 //Payload imports
-import { getPayloadHMR } from "@payloadcms/next/utilities";
-import configPromise from "@payload-config";
-import { SheetClose } from "@/components/ui/sheet";
-import Socials from "./Socials";
+import { getPayloadHMR } from '@payloadcms/next/utilities'
+import configPromise from '@payload-config'
+import { SheetClose } from '@/components/ui/sheet'
+import Socials from './Socials'
 
-const StaticNavLinks = dynamic(() => import("./StaticNavLinks"), {
-  ssr: false,
-});
+const StaticNavLinks = dynamic(() => import('./StaticNavLinks'), {})
 
-import PayLoadErrorHandling from "../PayLoadErrorHandling";
-import dynamic from "next/dynamic";
+import PayLoadErrorHandling from '../PayLoadErrorHandling'
+import dynamic from 'next/dynamic'
+import { getCachedGlobal } from '@/utilities/getGlobals'
 
 const FetchNavContent = async () => {
-  const payload = await getPayloadHMR({ config: configPromise });
-  const data: any = await payload.findGlobal({
-    slug: "nav",
-  });
+  const payload = await getPayloadHMR({ config: configPromise })
+  const data: any = getCachedGlobal('header')
 
   return (
     <div className="py-5">
@@ -38,7 +35,7 @@ const FetchNavContent = async () => {
 
         <PayLoadErrorHandling data={data.nav}>
           {data.nav.map((item: any) => (
-            <Link key={item.page.id} href={"/p/" + item.page.id} className="">
+            <Link key={item.page.id} href={'/p/' + item.page.id} className="">
               <SheetClose className="w-full rounded-lg border-b-2 border-primary bg-secondary/60 px-3 py-3 text-left font-semibold lowercase shadow-sm shadow-primary/50 transition-all first-letter:uppercase hover:border-primary/50 hover:bg-secondary hover:px-3.5">
                 <li>{item.page.title}</li>
               </SheetClose>
@@ -47,7 +44,7 @@ const FetchNavContent = async () => {
         </PayLoadErrorHandling>
       </menu>
     </div>
-  );
-};
+  )
+}
 
-export default FetchNavContent;
+export default FetchNavContent
