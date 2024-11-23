@@ -29,6 +29,7 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from '@/fields/slug'
 import { getServerSideURL } from '@/utilities/getURL'
+import { Iframe } from '../blocks/Iframe'
 
 export const News: CollectionConfig = {
   slug: 'news',
@@ -79,7 +80,7 @@ export const News: CollectionConfig = {
                   return [
                     ...rootFeatures,
                     HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    BlocksFeature({ blocks: [Banner, Code, MediaBlock] }),
+                    BlocksFeature({ blocks: [Banner, Code, MediaBlock, Iframe] }),
                     FixedToolbarFeature(),
                     InlineToolbarFeature(),
                     HorizontalRuleFeature(),
@@ -209,6 +210,29 @@ export const News: CollectionConfig = {
           type: 'text',
         },
       ],
+    },
+    {
+      name: 'createdYear',
+      label: 'Rok utworzenia',
+      type: 'number',
+      required: true,
+      admin: {
+        position: 'sidebar',
+      },
+      min: 2000,
+      defaultValue: () => {
+        return Number(new Date().getUTCFullYear().toString())
+      },
+      hooks: {
+        beforeChange: [
+          ({ siblingData, value }) => {
+            if (siblingData._status === 'published' || !value || value == '') {
+              return Number(new Date().getUTCFullYear())
+            }
+            return value
+          },
+        ],
+      },
     },
     ...slugField(),
   ],

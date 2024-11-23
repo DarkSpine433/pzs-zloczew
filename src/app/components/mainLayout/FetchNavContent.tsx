@@ -5,7 +5,7 @@ import { unstable_noStore as noStore } from 'next/cache'
 import Link from 'next/link'
 
 //Payload imports
-import { getPayloadHMR } from '@payloadcms/next/utilities'
+import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { SheetClose } from '@/components/ui/sheet'
 import Socials from './Socials'
@@ -17,7 +17,7 @@ import dynamic from 'next/dynamic'
 import { getCachedGlobal } from '@/utilities/getGlobals'
 
 const FetchNavContent = async () => {
-  const payload = await getPayloadHMR({ config: configPromise })
+  const payload = await getPayload({ config: configPromise })
   const data: any = getCachedGlobal('header')
 
   return (

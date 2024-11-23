@@ -5,13 +5,14 @@ import Section from '@/app/components/mainPageComponents/Section'
 import Cta from '@/app/components/mainPageComponents/Cta'
 import ContactButton from '@/app/components/ui/ContactButton'
 import dynamic from 'next/dynamic'
+import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 const GetOffer = dynamic(() => import('./GetOffer'))
 
 type Props = {}
 
 const Home = (props: Props) => {
   return (
-    <div className="pb-10">
+    <div>
       <div className="pointer-events-none absolute left-0 top-0 -z-50 hidden h-dvh w-full bg-gradient-to-b from-primary/30 to-transparent lg:block"></div>
       <Section maxWidth="max-w-[1440px] relative h-fit">
         <CursorMovmentAnimation>
@@ -168,6 +169,18 @@ const Home = (props: Props) => {
               <div className="pointer-events-none absolute bottom-0 left-1/2 -z-20 h-[50rem] w-[60rem] -translate-x-1/2 translate-y-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_70%)]"></div>
             </div>
           </Section>
+
+          <div className=" border-t border-b-foreground/50 border-t-primary/10 bg-secondary/50 relative">
+            <hr className="absolute  m-0 h-[0.1rem] w-full border-none bg-gradient-to-r from-transparent from-10% via-primary to-transparent to-90% p-0" />
+            <Section className=" py-20" maxWidth="max-w-6xl ">
+              <ArchiveBlock
+                limit={9}
+                populateBy="collection"
+                blockType="archive"
+                relationTo={'news'}
+              />
+            </Section>
+          </div>
         </div>
       </div>
     </div>

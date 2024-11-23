@@ -22,6 +22,7 @@ import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 import { getServerSideURL } from '@/utilities/getURL'
 import Footer from '@/app/components/mainLayout/Footer'
+import Nav from '../components/mainLayout/Nav'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -55,12 +56,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
           <nav className="sticky left-0 top-0 z-50 mx-auto w-full bg-foreground px-10 py-1 text-background">
             <div className="mx-auto max-w-[1200px]">
-              <Header />
+              <Nav />
             </div>
           </nav>
           {children}
           <footer className="z-50 bg-foreground text-background">
-            <div className="mx-auto max-w-7xl">{/* <Footer /> */}</div>
+            <div className="mx-auto max-w-7xl">
+              <Footer />
+            </div>
           </footer>
         </Providers>
       </body>

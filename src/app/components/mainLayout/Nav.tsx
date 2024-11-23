@@ -16,6 +16,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import SkeletonNews from '../mainPageComponents/SkeletonNews'
+import { Header } from '@/Header/Component'
 
 const StaticNavLinks = dynamic(() => import('./StaticNavLinks'), {
   loading: () => <SkeletonNews repeat={5} className="ml-5 h-7 w-20 rounded-sm" />,
@@ -40,11 +41,21 @@ const ShowMenu = () => {
       </SheetTrigger>
       <SheetContent side="right" className="overflow-y-auto">
         <SheetHeader>
-          <SheetTitle>Menu</SheetTitle>
+          <SheetTitle>
+            {' '}
+            <Link href="/" className="flex items-center">
+              <Image src="/logo.png" alt="logo" width={150} height={150} className="size-16" />
+              <h2 className="text-2xl  font-bold uppercase text-primary ">
+                <strong>pzs ZŁoczew </strong>
+              </h2>
+            </Link>
+            <br />
+            MENU
+          </SheetTitle>
           <SheetDescription>Tu znajdziesz czego szukasz.</SheetDescription>
         </SheetHeader>
 
-        <FetchNavContent />
+        <Header />
 
         <SheetFooter>
           <div className="py-5 text-center">
@@ -64,8 +75,9 @@ const Nav = (props: Props) => {
     <div className="z-50 flex w-full items-center gap-2">
       <Link href="/" className="flex-1 items-center self-center justify-self-center sm:flex">
         <Image src="/logo.png" alt="logo" width={100} height={100} className="size-10 lg:size-12" />
-        <h2 className="text-md hidden font-bold uppercase text-primary sm:block lg:hidden">
-          pzs ZŁoczew
+
+        <h2 className="text-md  font-bold uppercase text-primary ">
+          <strong>pzs ZŁoczew </strong>
         </h2>
       </Link>
       <div className="hidden justify-end gap-5 font-semibold text-gray-500 transition-all lg:flex">

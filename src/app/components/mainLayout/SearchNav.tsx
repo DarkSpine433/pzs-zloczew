@@ -1,7 +1,7 @@
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import SearchHandlerClient from "./SearchHandlerClient";
-import { DialogClose } from "@radix-ui/react-dialog";
-type Props = {};
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import SearchHandlerClient from './SearchHandlerClient'
+import { DialogClose, DialogTitle } from '@radix-ui/react-dialog'
+type Props = {}
 
 const SearchNav = (props: Props) => {
   return (
@@ -22,10 +22,11 @@ const SearchNav = (props: Props) => {
         </svg>
       </DialogTrigger>
       <DialogContent className="top-5 m-0 h-[95dvh] w-11/12 max-w-[800px] translate-y-0 border-0 border-transparent bg-transparent p-0 shadow-none outline-none sm:top-1/2 sm:max-h-[500px] sm:-translate-y-1/2">
+        <DialogTitle>Search</DialogTitle>
         <SearchHandlerClient />
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}
 
-export default SearchNav;
+export default SearchNav

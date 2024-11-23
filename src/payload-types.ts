@@ -407,6 +407,7 @@ export interface News {
         name?: string | null;
       }[]
     | null;
+  createdYear: number;
   slug?: string | null;
   slugLock?: boolean | null;
   updatedAt: string;
@@ -977,6 +978,7 @@ export interface NewsSelect<T extends boolean = true> {
         id?: T;
         name?: T;
       };
+  createdYear?: T;
   slug?: T;
   slugLock?: T;
   updatedAt?: T;
@@ -1455,7 +1457,7 @@ export interface Contact {
             blockType: 'text';
           }
         | {
-            Iframe: string;
+            src: string;
             id?: string | null;
             blockName?: string | null;
             blockType: 'iframe';
@@ -1552,7 +1554,7 @@ export interface ContactSelect<T extends boolean = true> {
         iframe?:
           | T
           | {
-              Iframe?: T;
+              src?: T;
               id?: T;
               blockName?: T;
             };

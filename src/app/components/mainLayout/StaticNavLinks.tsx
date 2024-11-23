@@ -32,9 +32,8 @@ const StaticNav = async () => {
       title: 'Kontakt',
       url: '/contact',
     },
-    { title: 'Dziennik', url: data.link },
   ]
-  return StaticNavT
+  return data.link ? [...StaticNavT, { title: 'Dziennik', url: data.link }] : StaticNavT
 }
 export const StaticNavLinksWithoutPrefix = StaticNav()
 
@@ -45,6 +44,11 @@ type Props = {
 }
 
 const StaticNavLinks = async ({ className, children, sheet }: Props) => {
-  return <ClientNavLinks StaticNav={await StaticNav()} className={className} sheet={sheet} />
+  const StaticNav2 = await StaticNav()
+  return (
+    <>
+      {StaticNav2 && <ClientNavLinks StaticNav={StaticNav2} className={className} sheet={sheet} />}
+    </>
+  )
 }
 export default StaticNavLinks

@@ -32,6 +32,9 @@ const RichText = dynamic(() => import('@/components/RichText'), { ssr: false })
 type Props = {}
 
 const BlockParser = ({ block }: { block: any }) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const [canChange, setCanChange] = useState(true)
+  const [imageUrl, setImageUrl] = useState(block.ImageUrl)
   if (block.blockType === 'iframe') {
     return (
       <iframe
@@ -57,21 +60,20 @@ const BlockParser = ({ block }: { block: any }) => {
 
   if (
     block.blockType === 'text' &&
-    typeof block.nameOfYourRichTextField != undefined &&
-    block.nameOfYourRichTextField != undefined
+    typeof block.RichText != undefined &&
+    block.RichText != undefined
   ) {
     return (
-      <div key={block.id} className="blockParserClass text-left text-xl [&>ul>ul>li]:list-none">
-        <RichText content={block.nameOfYourRichTextField} />
+      <div key={block.id} className="blockParserClass text-left  text-xl [&>ul>ul>li]:list-none">
+        <RichText
+          content={block.RichText}
+          className="w-full mx-auto blockParserClass"
+          enableGutter={false}
+        />
       </div>
     )
   }
   if (block.blockType === 'imageurl') {
-    const [isOpen, setIsOpen] = useState(false)
-    const [canChange, setCanChange] = useState(true)
-    const [imageUrl, setImageUrl] = useState(block.ImageUrl)
-    console.log(isOpen, canChange)
-
     return (
       <motion.div className="relative flex h-fit max-h-[600px] items-center justify-center overflow-hidden">
         <Image

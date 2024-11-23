@@ -1,8 +1,8 @@
-import Link from "next/link";
-import React from "react";
-import StaticNavLinks from "./StaticNavLinks";
-import Image from "next/image";
-type Props = {};
+import Link from 'next/link'
+import React from 'react'
+import StaticNavLinks from './StaticNavLinks'
+import Image from 'next/image'
+type Props = {}
 
 const Footer = async (props: Props) => {
   return (
@@ -19,13 +19,13 @@ const Footer = async (props: Props) => {
             <h2 className="">Social Media</h2>
             <div className="flex flex-col flex-wrap">
               <Link
-                href={"#"}
+                href={'#'}
                 className="h-fit w-fit py-5 pr-5 lowercase text-gray-500 transition-all first-letter:uppercase first-letter:text-primary hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
               >
                 Youtube
               </Link>
               <Link
-                href={"#"}
+                href={'#'}
                 className="h-fit w-fit py-5 pr-5 lowercase text-gray-500 transition-all first-letter:uppercase first-letter:text-primary hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
               >
                 FaceBook
@@ -34,20 +34,14 @@ const Footer = async (props: Props) => {
           </div>
           <div className="flex flex-col px-3">
             <h2 className="">Inne Strony</h2>
+
             <div className="flex flex-col flex-wrap">
               <Link
-                href={"/sitemap.xml"}
+                href={'https://zspzloczew.weebly.com/'}
                 className="h-fit w-fit py-5 pr-5 lowercase text-gray-500 transition-all first-letter:uppercase first-letter:text-primary hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
               >
-                Dziennik
-              </Link>
-            </div>
-            <div className="flex flex-col flex-wrap">
-              <Link
-                href={"https://zspzloczew.weebly.com/"}
-                className="h-fit w-fit py-5 pr-5 lowercase text-gray-500 transition-all first-letter:uppercase first-letter:text-primary hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
-              >
-                Stara Strona Szkoły
+                Poprzednia
+                <br /> Strona Szkoły
               </Link>
             </div>
           </div>
@@ -55,7 +49,7 @@ const Footer = async (props: Props) => {
             <h2 className="">Dla Botów</h2>
             <div className="flex flex-col flex-wrap">
               <Link
-                href={"/sitemap.xml"}
+                href={'/sitemap.xml'}
                 className="h-fit w-fit py-5 pr-5 lowercase text-gray-500 transition-all first-letter:uppercase first-letter:text-primary hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
               >
                 Sitemap
@@ -70,7 +64,7 @@ const Footer = async (props: Props) => {
           </div>
 
           <div>
-            {" "}
+            {' '}
             &nbsp; Powiatowy Zespół Szkół w Złoczewie
             <br /> 2024 - {new Date().getFullYear()}
           </div>
@@ -78,17 +72,13 @@ const Footer = async (props: Props) => {
       </div>
       <hr className="h-[1px] w-full max-w-screen-2xl border-none bg-gradient-to-r from-transparent via-secondary/50 to-transparent p-0" />
       <div className="py-5 text-center">
-        Wykonana z ❤️ Przez{" "}
-        <Link
-          href="https://ds-craft.vercel.app/"
-          className="underline"
-          target="_blank"
-        >
+        Wykonana z ❤️ Przez{' '}
+        <Link href="https://ds-craft.vercel.app/" className="underline" target="_blank">
           DS-Craft
         </Link>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

@@ -20,7 +20,7 @@ import type {
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
 } from '@/payload-types'
-
+import '@/app/(frontend)/globals.css'
 export type NodeTypes =
   | DefaultNodeTypes
   | SerializedBlockNode<CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps>
@@ -106,6 +106,8 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
           switch (blockType) {
             case 'cta':
               return <CallToActionBlock key={index} {...block} />
+            case 'iframe':
+              return <iframe className="py-2 w-full h-[500px]" {...block}></iframe>
             case 'mediaBlock':
               return (
                 <MediaBlock
@@ -175,6 +177,9 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                   </li>
                 )
               }
+            }
+            case 'horizontalrule': {
+              return <hr className="w-full p-0 m-0 h-0.5 bg-foreground border-0 " key={index} />
             }
             case 'quote': {
               return (
