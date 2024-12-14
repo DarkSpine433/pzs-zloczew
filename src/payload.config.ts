@@ -21,6 +21,7 @@ import { Contact } from './collections/Contact'
 import { SchoolJournal } from './collections/SchoolJournal'
 import { News } from './collections/News'
 import { Posts } from './collections/Posts'
+import { Projects } from './collections/Projects'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -67,7 +68,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, News, Media, Categories, Users, Posts],
+  collections: [Pages, News, Media, Categories, Users, Posts, Projects],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Offer, Contact, SchoolJournal],
   plugins: [

@@ -3,17 +3,14 @@ import { SheetClose } from '@/components/ui/sheet'
 import useStore from '@/lib/GlobalStateFavouriteNews'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { Suspense, useEffect, useLayoutEffect, useState } from 'react'
 import SkeletonNews from '../mainPageComponents/SkeletonNews'
-const RenderStaticNavLinks = dynamic(() => import('./RenderStaticNavLinks'), {
-  loading: () => <SkeletonNews repeat={6} className="h-5 w-20" />,
-})
-type Props = {
-  className?: string
-  children?: React.ReactNode
-  sheet?: boolean
-  StaticNav: any[]
-}
+
+import { StaticNavT } from './StaticNavT'
+import { StaticNav } from './StaticNavLinks'
+
+const RenderStaticNavLinks = dynamic(() => import('./RenderStaticNavLinks'), { ssr: false })
+
 const staticNavFun = (
   StaticNavLinkst: { title: string; url: string }[],
   isFavouriteExist: String,
@@ -39,16 +36,29 @@ const staticNavFun = (
   onLoad = true
   return StaticNavLinks
 }
-const ClientNavLinks = ({ className, children, sheet, StaticNav }: Props) => {
-  const arrayOfFavouriteItems = useStore((state) => state.arrayOfFavouriteItems)
-  const [StaticNavLinksCh, setStaticNavLinksCh] = useState(
-    staticNavFun(StaticNav, arrayOfFavouriteItems[0]),
-  )
 
+type Props = {
+  className?: string
+  children?: React.ReactNode
+  sheet?: boolean
+}
+const ClientNavLinks = ({ className, children, sheet }: Props) => {
+  const arrayOfFavouriteItems = useStore((state) => state.arrayOfFavouriteItems)
+  const [StaticNav2, setStaticNav2] = useState(StaticNavT)
+  const [StaticNavLinksCh, setStaticNavLinksCh] = useState(
+    staticNavFun(StaticNav2, arrayOfFavouriteItems[0]),
+  )
   useLayoutEffect(() => {
-    setStaticNavLinksCh(staticNavFun(StaticNav, arrayOfFavouriteItems[0]))
+    const StaticNavFetch = async () => {
+      const staticNavArray = await StaticNav()
+      setStaticNav2(staticNavArray)
+    }
+    StaticNavFetch()
+  }, [])
+  useLayoutEffect(() => {
+    setStaticNavLinksCh(staticNavFun(StaticNav2, arrayOfFavouriteItems[0]))
     console.log(StaticNavLinksCh)
-  }, [arrayOfFavouriteItems])
+  }, [arrayOfFavouriteItems, StaticNav2])
 
   return (
     <>
@@ -104,7 +114,7 @@ const ClientNavLinks = ({ className, children, sheet, StaticNav }: Props) => {
         <RenderStaticNavLinks
           StaticNavLinksCh={StaticNavLinksCh}
           className={className}
-          sheet={false}
+          sheet={sheet}
         />
       )}
     </>

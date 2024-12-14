@@ -1,4 +1,5 @@
 'use client'
+import dynamic from 'next/dynamic'
 import { cn } from '@/utilities/cn'
 import useClickableCard from '@/utilities/useClickableCard'
 import Link from 'next/link'
@@ -7,7 +8,12 @@ import React, { Fragment } from 'react'
 import type { News } from '@/payload-types'
 
 import { Media } from '@/components/Media'
-import TemplateNews from '@/app/components/news/TemplateNews'
+import { Skeleton } from '@mui/material'
+
+const TemplateNews = dynamic(() => import('@/app/components/news/TemplateNews'), {
+  ssr: false,
+  loading: () => <Skeleton variant="rounded" height={300} />,
+})
 
 export const Card: React.FC<{
   alignItems?: 'center'
@@ -30,7 +36,7 @@ export const Card: React.FC<{
 
   return (
     <article ref={card.ref}>
-      <TemplateNews doc={doc} />
+      <TemplateNews doc={doc} collection={relationTo} />
       {/* <div className="relative w-full ">
         {!metaImage && <div className="">No image</div>}
         {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} size="360px" />}

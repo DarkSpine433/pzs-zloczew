@@ -1,32 +1,33 @@
 import Link from 'next/link'
 import React from 'react'
-import StaticNavLinks from './StaticNavLinks'
+
 import Image from 'next/image'
+import ClientNavLinks from './ClientNavLinks'
 type Props = {}
 
-const Footer = async (props: Props) => {
+const Footer = (props: Props) => {
   return (
     <>
       <div className="z-40 flex w-full flex-row flex-wrap justify-center gap-y-10 pt-10">
         <div className="grid h-fit grid-cols-2 justify-center gap-10 md:grid-cols-4">
           <div className="flex flex-col px-3">
             <h2 className="">Szybka Nawigacja</h2>
-            <div className="flex flex-col flex-wrap pl-1">
-              <StaticNavLinks className="h-fit w-fit py-5 pr-5 lowercase text-gray-500 transition-all first-letter:uppercase first-letter:text-primary hover:translate-x-1 hover:text-primary hover:first-letter:text-white" />
+            <div className="flex flex-col flex-wrap pl-1  [&>*]:py-3 [&>*]:h-fit [&>*]:w-fit [&>*]:pr-5 [&>*]:lowercase [&>*]:text-gray-500 [&>*]:transition-all [&>*]:first-letter:uppercase [&>*]:first-letter:text-primary ">
+              <ClientNavLinks className="hover:translate-x-1 hover:text-primary hover:first-letter:text-white" />
             </div>
           </div>
           <div className="flex flex-col px-3">
             <h2 className="">Social Media</h2>
-            <div className="flex flex-col flex-wrap">
+            <div className="flex flex-col flex-wrap [&>*]:py-3 [&>*]:h-fit [&>*]:w-fit [&>*]:pr-5 [&>*]:lowercase [&>*]:text-gray-500 [&>*]:transition-all [&>*]:first-letter:uppercase [&>*]:first-letter:text-primary ">
               <Link
                 href={'#'}
-                className="h-fit w-fit py-5 pr-5 lowercase text-gray-500 transition-all first-letter:uppercase first-letter:text-primary hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
+                className="hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
               >
                 Youtube
               </Link>
               <Link
                 href={'#'}
-                className="h-fit w-fit py-5 pr-5 lowercase text-gray-500 transition-all first-letter:uppercase first-letter:text-primary hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
+                className="hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
               >
                 FaceBook
               </Link>
@@ -35,10 +36,10 @@ const Footer = async (props: Props) => {
           <div className="flex flex-col px-3">
             <h2 className="">Inne Strony</h2>
 
-            <div className="flex flex-col flex-wrap">
+            <div className="flex flex-col flex-wrap [&>*]:py-3 [&>*]:h-fit [&>*]:w-fit [&>*]:pr-5 [&>*]:lowercase [&>*]:text-gray-500 [&>*]:transition-all [&>*]:first-letter:uppercase [&>*]:first-letter:text-primary ">
               <Link
                 href={'https://zspzloczew.weebly.com/'}
-                className="h-fit w-fit py-5 pr-5 lowercase text-gray-500 transition-all first-letter:uppercase first-letter:text-primary hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
+                className="hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
               >
                 Poprzednia
                 <br /> Strona Szkoły
@@ -47,10 +48,10 @@ const Footer = async (props: Props) => {
           </div>
           <div className="flex flex-col px-3">
             <h2 className="">Dla Botów</h2>
-            <div className="flex flex-col flex-wrap">
+            <div className="flex flex-col flex-wrap [&>*]:py-3 [&>*]:h-fit [&>*]:w-fit [&>*]:pr-5 [&>*]:lowercase [&>*]:text-gray-500 [&>*]:transition-all [&>*]:first-letter:uppercase [&>*]:first-letter:text-primary ">
               <Link
                 href={'/sitemap.xml'}
-                className="h-fit w-fit py-5 pr-5 lowercase text-gray-500 transition-all first-letter:uppercase first-letter:text-primary hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
+                className="hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
               >
                 Sitemap
               </Link>

@@ -5,8 +5,6 @@ import PageClient from './page.client'
 
 import FetchNews from './FetchNews'
 
-export const revalidate = 600
-
 export default async function Page({
   searchParams,
 }: {

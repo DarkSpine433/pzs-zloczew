@@ -5,34 +5,23 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
+} from '@/components/ui/pagination'
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import PagginationInputClient from "./PagginationInputClient";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { FetchUrlObject } from "@/lib/FetchUrlObject";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import PagginationInputClient from './PagginationInputClient'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { FetchUrlObject } from '@/lib/FetchUrlObject'
 
 type Props = {
-  data: any;
-  page: number;
-  numberOfPages: number[];
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+  data: any
+  page: number
+  numberOfPages: number[]
+  searchParams: { [key: string]: string | string[] | undefined }
+}
 
-const PagginationInput = ({
-  data,
-  page,
-  numberOfPages,
-  searchParams,
-}: Props) => {
-  const isNumberOfPagesIsMoreThanNumberOfPagesToShow =
-    data.totalPages > numberOfPages.length;
+const PagginationInput = async ({ data, page, numberOfPages, searchParams }: Props) => {
+  const isNumberOfPagesIsMoreThanNumberOfPagesToShow = data.totalPages > numberOfPages.length
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-3">
       {isNumberOfPagesIsMoreThanNumberOfPagesToShow && (
@@ -79,11 +68,9 @@ const PagginationInput = ({
                   <PaginationItem>
                     <PaginationPrevious
                       aria-label="Poprzednia strona"
-                      href={FetchUrlObject({
-                        keyData: ["page"],
-                        valueData: [
-                          (data.page! - 1 >= 1 ? data.page! - 1 : 1).toString(),
-                        ],
+                      href={await FetchUrlObject({
+                        keyData: ['page'],
+                        valueData: [(data.page! - 1 >= 1 ? data.page! - 1 : 1).toString()],
                         searchParamsObject: searchParams,
                       })}
                     />
@@ -95,20 +82,15 @@ const PagginationInput = ({
           )}
           {isNumberOfPagesIsMoreThanNumberOfPagesToShow ? (
             <>
-              {numberOfPages.map((_, i) => {
-                const PagesNum =
-                  data.page - Math.floor(numberOfPages.length / 2) + i;
+              {numberOfPages.map(async (_, i) => {
+                const PagesNum = data.page - Math.floor(numberOfPages.length / 2) + i
                 const isMaxReachToShowMoreNewerPages =
-                  data.totalPages - data.page <
-                  Math.floor(numberOfPages.length / 2);
+                  data.totalPages - data.page < Math.floor(numberOfPages.length / 2)
 
                 const calc = isMaxReachToShowMoreNewerPages
-                  ? Math.floor(numberOfPages.length / 2) -
-                    (data.totalPages - data.page)
-                  : 0;
-                const ShowPagesNum = isMaxReachToShowMoreNewerPages
-                  ? PagesNum - calc
-                  : PagesNum;
+                  ? Math.floor(numberOfPages.length / 2) - (data.totalPages - data.page)
+                  : 0
+                const ShowPagesNum = isMaxReachToShowMoreNewerPages ? PagesNum - calc : PagesNum
                 return i + 1 > Math.floor(numberOfPages.length / 2) + calc ? (
                   <></>
                 ) : (
@@ -117,8 +99,8 @@ const PagginationInput = ({
                       <PaginationItem key={i}>
                         <PaginationLink
                           title={`Strona ${ShowPagesNum}`}
-                          href={FetchUrlObject({
-                            keyData: ["page"],
+                          href={await FetchUrlObject({
+                            keyData: ['page'],
                             valueData: [ShowPagesNum.toString().toString()],
                             searchParamsObject: searchParams,
                           })}
@@ -128,18 +110,14 @@ const PagginationInput = ({
                       </PaginationItem>
                     )}
                   </>
-                );
+                )
               })}
 
-              <PaginationItem
-                className={
-                  page != data.page ? "" : "pointer-events-none opacity-30"
-                }
-              >
+              <PaginationItem className={page != data.page ? '' : 'pointer-events-none opacity-30'}>
                 <PaginationLink
                   title={`Strona ${data.page}`}
-                  href={FetchUrlObject({
-                    keyData: ["page"],
+                  href={await FetchUrlObject({
+                    keyData: ['page'],
                     valueData: [data.page.toString()],
                     searchParamsObject: searchParams,
                   })}
@@ -148,10 +126,10 @@ const PagginationInput = ({
                 </PaginationLink>
               </PaginationItem>
 
-              {numberOfPages.map((page, i) => {
-                const PagesNum = data.page + i + 1;
+              {numberOfPages.map(async (page, i) => {
+                const PagesNum = data.page + i + 1
                 const isMinReachToShowMoreOlderPages =
-                  data.page - Math.floor(numberOfPages.length / 2) < 1;
+                  data.page - Math.floor(numberOfPages.length / 2) < 1
 
                 return i + 1 >
                   Math.floor(numberOfPages.length / 2) +
@@ -163,8 +141,8 @@ const PagginationInput = ({
                       <PaginationItem key={i}>
                         <PaginationLink
                           title={`Strona ${PagesNum}`}
-                          href={FetchUrlObject({
-                            keyData: ["page"],
+                          href={await FetchUrlObject({
+                            keyData: ['page'],
                             valueData: [PagesNum.toString()],
                             searchParamsObject: searchParams,
                           })}
@@ -174,23 +152,21 @@ const PagginationInput = ({
                       </PaginationItem>
                     )}
                   </>
-                );
+                )
               })}
             </>
           ) : (
-            numberOfPages.map((page, i) => {
+            numberOfPages.map(async (page, i) => {
               return (
                 page <= data.totalPages && (
                   <PaginationItem
                     key={i}
-                    className={
-                      page != data.page ? "" : "pointer-events-none opacity-30"
-                    }
+                    className={page != data.page ? '' : 'pointer-events-none opacity-30'}
                   >
                     <PaginationLink
                       title={`Strona ${page}`}
-                      href={FetchUrlObject({
-                        keyData: ["page"],
+                      href={await FetchUrlObject({
+                        keyData: ['page'],
                         valueData: [page.toString()],
                         searchParamsObject: searchParams,
                       })}
@@ -199,7 +175,7 @@ const PagginationInput = ({
                     </PaginationLink>
                   </PaginationItem>
                 )
-              );
+              )
             })
           )}
           {page != data.totalPages && (
@@ -209,8 +185,8 @@ const PagginationInput = ({
                   <PaginationItem>
                     <PaginationNext
                       aria-label="Następna strona"
-                      href={FetchUrlObject({
-                        keyData: ["page"],
+                      href={await FetchUrlObject({
+                        keyData: ['page'],
                         valueData: [
                           (data.page! + 1 <= data.totalPages
                             ? data.page! + 1
@@ -231,7 +207,7 @@ const PagginationInput = ({
         </PaginationContent>
       </Pagination>
     </div>
-  );
-};
+  )
+}
 
-export default PagginationInput;
+export default PagginationInput

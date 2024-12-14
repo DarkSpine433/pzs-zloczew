@@ -1,30 +1,30 @@
-import { getPayloadHMR } from "@payloadcms/next/utilities";
-import configPromise from "@payload-config";
-import dynamic from "next/dynamic";
-import SkeletonNews from "../../mainPageComponents/SkeletonNews";
+import { getPayloadHMR } from '@payloadcms/next/utilities'
+import configPromise from '@payload-config'
+import dynamic from 'next/dynamic'
+import SkeletonNews from '../../mainPageComponents/SkeletonNews'
 
 type Props = {
-  repetition: number;
-};
-const TemplateNews = dynamic(() => import("../TemplateNews"), {
+  repetition: number
+}
+const TemplateNews = dynamic(() => import('../TemplateNews'), {
   ssr: false,
   loading: () => <SkeletonNews className="size-72 md:size-60 lg:size-80" />,
-});
+})
 const FetchRecentNews = async ({ repetition }: Props) => {
-  const payload = await getPayloadHMR({ config: configPromise });
+  const payload = await getPayloadHMR({ config: configPromise })
   const data = await payload.find({
-    collection: "news",
+    collection: 'news',
     limit: repetition,
     pagination: true,
-    sort: "-createdAt",
-  });
+    sort: '-createdAt',
+  })
   return (
     <>
       {data.docs.map((doc: any, index: number) => {
-        return <TemplateNews doc={doc} index={index} />;
+        return <TemplateNews doc={doc} index={index} key={index} />
       })}
     </>
-  );
-};
+  )
+}
 
-export default FetchRecentNews;
+export default FetchRecentNews

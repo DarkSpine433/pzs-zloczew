@@ -34,7 +34,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html
       lang="pl"
-      suppressHydrationWarning
+      suppressHydrationWarning={true}
       className={`${cn(GeistSans.variable, GeistMono.variable)} scroll-smooth`}
     >
       <Head>
@@ -53,13 +53,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           />
           <LivePreviewListener />
-
-          <nav className="sticky left-0 top-0 z-50 mx-auto w-full bg-foreground px-10 py-1 text-background">
-            <div className="mx-auto max-w-[1200px]">
-              <Nav />
-            </div>
-          </nav>
-          {children}
+          <header className="sticky left-0 top-0 z-50 mx-auto w-full bg-foreground px-10 py-1 text-background">
+            <nav>
+              <div className="mx-auto max-w-[1200px]">
+                {' '}
+                <Nav />{' '}
+              </div>
+            </nav>
+          </header>
+          <main className="  heightFullCalc">{children}</main>
           <footer className="z-50 bg-foreground text-background">
             <div className="mx-auto max-w-7xl">
               <Footer />

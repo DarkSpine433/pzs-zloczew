@@ -1,4 +1,8 @@
-export const FetchUrlObject = ({
+'use server'
+
+import { redirect, RedirectType } from 'next/navigation'
+
+export const FetchUrlObject = async ({
   keyData,
   valueData,
   searchParamsObject,
@@ -25,4 +29,25 @@ export const FetchUrlObject = ({
   })
 
   return urlSearchString
+}
+
+export const redirectToFetcheUrlObject = async ({
+  leftJoinPrefix,
+  rightJoinPrefix,
+  searchParams,
+  formData,
+}: {
+  leftJoinPrefix?: string
+  rightJoinPrefix?: string
+  searchParams?: any
+  formData?: any
+}) => {
+  return redirect(
+    `/news/${FetchUrlObject({
+      keyData: ['page', 'year'],
+      valueData: ['1', formData.getAll('year').join(',')],
+      searchParamsObject: searchParams,
+    })}&scrollToTop=true`,
+    RedirectType.replace,
+  )
 }

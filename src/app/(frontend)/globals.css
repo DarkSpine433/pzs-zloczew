@@ -66,8 +66,9 @@ hr {
   display: none !important;
 }
 .heightFullCalc {
-  min-height: calc(100vh - 1500px);
+  min-height: calc(100vh - 450px);
 }
+
 @layer base {
   * {
     @apply border-border;

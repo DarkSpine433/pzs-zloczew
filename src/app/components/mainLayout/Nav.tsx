@@ -15,12 +15,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import SkeletonNews from '../mainPageComponents/SkeletonNews'
-import { Header } from '@/Header/Component'
 
-const StaticNavLinks = dynamic(() => import('./StaticNavLinks'), {
-  loading: () => <SkeletonNews repeat={5} className="ml-5 h-7 w-20 rounded-sm" />,
-})
+import ClientNavLinks from './ClientNavLinks'
+
 const FetchNavContent = dynamic(() => import('./FetchNavContent'))
 type Props = {}
 
@@ -55,8 +52,7 @@ const ShowMenu = () => {
           <SheetDescription>Tu znajdziesz czego szukasz.</SheetDescription>
         </SheetHeader>
 
-        <Header />
-
+        <FetchNavContent />
         <SheetFooter>
           <div className="py-5 text-center">
             Wykonana z ❤️ Przez{' '}
@@ -76,12 +72,12 @@ const Nav = (props: Props) => {
       <Link href="/" className="flex-1 items-center self-center justify-self-center sm:flex">
         <Image src="/logo.png" alt="logo" width={100} height={100} className="size-10 lg:size-12" />
 
-        <h2 className="text-md  font-bold uppercase text-primary ">
-          <strong>pzs ZŁoczew </strong>
+        <h2 className="text-md  font-bold uppercase text-primary hidden sm:block xl:block lg:hidden ">
+          <strong>pzs ZŁoczew</strong>
         </h2>
       </Link>
       <div className="hidden justify-end gap-5 font-semibold text-gray-500 transition-all lg:flex">
-        <StaticNavLinks className="rounded-lg px-3 py-1.5 transition-all hover:bg-secondary hover:text-primary" />
+        <ClientNavLinks className="rounded-lg px-3 py-1.5 transition-all hover:bg-secondary hover:text-primary" />
       </div>
 
       <div className="flex flex-1 items-center justify-end gap-3">

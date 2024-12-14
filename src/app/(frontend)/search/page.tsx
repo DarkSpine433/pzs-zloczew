@@ -55,11 +55,20 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
   })
 
   return (
-    <div className="pt-24 pb-24">
+    <div className="pt-10 pb-24 min-h-dvh">
       <PageClient />
+
       <div className="container mb-16">
+        <div className="pb-4 px-4 flex flex-col gap-3">
+          <h1 className="text-5xl sm:text-6xl font-extrabold">
+            <strong>Wyszukaj</strong>
+          </h1>
+          <h3 className="text-foreground/50 text-sm pl-2">
+            Znajdź to, czego potrzebujesz w naszej bazie informacji.
+          </h3>
+        </div>
         <div className="prose dark:prose-invert max-w-none">
-          <h1 className="sr-only">Search</h1>
+          <h2 className="sr-only">Wyszukaj</h2>
           <Search />
         </div>
       </div>

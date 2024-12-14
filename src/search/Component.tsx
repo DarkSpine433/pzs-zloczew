@@ -23,7 +23,7 @@ export const Search: React.FC = () => {
         }}
       >
         <Label htmlFor="search" className="sr-only">
-          Search
+          Wyszukaj
         </Label>
         <Input
           id="search"
@@ -33,7 +33,7 @@ export const Search: React.FC = () => {
           placeholder="Search"
         />
         <button type="submit" className="sr-only">
-          submit
+          Szukaj
         </button>
       </form>
     </div>
