@@ -14,12 +14,12 @@ type Props = {}
 const Home = (props: Props) => {
   return (
     <>
-      <div className="pointer-events-none absolute left-0 top-0  hidden h-dvh w-full bg-gradient-to-b from-primary/30 to-transparent lg:block"></div>
-      <Section maxWidth="max-w-[1440px] relative h-fit">
+      <div className="pointer-events-none absolute left-0 top-0 z-0  hidden h-dvh w-full bg-gradient-to-b from-primary/30 to-transparent lg:block"></div>
+      <Section maxWidth="max-w-[1440px] relative h-fit" className="overflow-hidden">
         <CursorMovmentAnimation>
           <ContactButton className="bg-white p-6 text-lg text-foreground opacity-60" />
         </CursorMovmentAnimation>
-        <div className="pointer-events-none absolute -top-[45rem] left-1/2  h-[80rem] w-[130rem] -translate-x-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)] md:-top-[28rem] md:left-full md:size-[96rem] lg:left-[80%]"></div>
+        <div className="pointer-events-none absolute -top-[45rem] left-1/2  h-[80rem] w-[130rem] -translate-x-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)] md:-top-[28rem] md:left-full md:size-[96rem] lg:left-[80%] overflow-hidden"></div>
       </Section>
       <Section maxWidth="max-w-6xl z-10 min-h-40">
         <h2
@@ -34,7 +34,7 @@ const Home = (props: Props) => {
       <Section className="mt-20 overflow-hidden">
         <div className="relative rounded-lg border-t border-primary/30 bg-secondary/50 pb-20 pt-10">
           <hr className="absolute top-0 m-0 h-[0.1rem] w-full border-none bg-gradient-to-r from-transparent from-10% via-primary to-transparent to-90% p-0" />
-          <div className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[130rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)]"></div>
+          <div className="pointer-events-none absolute left-1/2 top-0 z-0 size-[130rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)]"></div>
 
           <h2 className="scroll-m-20 space-y-10 bg-gradient-to-r from-blue-800 from-20% via-blue-500 to-blue-800 to-80% bg-clip-text pb-4 text-center text-4xl font-extrabold uppercase text-transparent drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
             Oferta Naszej Szkoły
@@ -153,8 +153,8 @@ const Home = (props: Props) => {
           <hr className="absolute bottom-0 m-0 h-[0.1rem] w-full border-none bg-gradient-to-r from-transparent from-10% via-primary to-transparent to-90% p-0" />
         </div>
       </Section>
-      <Section maxWidth="max-w-[1440px] px-3 " className="pt-20">
-        <div className="relative">
+      <Section maxWidth="max-w-[1440px] px-3  " className="pt-20 overflow-hidden">
+        <div className="">
           <div className="flex h-max w-full justify-center">
             <h2 className="max-w-4xl bg-gradient-to-r from-primary from-40% via-foreground to-primary to-60% bg-clip-text text-center text-[3.2rem] font-extrabold uppercase text-transparent [line-height:1] sm:text-7xl md:text-8xl">
               <strong>Rozpocznij swoją przygodę edukacyjną z nami!</strong>
@@ -163,7 +163,7 @@ const Home = (props: Props) => {
           <div className="z-50 py-20">
             <Cta />
           </div>
-          <div className="pointer-events-none absolute bottom-0 left-1/2 -z-20 h-[50rem] w-[60rem] -translate-x-1/2 translate-y-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_70%)]"></div>
+          <div className="pointer-events-none absolute bottom-0 left-1/2 z-0 h-[50rem] w-[60rem] -translate-x-1/2 translate-y-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_70%)]"></div>
         </div>
       </Section>{' '}
     </>

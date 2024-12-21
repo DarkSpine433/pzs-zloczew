@@ -8,7 +8,8 @@ type Props = {}
 const Footer = (props: Props) => {
   return (
     <>
-      <div className="z-40 flex w-full flex-row flex-wrap justify-center gap-y-10 pt-10">
+      <div className="z-40 flex w-full flex-row flex-wrap justify-center gap-y-10  pb-20">
+        <hr className="h-[3px] w-full max-w-screen-2xl border-none bg-gradient-to-r from-transparent via-primary to-transparent p-0" />{' '}
         <div className="grid h-fit grid-cols-2 justify-center gap-10 md:grid-cols-4">
           <div className="flex flex-col px-3">
             <h2 className="">Szybka Nawigacja</h2>
@@ -58,7 +59,6 @@ const Footer = (props: Props) => {
             </div>
           </div>
         </div>
-
         <div className="mx-auto flex w-fit flex-col flex-wrap items-center text-center text-sm sm:mx-0">
           <div>
             <Image src="/logo.png" alt="logo" width={130} height={130} />
@@ -71,12 +71,16 @@ const Footer = (props: Props) => {
           </div>
         </div>
       </div>
-      <hr className="h-[1px] w-full max-w-screen-2xl border-none bg-gradient-to-r from-transparent via-secondary/50 to-transparent p-0" />
-      <div className="py-5 text-center">
+      <hr className="h-[1px] w-full max-w-screen-2xl border-none bg-gradient-to-r from-transparent via-secondary/20 to-transparent p-0" />
+      <div className="py-3 text-center   ">
         Wykonana z ❤️ Przez{' '}
         <Link href="https://ds-craft.vercel.app/" className="underline" target="_blank">
           DS-Craft
         </Link>
+      </div>
+      <div className="py-2  text-center  opacity-50 text-sm">
+        © {new Date().getFullYear()} Powiatowy Zespół Szkół w Złoczewie. Wszelkie prawa
+        zastrzeżone.
       </div>
     </>
   )

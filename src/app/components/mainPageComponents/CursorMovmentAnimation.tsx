@@ -41,7 +41,7 @@ const CursorMovmentAnimation = ({ children }: Props) => {
       }}
     >
       {' '}
-      <div className="flex w-full flex-col items-center justify-center gap-10 text-center lg:w-[600px] lg:items-start lg:justify-normal lg:text-left">
+      <div className="flex w-full flex-col items-center justify-center gap-10 text-center lg:w-[600px] lg:items-start lg:justify-normal lg:text-left z-20">
         <div className="text inline-block max-w-2xl space-y-10 bg-gradient-to-tl from-primary from-40% via-foreground to-primary to-60% bg-clip-text text-5xl font-bold text-transparent drop-shadow-[0_1.2px_1.2px_hsl(--primary)]">
           <h1 className="text-6xl uppercase tracking-widest sm:text-8xl">
             <strong>PZS ZŁOCZEW</strong>

@@ -71,7 +71,7 @@ const FavouriteButtonClient = ({ id, isBlock, className, collection }: Props) =>
             variant={'secondary'}
             type="submit"
             name="favourite"
-            className={`group rounded-xl px-4 py-6 text-primary shadow shadow-primary transition-all hover:shadow-lg hover:shadow-primary hover:outline hover:outline-2 hover:outline-primary ${className}`}
+            className={`group rounded-xl px-4 py-6 text-primary outline outline-2 outline-transparent shadow shadow-primary transition-all hover:shadow-inner hover:shadow-primary/50  hover:outline-2 hover:outline-primary ${className}`}
           >
             {arrayOfFavouriteItems !== undefined && arrayOfFavouriteItems.includes(id) ? (
               <svg

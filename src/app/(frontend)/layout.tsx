@@ -61,8 +61,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               </div>
             </nav>
           </header>
-          <main className=" overflow-x-hidden  heightFullCalc">{children}</main>
-          <footer className="z-50 bg-foreground text-background">
+          <main className="overflow-x-hidden  heightFullCalc">{children}</main>
+          <footer className="z-50 bg-foreground text-background pb-3 ">
             <div className="mx-auto max-w-7xl">
               <Footer />
             </div>

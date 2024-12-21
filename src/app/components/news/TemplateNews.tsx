@@ -24,7 +24,7 @@ const TemplateNews = ({ doc, reference, customUrl, slugAndIdAndRelationTo }: Pro
   console.log('TemplateNews', reference?.relationTo, reference?.value)
 
   return (
-    <div className="group relative h-fit w-full overflow-hidden rounded-xl transition-all hover:shadow-md">
+    <div className="group relative h-fit w-full overflow-hidden rounded-xl transition-all  hover:shadow-xl outline outline-1 outline-gray-200 hover:outline-primary hover:outline-1 focus-within:outline-primary focus-within:outline-1">
       <CMSLink
         type={'reference'}
         reference={{ relationTo: reference?.relationTo, value: reference?.value }}
