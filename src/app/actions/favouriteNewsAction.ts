@@ -1,31 +1,33 @@
 type Props = {
-  id: string;
-};
+  id: string
+  collection?: string
+}
 
-export const favouriteDeleateOrAdd = ({ id }: Props) => {
-  if (typeof localStorage !== "undefined") {
-    if (localStorage.getItem("FavouriteNews")?.split(",").includes(id)) {
+export const favouriteDeleateOrAdd = ({ id, collection = 'News' }: Props) => {
+  const collectionName = `Favourite${collection[0].toUpperCase() + collection.slice(1)}`
+  if (typeof localStorage !== 'undefined') {
+    if (localStorage.getItem(collectionName)?.split(',').includes(id)) {
       const storage = localStorage
-        .getItem("FavouriteNews")
-        ?.split(",")
-        .filter((v) => v.length > 0)!;
+        .getItem(collectionName)
+        ?.split(',')
+        .filter((v) => v.length > 0)!
 
-      storage?.splice(storage?.indexOf(id), 1);
-      localStorage.removeItem("FavouriteNews");
-      localStorage.setItem("FavouriteNews", storage.join(","));
+      storage?.splice(storage?.indexOf(id), 1)
+      localStorage.removeItem(collectionName)
+      localStorage.setItem(collectionName, storage.join(','))
     } else {
       const storage =
-        localStorage.getItem("FavouriteNews") !== null &&
-        localStorage.getItem("FavouriteNews") !== undefined &&
-        localStorage.getItem("FavouriteNews") !== ""
-          ? localStorage.getItem("FavouriteNews") + ","
-          : "";
+        localStorage.getItem(collectionName) !== null &&
+        localStorage.getItem(collectionName) !== undefined &&
+        localStorage.getItem(collectionName) !== ''
+          ? localStorage.getItem(collectionName) + ','
+          : ''
 
-      localStorage.setItem("FavouriteNews", storage + id);
+      localStorage.setItem(collectionName, storage + id)
     }
   }
-};
+}
 
-export const fetchFavourites = () => {
-  return localStorage.getItem("FavouriteNews");
-};
+// export const fetchFavourites = () => {
+//   return localStorage.getItem(collectionName)
+// }

@@ -2,9 +2,11 @@
 import type { Block } from 'payload/types'
 
 import {
+  FixedToolbarFeature,
+  HeadingFeature,
   HTMLConverterFeature,
+  InlineToolbarFeature,
   lexicalEditor,
-  TreeViewFeature,
   lexicalHTML,
 } from '@payloadcms/richtext-lexical'
 
@@ -17,20 +19,22 @@ export const RichTextBlock: Block = {
 
   fields: [
     {
-      name: 'nameOfYourRichTextField',
+      name: 'RichText',
       label: 'Tekst Input || Użyj "/" aby użyć więcej opcji lub zaznacz tekst zeby go edytować',
       type: 'richText',
 
       editor: lexicalEditor({
-        features: ({ defaultFeatures }) => [
-          ...defaultFeatures,
+        features: ({ defaultFeatures, rootFeatures }) => {
+          return [
+            ...defaultFeatures,
+            ...defaultFeatures,
 
-          // The HTMLConverter Feature is the feature which manages the HTML serializers. If you do not pass any arguments to it, it will use the default serializers.
-
-          HTMLConverterFeature({}),
-        ],
+            HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
+            FixedToolbarFeature(),
+            InlineToolbarFeature(),
+          ]
+        },
       }),
     },
-    lexicalHTML('nameOfYourRichTextField', { name: 'nameOfYourRichTextField_html' }),
   ],
 }

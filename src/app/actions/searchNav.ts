@@ -1,34 +1,34 @@
-"use server";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
-import configPromise from "../../payload.config";
+'use server'
+import { getPayloadHMR } from '@payloadcms/next/utilities'
+import configPromise from '../../payload.config'
 type Props = {
-  title: string;
-};
+  title: string
+}
 
 export const searchNav = async ({ title }: Props) => {
   const SearchEngineArray: { pages: any[]; projects: any[]; news: any[] } = {
     pages: [],
     projects: [],
     news: [],
-  };
-  const limitOfSearches = 10;
+  }
+  const limitOfSearches = 10
 
-  const payload = await getPayloadHMR({ config: configPromise });
-  var { docs } = await payload.find({
-    collection: "pages",
-    sort: "-createdAt",
+  const payload = await getPayloadHMR({ config: configPromise })
+  var docx = await payload.find({
+    collection: 'pages',
+    sort: '-createdAt',
     limit: limitOfSearches,
     where: {
       title: {
         like: title,
       },
     },
-  });
-  docs.map((doc) => SearchEngineArray.pages.push(doc));
+  })
+  docx.docs.map((doc) => SearchEngineArray.pages.push(doc))
 
   var { docs } = await payload.find({
-    collection: "news",
-    sort: "-createdAt",
+    collection: 'news',
+    sort: '-createdAt',
     limit: limitOfSearches,
     where: {
       or: [
@@ -49,8 +49,8 @@ export const searchNav = async ({ title }: Props) => {
         },
       ],
     },
-  });
-  docs.map((doc) => SearchEngineArray.news.push(doc));
+  })
+  docs.map((doc) => SearchEngineArray.news.push(doc))
 
-  return SearchEngineArray;
-};
+  return SearchEngineArray
+}

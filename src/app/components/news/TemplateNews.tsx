@@ -1,31 +1,42 @@
-import { parseISO, format } from "date-fns";
-import Image from "next/image";
-import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardTitle,
-} from "@/components/ui/card";
+import { parseISO, format } from 'date-fns'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card'
 
-import FavouriteButtonClient from "./FavouriteButtonClient";
+import FavouriteButtonClient from './FavouriteButtonClient'
+import { CMSLink } from '@/components/Link'
 
 type Props = {
-  doc: any;
-  index?: number;
-};
+  doc: any
+  index?: number
+  idForLink?: string
+  collection?: string
+  customUrl?: string
 
-const TemplateNews = ({ doc, index }: Props) => {
+  reference?: {
+    relationTo: any
+    value: any
+  } | null
+  slugAndIdAndRelationTo?: { slug: string | any; id: string | number | any; relationTo?: string }
+}
+
+const TemplateNews = ({ doc, reference, customUrl, slugAndIdAndRelationTo }: Props) => {
+  console.log('TemplateNews', reference?.relationTo, reference?.value)
+
   return (
-    <div
-      key={index + doc.id}
-      className="group relative h-fit w-full overflow-hidden rounded-xl transition-all hover:shadow-md"
-    >
-      <Link href={`/news/p/${doc.id}`}>
+    <div className="group relative h-fit w-full overflow-hidden rounded-xl transition-all  hover:shadow-xl outline outline-1 outline-gray-200 hover:outline-primary hover:outline-1 focus-within:outline-primary focus-within:outline-1">
+      <CMSLink
+        type={'reference'}
+        reference={{ relationTo: reference?.relationTo, value: reference?.value }}
+        url={customUrl}
+        className="h-96 w-96"
+        appearance={'inline'}
+        slugAndIdAndRelationTo={slugAndIdAndRelationTo}
+      >
         <Card className="overflow-hidden shadow-none transition-all">
           <div className="flex h-full w-full items-center justify-center overflow-hidden">
             {doc.thumbnail != undefined &&
-            doc.thumbnail != "" &&
+            doc.thumbnail != '' &&
             doc.thumbnail.match(/\.(jpg|jpeg|png|gif|bmp|tiff|webp|svg)$/i) ? (
               <Image
                 src={doc.thumbnail}
@@ -39,32 +50,35 @@ const TemplateNews = ({ doc, index }: Props) => {
           </div>
 
           <CardContent className="mt-5 space-y-3">
-            <CardTitle className="text-lg font-bold leading-6 text-primary/80 transition-all group-hover:text-primary">
-              <div className="pr-2">{doc.title}</div>
+            <CardTitle className="text-lg font-bold leading-6 text-primary/80 transition-all group-hover:text-primary pr-2">
+              {doc.title}
             </CardTitle>
-            <CardDescription className="space-y-1 text-sm">
-              {doc.author != undefined &&
-              doc.author != "" &&
-              doc.author.name != "" &&
-              doc.author.name !== undefined ? (
+            <div className="space-y-1 text-sm">
+              {doc.populatedAuthors != undefined &&
+              typeof doc.populatedAuthors != undefined &&
+              doc.populatedAuthors.length > 0 ? (
                 <div className="text-gray-600">
                   Autor:&nbsp;
-                  <span className="font-semibold">{doc.author.name}</span>
+                  <span className="font-semibold">
+                    {doc.populatedAuthors.map((author, index) => (
+                      <span key={author.id + index}>{author.name}</span>
+                    ))}
+                  </span>
                 </div>
               ) : null}
               <div className="text-gray-600">
                 Data:&nbsp;
                 <time dateTime={doc.createdAt} className="font-semibold">
-                  {format(parseISO(doc.createdAt), "dd.MM.yyyy")}
+                  {format(parseISO(doc.createdAt), 'dd.MM.yyyy')}
                 </time>
               </div>
-            </CardDescription>
+            </div>
           </CardContent>
         </Card>
-      </Link>
-      <FavouriteButtonClient id={doc.id} />
+      </CMSLink>
+      <FavouriteButtonClient id={doc.id} collection={reference?.relationTo} />
     </div>
-  );
-};
+  )
+}
 
-export default TemplateNews;
+export default TemplateNews

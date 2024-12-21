@@ -1,8 +1,8 @@
-"use client";
+'use client'
 
-import { favouriteDeleateOrAdd } from "@/app/actions/favouriteNewsAction";
-import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { favouriteDeleateOrAdd } from '@/app/actions/favouriteNewsAction'
+import { Button } from '@/components/ui/button'
+import { useState, useEffect } from 'react'
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -12,96 +12,75 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { create } from "zustand";
+} from '@/components/ui/alert-dialog'
+import { create } from 'zustand'
+import useStore from '@/lib/GlobalStateFavouriteNews'
 
 type Props = {
-  id: string;
-  isBlock?: boolean;
-  className?: string;
-};
-type Store = {
-  arrayOfFavouriteItems: string[];
-  increasePopulation: () => void;
-};
-const useStore = create<Store>()((set) => ({
-  arrayOfFavouriteItems:
-    typeof window !== "undefined" &&
-    typeof localStorage !== null &&
-    typeof localStorage !== undefined
-      ? localStorage.getItem("FavouriteNews")?.split(",")!
-      : [],
+  id: string
+  isBlock?: boolean
+  className?: string
+  collection?: string
+}
 
-  increasePopulation: () =>
-    set(() => ({
-      arrayOfFavouriteItems:
-        typeof window !== "undefined" &&
-        typeof localStorage !== null &&
-        typeof localStorage !== undefined
-          ? localStorage.getItem("FavouriteNews")?.split(",")
-          : [],
-    })),
-}));
-const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
-  const arrayOfFavouriteItems = useStore(
-    (state) => state.arrayOfFavouriteItems,
-  );
-  const test2 = useStore((state) => state.increasePopulation);
-  const [isDialogFavouriteAccept, setIsDialogFavouriteAccept] = useState(false);
+const FavouriteButtonClient = ({ id, isBlock, className, collection }: Props) => {
+  const arrayOfFavouriteItems = useStore((state) => state.arrayOfFavouriteItems)
+  const test2 = useStore((state) => state.increasePopulation)
+  const [isDialogFavouriteAccept, setIsDialogFavouriteAccept] = useState(false)
   const addFavouriteHandler = () => {
     if (
-      typeof window !== "undefined" &&
+      typeof window !== 'undefined' &&
       typeof localStorage !== null &&
       typeof localStorage !== undefined
     ) {
-      localStorage.getItem("isDialogFavouriteAccept")
+      localStorage.getItem('isDialogFavouriteAccept')
         ? setIsDialogFavouriteAccept(true)
-        : setIsDialogFavouriteAccept(false);
-      if (localStorage.getItem("isDialogFavouriteAccept") === "true") {
+        : setIsDialogFavouriteAccept(false)
+      if (localStorage.getItem('isDialogFavouriteAccept') === 'true') {
         try {
-          favouriteDeleateOrAdd({ id: id });
-          test2();
+          favouriteDeleateOrAdd({ id: id, collection: collection })
+          test2()
         } catch (error) {
-          console.log(error);
+          console.log(error)
         }
       }
     }
-  };
+  }
+  console.log(arrayOfFavouriteItems)
 
   useEffect(() => {
     if (
-      typeof window !== "undefined" &&
+      typeof window !== 'undefined' &&
       typeof localStorage !== null &&
       typeof localStorage !== undefined
     ) {
-      localStorage.getItem("isDialogFavouriteAccept")
+      localStorage.getItem('isDialogFavouriteAccept')
         ? setIsDialogFavouriteAccept(true)
-        : setIsDialogFavouriteAccept(false);
+        : setIsDialogFavouriteAccept(false)
     }
-  }, []);
+  }, [])
 
   return (
     <>
       {isDialogFavouriteAccept ? (
         <div
           onClick={addFavouriteHandler}
-          className={`${isBlock ? "" : "absolute right-5 top-2"} transition-all`}
+          className={`${isBlock ? '' : 'absolute right-5 top-2'} transition-all`}
         >
           <Button
-            variant={"secondary"}
+            variant={'secondary'}
             type="submit"
             name="favourite"
-            className={`group rounded-xl px-4 py-6 text-primary shadow shadow-primary transition-all hover:shadow-lg hover:shadow-primary hover:outline hover:outline-2 hover:outline-primary ${className}`}
+            className={`group rounded-xl px-4 py-6 text-primary outline outline-2 outline-transparent shadow shadow-primary transition-all hover:shadow-inner hover:shadow-primary/50  hover:outline-2 hover:outline-primary ${className}`}
           >
-            {arrayOfFavouriteItems !== undefined &&
-            arrayOfFavouriteItems.includes(id) ? (
+            {arrayOfFavouriteItems !== undefined && arrayOfFavouriteItems.includes(id) ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className={`size-6 ${arrayOfFavouriteItems !== undefined && arrayOfFavouriteItems.includes(id) ? "fill-primary" : ""}`}
+                className={`size-6 ${arrayOfFavouriteItems !== undefined && arrayOfFavouriteItems.includes(id) ? 'fill-primary' : ''}`}
               >
                 <path
                   strokeLinecap="round"
@@ -130,11 +109,9 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
       ) : (
         <AlertDialog>
           <AlertDialogTrigger onClick={addFavouriteHandler} asChild>
-            <div
-              className={`${isBlock ? "" : "absolute right-5 top-2"} transition-all`}
-            >
+            <div className={`${isBlock ? '' : 'absolute right-5 top-2'} transition-all`}>
               <Button
-                variant={"secondary"}
+                variant={'secondary'}
                 type="submit"
                 name="favourite"
                 className={`group rounded-xl px-4 py-6 text-primary shadow shadow-primary transition-all hover:shadow-lg hover:shadow-primary hover:outline hover:outline-2 hover:outline-primary ${className}`}
@@ -163,18 +140,16 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
               </AlertDialogTitle>
               <AlertDialogDescription className="space-y-2 text-lg">
                 <p>
-                  Nasza strona internetowa ceni prywatność użytkowników, dlatego
-                  nie zbieramy ani nie przechowujemy danych osobowych na naszych
-                  serwerach. Wszystkie informacje są przechowywane bezpośrednio
-                  na urządzeniu użytkownika.
+                  Nasza strona internetowa ceni prywatność użytkowników, dlatego nie zbieramy ani
+                  nie przechowujemy danych osobowych na naszych serwerach. Wszystkie informacje są
+                  przechowywane bezpośrednio na urządzeniu użytkownika.
                 </p>
 
                 <p>
-                  Oznacza to, że w przypadku usunięcia danych przez użytkownika,
-                  wszystkie informacje zostaną trwale usunięte i nie będzie
-                  możliwości ich odzyskania. Ponadto, dane te nie są dostępne na
-                  innych urządzeniach użytkownika. Dzięki temu zapewniamy
-                  maksymalny poziom prywatności i bezpieczeństwa danych naszych
+                  Oznacza to, że w przypadku usunięcia danych przez użytkownika, wszystkie
+                  informacje zostaną trwale usunięte i nie będzie możliwości ich odzyskania.
+                  Ponadto, dane te nie są dostępne na innych urządzeniach użytkownika. Dzięki temu
+                  zapewniamy maksymalny poziom prywatności i bezpieczeństwa danych naszych
                   użytkowników.
                 </p>
               </AlertDialogDescription>
@@ -182,8 +157,8 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
             <AlertDialogFooter>
               <AlertDialogCancel
                 onClick={() => {
-                  localStorage.setItem("isDialogFavouriteAccept", "true");
-                  addFavouriteHandler();
+                  localStorage.setItem('isDialogFavouriteAccept', 'true')
+                  addFavouriteHandler()
                 }}
               >
                 Rozumiem
@@ -193,7 +168,7 @@ const FavouriteButtonClient = ({ id, isBlock, className }: Props) => {
         </AlertDialog>
       )}
     </>
-  );
-};
+  )
+}
 
-export default FavouriteButtonClient;
+export default FavouriteButtonClient

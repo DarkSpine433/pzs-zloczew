@@ -1,5 +1,5 @@
 // @ts-nocheck
-import type { GlobalConfig } from 'payload/types'
+import type { GlobalConfig } from 'payload'
 
 import { ImageUrl } from './blocks/ImageUrl'
 import { RichTextBlock } from './blocks/RichTextBlock'

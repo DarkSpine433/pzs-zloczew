@@ -1,33 +1,33 @@
-const StaticNav = [
-  {
-    title: "Strona główna",
-    url: "/",
-  },
-  {
-    title: "Aktualności",
-    url: "/news",
-  },
-  {
-    title: "Projekty",
-    url: "/projects",
-  },
-  {
-    title: "Kontakt",
-    url: "/contact",
-  },
-  {
-    title: "Zapisane",
-    url: "/saved",
-  },
-];
+'use server'
+import { getPayloadHMR } from '@payloadcms/next/utilities'
+import configPromise from '@payload-config'
+import { StaticNavT } from './StaticNavT'
 
-export const StaticNavLinksWithoutPrefix = StaticNav;
+export const StaticNav = async () => {
+  const payload = await getPayloadHMR({ config: configPromise })
+  const data: any = await payload.findGlobal({
+    slug: 'schooljournal',
+  })
 
-export const StaticNavLinks = StaticNav.map((link) => {
-  link.url = link.url.length > 1 ? `${link.url}?_` : link.url;
-  link.url = link.url.toLowerCase();
-  return link;
-});
+  return data.link ? [...StaticNavT, { title: 'Dziennik', url: data.link }] : StaticNavT
+}
 
-//Links are not sensetive to Upper case. It will be converted to lower case
-//Links are sensetive to postion you give them
+// type Props = {
+//   className?: string
+//   children?: React.ReactNode
+//   sheet?: boolean
+// }
+
+// const StaticNavLinks = async ({ className, children, sheet }: Props) => {
+//   const StaticNav2 = await StaticNav()
+//   return (
+//     <>
+//       {StaticNav2 && (
+//         <Suspense fallback={<SkeletonNews repeat={6} className="h-5 w-20" />}>
+//           <ClientNavLinks StaticNav={StaticNav2} className={className} sheet={sheet} />
+//         </Suspense>
+//       )}
+//     </>
+//   )
+// }
+// export default StaticNavLinks
