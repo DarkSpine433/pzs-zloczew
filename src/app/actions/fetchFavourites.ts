@@ -1,26 +1,26 @@
-"use server";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
-import configPromise from "../../payload.config";
+'use server'
+import { getPayloadHMR } from '@payloadcms/next/utilities'
+import configPromise from '../../payload.config'
 
 type Props = {
-  idsNews: string;
-};
+  idsNews: string
+}
 
 export const fetchFavourites = async ({ idsNews }: Props) => {
   var favourites: { news: any[] } = {
     news: [],
-  };
-  const payload = await getPayloadHMR({ config: configPromise });
+  }
+  const payload = await getPayloadHMR({ config: configPromise })
   var { docs } = await payload.find({
-    collection: "news",
+    collection: 'news',
     where: {
       id: {
-        in: idsNews.split(","),
+        in: idsNews.split(','),
       },
     },
     limit: 50,
-  });
-  favourites.news = docs;
+  })
+  favourites.news = docs
 
-  return favourites;
-};
+  return favourites
+}

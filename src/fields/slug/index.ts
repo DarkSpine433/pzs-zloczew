@@ -28,6 +28,8 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
   const slugField: TextField = {
     name: 'slug',
     type: 'text',
+    required: true,
+    unique: true,
     index: true,
     label: 'Slug',
     ...(slugOverrides || {}),

@@ -56,6 +56,7 @@ export const Pages: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
+      unique: true,
       required: true,
     },
     {

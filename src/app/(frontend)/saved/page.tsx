@@ -1,44 +1,45 @@
-"use client";
+'use client'
 
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from 'react'
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import { fetchFavourites } from "@/app/actions/fetchFavourites";
-import TemplateNews from "@/app/components/news/TemplateNews";
-import SpinerLoader from "@/app/components/SpinerLoader";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/carousel'
+import { fetchFavourites } from '@/app/actions/fetchFavourites'
+import TemplateNews from '@/app/components/news/TemplateNews'
+import SpinerLoader from '@/app/components/SpinerLoader'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
-type Props = {};
+type Props = {}
 
 const Page = (props: Props) => {
-  const [favourites, setFavourites] = useState<any>({});
-  const [isLoading, setIsLoading] = useState(true);
-
+  const [favourites, setFavourites] = useState<any>({})
+  const [isLoading, setIsLoading] = useState(true)
+  console.log(favourites)
   useLayoutEffect(() => {
     const fetchFavouritesClient = async () => {
       try {
-        const idsNews = localStorage.getItem("FavouriteNews")?.toString();
+        const idsNews = localStorage.getItem('FavouriteNews')?.toString()
         if (!idsNews) {
-          setFavourites({ newsMessage: "Brak zapisanych artykułów" });
+          setFavourites({ newsMessage: 'Brak zapisanych artykułów' })
         } else {
-          const data = await fetchFavourites({ idsNews });
-          setFavourites(data);
+          const data = await fetchFavourites({ idsNews })
+
+          setFavourites(data)
         }
       } catch (err) {
-        setFavourites([{ title: "Nie udało się wczytać listy ulubionych" }]);
+        setFavourites([{ title: 'Nie udało się wczytać listy ulubionych' }])
       } finally {
-        setIsLoading(false);
+        setIsLoading(false)
       }
-    };
+    }
 
-    fetchFavouritesClient();
-  }, []);
+    fetchFavouritesClient()
+  }, [])
 
   return (
     <>
@@ -64,7 +65,11 @@ const Page = (props: Props) => {
                   <CarouselContent>
                     {favourites.news.map((value: any, index: number) => (
                       <CarouselItem className="max-w-96" key={index + value.id}>
-                        <TemplateNews index={index} doc={value} />
+                        <TemplateNews
+                          index={index}
+                          doc={value}
+                          reference={{ relationTo: 'news', value: value }}
+                        />
                       </CarouselItem>
                     ))}
                   </CarouselContent>
@@ -90,7 +95,7 @@ const Page = (props: Props) => {
         </Carousel>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

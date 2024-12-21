@@ -14,12 +14,12 @@ type Props = {}
 const Home = (props: Props) => {
   return (
     <>
-      <div className="pointer-events-none absolute left-0 top-0 -z-50 hidden h-dvh w-full bg-gradient-to-b from-primary/30 to-transparent lg:block"></div>
+      <div className="pointer-events-none absolute left-0 top-0  hidden h-dvh w-full bg-gradient-to-b from-primary/30 to-transparent lg:block"></div>
       <Section maxWidth="max-w-[1440px] relative h-fit">
         <CursorMovmentAnimation>
           <ContactButton className="bg-white p-6 text-lg text-foreground opacity-60" />
         </CursorMovmentAnimation>
-        <div className="pointer-events-none absolute -top-[45rem] left-1/2 -z-20 h-[80rem] w-[130rem] -translate-x-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)] md:-top-[28rem] md:left-full md:size-[96rem] lg:left-[80%]"></div>
+        <div className="pointer-events-none absolute -top-[45rem] left-1/2  h-[80rem] w-[130rem] -translate-x-1/2 rounded-full bg-[radial-gradient(rgba(37,99,235,0.6)_0%,rgba(0,0,0,0.00)_30%)] md:-top-[28rem] md:left-full md:size-[96rem] lg:left-[80%]"></div>
       </Section>
       <Section maxWidth="max-w-6xl z-10 min-h-40">
         <h2

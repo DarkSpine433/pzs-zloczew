@@ -15,6 +15,7 @@ type Props = {
 }
 
 const ImageDialog = ({ urlOfImage }: Props) => {
+  const { Base64 } = require('js-base64')
   const [isOpen, setIsOpen] = useState(false)
   const [canChange, setCanChange] = useState(true)
   const [imageUrl, setImageUrl] = useState(urlOfImage)
@@ -27,16 +28,22 @@ const ImageDialog = ({ urlOfImage }: Props) => {
       })
 
       const keyDownFun = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
+        if (e.key === 'Escape' || e.code === 'Space') {
           setIsOpen(false)
           setCanChange(true)
         }
       }
+      const isScrolling = (e: KeyboardEvent) => {
+        setIsOpen(false)
+        setCanChange(true)
+      }
 
       window.addEventListener('keydown', keyDownFun)
+      window.addEventListener('wheel', isScrolling)
 
       return () => {
-        window.removeEventListener('keydown', keyDownFun)
+        window.removeEventListener('wheel', keyDownFun)
+        window.removeEventListener('keydown', isScrolling)
       }
     }
   }, [isOpen])
@@ -52,6 +59,8 @@ const ImageDialog = ({ urlOfImage }: Props) => {
         quality={0}
         priority={false}
         className="h-full w-full opacity-0"
+        placeholder="blur"
+        blurDataURL={Base64.encode(imageUrl)}
       />
       <AnimatePresence>
         <motion.div
@@ -137,6 +146,8 @@ const ImageDialog = ({ urlOfImage }: Props) => {
               height={1000}
               quality={100}
               className="h-full w-fit rounded-xl object-contain shadow-md shadow-primary"
+              placeholder="blur"
+              blurDataURL={Base64.encode(imageUrl)}
             />{' '}
           </div>
         </motion.div>

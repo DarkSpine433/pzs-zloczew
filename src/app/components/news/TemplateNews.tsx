@@ -4,20 +4,35 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card'
 
 import FavouriteButtonClient from './FavouriteButtonClient'
+import { CMSLink } from '@/components/Link'
 
 type Props = {
   doc: any
   index?: number
+  idForLink?: string
   collection?: string
+  customUrl?: string
+
+  reference?: {
+    relationTo: any
+    value: any
+  } | null
+  slugAndIdAndRelationTo?: { slug: string | any; id: string | number | any; relationTo?: string }
 }
 
-const TemplateNews = ({ doc, index, collection = 'news' }: Props) => {
+const TemplateNews = ({ doc, reference, customUrl, slugAndIdAndRelationTo }: Props) => {
+  console.log('TemplateNews', reference?.relationTo, reference?.value)
+
   return (
-    <div
-      key={index + doc.id}
-      className="group relative h-fit w-full overflow-hidden rounded-xl transition-all hover:shadow-md"
-    >
-      <Link href={`/${collection}/${doc.id}`}>
+    <div className="group relative h-fit w-full overflow-hidden rounded-xl transition-all hover:shadow-md">
+      <CMSLink
+        type={'reference'}
+        reference={{ relationTo: reference?.relationTo, value: reference?.value }}
+        url={customUrl}
+        className="h-96 w-96"
+        appearance={'inline'}
+        slugAndIdAndRelationTo={slugAndIdAndRelationTo}
+      >
         <Card className="overflow-hidden shadow-none transition-all">
           <div className="flex h-full w-full items-center justify-center overflow-hidden">
             {doc.thumbnail != undefined &&
@@ -60,8 +75,8 @@ const TemplateNews = ({ doc, index, collection = 'news' }: Props) => {
             </div>
           </CardContent>
         </Card>
-      </Link>
-      <FavouriteButtonClient id={doc.id} collection={collection} />
+      </CMSLink>
+      <FavouriteButtonClient id={doc.id} collection={reference?.relationTo} />
     </div>
   )
 }

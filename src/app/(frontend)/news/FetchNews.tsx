@@ -74,7 +74,12 @@ const FetchNews = async ({
       <div className="flex flex-col gap-10 pb-20">
         <div className="mx-auto grid h-fit w-full max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {data.docs.map((doc, index) => (
-            <TemplateNews key={doc.id + index} doc={doc} index={index} />
+            <TemplateNews
+              key={doc.id + index}
+              doc={doc}
+              index={index}
+              reference={{ relationTo: 'news', value: doc }}
+            />
           ))}
         </div>
         {data.totalPages > 1 && (

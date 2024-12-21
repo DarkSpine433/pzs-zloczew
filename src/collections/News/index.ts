@@ -66,6 +66,7 @@ export const News: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      unique: true,
     },
     {
       type: 'tabs',

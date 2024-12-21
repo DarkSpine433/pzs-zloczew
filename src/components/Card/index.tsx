@@ -19,7 +19,8 @@ export const Card: React.FC<{
   alignItems?: 'center'
   className?: string
   doc?: News
-  relationTo?: 'news'
+  id?: string
+  relationTo?: string
   showCategories?: boolean
   title?: string
 }> = (props) => {
@@ -33,10 +34,15 @@ export const Card: React.FC<{
   const titleToUse = titleFromProps || title
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
   const href = `/${relationTo}/${id}`
-
+  console.log(doc)
   return (
     <article ref={card.ref}>
-      <TemplateNews doc={doc} collection={relationTo} />
+      <TemplateNews
+        doc={doc}
+        idForLink={id}
+        slugAndIdAndRelationTo={{ slug: slug, id: id, relationTo: relationTo }}
+        collection={relationTo}
+      />
       {/* <div className="relative w-full ">
         {!metaImage && <div className="">No image</div>}
         {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} size="360px" />}

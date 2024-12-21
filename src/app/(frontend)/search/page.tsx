@@ -8,6 +8,7 @@ import { News } from '@/payload-types'
 import { Search } from '@/search/Component'
 import PageClient from './page.client'
 import dynamic from 'next/dynamic'
+import TemplateNews from '@/app/components/news/TemplateNews'
 
 const NotFoundAnimation = dynamic(() => import('@/app/components/NotFoundAnimation'), {})
 
@@ -20,7 +21,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
   const { q: query } = await searchParamsPromise
   const payload = await getPayload({ config: configPromise })
 
-  const news = await payload.find({
+  const data = await payload.find({
     collection: 'search',
     depth: 1,
     limit: 12,
@@ -53,7 +54,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
         }
       : {}),
   })
-
+  console.log(data)
   return (
     <div className="pt-10 pb-24 min-h-dvh">
       <PageClient />
@@ -73,8 +74,20 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
         </div>
       </div>
 
-      {news.totalDocs > 0 ? (
-        <CollectionArchive news={news.docs as unknown as News[]} />
+      {data.totalDocs > 0 ? (
+        <div className="mx-auto grid h-fit w-full max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {data.docs.map((doc, index) => (
+            <TemplateNews
+              key={doc.id + index}
+              doc={doc}
+              slugAndIdAndRelationTo={{
+                slug: doc.slug,
+                id: doc.doc.value,
+                relationTo: doc.doc.relationTo,
+              }}
+            />
+          ))}
+        </div>
       ) : (
         <div className="container">
           <NotFoundAnimation NotFoundFor={query} />

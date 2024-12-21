@@ -1,13 +1,16 @@
+const { nextui } = require('@nextui-org/theme')
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    './node_modules/@nextui-org/theme/dist/components/image.js',
   ],
-  darkMode: ['selector', '[data-theme="dark"]'],
-  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
+  darkMode: ['class', 'selector', '[data-theme="dark"]'],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography'), nextui()],
   prefix: '',
   safelist: [
     'lg:col-span-4',

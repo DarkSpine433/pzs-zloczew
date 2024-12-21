@@ -27,8 +27,8 @@ export async function generateStaticParams() {
     ?.filter((doc) => {
       return doc.slug !== 'home'
     })
-    .map(({ slug }) => {
-      return { slug }
+    .map(({ slug, id }) => {
+      return { slug: [slug, id] }
     })
 
   return params
@@ -36,18 +36,18 @@ export async function generateStaticParams() {
 
 type Args = {
   params: Promise<{
-    slug?: string
+    slug?: string[]
   }>
 }
 
 export default async function Page({ params: paramsPromise }: Args) {
-  const { slug = 'home' } = await paramsPromise
-  const url = '/' + slug
+  let { slug = [] } = await paramsPromise
 
-  let page: PageType | null
+  const url = '/' + slug?.join('/')
 
-  page = await queryPageBySlug({
-    slug,
+  let page = await queryPageBySlug({
+    slug: slug[1],
+    id: slug[0],
   })
 
   if (!page) {
@@ -69,15 +69,16 @@ export default async function Page({ params: paramsPromise }: Args) {
 }
 
 export async function generateMetadata({ params: paramsPromise }): Promise<Metadata> {
-  const { slug = 'home' } = await paramsPromise
+  const { slug } = await paramsPromise
   const page = await queryPageBySlug({
-    slug,
+    slug: slug[1],
+    id: slug[0],
   })
 
   return generateMeta({ doc: page })
 }
 
-const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
+const queryPageBySlug = cache(async ({ slug, id }: { slug: string; id?: string | number }) => {
   const { isEnabled: draft } = await draftMode()
 
   const payload = await getPayload({ config: configPromise })
@@ -88,9 +89,18 @@ const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
     limit: 1,
     overrideAccess: draft,
     where: {
-      slug: {
-        equals: slug,
-      },
+      and: [
+        {
+          slug: {
+            equals: slug,
+          },
+        },
+        {
+          id: {
+            equals: id?.toString(),
+          },
+        },
+      ],
     },
   })
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { motion, useMotionValue, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useTransform } from 'motion/react'
 import Link from 'next/link'
 import { useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
@@ -80,7 +80,7 @@ const CursorMovmentAnimation = ({ children }: Props) => {
       {windowWidth !== 0 && (
         <>
           {windowWidth >= 1024 ? (
-            <div className="absolute -right-24 top-0 -z-10 hidden h-fit justify-end overflow-hidden md:flex lg:-right-20 xl:right-0">
+            <div className="absolute -right-24 top-0 z-10  hidden h-fit justify-end overflow-hidden md:flex lg:-right-20 xl:right-0">
               <div className="relative size-fit [perspective:150px]">
                 <motion.div
                   style={{
@@ -96,8 +96,6 @@ const CursorMovmentAnimation = ({ children }: Props) => {
                     alt="zloczew"
                     width={600}
                     height={600}
-                    quality={100}
-                    priority={true}
                   />
                 </motion.div>
                 <motion.div
@@ -159,7 +157,7 @@ const CursorMovmentAnimation = ({ children }: Props) => {
               </div>
             </div>
           ) : (
-            <div className="absolute left-0 top-0 -z-40 h-fit w-full">
+            <div className="absolute left-0 top-0 z-10 h-fit w-full">
               <Image
                 src="/img/mainPage/zsp_zloczew.jpeg"
                 alt="zloczew"
