@@ -72,3 +72,20 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     </html>
   )
 }
+export function generateMetadata(): Metadata {
+  return {
+    authors: [
+      {
+        name: 'DS-Craft Team',
+        url: 'https://bit.ly/ds-craft',
+      },
+    ],
+
+    openGraph: {
+      images: ['/deafult_og.jpeg'], // Replace with the actual image URL
+      type: 'website',
+      locale: 'pl_PL',
+      siteName: 'PZS Złoczew',
+    },
+  }
+}

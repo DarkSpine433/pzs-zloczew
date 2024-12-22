@@ -75,7 +75,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
       </div>
 
       {data.totalDocs > 0 ? (
-        <div className="mx-auto grid h-fit w-full max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid h-fit w-full max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 lg:grid-cols-3 px-3">
           {data.docs.map((doc, index) => (
             <TemplateNews
               key={doc.id + index}
@@ -99,6 +99,31 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Payload Website Template Search`,
+    title: 'Wyniki wyszukiwania - PZS Złoczew',
+    description:
+      'Poznaj wyniki wyszukiwania na stronie PZS Złoczew. Odkryj informacje o naszej szkole, wydarzeniach, ofercie edukacyjnej i więcej.',
+    keywords: [
+      'PZS Złoczew',
+      'szkoła Złoczew',
+      'wyniki wyszukiwania',
+      'edukacja',
+      'oferta edukacyjna',
+      'wydarzenia szkolne',
+    ],
+    authors: [
+      {
+        name: 'DS-Craft Team',
+        url: 'https://bit.ly/ds-craft',
+      },
+    ],
+    openGraph: {
+      title: 'Wyniki wyszukiwania - PZS Złoczew',
+      description:
+        'Wyniki wyszukiwania na stronie PZS Złoczew. Znajdź interesujące treści dotyczące naszej szkoły w Złoczewie.',
+      url: 'https://www.pzszloczew.pl/search', // Replace with the actual search page URL
+      type: 'website',
+      locale: 'pl_PL',
+      siteName: 'PZS Złoczew',
+    },
   }
 }

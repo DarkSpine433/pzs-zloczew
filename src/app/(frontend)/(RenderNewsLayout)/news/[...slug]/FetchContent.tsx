@@ -1,5 +1,4 @@
-import BlockParser from '@/app/components/blockParser/BlockParser'
-import { getPayloadHMR } from '@payloadcms/next/utilities'
+import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 
 import { format, parseISO } from 'date-fns'
@@ -7,8 +6,9 @@ import FavouriteButtonClient from '@/app/components/news/FavouriteButtonClient'
 import { Separator } from '@/components/ui/separator'
 import ShareButton from '@/app/components/ShareButton'
 import RichText from '@/components/RichText'
+
 const FetchContent = async ({ id }: { id: string }) => {
-  const payload = await getPayloadHMR({ config: configPromise })
+  const payload = await getPayload({ config: configPromise })
   const data: any = await payload.findByID({
     id: id,
     collection: 'news',

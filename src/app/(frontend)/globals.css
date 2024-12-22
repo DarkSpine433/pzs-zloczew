@@ -68,7 +68,10 @@ hr {
 .heightFullCalc {
   min-height: calc(100vh - 300px);
 }
-
+.removeBorder {
+  border: none !important;
+  border-style: none !important;
+}
 @layer base {
   * {
     @apply border-border;
