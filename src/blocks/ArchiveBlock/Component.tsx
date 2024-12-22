@@ -28,7 +28,7 @@ export const ArchiveBlock: React.FC<
 
     const fetchedNews = await payload.find({
       collection: 'news',
-      sort: 'createdAt',
+      sort: '-createdAt',
       depth: 1,
       limit,
       ...(flattenedCategories && flattenedCategories.length > 0

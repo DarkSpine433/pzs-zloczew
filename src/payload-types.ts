@@ -417,7 +417,7 @@ export interface News {
   };
   lexicalRichText?: string | null;
   publishedAt?: string | null;
-  authors?: (string | User)[] | null;
+  authors: (string | User)[];
   populatedAuthors?:
     | {
         id?: string | null;

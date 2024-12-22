@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 
-import type { Metadata } from 'next'
+import type { Metadata, ResolvingMetadata } from 'next'
 
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import configPromise from '@payload-config'
@@ -87,3 +87,24 @@ const queryPageBySlug = cache(async ({ slug, id }: { slug: string; id?: string |
 
   return result.docs?.[0] || null
 })
+
+export async function generateMetadata(
+  { params: paramsPromise }: Args,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  let { slug = [] } = await paramsPromise
+  const url = '/' + slug?.join('/')
+  let page = await queryPageBySlug({
+    slug: slug[1],
+    id: slug[0],
+  })
+  return {
+    title: page.meta?.title || 'Payload Website Template news',
+    description: page.meta?.description,
+    openGraph: {
+      url: url,
+      title: page.meta?.title || 'Payload Website Template news',
+      description: page.meta?.description || 'News ',
+    },
+  }
+}

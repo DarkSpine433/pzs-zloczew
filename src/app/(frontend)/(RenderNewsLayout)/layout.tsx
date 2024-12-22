@@ -1,9 +1,9 @@
 import Section from '@/app/components/mainPageComponents/Section'
 import SkeletonNews from '@/app/components/mainPageComponents/SkeletonNews'
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
-import { Button } from '@/components/ui/button'
 
 import { Skeleton } from '@mui/material'
+import Button from '@mui/material/Button'
 
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -31,7 +31,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             href="/news"
             className="mx-auto mt-10 flex w-fit items-center justify-center text-center"
           >
-            <Button>Zobacz Więcej</Button>
+            <Button color="primary" variant="contained">
+              Zobacz Więcej
+            </Button>
           </Link>
         </Section>
       </div>

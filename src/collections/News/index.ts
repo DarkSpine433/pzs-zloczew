@@ -85,7 +85,6 @@ export const News: CollectionConfig = {
                     FixedToolbarFeature(),
                     InlineToolbarFeature(),
                     HorizontalRuleFeature(),
-                    HTMLConverterFeature({}),
                   ]
                 },
               }),
@@ -182,6 +181,7 @@ export const News: CollectionConfig = {
     {
       name: 'authors',
       type: 'relationship',
+      required: true,
       admin: {
         position: 'sidebar',
       },

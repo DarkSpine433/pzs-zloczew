@@ -6,6 +6,7 @@ import Cta from '@/app/components/mainPageComponents/Cta'
 import ContactButton from '@/app/components/ui/ContactButton'
 import dynamic from 'next/dynamic'
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
+import { Metadata } from 'next/types'
 
 const GetOffer = dynamic(() => import('./GetOffer'))
 
@@ -168,6 +169,38 @@ const Home = (props: Props) => {
       </Section>{' '}
     </>
   )
+}
+export function generateMetadata(): Metadata {
+  return {
+    title: 'PZS Złoczew - Strona Główna',
+    description:
+      'Witamy na oficjalnej stronie PZS Złoczew. Poznaj naszą ofertę edukacyjną, wydarzenia szkolne, oraz wszystkie informacje na temat naszej szkoły w Złoczewie.',
+    keywords: [
+      'PZS Złoczew',
+      'szkoła Złoczew',
+      'oferta edukacyjna',
+      'wydarzenia szkolne',
+      'edukacja Złoczew',
+      'szkoła średnia Złoczew',
+    ],
+    authors: [
+      {
+        name: 'DS-Craft Team',
+        url: 'https://bit.ly/ds-craft',
+      },
+    ],
+
+    openGraph: {
+      title: 'PZS Złoczew - Strona Główna',
+      description:
+        'Witamy na stronie PZS Złoczew! Odkryj naszą ofertę edukacyjną, wydarzenia, aktualności oraz wszystko, co warto wiedzieć o naszej szkole.',
+      images: [`/deafult_og.jpeg`],
+      url: `${process.env.NEXT_PUBLIC_URL}`, // Replace with the actual homepage URL
+      type: 'website',
+      locale: 'pl_PL',
+      siteName: 'PZS Złoczew',
+    },
+  }
 }
 
 export default Home

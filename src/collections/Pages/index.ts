@@ -36,6 +36,7 @@ export const Pages: CollectionConfig = {
       url: ({ data }) => {
         const path = generatePreviewPath({
           slug: typeof data?.slug === 'string' ? data.slug : '',
+          id: typeof data?.id === 'string' ? data.id : '',
           collection: 'pages',
         })
 
@@ -79,7 +80,7 @@ export const Pages: CollectionConfig = {
         },
         {
           name: 'meta',
-          label: 'SEO',
+          label: 'SEO/Metadata',
           fields: [
             OverviewField({
               titlePath: 'meta.title',

@@ -8,10 +8,11 @@ const collectionPrefixMap: Partial<Record<CollectionSlug, string>> = {
 type Props = {
   collection: keyof typeof collectionPrefixMap
   slug: string
+  id?: string
 }
 
-export const generatePreviewPath = ({ collection, slug }: Props) => {
-  const path = `${collectionPrefixMap[collection]}/${slug}`
+export const generatePreviewPath = ({ collection, slug, id }: Props) => {
+  const path = `${collectionPrefixMap[collection]}/${id}/${slug}`
 
   const params = {
     slug,
