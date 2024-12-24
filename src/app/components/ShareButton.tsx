@@ -1,20 +1,20 @@
-"use client";
+'use client'
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 
 type Props = {
-  className?: string;
-};
+  className?: string
+}
 
 const ShareButton = ({ className }: Props) => {
   return (
     <Button
-      variant={"default"}
+      variant={'default'}
       type="submit"
       name="favourite"
-      className={`group rounded-xl px-4 py-6 text-primary shadow shadow-primary transition-all hover:shadow-lg hover:shadow-primary hover:outline hover:outline-2 hover:outline-primary ${className}`}
+      className={`group rounded-xl px-4 py-6 text-primary shadow-sm shadow-background transition-all   outline outline-1 outline-transparent hover:shadow-sm hover:shadow-transparent hover:translate-y-0.5  hover:outline hover:outline-1 hover:outline-background ${className}`}
       onClick={() =>
-        typeof navigator !== "undefined" &&
+        typeof navigator !== 'undefined' &&
         navigator.canShare({ url: window.location.href }) &&
         navigator.share({ url: window.location.href })
       }
@@ -25,7 +25,7 @@ const ShareButton = ({ className }: Props) => {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="size-6 stroke-background group-hover:stroke-primary"
+        className="size-6 stroke-background "
       >
         <path
           strokeLinecap="round"
@@ -34,7 +34,7 @@ const ShareButton = ({ className }: Props) => {
         />
       </svg>
     </Button>
-  );
-};
+  )
+}
 
-export default ShareButton;
+export default ShareButton

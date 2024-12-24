@@ -17,7 +17,12 @@ export const CollectionArchive: React.FC<Props> = (props) => {
       <div>
         <div className="grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-12 gap-y-4 gap-x-4 lg:gap-y-8 lg:gap-x-8 xl:gap-x-8 ">
           {news?.map((result, index) => {
-            if (typeof result === 'object' && result !== null && result.meta?.title) {
+            if (
+              typeof result === 'object' &&
+              result !== null &&
+              result.meta?.title &&
+              result._status === 'published'
+            ) {
               return (
                 <div className="col-span-4 " key={index}>
                   <Card className="h-full" doc={result} relationTo={'news'} />

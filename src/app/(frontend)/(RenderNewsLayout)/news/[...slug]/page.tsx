@@ -52,11 +52,50 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { id } = page
 
   return (
-    <article>
-      <div className="flex flex-col min-h-full">
-        <FetchContent id={id} />
-      </div>
-    </article>
+    <>
+      <style>
+        {`
+          .show-news-u-are-in-${slug[0].toString()} {
+            pointer-events: none;
+            opacity: 0.7;
+            filter: grayscale(100%);
+            border: 1px solid black;
+            postion:relative;
+          } 
+          .show-news-u-are-in-${slug[0].toString()}::after {   
+            pointer-events: all;
+            content: 'Aktualnie Przeglądasz';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 20px;
+            color: black;
+          }    
+            remove-pointer-events-${slug[0].toString()}{
+              pointer-events: none;
+        
+            }
+        `}
+      </style>
+      <article>
+        <div className="flex flex-col min-h-full">
+          <FetchContent id={id} />
+        </div>
+      </article>{' '}
+    </>
   )
 }
 const queryPageBySlug = cache(async ({ slug, id }: { slug: string; id?: string | number }) => {

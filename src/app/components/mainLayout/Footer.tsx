@@ -41,6 +41,7 @@ const Footer = (props: Props) => {
               <Link
                 href={'https://zspzloczew.weebly.com/'}
                 className="hover:translate-x-1 hover:text-primary hover:first-letter:text-white"
+                target="_blank"
               >
                 Poprzednia
                 <br /> Strona Szkoły

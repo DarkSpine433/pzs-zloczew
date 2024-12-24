@@ -31,6 +31,7 @@ const RenderStaticNavLinks = ({ StaticNavLinksCh, sheet, className }: Props) => 
       href={nav.url.toLowerCase()}
       key={nav.title + nav.url + index}
       className={`${className}  transition-all ${nav.title === `Zapisane` ? `spring-element` : ''} `}
+      target={nav.external === true ? '_blank' : '_self'}
     >
       <Component sheet={sheet}>{nav.title}</Component>
     </Link>
