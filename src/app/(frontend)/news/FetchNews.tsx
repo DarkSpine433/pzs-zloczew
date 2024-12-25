@@ -41,10 +41,10 @@ const FetchNews = async ({
         stopAnimation
         customComponents={
           <div className="flex w-full flex-col items-center justify-center gap-5 text-center">
-            <div className="text-3xl">Nie Ma Strony Nr:{page}</div>
+            <div className="text-3xl">Brak Wyników </div>
             <Button>
               <Link
-                href={`/news${FetchUrlObject({ keyData: ['page'], valueData: ['1'], searchParamsObject: searchParams })}`}
+                href={`/news${await FetchUrlObject({ keyData: ['page'], valueData: ['1'], searchParamsObject: [] })}`}
               >
                 Wróć na stronę pierwszą
               </Link>

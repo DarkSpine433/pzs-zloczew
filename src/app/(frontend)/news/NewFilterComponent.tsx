@@ -7,7 +7,9 @@ import configPromise from '@/payload.config'
 import { FetchUrlObject } from '@/lib/FetchUrlObject'
 import { redirect, RedirectType } from 'next/navigation'
 import Form from 'next/form'
-import NewFilterComponentclient from './NewFilterComponent.client'
+import dynamic from 'next/dynamic'
+const NewFilterComponentclient = dynamic(() => import('./NewFilterComponent.client'))
+
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined }
 }
@@ -42,7 +44,9 @@ const NewFilterComponent = async ({ searchParams }: Props) => {
   //   )
   // }
 
-  return NewFilterComponentclient({ searchParams, newDate, lastData })
+  return (
+    <NewFilterComponentclient lastData={lastData} newDate={newDate} searchParams={searchParams} />
+  )
 }
 
 export default NewFilterComponent
