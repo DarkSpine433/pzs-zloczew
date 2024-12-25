@@ -15,7 +15,7 @@ import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 
-const FetchContent = dynamic(() => import('./FetchContent'))
+const FetchContent = dynamic(() => import('../../../../components/blockParser/FetchContent'))
 
 // type Params = Promise<{ id: string }>
 // const page = async (props: { params: Params }) => {
@@ -40,16 +40,14 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   const url = '/' + slug?.join('/')
 
-  let page = await queryPageBySlug({
+  let data = await queryPageBySlug({
     slug: slug[1],
     id: slug[0],
   })
 
-  if (!page) {
+  if (!data) {
     return <PayloadRedirects url={url} />
   }
-
-  const { id } = page
 
   return (
     <>
@@ -92,7 +90,7 @@ export default async function Page({ params: paramsPromise }: Args) {
       </style>
       <article>
         <div className="flex flex-col min-h-full">
-          <FetchContent id={id} />
+          <FetchContent data={data} />
         </div>
       </article>{' '}
     </>

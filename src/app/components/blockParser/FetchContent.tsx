@@ -7,13 +7,7 @@ import { Separator } from '@/components/ui/separator'
 import ShareButton from '@/app/components/ShareButton'
 import RichText from '@/components/RichText'
 
-const FetchContent = async ({ id }: { id: string }) => {
-  const payload = await getPayload({ config: configPromise })
-  const data: any = await payload.findByID({
-    id: id,
-    collection: 'news',
-  })
-  console.log(data)
+const FetchContent = ({ data }: { data: any }) => {
   return (
     <>
       <div

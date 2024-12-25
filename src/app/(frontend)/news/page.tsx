@@ -60,6 +60,7 @@ export function generateMetadata(): Metadata {
     authors: [{ name: 'DS-Craft Team', url: 'https://bit.ly/ds-craft' }],
     openGraph: {
       title: 'Aktualności - PZS Złoczew',
+      images: ['/deafult_og.jpeg'],
       description:
         'Najświeższe wiadomości i wydarzenia z życia PZS Złoczew. Dowiedz się, co nowego w naszej szkole.',
       url: 'https://www.pzszloczew.pl/news', // Replace with the actual news page URL

@@ -17,11 +17,26 @@ const Component = ({
   className?: string
 }) => {
   return sheet ? (
-    <SheetClose asChild>
-      <p>{children}</p>
-    </SheetClose>
+    <>
+      {
+        <style>
+          {`
+        .sheet-no-animation-close {
+          animation: none !important;
+          -webkit-animation: none!important;
+          -moz-animation: none !important;
+          width: 100% !important;
+          height: 100% !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      `}
+        </style>
+      }
+      <SheetClose className={`sheet-no-animation-close ${className} `}>{children}</SheetClose>
+    </>
   ) : (
-    <p>{children}</p>
+    <p className={className}>{children}</p>
   )
 }
 
@@ -30,10 +45,14 @@ const RenderStaticNavLinks = ({ StaticNavLinksCh, sheet, className }: Props) => 
     <Link
       href={nav.url.toLowerCase()}
       key={nav.title + nav.url + index}
-      className={`${className}  transition-all ${nav.title === `Zapisane` ? `spring-element` : ''} `}
       target={nav.external === true ? '_blank' : '_self'}
     >
-      <Component sheet={sheet}>{nav.title}</Component>
+      <Component
+        className={`${className}  transition-all ${nav.title === `Zapisane` ? `spring-element` : ''} `}
+        sheet={sheet}
+      >
+        {nav.title}
+      </Component>
     </Link>
   ))
 }

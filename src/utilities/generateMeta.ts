@@ -14,9 +14,7 @@ export const generateMeta = async (args: { doc: Page | Post }): Promise<Metadata
     'url' in doc.meta.image &&
     `${getServerSideURL()}`
 
-  const title = doc?.meta?.title
-    ? doc?.meta?.title + ' | Payload Website Template'
-    : 'Payload Website Template'
+  const title = doc?.meta?.title ? doc?.meta?.title + ' | PZS Złoczew' : 'PZS Złoczew'
 
   return {
     description: doc?.meta?.description,
