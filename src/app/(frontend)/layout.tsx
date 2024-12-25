@@ -37,13 +37,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       suppressHydrationWarning={true}
       className={`${cn(GeistSans.variable, GeistMono.variable)} scroll-smooth`}
     >
-      <Head>
-        <InitTheme />
-        <Link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png" />
-        <Link rel="icon" type="image/png" sizes="32x32" href="/public//favicon-32x32.png" />
-        <Link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png" />
-        <Link rel="manifest" href="/public/site.webmanifest" />
-      </Head>
       <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
         <HolyLoader color="#2563EB" zIndex={50} />
         <Providers>

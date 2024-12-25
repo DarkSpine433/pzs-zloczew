@@ -76,7 +76,10 @@ const TemplateNews = ({ doc, reference, customUrl, slugAndIdAndRelationTo }: Pro
           </CardContent>
         </Card>
       </CMSLink>
-      <FavouriteButtonClient id={doc.id} collection={reference?.relationTo} />
+      <FavouriteButtonClient
+        id={slugAndIdAndRelationTo != undefined ? slugAndIdAndRelationTo.id : doc.id}
+        collection={reference?.relationTo}
+      />
     </div>
   )
 }
