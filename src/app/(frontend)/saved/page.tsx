@@ -62,9 +62,9 @@ const Page = (props: Props) => {
             <div className="min-h-80">
               {favourites.news ? (
                 <>
-                  <CarouselContent>
+                  <CarouselContent className="px-1 pb-9 pt-1">
                     {favourites.news.map((value: any, index: number) => (
-                      <CarouselItem className="max-w-96" key={index + value.id}>
+                      <CarouselItem className="max-w-96 " key={index + value.id}>
                         <TemplateNews
                           index={index}
                           doc={value}

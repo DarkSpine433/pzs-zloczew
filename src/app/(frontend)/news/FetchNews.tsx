@@ -41,10 +41,10 @@ const FetchNews = async ({
         stopAnimation
         customComponents={
           <div className="flex w-full flex-col items-center justify-center gap-5 text-center">
-            <div className="text-3xl">Nie Ma Strony Nr:{page}</div>
+            <div className="text-3xl">Brak Wyników </div>
             <Button>
               <Link
-                href={`/news${FetchUrlObject({ keyData: ['page'], valueData: ['1'], searchParamsObject: searchParams })}`}
+                href={`/news${await FetchUrlObject({ keyData: ['page'], valueData: ['1'], searchParamsObject: [] })}`}
               >
                 Wróć na stronę pierwszą
               </Link>
@@ -73,14 +73,17 @@ const FetchNews = async ({
       </div>
       <div className="flex flex-col gap-10 pb-20">
         <div className="mx-auto grid h-fit w-full max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {data.docs.map((doc, index) => (
-            <TemplateNews
-              key={doc.id + index}
-              doc={doc}
-              index={index}
-              reference={{ relationTo: 'news', value: doc }}
-            />
-          ))}
+          {data.docs.map(
+            (doc, index) =>
+              doc._status === 'published' && (
+                <TemplateNews
+                  key={doc.id + index}
+                  doc={doc}
+                  index={index}
+                  reference={{ relationTo: 'news', value: doc }}
+                />
+              ),
+          )}
         </div>
         {data.totalPages > 1 && (
           <PagginationInput

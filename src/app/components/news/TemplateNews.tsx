@@ -21,15 +21,15 @@ type Props = {
 }
 
 const TemplateNews = ({ doc, reference, customUrl, slugAndIdAndRelationTo }: Props) => {
-  console.log('TemplateNews', reference?.relationTo, reference?.value)
-
   return (
-    <div className="group relative h-fit w-full overflow-hidden rounded-xl transition-all  hover:shadow-xl outline outline-1 outline-gray-200 hover:outline-primary hover:outline-1 focus-within:outline-primary focus-within:outline-1 ">
+    <div
+      className={`group relative h-fit w-full overflow-hidden rounded-xl transition-all  hover:shadow-xl outline outline-1 outline-gray-200 hover:outline-primary hover:outline-1 focus-within:outline-primary focus-within:outline-1 show-news-u-are-in-${slugAndIdAndRelationTo != undefined ? slugAndIdAndRelationTo.id : doc.id}`}
+    >
       <CMSLink
         type={'reference'}
         reference={{ relationTo: reference?.relationTo, value: reference?.value }}
         url={customUrl}
-        className="h-96 w-96"
+        className={`h-96 w-96 remove-pointer-events-${slugAndIdAndRelationTo != undefined ? slugAndIdAndRelationTo.id : doc.id}`}
         appearance={'inline'}
         slugAndIdAndRelationTo={slugAndIdAndRelationTo}
       >
@@ -76,7 +76,10 @@ const TemplateNews = ({ doc, reference, customUrl, slugAndIdAndRelationTo }: Pro
           </CardContent>
         </Card>
       </CMSLink>
-      <FavouriteButtonClient id={doc.id} collection={reference?.relationTo} />
+      <FavouriteButtonClient
+        id={slugAndIdAndRelationTo != undefined ? slugAndIdAndRelationTo.id : doc.id}
+        collection={reference?.relationTo}
+      />
     </div>
   )
 }

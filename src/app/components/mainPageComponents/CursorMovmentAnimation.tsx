@@ -159,8 +159,8 @@ const CursorMovmentAnimation = ({ children }: Props) => {
           ) : (
             <div className="absolute left-0 top-0 z-10 h-fit w-full">
               <Image
-                src="/img/mainPage/zsp_zloczew.jpeg"
-                alt="zloczew"
+                src="/deafult_og.jpeg"
+                alt="szkoła w złoczewie"
                 width={1000}
                 height={1000}
                 priority={true}

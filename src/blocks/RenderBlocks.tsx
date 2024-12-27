@@ -35,7 +35,7 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div className="my-16" key={index}>
+                <div className="my-16 max-w-4xl mx-auto border-x" key={index}>
                   {/* @ts-expect-error */}
                   <Block {...block} />
                 </div>

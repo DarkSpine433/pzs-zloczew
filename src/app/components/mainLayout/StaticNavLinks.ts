@@ -9,7 +9,9 @@ export const StaticNav = async () => {
     slug: 'schooljournal',
   })
 
-  return data.link ? [...StaticNavT, { title: 'Dziennik', url: data.link }] : StaticNavT
+  return data.link
+    ? [...StaticNavT, { title: 'Dziennik', url: data.link, external: true }]
+    : StaticNavT
 }
 
 // type Props = {

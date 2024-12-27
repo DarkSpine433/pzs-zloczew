@@ -1,0 +1,4 @@
+make other static page with revalidation with path ❌
+repair image in mobile on top of main page ✅
+close side bar on page link or change side bar for real one ✅
+repair og image in other page than main ❌
