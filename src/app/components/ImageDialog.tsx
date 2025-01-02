@@ -19,6 +19,7 @@ const ImageDialog = ({ urlOfImage }: Props) => {
   const [isOpen, setIsOpen] = useState(false)
   const [canChange, setCanChange] = useState(true)
   const [imageUrl, setImageUrl] = useState(urlOfImage)
+  const imageRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
     if (isOpen) {
@@ -46,22 +47,13 @@ const ImageDialog = ({ urlOfImage }: Props) => {
         window.removeEventListener('keydown', isScrolling)
       }
     }
+    console.log('ref', imageRef.current?.clientHeight)
   }, [isOpen])
   return (
     <motion.div
-      className={`relative flex h-fit w-96 max-h-[600px] items-center justify-center overflow-hidden ${!isOpen ? `hover:cursor-pointer` : ''}`}
+      className={`relative flex  w-full  max-w-96 items-center justify-center overflow-hidden ${!isOpen ? `hover:cursor-pointer` : ''}`}
     >
-      <Image
-        src={imageUrl}
-        alt="offer"
-        width={0}
-        height={0}
-        quality={0}
-        priority={false}
-        className="h-full w-full opacity-0"
-        placeholder="blur"
-        blurDataURL={Base64.encode(imageUrl)}
-      />
+      <div className={` h-[600px] `}></div>
       <AnimatePresence>
         <motion.div
           onClick={() => {
@@ -88,12 +80,12 @@ const ImageDialog = ({ urlOfImage }: Props) => {
             position: isOpen ? 'fixed' : 'absolute',
             zIndex: isOpen ? 999 : 'auto',
           }}
-          className={`absolute left-0 top-0 flex items-center justify-center  ${
+          className={`absolute left-0 top-0 flex items-center justify-center   ${
             isOpen ? 'p-1 backdrop-blur-sm sm:p-3 hover:cursor-pointer' : 'p-0'
           }`}
         >
           <div
-            className={`relative flex h-full w-fit max-w-7xl flex-col items-center overflow-y-auto rounded-xl bg-background ${
+            className={`relative flex h-fit w-fit max-w-7xl flex-col items-center overflow-y-auto rounded-xl bg-background ${
               isOpen ? 'hover:cursor-default' : 'pb-3'
             }`}
             onMouseEnter={() => isOpen && setCanChange(false)}
@@ -141,11 +133,12 @@ const ImageDialog = ({ urlOfImage }: Props) => {
             )}
             <Image
               src={imageUrl}
+              ref={imageRef}
               alt="offer"
               width={1000}
               height={1000}
               quality={100}
-              className="h-full w-fit rounded-xl object-contain shadow-md shadow-primary"
+              className="h-full w-fit rounded-xl object-contain shadow-md shadow-primary "
               placeholder="blur"
               blurDataURL={Base64.encode(imageUrl)}
             />{' '}

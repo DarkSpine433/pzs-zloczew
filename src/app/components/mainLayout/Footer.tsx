@@ -75,7 +75,7 @@ const Footer = (props: Props) => {
       <hr className="h-[1px] w-full max-w-screen-2xl border-none bg-gradient-to-r from-transparent via-secondary/20 to-transparent p-0" />
       <div className="py-3 text-center   ">
         Wykonana z ❤️ Przez{' '}
-        <Link href="https://ds-craft.vercel.app/" className="underline" target="_blank">
+        <Link href="https://bit.ly/ds-craft" className="underline" target="_blank">
           DS-Craft
         </Link>
       </div>
