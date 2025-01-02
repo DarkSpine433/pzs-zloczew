@@ -63,18 +63,16 @@ const PagginationInput = async ({ data, page, numberOfPages, searchParams }: Pro
         <PaginationContent>
           {page != 1 && (
             <TooltipProvider>
-              <Tooltip delayDuration={300}>
+              <Tooltip delayDuration={50}>
                 <TooltipTrigger>
-                  <PaginationItem>
-                    <PaginationPrevious
-                      aria-label="Poprzednia strona"
-                      href={await FetchUrlObject({
-                        keyData: ['page'],
-                        valueData: [(data.page! - 1 >= 1 ? data.page! - 1 : 1).toString()],
-                        searchParamsObject: searchParams,
-                      })}
-                    />
-                  </PaginationItem>
+                  <PaginationPrevious
+                    aria-label="Poprzednia strona"
+                    href={await FetchUrlObject({
+                      keyData: ['page'],
+                      valueData: [(data.page! - 1 >= 1 ? data.page! - 1 : 1).toString()],
+                      searchParamsObject: searchParams,
+                    })}
+                  />
                 </TooltipTrigger>
                 <TooltipContent>Poprzednia strona</TooltipContent>
               </Tooltip>
@@ -180,23 +178,21 @@ const PagginationInput = async ({ data, page, numberOfPages, searchParams }: Pro
           )}
           {page != data.totalPages && (
             <TooltipProvider>
-              <Tooltip delayDuration={200}>
+              <Tooltip delayDuration={50}>
                 <TooltipTrigger>
-                  <PaginationItem>
-                    <PaginationNext
-                      aria-label="Następna strona"
-                      href={await FetchUrlObject({
-                        keyData: ['page'],
-                        valueData: [
-                          (data.page! + 1 <= data.totalPages
-                            ? data.page! + 1
-                            : data.totalPages
-                          ).toString(),
-                        ],
-                        searchParamsObject: searchParams,
-                      })}
-                    />
-                  </PaginationItem>
+                  <PaginationNext
+                    aria-label="Następna strona"
+                    href={await FetchUrlObject({
+                      keyData: ['page'],
+                      valueData: [
+                        (data.page! + 1 <= data.totalPages
+                          ? data.page! + 1
+                          : data.totalPages
+                        ).toString(),
+                      ],
+                      searchParamsObject: searchParams,
+                    })}
+                  />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>Następna strona</p>
