@@ -191,7 +191,7 @@ export function generateMetadata(): Metadata {
     ],
 
     openGraph: {
-      title: 'PZS Złoczew - Strona Główna',
+      title: 'Strona Główna - PZS Złoczew',
       description:
         'Witamy na stronie PZS Złoczew! Odkryj naszą ofertę edukacyjną, wydarzenia, aktualności oraz wszystko, co warto wiedzieć o naszej szkole.',
       images: [`/deafult_og.jpeg`],

@@ -1,32 +1,38 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { FetchUrlObject } from "@/lib/FetchUrlObject";
-import Link from "next/link";
-import React, { useState } from "react";
-import { Card } from "../ui/card";
+'use client'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { FetchUrlObject } from '@/lib/FetchUrlObject'
+import Link from 'next/link'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { Card } from '../ui/card'
 
 type Props = {
-  data: any;
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-const PagginationInputClient = ({ data, searchParams }: Props) => {
-  const [page, setPage] = useState("");
-  const [isOverRange, setIsOverRange] = useState(false);
-  return (
-    <div className="flex w-fit max-w-60 flex-row items-center justify-center gap-2">
-      <style>{`/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+  data: any
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}`}</style>
+const PagginationInputClient = ({ data, searchParams }: Props) => {
+  const [page, setPage] = useState('')
+  const [isOverRange, setIsOverRange] = useState(false)
+  const ref = useRef<HTMLInputElement>(null)
+  const [query, setQuery] = useState('')
+  const [searchParamsValue, setSearchParamsValue] = useState(searchParams)
+
+  return (
+    <div className="flex w-fit max-w-60 flex-row items-center justify-center gap-2">
+      <style>{`
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type=number] {
+        -moz-appearance: textfield;
+      }
+      `}</style>
       <Input
         className={`w-10 min-w-10 border-primary px-2 text-center invalid:border-red-500 focus-within:border-primary/50`}
         name="page"
@@ -34,24 +40,22 @@ input[type=number] {
         min={1}
         defaultValue={data.value}
         max={data.totalPages}
+        ref={ref}
         onChange={(e) => {
-          const value = e.target.value.trim();
-          setPage(value);
-          value > data.totalPages
-            ? setIsOverRange(true)
-            : setIsOverRange(false);
+          const value = e.target.value.trim()
+          setPage(value)
+          value > data.totalPages ? setIsOverRange(true) : setIsOverRange(false)
         }}
         placeholder="..."
       />
       <span className="text-gray-500">z&nbsp;{data.totalPages}</span>
       <Link
-        href={
-          page != ""
-            ? `${FetchUrlObject({ keyData: ["page"], valueData: [page], searchParamsObject: searchParams })}`
-            : "#"
-        }
+        href={{
+          query: (searchParams['page'] = ref.current?.value && searchParams),
+        }}
+        scroll={false}
         className={`w-full md:w-3/6 ${
-          page === "" || isOverRange ? "pointer-events-none opacity-80" : ""
+          page == '' || isOverRange ? 'pointer-events-none opacity-80' : ''
         }`}
       >
         <Button className="w-full max-w-14">
@@ -71,7 +75,7 @@ input[type=number] {
         </Button>
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default PagginationInputClient;
+export default PagginationInputClient

@@ -136,11 +136,11 @@ export async function generateMetadata(
     id: slug[0],
   })
   return {
-    title: page.meta?.title || 'Payload Website Template news',
+    title: page.meta?.title || 'PZS Złoczew',
     description: page.meta?.description,
     openGraph: {
       url: url,
-      title: page.meta?.title || 'Payload Website Template news',
+      title: page.meta?.title || 'PZS Złoczew',
       description: page.meta?.description || 'News ',
     },
   }
