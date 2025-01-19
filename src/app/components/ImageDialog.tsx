@@ -49,7 +49,7 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
         })
       }
     }
-
+    fun()
     window.addEventListener('resize', () => fun())
 
     return () => {
@@ -69,7 +69,7 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
 
   return (
     <motion.div
-      className={`relative flex w-full md:max-w-[22rem] max-w-full lg:max-w-md xl:max-w-lg items-center justify-center hover:cursor-pointer transition-none ${isDialogOpen ? 'overflow-visible' : 'overflow-hidden transition-none'}`}
+      className={`relative flex w-full md:max-w-[22rem] max-w-full lg:max-w-md xl:max-w-lg items-center justify-center hover:cursor-pointer h-full max-h-[700px] transition-none ${isDialogOpen ? 'overflow-visible ' : 'overflow-hidden transition-none'}`}
     >
       <div
         style={{
@@ -82,28 +82,16 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
         <motion.div
           onClick={handleDialogClick}
           layout
-          style={{
-            height: isDialogOpen ? '100vh' : 'auto',
-            width: '100%',
-            position: isDialogOpen ? 'fixed' : 'relative',
-            top: isDialogOpen ? '0' : 'auto',
-            left: isDialogOpen ? '0' : 'auto',
-            zIndex: isDialogOpen ? 999 : 'auto',
-
-            background: isDialogOpen
-              ? 'radial-gradient(circle, rgba(8,6,34,1) 5%, rgba(8,6,34,0) 80%)'
-              : 'transparent',
-          }}
-          className={`flex items-center justify-center  ${
-            isDialogOpen ? 'p-1 backdrop-blur-sm sm:p-3 hover:cursor-pointer ' : 'pb-2 px-1 '
+          className={`flex items-center justify-center transition-all duration-300 ${
+            isDialogOpen
+              ? 'fixed inset-0 z-50 h-screen w-screen bg-background/80 backdrop-blur-sm p-4'
+              : 'relative w-full max-w-md mx-auto'
           }`}
         >
           <div
-            className={`relative flex h-fit w-fit  flex-col items-center rounded-xl bg-background ${
-              isDialogOpen ? 'hover:cursor-default' : ''
+            className={`relative flex flex-col items-center rounded-xl bg-background/50 ${
+              isDialogOpen ? 'w-full h-full flex items-center justify-center' : ''
             }`}
-            onMouseEnter={() => isDialogOpen && setCanChangeDialogState(false)}
-            onMouseLeave={() => isDialogOpen && setCanChangeDialogState(true)}
           >
             {isDialogOpen && (
               <>
@@ -113,19 +101,9 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
                   }
                 `}</style>
                 <motion.button
-                  whileHover={{ scale: 0.9 }}
-                  whileTap={{
-                    rotate: 15,
-                    scale: 1.1,
-                    boxShadow: '0px 0px 8px #2563EB',
-                    borderRadius: '50px',
-                  }}
-                  style={{
-                    boxShadow: '0px 2px 5px #2563EB',
-                    borderRadius: '10px',
-                  }}
-                  transition={{ type: 'spring', duration: 1, bounce: 0.5 }}
-                  className="absolute right-3 top-3 z-50 flex size-14 items-center justify-center border border-primary bg-background"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute top-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 border border-primary shadow-lg hover:bg-background transition-colors md:top-8 md:right-8"
                   onClick={(e) => {
                     e.stopPropagation()
                     setIsDialogOpen(false)
@@ -136,24 +114,29 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    strokeWidth={1.5}
+                    strokeWidth={2}
                     stroke="currentColor"
-                    className="size-8"
+                    className="h-6 w-6"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </motion.button>
               </>
             )}
+
             <Image
+              onMouseEnter={() => isDialogOpen && setCanChangeDialogState(false)}
+              onMouseLeave={() => isDialogOpen && setCanChangeDialogState(true)}
               src={imageUrl}
               ref={imageRef}
               alt="offer"
               width={1000}
               height={1000}
               quality={100}
-              className={`rounded-xl object-contain   ${
-                isDialogOpen ? 'max-h-[95vh] w-full ' : 'h-auto w-full shadow-md shadow-primary'
+              className={`rounded-xl overflow-scroll border-t-2 border-primary  ${
+                isDialogOpen
+                  ? 'max-h-[95vh]  w-fit h-full  cursor-default  '
+                  : '  shadow-md shadow-primary'
               }`}
             />
           </div>
