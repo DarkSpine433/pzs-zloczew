@@ -61,13 +61,16 @@ const TemplateNews = ({ doc, reference, customUrl, slugAndIdAndRelationTo }: Pro
                   Autor:&nbsp;
                   <span className="font-semibold">
                     {doc.populatedAuthors.map((author, index) => (
-                      <span key={author.id + index}>{author.name}</span>
+                      <span key={author.id + index}>
+                        {author.name}
+                        {index < doc.populatedAuthors.length - 1 ? ', ' : ''}
+                      </span>
                     ))}
                   </span>
                 </div>
               ) : null}
               <div className="text-gray-600">
-                Data:&nbsp;
+                Data Utworzenia:&nbsp;
                 <time dateTime={doc.createdAt} className="font-semibold">
                   {format(parseISO(doc.createdAt), 'dd.MM.yyyy')}
                 </time>

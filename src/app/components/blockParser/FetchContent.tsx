@@ -30,7 +30,12 @@ const FetchContent = ({ data }: { data: any }) => {
               <div>
                 Autor:&nbsp;
                 <span className="font-semibold text-primary-foreground/80">
-                  {data.populatedAuthors.map((author) => author.name)}
+                  {data.populatedAuthors.map((author, index) => (
+                    <span key={author.id + index}>
+                      {author.name}
+                      {index < data.populatedAuthors.length - 1 ? ', ' : ''}
+                    </span>
+                  ))}
                 </span>{' '}
               </div>{' '}
               <Separator

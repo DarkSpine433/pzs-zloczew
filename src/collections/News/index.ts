@@ -44,7 +44,7 @@ export const News: CollectionConfig = {
     livePreview: {
       url: ({ data }) => {
         const path = generatePreviewPath({
-          slug: typeof data?.slug === 'string' ? data.slug : '',
+          slug: data.docs.slug,
           collection: 'news',
         })
 
@@ -55,6 +55,7 @@ export const News: CollectionConfig = {
       const path = generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
         collection: 'news',
+        id: typeof data?.id === 'string' ? data.id : '',
       })
 
       return `${getServerSideURL()}${path}`

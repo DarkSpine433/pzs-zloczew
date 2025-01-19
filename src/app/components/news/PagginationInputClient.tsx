@@ -44,14 +44,19 @@ const PagginationInputClient = ({ data, searchParams }: Props) => {
         onChange={(e) => {
           const value = e.target.value.trim()
           setPage(value)
-          value > data.totalPages ? setIsOverRange(true) : setIsOverRange(false)
+          value > data.totalPages || Number(value) < 1
+            ? setIsOverRange(true)
+            : setIsOverRange(false)
         }}
         placeholder="..."
       />
       <span className="text-gray-500">z&nbsp;{data.totalPages}</span>
       <Link
         href={{
-          query: (searchParams['page'] = ref.current?.value && searchParams),
+          query: {
+            page: (searchParams['page'] = (ref.current?.value || '').toString()),
+            ...searchParams,
+          },
         }}
         scroll={false}
         className={`w-full md:w-3/6 ${
