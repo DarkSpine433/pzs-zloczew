@@ -1,27 +1,25 @@
-import { create } from "zustand";
+import { create } from 'zustand'
 
 type Store = {
-  arrayOfFavouriteItems: string[];
-  increasePopulation: () => void;
-};
-const useStore = create<Store>()((set) => ({
-  arrayOfFavouriteItems:
-    typeof window !== "undefined" &&
-    typeof localStorage !== null &&
-    typeof localStorage !== undefined &&
-    localStorage.getItem("FavouriteNews") != undefined
-      ? localStorage.getItem("FavouriteNews")?.split(",")!
+  favouriteItems: string[]
+  updateFavouriteItems: () => void
+}
+
+const useGlobalState = create<Store>((set) => ({
+  favouriteItems:
+    typeof window !== 'undefined' &&
+    typeof localStorage !== 'undefined' &&
+    localStorage.getItem('FavouriteNews')
+      ? (localStorage.getItem('FavouriteNews')?.split(',') ?? [])
       : [],
 
-  increasePopulation: () =>
+  updateFavouriteItems: () =>
     set(() => ({
-      arrayOfFavouriteItems:
-        typeof window !== "undefined" &&
-        typeof localStorage !== null &&
-        typeof localStorage !== undefined
-          ? localStorage.getItem("FavouriteNews")?.split(",")
+      favouriteItems:
+        typeof window !== 'undefined' && typeof localStorage !== 'undefined'
+          ? (localStorage.getItem('FavouriteNews')?.split(',') ?? [])
           : [],
     })),
-}));
+}))
 
-export default useStore;
+export default useGlobalState

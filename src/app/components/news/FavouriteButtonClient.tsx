@@ -2,7 +2,7 @@
 
 import { favouriteDeleateOrAdd } from '@/app/actions/favouriteNewsAction'
 import { Button } from '@/components/ui/button'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -14,7 +14,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { create } from 'zustand'
-import useStore from '@/lib/GlobalStateFavouriteNews'
+import useGlobalState from '@/lib/GlobalStateFavouriteNews'
 
 type Props = {
   id: string
@@ -24,8 +24,8 @@ type Props = {
 }
 
 const FavouriteButtonClient = ({ id, isBlock, className, collection }: Props) => {
-  const arrayOfFavouriteItems = useStore((state) => state.arrayOfFavouriteItems)
-  const test2 = useStore((state) => state.increasePopulation)
+  const arrayOfFavouriteItems = useGlobalState((state) => state.favouriteItems)
+  const test2 = useGlobalState((state) => state.updateFavouriteItems)
   const [isDialogFavouriteAccept, setIsDialogFavouriteAccept] = useState(false)
   const addFavouriteHandler = () => {
     if (
@@ -46,9 +46,8 @@ const FavouriteButtonClient = ({ id, isBlock, className, collection }: Props) =>
       }
     }
   }
-  console.log(arrayOfFavouriteItems)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (
       typeof window !== 'undefined' &&
       typeof localStorage !== null &&

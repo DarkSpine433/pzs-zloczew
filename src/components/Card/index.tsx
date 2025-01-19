@@ -34,7 +34,7 @@ export const Card: React.FC<{
   const titleToUse = titleFromProps || title
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
   const href = `/${relationTo}/${id}`
-  console.log(doc)
+
   return (
     <article ref={card.ref}>
       <TemplateNews

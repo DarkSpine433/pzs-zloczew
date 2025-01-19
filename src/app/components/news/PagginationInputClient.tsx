@@ -6,18 +6,28 @@ import Link from 'next/link'
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Card } from '../ui/card'
 
-type Props = {
+type PaginationInputProps = {
   data: any
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
-const PagginationInputClient = ({ data, searchParams }: Props) => {
-  const [page, setPage] = useState('')
-  const [isOverRange, setIsOverRange] = useState(false)
-  const ref = useRef<HTMLInputElement>(null)
-  const [query, setQuery] = useState('')
-  const [searchParamsValue, setSearchParamsValue] = useState(searchParams)
-
+const PaginationInputClient = ({ data, searchParams }: PaginationInputProps) => {
+  const [currentPage, setCurrentPage] = useState<number | undefined>(
+    Number(searchParams['page']) || undefined,
+  )
+  const [isOutOfRange, setIsOutOfRange] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+  useLayoutEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.value = String(searchParams['page'] || '')
+    }
+    setCurrentPage(Number(searchParams['page']) || undefined)
+  }, [searchParams['page']])
+  useEffect(() => {
+    Number(currentPage) == Number(searchParams['page'])
+      ? setIsOutOfRange(true)
+      : setIsOutOfRange(false)
+  })
   return (
     <div className="flex w-fit max-w-60 flex-row items-center justify-center gap-2">
       <style>{`
@@ -38,30 +48,26 @@ const PagginationInputClient = ({ data, searchParams }: Props) => {
         name="page"
         type="number"
         min={1}
-        defaultValue={data.value}
         max={data.totalPages}
-        ref={ref}
+        ref={inputRef}
         onChange={(e) => {
-          const value = e.target.value.trim()
-          setPage(value)
-          value > data.totalPages || Number(value) < 1
-            ? setIsOverRange(true)
-            : setIsOverRange(false)
+          const value = e.target.valueAsNumber
+          setCurrentPage(value)
+          if (value < 1 || value > data.totalPages) {
+            setIsOutOfRange(true)
+          } else {
+            setIsOutOfRange(false)
+          }
         }}
         placeholder="..."
       />
       <span className="text-gray-500">z&nbsp;{data.totalPages}</span>
       <Link
         href={{
-          query: {
-            page: (searchParams['page'] = (ref.current?.value || '').toString()),
-            ...searchParams,
-          },
+          query: { ...searchParams, page: currentPage },
         }}
         scroll={false}
-        className={`w-full md:w-3/6 ${
-          page == '' || isOverRange ? 'pointer-events-none opacity-80' : ''
-        }`}
+        className={`w-full md:w-3/6 ${isOutOfRange ? 'pointer-events-none opacity-80' : ''}`}
       >
         <Button className="w-full max-w-14">
           <svg
@@ -83,4 +89,4 @@ const PagginationInputClient = ({ data, searchParams }: Props) => {
   )
 }
 
-export default PagginationInputClient
+export default PaginationInputClient

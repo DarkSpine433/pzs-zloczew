@@ -1,6 +1,6 @@
 'use client'
 
-import { useLayoutEffect, useState } from 'react'
+import { useState, useLayoutEffect } from 'react'
 import {
   Carousel,
   CarouselContent,
@@ -14,25 +14,36 @@ import SpinerLoader from '@/app/components/SpinerLoader'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
-type Props = {}
+type FavouriteItem = {
+  id: string
+  title: string
+  slug: string
+  date: string
+}
 
-const Page = (props: Props) => {
-  const [favourites, setFavourites] = useState<any>({})
+type Favourites = {
+  news: FavouriteItem[]
+  newsMessage?: string
+}
+
+const Page = () => {
+  const [favourites, setFavourites] = useState<Favourites>({
+    news: [],
+    newsMessage: 'Brak zapisanych artykułów',
+  } as Favourites)
   const [isLoading, setIsLoading] = useState(true)
-  console.log(favourites)
+
   useLayoutEffect(() => {
     const fetchFavouritesClient = async () => {
       try {
         const idsNews = localStorage.getItem('FavouriteNews')?.toString()
-        if (!idsNews) {
-          setFavourites({ newsMessage: 'Brak zapisanych artykułów' })
-        } else {
-          const data = await fetchFavourites({ idsNews })
+        if (!idsNews)
+          return setFavourites({ ...favourites, newsMessage: 'Brak zapisanych artykułów' })
 
-          setFavourites(data)
-        }
+        const data = await fetchFavourites({ idsNews })
+        setFavourites(data)
       } catch (err) {
-        setFavourites([{ title: 'Nie udało się wczytać listy ulubionych' }])
+        setFavourites({ ...favourites, newsMessage: 'Błąd podczas pobierania danych' })
       } finally {
         setIsLoading(false)
       }
@@ -43,7 +54,7 @@ const Page = (props: Props) => {
 
   return (
     <>
-      <div className="className={`after:to-gray-black/50 after:content-['']`} relative z-10 block space-y-5 overflow-hidden border-b-8 border-gray-500 bg-cover bg-center bg-no-repeat py-5 pb-14 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-foreground/70 after:bg-gradient-to-b after:from-foreground sm:space-y-10 sm:py-20">
+      <div className="relative z-10 block space-y-5 overflow-hidden border-b-8 border-gray-500 bg-cover bg-center bg-no-repeat py-5 pb-14 shadow-lg after:absolute after:inset-0 after:left-0 after:top-0 after:z-[-5] after:block after:h-full after:w-full after:bg-foreground/70 after:bg-gradient-to-b after:from-foreground sm:space-y-10 sm:py-20">
         <h1 className="text-center text-[3rem] font-extrabold tracking-widest text-background sm:text-7xl md:text-8xl lg:text-9xl">
           Zapisane
         </h1>
@@ -63,12 +74,12 @@ const Page = (props: Props) => {
               {favourites.news ? (
                 <>
                   <CarouselContent className="px-1 pb-9 pt-1">
-                    {favourites.news.map((value: any, index: number) => (
-                      <CarouselItem className="max-w-96 " key={index + value.id}>
+                    {favourites.news.map((news, index) => (
+                      <CarouselItem className="max-w-96" key={index + news.id}>
                         <TemplateNews
                           index={index}
-                          doc={value}
-                          reference={{ relationTo: 'news', value: value }}
+                          doc={news}
+                          reference={{ relationTo: 'news', value: news }}
                         />
                       </CarouselItem>
                     ))}
