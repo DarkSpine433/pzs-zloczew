@@ -55,7 +55,12 @@ const FetchContent = ({ data }: { data: any }) => {
           <Separator orientation="vertical" className="hidden h-6 w-[1px] bg-gray-500 sm:block" />
           <div className="relative flex h-fit w-fit gap-2">
             <ShareButton className="px-3 py-4" />
-            <FavouriteButtonClient id={data.id} isBlock className="px-3 py-1" />
+            <FavouriteButtonClient
+              collection={data.collection}
+              id={data.id}
+              isBlock
+              className="px-3 py-1"
+            />
           </div>
         </h3>
       </div>
