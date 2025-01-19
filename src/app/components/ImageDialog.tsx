@@ -1,10 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import { url } from 'inspector'
 import Image from 'next/image'
-import Link from 'next/link'
-import { useSearchParams, useRouter } from 'next/navigation'
 import detectBackButton from 'detect-browser-back-navigation'
 import { useEffect, useRef, useState } from 'react'
 
@@ -12,6 +9,7 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [canChangeDialogState, setCanChangeDialogState] = useState(true)
   const imageRef = useRef<HTMLImageElement>(null)
+  const [sizeOfImage, setSizeOfImage] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
     if (isDialogOpen) {
@@ -31,71 +29,91 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
         setIsDialogOpen(false)
         setCanChangeDialogState(true)
       }
+
       window.addEventListener('keydown', keyDownHandler)
       window.addEventListener('wheel', isScrolling)
+
       return () => {
         window.removeEventListener('keydown', keyDownHandler)
-        window.addEventListener('wheel', isScrolling)
+        window.removeEventListener('wheel', isScrolling)
       }
     }
   }, [isDialogOpen])
+
+  useEffect(() => {
+    const fun = () => {
+      if (imageRef.current) {
+        return setSizeOfImage({
+          width: imageRef.current.width,
+          height: imageRef.current.height,
+        })
+      }
+    }
+
+    window.addEventListener('resize', () => fun())
+
+    return () => {
+      window.removeEventListener('resize', () => fun())
+    }
+  }, [])
+
+  const handleDialogClick = () => {
+    if (canChangeDialogState && isDialogOpen) {
+      setIsDialogOpen(false)
+      setCanChangeDialogState(true)
+    } else if (canChangeDialogState) {
+      setIsDialogOpen(true)
+      setCanChangeDialogState(false)
+    }
+  }
+
   return (
     <motion.div
-      className={`relative flex w-full max-w-96 items-center justify-center overflow-hidden ${!isDialogOpen ? `hover:cursor-pointer` : ''}`}
+      className={`relative flex w-full md:max-w-[22rem] max-w-full lg:max-w-md xl:max-w-lg items-center justify-center hover:cursor-pointer transition-none ${isDialogOpen ? 'overflow-visible' : 'overflow-hidden transition-none'}`}
     >
-      <div className={`h-[600px]`} />
+      <div
+        style={{
+          width: sizeOfImage.width,
+          height: sizeOfImage.height,
+        }}
+        className={` pointer-events-none ${isDialogOpen ? '' : 'hidden'} top-0 left-0 flex items-center justify-center`}
+      ></div>
       <AnimatePresence>
         <motion.div
-          onClick={() => {
-            if (canChangeDialogState && isDialogOpen) {
-              setIsDialogOpen(!isDialogOpen)
-              setCanChangeDialogState(true)
-            } else if (canChangeDialogState) {
-              setIsDialogOpen(!isDialogOpen)
-              setCanChangeDialogState(false)
-            }
-          }}
+          onClick={handleDialogClick}
           layout
-          exit={{ opacity: 0, scale: 0 }}
-          animate={{
-            backgroundColor: isDialogOpen ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
-
-            transition: {
-              delay: 0.4,
-            },
-          }}
           style={{
-            height: isDialogOpen ? '100vh' : '100%',
+            height: isDialogOpen ? '100vh' : 'auto',
             width: '100%',
-            top: '0',
-            left: '0',
-            position: isDialogOpen ? 'fixed' : 'absolute',
+            position: isDialogOpen ? 'fixed' : 'relative',
+            top: isDialogOpen ? '0' : 'auto',
+            left: isDialogOpen ? '0' : 'auto',
             zIndex: isDialogOpen ? 999 : 'auto',
+
+            background: isDialogOpen
+              ? 'radial-gradient(circle, rgba(8,6,34,1) 5%, rgba(8,6,34,0) 80%)'
+              : 'transparent',
           }}
-          className={`absolute left-0 top-0 flex items-center justify-center ${
-            isDialogOpen ? 'p-1 backdrop-blur-sm sm:p-3 hover:cursor-pointer' : 'p-0'
+          className={`flex items-center justify-center  ${
+            isDialogOpen ? 'p-1 backdrop-blur-sm sm:p-3 hover:cursor-pointer ' : 'pb-2 px-1 '
           }`}
         >
           <div
-            className={`relative flex h-fit w-fit max-w-7xl flex-col items-center overflow-y-auto rounded-xl bg-background ${
-              isDialogOpen ? 'hover:cursor-default' : 'pb-3'
+            className={`relative flex h-fit w-fit  flex-col items-center rounded-xl bg-background ${
+              isDialogOpen ? 'hover:cursor-default' : ''
             }`}
             onMouseEnter={() => isDialogOpen && setCanChangeDialogState(false)}
             onMouseLeave={() => isDialogOpen && setCanChangeDialogState(true)}
           >
             {isDialogOpen && (
               <>
-                <style>
-                  {`
+                <style>{`
                   body {
                     overflow: hidden !important;
                   }
-                `}
-                </style>
+                `}</style>
                 <motion.button
-                  whileHover={{
-                    scale: 0.9,
-                  }}
+                  whileHover={{ scale: 0.9 }}
                   whileTap={{
                     rotate: 15,
                     scale: 1.1,
@@ -107,8 +125,12 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
                     borderRadius: '10px',
                   }}
                   transition={{ type: 'spring', duration: 1, bounce: 0.5 }}
-                  className="absolute right-3 top-3 z-50 flex size-14 items-center justify-center border border-primary"
-                  onClick={() => (setIsDialogOpen(false), setCanChangeDialogState(true))}
+                  className="absolute right-3 top-3 z-50 flex size-14 items-center justify-center border border-primary bg-background"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setIsDialogOpen(false)
+                    setCanChangeDialogState(true)
+                  }}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -130,7 +152,9 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
               width={1000}
               height={1000}
               quality={100}
-              className="h-full w-fit rounded-xl object-contain shadow-md shadow-primary"
+              className={`rounded-xl object-contain   ${
+                isDialogOpen ? 'max-h-[95vh] w-full ' : 'h-auto w-full shadow-md shadow-primary'
+              }`}
             />
           </div>
         </motion.div>

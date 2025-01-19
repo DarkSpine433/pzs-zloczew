@@ -41,7 +41,7 @@ const Home = (props: Props) => {
             Oferta Naszej Szkoły
           </h2>
 
-          <div className="wave-container">
+          <div className="wave-container px-3">
             <style>
               {`
                     @keyframes wave {
