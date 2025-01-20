@@ -27,6 +27,7 @@ export const RenderBlocks: React.FC<{
   if (hasBlocks) {
     return (
       <Fragment>
+        {' '}
         {blocks.map((block, index) => {
           const { blockType } = block
 
@@ -35,7 +36,7 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div className="my-16 max-w-4xl mx-auto border-x" key={index}>
+                <div className="py-10 px-5 max-w-4xl mx-auto border-x relative " key={index}>
                   {/* @ts-expect-error */}
                   <Block {...block} />
                 </div>

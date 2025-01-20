@@ -29,14 +29,22 @@ export const ArchiveBlock: React.FC<
     const fetchedNews = await payload.find({
       collection: 'news',
       sort: '-createdAt',
+      draft: false,
       depth: 1,
       limit,
       ...(flattenedCategories && flattenedCategories.length > 0
         ? {
             where: {
-              categories: {
-                in: flattenedCategories,
-              },
+              and: [
+                {
+                  categories: {
+                    in: flattenedCategories,
+                  },
+                  status: {
+                    equals: 'published',
+                  },
+                },
+              ],
             },
           }
         : {}),

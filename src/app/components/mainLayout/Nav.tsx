@@ -16,9 +16,9 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 
-import ClientNavLinks from './ClientNavLinks'
-
 const FetchNavContent = dynamic(() => import('./FetchNavContent'))
+const ClientNavLinks = dynamic(() => import('./ClientNavLinks'))
+
 type Props = {}
 
 const ShowMenu = () => {

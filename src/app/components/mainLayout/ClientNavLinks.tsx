@@ -4,9 +4,16 @@ import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { staticNavItems } from './StaticNavT'
 import { getStaticNavItems } from './StaticNavLinks'
+import SpinerLoader from '../SpinerLoader'
+import { Skeleton } from '@/components/ui/skeleton'
 
 const RenderStaticNavLinks = dynamic(() => import('./RenderStaticNavLinks'), {
   ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center gap-10">
+      <Skeleton className="h-10 w-32 p-4" />
+    </div>
+  ),
 })
 
 const updateStaticNavLinks = (
