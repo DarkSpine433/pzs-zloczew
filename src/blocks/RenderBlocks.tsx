@@ -19,6 +19,7 @@ const blockComponents = {
 
 export const RenderBlocks: React.FC<{
   blocks: Page['layout'][0][]
+  getH2Headings?: boolean
 }> = (props) => {
   const { blocks } = props
 
@@ -27,14 +28,20 @@ export const RenderBlocks: React.FC<{
   if (hasBlocks) {
     return (
       <Fragment>
-        {' '}
         {blocks.map((block, index) => {
           const { blockType } = block
 
           if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType]
-
-            if (Block) {
+            if (blockType === 'content' && props.getH2Headings) {
+              return (
+                <div className="" key={index}>
+                  {/* @ts-expect-error */}
+                  <Block {...block} getH2Headings={props.getH2Headings} />
+                </div>
+              )
+            }
+            if (Block && !props.getH2Headings) {
               return (
                 <div className="py-10 px-5 max-w-4xl mx-auto border-x relative " key={index}>
                   {/* @ts-expect-error */}

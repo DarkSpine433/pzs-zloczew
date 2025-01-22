@@ -27,7 +27,7 @@ export const LowImpactHero: React.FC<LowImpactHeroType> = ({ children, richText 
     >
       <style>{`
         
-        #test h1 {
+        #hero h1 {
           color: #fff !important;
           text-shadow: 5px 5px 20px #000 !important;
           font-weight: 900 !important;
@@ -35,10 +35,11 @@ export const LowImpactHero: React.FC<LowImpactHeroType> = ({ children, richText 
           word-break: break-word;
         
         }
+          
       `}</style>
       {}
       <div
-        id="test"
+        id="hero"
         className="max-w-screen-2xl text-center break-words  px-5 flex flex-col items-center justify-center col-start-2 text-background  font-extrabold "
       >
         {children || (richText && <RichText content={richText} enableGutter={false} />)}

@@ -64,8 +64,18 @@ const FetchContent = ({ data }: { data: any }) => {
           </div>
         </h3>
       </div>
-
-      <div className="h-full heightFullCalc mx-auto flex w-full max-w-5xl flex-col gap-10 overflow-x-hidden rounded border-x px-3 pb-10 pt-10 sm:px-10">
+      <style>{`
+          #content a {
+        color:blue !important;
+      }
+          #content a:hover {
+           color:blue !important;
+      }
+          `}</style>
+      <div
+        id="content"
+        className="h-full heightFullCalc mx-auto flex w-full max-w-5xl flex-col gap-10 overflow-x-hidden rounded border-x px-3 pb-10 pt-10 sm:px-10"
+      >
         {data && <RichText content={data.content} />}
       </div>
     </>
