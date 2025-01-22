@@ -22,19 +22,62 @@ import type {
   MediaBlock as MediaBlockProps,
 } from '@/payload-types'
 import '@/app/(frontend)/globals.css'
+import { get } from 'react-hook-form'
+
 export type NodeTypes =
   | DefaultNodeTypes
   | SerializedBlockNode<CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps>
 
 type Props = {
   nodes: NodeTypes[]
+  getH2Headings?: boolean
 }
 
-export function serializeLexical({ nodes }: Props): JSX.Element {
+export function serializeLexical({ nodes, getH2Headings }: Props): JSX.Element {
+  let HeadingsH2Names = []
+  console.log(HeadingsH2Names)
   return (
     <Fragment>
       {nodes?.map((node, index): JSX.Element | null => {
+        const serializedChildrenFn = (node: NodeTypes): JSX.Element | null => {
+          if (node.children == null) {
+            return null
+          } else {
+            if (node?.type === 'list' && node?.listType === 'check') {
+              for (const item of node.children) {
+                if ('checked' in item) {
+                  if (!item?.checked) {
+                    item.checked = false
+                  }
+                }
+              }
+            }
+            return serializeLexical({ nodes: node.children as NodeTypes[] })
+          }
+        }
+
+        const serializedChildren = 'children' in node ? serializedChildrenFn(node) : ''
+
         if (node == null) {
+          return null
+        }
+
+        if (getH2Headings) {
+          if (
+            node?.tag == 'h2' &&
+            node?.type === 'heading' &&
+            node?.children &&
+            node.children[0].text != undefined &&
+            node.children[0].text != null &&
+            node.children[0].text != ''
+          ) {
+            console.log(node.children[0].text)
+            return (
+              <a key={index} href={`#${node.children[0].text}`}>
+                {serializedChildren}
+              </a>
+            )
+          }
           return null
         }
 
@@ -76,24 +119,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
         // NOTE: Hacky fix for
         // https://github.com/facebook/lexical/blob/d10c4e6e55261b2fdd7d1845aed46151d0f06a8c/packages/lexical-list/src/LexicalListItemNode.ts#L133
         // which does not return checked: false (only true - i.e. there is no prop for false)
-        const serializedChildrenFn = (node: NodeTypes): JSX.Element | null => {
-          if (node.children == null) {
-            return null
-          } else {
-            if (node?.type === 'list' && node?.listType === 'check') {
-              for (const item of node.children) {
-                if ('checked' in item) {
-                  if (!item?.checked) {
-                    item.checked = false
-                  }
-                }
-              }
-            }
-            return serializeLexical({ nodes: node.children as NodeTypes[] })
-          }
-        }
-
-        const serializedChildren = 'children' in node ? serializedChildrenFn(node) : ''
 
         if (node.type === 'block') {
           const block = node.fields
@@ -106,6 +131,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 
           switch (blockType) {
             case 'cta':
+              if (getH2Headings) return null
               return <CallToActionBlock key={index} {...block} />
             case 'iframe':
               return <iframe className="py-2 w-full h-[500px]" {...block}></iframe>
@@ -143,7 +169,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
             case 'heading': {
               const Tag = node?.tag
               return (
-                <Tag className="col-start-2" key={index}>
+                <Tag className="col-start-2" id={node?.children?.[0]?.text} key={index}>
                   {serializedChildren}
                 </Tag>
               )
