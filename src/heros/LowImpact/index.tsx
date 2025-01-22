@@ -19,7 +19,7 @@ export const LowImpactHero: React.FC<LowImpactHeroType> = ({ children, richText 
     <div
       className="h-fit py-40 flex items-center justify-center border-b-3 border-primary bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `url('/media/image-post${Math.floor(Math.random() * 3) + 1}.webp')`,
+        backgroundImage: `url('/img/backgrounds/image-${Math.floor(Math.random() * 4) + 1}.webp')`,
         backgroundSize: 'cover',
 
         backgroundPosition: 'center',
