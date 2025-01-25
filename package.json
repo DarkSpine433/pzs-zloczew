@@ -5,6 +5,9 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "preview": "npm run pages:build && wrangler pages dev",
+    "deploy": "npm run pages:build && wrangler pages deploy",
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
     "dev:prod": "cross-env NODE_OPTIONS=--no-deprecation rm -rf .next && pnpm build && pnpm start",
@@ -86,6 +89,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.1.6",
+    "@opennextjs/cloudflare": "^0.3.10",
     "@payloadcms/eslint-config": "^1.1.1",
     "@tailwindcss/typography": "^0.5.13",
     "@types/escape-html": "^1.0.2",
