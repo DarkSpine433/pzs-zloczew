@@ -35,7 +35,7 @@ export const ContentBlock: React.FC<ContentBlockProps & { getH2Headings?: boolea
                   <RichText content={richText} enableGutter={false} getH2Headings={getH2Headings} />
                 )}
 
-                {enableLink && <CMSLink {...link} />}
+                {enableLink && !getH2Headings && <CMSLink {...link} />}
               </div>
             )
           })}

@@ -1,8 +1,10 @@
 import type { Block, Field } from 'payload'
 
 import {
+  BlocksFeature,
   FixedToolbarFeature,
   HeadingFeature,
+  HorizontalRuleFeature,
   HTMLConverterFeature,
   InlineToolbarFeature,
   lexicalEditor,
@@ -10,6 +12,7 @@ import {
 } from '@payloadcms/richtext-lexical'
 
 import { link } from '@/fields/link'
+import { TopicHeading } from '@/blocks/TopicHeading/config'
 
 const columnFields: Field[] = [
   {
@@ -39,14 +42,15 @@ const columnFields: Field[] = [
     name: 'richText',
     type: 'richText',
     editor: lexicalEditor({
-      features: ({ defaultFeatures, rootFeatures }) => {
+      features: ({ rootFeatures, defaultFeatures }) => {
         return [
           ...defaultFeatures,
-          ...defaultFeatures,
-          HTMLConverterFeature({}),
+          ...rootFeatures,
           HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
+          BlocksFeature({ blocks: [TopicHeading] }),
           FixedToolbarFeature(),
           InlineToolbarFeature(),
+          HorizontalRuleFeature(),
         ]
       },
     }),
