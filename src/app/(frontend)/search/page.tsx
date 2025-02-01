@@ -1,4 +1,4 @@
-import type { Metadata } from 'next/types'
+import type { Metadata } from 'next'
 
 import { CollectionArchive } from '@/components/CollectionArchive'
 import configPromise from '@payload-config'
@@ -12,16 +12,17 @@ import TemplateNews from '@/app/components/news/TemplateNews'
 
 const NotFoundAnimation = dynamic(() => import('@/app/components/NotFoundAnimation'), {})
 
-type Args = {
+type SearchPageProps = {
   searchParams: Promise<{
     q: string
   }>
 }
-export default async function Page({ searchParams: searchParamsPromise }: Args) {
+
+export default async function SearchPage({ searchParams: searchParamsPromise }: SearchPageProps) {
   const { q: query } = await searchParamsPromise
   const payload = await getPayload({ config: configPromise })
 
-  const data = await payload.find({
+  const searchResults = await payload.find({
     collection: 'search',
     depth: 1,
     limit: 12,
@@ -54,7 +55,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
         }
       : {}),
   })
-  console.log(data)
+
   return (
     <div className="pt-10 pb-24 min-h-dvh">
       <PageClient />
@@ -74,9 +75,9 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
         </div>
       </div>
 
-      {data.totalDocs > 0 ? (
+      {searchResults.totalDocs > 0 ? (
         <div className="mx-auto grid h-fit w-full max-w-7xl grid-cols-1 justify-center gap-5 sm:grid-cols-2 lg:grid-cols-3 px-3">
-          {data.docs.map((doc, index) => (
+          {searchResults.docs.map((doc, index) => (
             <TemplateNews
               key={doc.id + index}
               doc={doc}

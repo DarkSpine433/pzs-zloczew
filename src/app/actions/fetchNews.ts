@@ -19,6 +19,11 @@ export const fetchNews = async ({ limit, page, filter }: Props) => {
           in: filter.year,
         },
       },
+      {
+        _status: {
+          equals: 'published',
+        },
+      },
     ],
   }
 
@@ -27,7 +32,7 @@ export const fetchNews = async ({ limit, page, filter }: Props) => {
     limit: limit,
     page: page,
     pagination: true,
-
+    draft: false,
     sort: '-createdAt',
     // @ts-ignore
     where: query,

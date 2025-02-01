@@ -6,11 +6,9 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
-
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import PagginationInputClient from './PagginationInputClient'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+
 import { FetchUrlObject } from '@/lib/FetchUrlObject'
 
 type Props = {
@@ -21,186 +19,118 @@ type Props = {
 }
 
 const PagginationInput = async ({ data, page, numberOfPages, searchParams }: Props) => {
-  const isNumberOfPagesIsMoreThanNumberOfPagesToShow = data.totalPages > numberOfPages.length
+  const isMorePagesThanVisible = data.totalPages > numberOfPages.length
+
+  const createPageLink = async (pageNumber: number) =>
+    await FetchUrlObject({
+      keyData: ['page'],
+      valueData: [pageNumber.toString()],
+      searchParamsObject: searchParams,
+    })
+
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-3">
-      {isNumberOfPagesIsMoreThanNumberOfPagesToShow && (
-        <>
-          <div className="mx-auto flex w-full max-w-7xl justify-center space-y-2">
-            {/* <div className="mx-auto flex w-fit gap-2 text-sm">
-              <Link
-                href={FetchUrlObject({
-                  keyData: ["page"],
-                  valueData: ["1"],
-                  searchParamsObject: searchParams,
-                })}
-              >
-                <Button className="rounded-t-lg bg-primary px-4 text-background">
-                  min: 1
-                </Button>
-              </Link>
-              <Link
-                href={FetchUrlObject({
-                  keyData: ["page"],
-                  valueData: [data.totalPages.toString()],
-                  searchParamsObject: searchParams,
-                })}
-              >
-                <Button
-                  variant={"outline"}
-                  className="text-backgroun rounded-t-lg px-4 text-foreground"
-                >
-                  max: {data.totalPages}
-                </Button>
-              </Link>
-            </div> */}
-
-            <PagginationInputClient data={data} searchParams={searchParams} />
-          </div>
-        </>
+      {isMorePagesThanVisible && (
+        <div className="mx-auto flex w-full max-w-7xl justify-center space-y-2">
+          <PagginationInputClient data={data} searchParams={searchParams} />
+        </div>
       )}
       <Pagination>
         <PaginationContent>
-          {page != 1 && (
+          {page !== 1 && (
             <TooltipProvider>
-              <Tooltip delayDuration={300}>
+              <Tooltip delayDuration={50}>
                 <TooltipTrigger>
-                  <PaginationItem>
-                    <PaginationPrevious
-                      aria-label="Poprzednia strona"
-                      href={await FetchUrlObject({
-                        keyData: ['page'],
-                        valueData: [(data.page! - 1 >= 1 ? data.page! - 1 : 1).toString()],
-                        searchParamsObject: searchParams,
-                      })}
-                    />
-                  </PaginationItem>
+                  <PaginationPrevious
+                    aria-label="Previous page"
+                    href={await createPageLink(Math.max(data.page - 1, 1))}
+                  />
                 </TooltipTrigger>
-                <TooltipContent>Poprzednia strona</TooltipContent>
+                <TooltipContent>Previous page</TooltipContent>
               </Tooltip>
             </TooltipProvider>
           )}
-          {isNumberOfPagesIsMoreThanNumberOfPagesToShow ? (
+          {isMorePagesThanVisible ? (
             <>
-              {numberOfPages.map(async (_, i) => {
-                const PagesNum = data.page - Math.floor(numberOfPages.length / 2) + i
-                const isMaxReachToShowMoreNewerPages =
+              {numberOfPages.map(async (_, index) => {
+                const calculatedPageNum = data.page - Math.floor(numberOfPages.length / 2) + index
+                const isMaxReached =
                   data.totalPages - data.page < Math.floor(numberOfPages.length / 2)
-
-                const calc = isMaxReachToShowMoreNewerPages
+                const adjustment = isMaxReached
                   ? Math.floor(numberOfPages.length / 2) - (data.totalPages - data.page)
                   : 0
-                const ShowPagesNum = isMaxReachToShowMoreNewerPages ? PagesNum - calc : PagesNum
-                return i + 1 > Math.floor(numberOfPages.length / 2) + calc ? (
-                  <></>
-                ) : (
-                  <>
-                    {PagesNum >= 1 && (
-                      <PaginationItem key={i}>
-                        <PaginationLink
-                          title={`Strona ${ShowPagesNum}`}
-                          href={await FetchUrlObject({
-                            keyData: ['page'],
-                            valueData: [ShowPagesNum.toString().toString()],
-                            searchParamsObject: searchParams,
-                          })}
-                        >
-                          {ShowPagesNum}
-                        </PaginationLink>
-                      </PaginationItem>
-                    )}
-                  </>
+                const displayPageNum = isMaxReached
+                  ? calculatedPageNum - adjustment
+                  : calculatedPageNum
+
+                return (
+                  index + 1 <= Math.floor(numberOfPages.length / 2) + adjustment &&
+                  calculatedPageNum >= 1 && (
+                    <PaginationItem key={index}>
+                      <PaginationLink
+                        title={`Page ${displayPageNum}`}
+                        href={await createPageLink(displayPageNum)}
+                      >
+                        {displayPageNum}
+                      </PaginationLink>
+                    </PaginationItem>
+                  )
                 )
               })}
-
-              <PaginationItem className={page != data.page ? '' : 'pointer-events-none opacity-30'}>
-                <PaginationLink
-                  title={`Strona ${data.page}`}
-                  href={await FetchUrlObject({
-                    keyData: ['page'],
-                    valueData: [data.page.toString()],
-                    searchParamsObject: searchParams,
-                  })}
-                >
+              <PaginationItem
+                className={page !== data.page ? '' : 'pointer-events-none opacity-30'}
+              >
+                <PaginationLink title={`Page ${data.page}`} href={await createPageLink(data.page)}>
                   {data.page}
                 </PaginationLink>
               </PaginationItem>
+              {numberOfPages.map(async (_, index) => {
+                const calculatedPageNum = data.page + index + 1
+                const isMinReached = data.page - Math.floor(numberOfPages.length / 2) < 1
+                const adjustment = isMinReached
+                  ? Math.floor(numberOfPages.length / 2) - data.page + 1
+                  : 0
 
-              {numberOfPages.map(async (page, i) => {
-                const PagesNum = data.page + i + 1
-                const isMinReachToShowMoreOlderPages =
-                  data.page - Math.floor(numberOfPages.length / 2) < 1
-
-                return i + 1 >
-                  Math.floor(numberOfPages.length / 2) +
-                    (isMinReachToShowMoreOlderPages
-                      ? Math.floor(numberOfPages.length / 2) - data.page + 1
-                      : 0) ? null : (
-                  <>
-                    {PagesNum > data.totalPages || (
-                      <PaginationItem key={i}>
-                        <PaginationLink
-                          title={`Strona ${PagesNum}`}
-                          href={await FetchUrlObject({
-                            keyData: ['page'],
-                            valueData: [PagesNum.toString()],
-                            searchParamsObject: searchParams,
-                          })}
-                        >
-                          {PagesNum}
-                        </PaginationLink>
-                      </PaginationItem>
-                    )}
-                  </>
+                return (
+                  index + 1 <= Math.floor(numberOfPages.length / 2) + adjustment &&
+                  calculatedPageNum <= data.totalPages && (
+                    <PaginationItem key={index}>
+                      <PaginationLink
+                        title={`Page ${calculatedPageNum}`}
+                        href={await createPageLink(calculatedPageNum)}
+                      >
+                        {calculatedPageNum}
+                      </PaginationLink>
+                    </PaginationItem>
+                  )
                 )
               })}
             </>
           ) : (
-            numberOfPages.map(async (page, i) => {
-              return (
-                page <= data.totalPages && (
+            numberOfPages.map(
+              async (pageNum, index) =>
+                pageNum <= data.totalPages && (
                   <PaginationItem
-                    key={i}
-                    className={page != data.page ? '' : 'pointer-events-none opacity-30'}
+                    key={index}
+                    className={pageNum !== data.page ? '' : 'pointer-events-none opacity-30'}
                   >
-                    <PaginationLink
-                      title={`Strona ${page}`}
-                      href={await FetchUrlObject({
-                        keyData: ['page'],
-                        valueData: [page.toString()],
-                        searchParamsObject: searchParams,
-                      })}
-                    >
-                      {page}
+                    <PaginationLink title={`Page ${pageNum}`} href={await createPageLink(pageNum)}>
+                      {pageNum}
                     </PaginationLink>
                   </PaginationItem>
-                )
-              )
-            })
+                ),
+            )
           )}
-          {page != data.totalPages && (
+          {page !== data.totalPages && (
             <TooltipProvider>
-              <Tooltip delayDuration={200}>
+              <Tooltip delayDuration={50}>
                 <TooltipTrigger>
-                  <PaginationItem>
-                    <PaginationNext
-                      aria-label="Następna strona"
-                      href={await FetchUrlObject({
-                        keyData: ['page'],
-                        valueData: [
-                          (data.page! + 1 <= data.totalPages
-                            ? data.page! + 1
-                            : data.totalPages
-                          ).toString(),
-                        ],
-                        searchParamsObject: searchParams,
-                      })}
-                    />
-                  </PaginationItem>
+                  <PaginationNext
+                    aria-label="Next page"
+                    href={await createPageLink(Math.min(data.page + 1, data.totalPages))}
+                  />
                 </TooltipTrigger>
-                <TooltipContent>
-                  <p>Następna strona</p>
-                </TooltipContent>
+                <TooltipContent>Next page</TooltipContent>
               </Tooltip>
             </TooltipProvider>
           )}

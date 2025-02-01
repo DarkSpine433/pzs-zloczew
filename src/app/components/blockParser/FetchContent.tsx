@@ -30,7 +30,12 @@ const FetchContent = ({ data }: { data: any }) => {
               <div>
                 Autor:&nbsp;
                 <span className="font-semibold text-primary-foreground/80">
-                  {data.populatedAuthors.map((author) => author.name)}
+                  {data.populatedAuthors.map((author, index) => (
+                    <span key={author.id + index}>
+                      {author.name}
+                      {index < data.populatedAuthors.length - 1 ? ', ' : ''}
+                    </span>
+                  ))}
                 </span>{' '}
               </div>{' '}
               <Separator
@@ -50,12 +55,27 @@ const FetchContent = ({ data }: { data: any }) => {
           <Separator orientation="vertical" className="hidden h-6 w-[1px] bg-gray-500 sm:block" />
           <div className="relative flex h-fit w-fit gap-2">
             <ShareButton className="px-3 py-4" />
-            <FavouriteButtonClient id={data.id} isBlock className="px-3 py-1" />
+            <FavouriteButtonClient
+              collection={data.collection}
+              id={data.id}
+              isBlock
+              className="px-3 py-1"
+            />
           </div>
         </h3>
       </div>
-
-      <div className="h-full heightFullCalc mx-auto flex w-full max-w-5xl flex-col gap-10 overflow-x-hidden rounded border-x px-3 pb-10 pt-10 sm:px-10">
+      <style>{`
+          #content a {
+        color:blue !important;
+      }
+          #content a:hover {
+           color:blue !important;
+      }
+          `}</style>
+      <div
+        id="content"
+        className="h-full heightFullCalc mx-auto flex w-full max-w-5xl flex-col gap-10 overflow-x-hidden rounded border-x px-3 pb-10 pt-10 sm:px-10"
+      >
         {data && <RichText content={data.content} />}
       </div>
     </>

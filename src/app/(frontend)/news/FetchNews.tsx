@@ -27,7 +27,7 @@ const FetchNews = async ({
   const yearFilter = Array.isArray(year) ? year[0] : year || ''
   const numberOfPages = Array.from({ length: 5 }, (_, i) => i + 1)
   const data = await fetchNews({
-    limit: 21,
+    limit: 1,
     page: Number(page),
     filter: { year: yearFilter },
   })

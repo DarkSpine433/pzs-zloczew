@@ -1,4 +1,5 @@
 // storage-adapter-import-placeholder
+export const runtime = 'edge'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 
 import sharp from 'sharp' // sharp-import

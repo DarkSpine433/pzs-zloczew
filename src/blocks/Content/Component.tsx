@@ -6,8 +6,8 @@ import type { ContentBlock as ContentBlockProps } from '@/payload-types'
 
 import { CMSLink } from '../../components/Link'
 
-export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
-  const { columns } = props
+export const ContentBlock: React.FC<ContentBlockProps & { getH2Headings?: boolean }> = (props) => {
+  const { columns, getH2Headings } = props
 
   const colsSpanClasses = {
     full: '12',
@@ -17,8 +17,8 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
   }
 
   return (
-    <div className="container my-16">
-      <div className="grid grid-cols-4 lg:grid-cols-12 gap-y-8 gap-x-16">
+    <div className="">
+      <div className=" w-full gap-y-8 gap-x-16">
         {columns &&
           columns.length > 0 &&
           columns.map((col, index) => {
@@ -31,7 +31,9 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                 })}
                 key={index}
               >
-                {richText && <RichText content={richText} enableGutter={false} />}
+                {richText && (
+                  <RichText content={richText} enableGutter={false} getH2Headings={getH2Headings} />
+                )}
 
                 {enableLink && <CMSLink {...link} />}
               </div>

@@ -16,8 +16,32 @@ type LowImpactHeroType =
 
 export const LowImpactHero: React.FC<LowImpactHeroType> = ({ children, richText }) => {
   return (
-    <div className="container mt-16">
-      <div className="max-w-[48rem]">
+    <div
+      className="h-fit py-40 flex items-center justify-center border-b-3 border-primary bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: `url('/img/backgrounds/image-${Math.floor(Math.random() * 4) + 1}.webp')`,
+        backgroundSize: 'cover',
+
+        backgroundPosition: 'center',
+      }}
+    >
+      <style>{`
+        
+        #hero h1 {
+          color: #fff !important;
+          text-shadow: 5px 5px 20px #000 !important;
+          font-weight: 900 !important;
+          text-transform: uppercase !important;
+          word-break: break-word;
+        
+        }
+          
+      `}</style>
+      {}
+      <div
+        id="hero"
+        className="max-w-screen-2xl text-center break-words  px-5 flex flex-col items-center justify-center col-start-2 text-background  font-extrabold "
+      >
         {children || (richText && <RichText content={richText} enableGutter={false} />)}
       </div>
     </div>

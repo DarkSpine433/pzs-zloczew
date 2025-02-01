@@ -1,7 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
-import { SheetClose } from '@/components/ui/sheet'
+import { SheetClose, SheetTitle } from '@/components/ui/sheet'
 import Link from 'next/link'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@/payload.config'
@@ -9,9 +9,13 @@ import { FetchUrlObject } from '@/lib/FetchUrlObject'
 import { redirect, RedirectType } from 'next/navigation'
 import Form from 'next/form'
 import { useState } from 'react'
-import { Slider } from '@nextui-org/slider'
+
 import { useRouter } from 'next/navigation'
-import { Tooltip } from '@/components/ui/tooltip'
+import { Tooltip } from '@nextui-org/tooltip'
+import { cn } from '@/lib/utils'
+import { Slider } from '@/components/ui/slider'
+
+type SliderProps = React.ComponentProps<typeof Slider>
 type Props = {
   searchParams: any
   newDate: number
@@ -24,82 +28,53 @@ const NewFilterComponentclient = ({ searchParams, newDate, lastData }: Props) =>
 
   const [value, setValue] = useState([
     searchParamsYearLastDate >= Number(lastData) && searchParamsYearLastDate <= Number(newDate)
-      ? searchParams.year.split(',')[0]
+      ? searchParamsYearLastDate
       : lastData,
     searchParamsYearnNewDate >= Number(lastData) && searchParamsYearnNewDate <= Number(newDate)
-      ? searchParams.year.split(',')[1]
+      ? searchParamsYearnNewDate
       : newDate,
   ])
 
   const router = useRouter()
-  console.log(value, searchParams.year?.split(','))
+  console.log(value, searchParams.year?.split(','), newDate, lastData)
+
   return (
     <div className="flex flex-col gap-5 py-5">
-      <h2 className="text-xl font-extrabold">Filtry</h2>
-
+      <SheetTitle className="text-xl font-extrabold">Filtry</SheetTitle>
       <div className="flex flex-col gap-3">
-        <div className="pl-1">
-          <h3 className="text-lg font-semibold">Rok</h3>
-          <div className="ml-3 flex flex-col flex-wrap gap-5 border-l py-3">
-            <Slider
-              classNames={{
-                track: 'border-2 border-gray-300  rounded-none',
-                base: 'max-w-md',
-                filler: 'bg-gradient-to-r from-primary-500 to-secondary-400',
-                labelWrapper: 'mb-2',
-                label: 'font-medium text-default-700 text-medium',
-                value: 'font-medium text-default-500 text-small',
-                thumb: [
-                  'transition-size',
-                  'text-background font-extrabold bg-primary border border-secondary shadow-lg shadow-primary rounded-full w-7 h-7',
-                  'data-[dragging=true]:shadow-md data-[dragging=true]:cursor-grab data-[dragging=true]:shadow-primary data-[dragging=true]:rounded-lg',
-                  'data-[dragging=true]:w-8 data-[dragging=true]:h-8 data-[dragging=true]:after:h-7 data-[dragging=true]:after:w-7',
-                ],
-                step: 'data-[in-range=true]:bg-black/30 dark:data-[in-range=true]:bg-white/50',
-              }}
-              formatOptions={{ style: 'decimal' }}
-              label=" "
-              maxValue={newDate}
-              minValue={lastData}
-              step={1}
-              value={value}
-              //@ts-ignore
-              onChange={setValue}
-              showOutline={true}
-              showSteps={true}
-              showTooltip={true}
-              tooltipProps={{
-                offset: 10,
-                placement: 'bottom',
-                classNames: {
-                  base: [
-                    // arrow color
-                    'before:bg-gradient-to-r before:from-secondary before:to-primary',
-                  ],
-                  content: [
-                    'py-2 shadow-xl',
-                    'text-background font-extrabold bg-primary border border-secondary shadow-lg shadow-primary rounded-lg',
-                  ],
-                },
-              }}
-              tooltipValueFormatOptions={{
-                style: 'decimal',
-              }}
-            />
+        {newDate != lastData && (
+          <div className="pl-1">
+            <h3 className="text-lg font-semibold">Rok</h3>
+            <div className="ml-3 flex flex-col flex-wrap gap-5 border-l py-3">
+              <Slider
+                defaultValue={[value[0], value[1]]}
+                max={Number(newDate)}
+                min={Number(lastData)}
+                value={value}
+                onValueChange={(value) => setValue(value)}
+                step={1}
+                name="year"
+              />
+            </div>
           </div>
-        </div>
-        <div className="ustify-center flex gap-5">
-          <SheetClose onClick={() => router.push(`?year=${value}`, { scroll: false })}>
-            <Button type="submit" className="w-full py-5">
-              Zastosuj
-            </Button>{' '}
+        )}
+        <div className="ustify-center flex gap-2">
+          <SheetClose
+            onClick={() =>
+              router.push(`${newDate != lastData ? `?year=${value}` : ''}`, { scroll: false })
+            }
+            type="submit"
+            className="w-full py-2 bg-primary  text-center text-white hover:bg-primary/20 hover:text-primary hover:shadow-sm hover:shadow-primary/60 shadow-md shadow-primary/60 transition-all hover:translate-y-0.5"
+          >
+            Zastosuj
           </SheetClose>
-          <Link href={'/news'} scroll={false} replace={true}>
-            <SheetClose>
-              <Button type="reset" className="py-5" variant={'destructive'}>
-                Resetuj
-              </Button>
-            </SheetClose>
+          <Link
+            href={'/news'}
+            scroll={false}
+            replace={true}
+            className="py-2 w-full  bg-destructive text-center text-white hover:bg-destructive/20 hover:text-destructive hover:shadow-sm hover:shadow-destructive/60 shadow-md shadow-destructive/60 transition-all hover:translate-y-0.5"
+          >
+            <SheetClose type="reset">Resetuj</SheetClose>
           </Link>
         </div>
       </div>

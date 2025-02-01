@@ -1,17 +1,17 @@
 'use server'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@payload-config'
-import { StaticNavT } from './StaticNavT'
+import { staticNavItems } from './StaticNavT'
 
-export const StaticNav = async () => {
+export const getStaticNavItems = async () => {
   const payload = await getPayloadHMR({ config: configPromise })
   const data: any = await payload.findGlobal({
     slug: 'schooljournal',
   })
 
   return data.link
-    ? [...StaticNavT, { title: 'Dziennik', url: data.link, external: true }]
-    : StaticNavT
+    ? [...staticNavItems, { title: 'Dziennik', url: data.link, external: true }]
+    : staticNavItems
 }
 
 // type Props = {

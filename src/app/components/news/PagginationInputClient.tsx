@@ -1,58 +1,73 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { FetchUrlObject } from "@/lib/FetchUrlObject";
-import Link from "next/link";
-import React, { useState } from "react";
-import { Card } from "../ui/card";
+'use client'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { FetchUrlObject } from '@/lib/FetchUrlObject'
+import Link from 'next/link'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { Card } from '../ui/card'
 
-type Props = {
-  data: any;
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-const PagginationInputClient = ({ data, searchParams }: Props) => {
-  const [page, setPage] = useState("");
-  const [isOverRange, setIsOverRange] = useState(false);
-  return (
-    <div className="flex w-fit max-w-60 flex-row items-center justify-center gap-2">
-      <style>{`/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+type PaginationInputProps = {
+  data: any
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}`}</style>
+const PaginationInputClient = ({ data, searchParams }: PaginationInputProps) => {
+  const [currentPage, setCurrentPage] = useState<number | undefined>(
+    Number(searchParams['page']) || undefined,
+  )
+  const [isOutOfRange, setIsOutOfRange] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+  useLayoutEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.value = String(searchParams['page'] || '')
+    }
+    setCurrentPage(Number(searchParams['page']) || undefined)
+  }, [searchParams['page']])
+  useEffect(() => {
+    Number(currentPage) == Number(searchParams['page'])
+      ? setIsOutOfRange(true)
+      : setIsOutOfRange(false)
+  })
+  return (
+    <div className="flex w-fit max-w-60 flex-row items-center justify-center gap-2">
+      <style>{`
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type=number] {
+        -moz-appearance: textfield;
+      }
+      `}</style>
       <Input
         className={`w-10 min-w-10 border-primary px-2 text-center invalid:border-red-500 focus-within:border-primary/50`}
         name="page"
         type="number"
         min={1}
-        defaultValue={data.value}
         max={data.totalPages}
+        ref={inputRef}
         onChange={(e) => {
-          const value = e.target.value.trim();
-          setPage(value);
-          value > data.totalPages
-            ? setIsOverRange(true)
-            : setIsOverRange(false);
+          const value = e.target.valueAsNumber
+          setCurrentPage(value)
+          if (value < 1 || value > data.totalPages) {
+            setIsOutOfRange(true)
+          } else {
+            setIsOutOfRange(false)
+          }
         }}
         placeholder="..."
       />
       <span className="text-gray-500">z&nbsp;{data.totalPages}</span>
       <Link
-        href={
-          page != ""
-            ? `${FetchUrlObject({ keyData: ["page"], valueData: [page], searchParamsObject: searchParams })}`
-            : "#"
-        }
-        className={`w-full md:w-3/6 ${
-          page === "" || isOverRange ? "pointer-events-none opacity-80" : ""
-        }`}
+        href={{
+          query: { ...searchParams, page: currentPage },
+        }}
+        scroll={false}
+        className={`w-full md:w-3/6 ${isOutOfRange ? 'pointer-events-none opacity-80' : ''}`}
       >
         <Button className="w-full max-w-14">
           <svg
@@ -71,7 +86,7 @@ input[type=number] {
         </Button>
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default PagginationInputClient;
+export default PaginationInputClient

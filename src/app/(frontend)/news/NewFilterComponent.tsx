@@ -31,19 +31,6 @@ const NewFilterComponent = async ({ searchParams }: Props) => {
 
   const lastData = Number(data.docs[0].createdYear)
 
-  // const filterHandler = async (formData: FormData) => {
-  //   'use server'
-
-  //   return redirect(
-  //     `/news/${FetchUrlObject({
-  //       keyData: ['page', 'year'],
-  //       valueData: ['1', formData.getAll('year').join(',')],
-  //       searchParamsObject: searchParams,
-  //     })}&scrollToTop=true`,
-  //     RedirectType.replace,
-  //   )
-  // }
-
   return (
     <NewFilterComponentclient lastData={lastData} newDate={newDate} searchParams={searchParams} />
   )
