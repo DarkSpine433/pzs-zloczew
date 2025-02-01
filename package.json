@@ -89,7 +89,6 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^15.1.6",
-    "@opennextjs/cloudflare": "^0.3.10",
     "@payloadcms/eslint-config": "^3.9.0",
     "@tailwindcss/typography": "^0.5.13",
     "@types/escape-html": "^1.0.2",
@@ -109,15 +108,5 @@
   },
   "engines": {
     "node": ">=22.0.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "npm:types-react@19.0.0-rc.1",
-      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
-    }
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
   }
 }
