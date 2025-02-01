@@ -1,6 +1,5 @@
 import type { Metadata } from 'next/types'
 
-import React from 'react'
 import PageClient from './page.client'
 
 import dynamic from 'next/dynamic'

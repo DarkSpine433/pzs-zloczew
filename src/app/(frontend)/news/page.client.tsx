@@ -1,6 +1,5 @@
 'use client'
 import { useHeaderTheme } from '@/providers/HeaderTheme'
-import React, { useEffect } from 'react'
 
 const PageClient = ({ children }: { children: React.ReactNode }) => {
   return (
