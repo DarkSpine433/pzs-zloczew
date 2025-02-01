@@ -107,7 +107,7 @@ opacity:0.7;
             color:  rgba(37, 99, 235, 0.7)  !important;
       }
           `}</style>
-        <div id="content" className=" min-w-72 w-full  mx-auto border-x px-3 float-left">
+        <div id="content" className=" min-w-72 w-full  mx-auto border-x px-3 float-left pb-10">
           <RenderBlocks blocks={layout} />
         </div>{' '}
         <aside className="left-0 bg-white   rounded-md  sticky top-16  h-fit max-h-[calc(100vh-10rem)] overflow-y-auto w-60 float-left p-3 hidden sm:block ">
