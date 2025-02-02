@@ -41,7 +41,7 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
   }, [isDialogOpen])
 
   useEffect(() => {
-    const fun = () => {
+    const getSizeOfImage = () => {
       if (imageRef.current) {
         return setSizeOfImage({
           width: imageRef.current.width,
@@ -49,11 +49,11 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
         })
       }
     }
-    fun()
-    window.addEventListener('resize', () => fun())
+    getSizeOfImage()
+    window.addEventListener('resize', () => getSizeOfImage())
 
     return () => {
-      window.removeEventListener('resize', () => fun())
+      window.removeEventListener('resize', () => getSizeOfImage())
     }
   }, [])
 
@@ -84,7 +84,7 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
           layout
           className={`flex items-center justify-center transition-all duration-300 ${
             isDialogOpen
-              ? 'fixed inset-0 z-50 h-screen w-screen bg-background/80 backdrop-blur-sm p-4'
+              ? 'fixed inset-0 z-50 h-dvh w-screen bg-background/80 backdrop-blur-sm p-4'
               : 'relative w-full max-w-md mx-auto'
           }`}
         >
