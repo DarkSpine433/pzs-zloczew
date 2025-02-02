@@ -73,10 +73,13 @@ export function serializeLexical({ nodes, getH2Headings }: Props): JSX.Element {
                 <a key={index + 'anchor'} href={`#${block.content}`}>
                   <style key={index}>
                     {`
-          .sideSectionClass{
-          display: block !important;
-          }
-          `}
+                      .sideSectionClass{
+                        display: block !important;
+                        @media (max-width: 640px) {
+                          display: none !important;
+                        }
+                      }
+                    `}
                   </style>
                   <TopicHeading {...block} Heading="h3" className="text-sm" />
                 </a>

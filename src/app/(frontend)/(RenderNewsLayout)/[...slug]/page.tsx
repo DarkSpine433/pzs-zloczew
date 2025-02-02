@@ -98,7 +98,7 @@ opacity:0.7;
 
 }
           `}</style>
-        <aside className="sideSectionClass left-0 bg-white shadow-sm  rounded-md  sticky top-16  h-fit max-h-[calc(100vh-10rem)] overflow-y-auto w-0 md:w-10 lg:w-44 float-left opacity-0 "></aside>
+        <aside className="sideSectionClass left-0 bg-white shadow-sm hidden sm:sticky rounded-md   top-16  h-fit max-h-[calc(100vh-10rem)] overflow-y-auto w-0 md:w-10 lg:w-24 xl:w-44 float-left opacity-0 "></aside>
         <style>{`
           #content a {
         color:  #2563EB  !important;
