@@ -26,7 +26,7 @@ const GetOffer = async (props: Props) => {
 
   return (
     <PayLoadErrorHandling data={getOffer.Content} showText={true}>
-      <div className="flex flex-wrap items-center justify-center gap-10 px-3 ">
+      <div className="flex flex-wrap items-center justify-center gap-4  px-3 ">
         {getOffer.Content.map((offer, index) => {
           return <ImageDialog imageUrl={offer.ImageUrl} key={index} />
         })}

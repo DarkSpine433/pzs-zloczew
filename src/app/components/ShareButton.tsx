@@ -12,6 +12,8 @@ const ShareButton = ({ className }: Props) => {
       variant={'default'}
       type="submit"
       name="favourite"
+      title="Udostępnij"
+      aria-label="Udostępnij"
       className={`group rounded-xl px-4 py-6 text-primary shadow-sm shadow-background transition-all   outline outline-1 outline-transparent hover:shadow-sm hover:shadow-transparent hover:translate-y-0.5  hover:outline hover:outline-1 hover:outline-background ${className}`}
       onClick={() =>
         typeof navigator !== 'undefined' &&

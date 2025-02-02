@@ -41,7 +41,7 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
   }, [isDialogOpen])
 
   useEffect(() => {
-    const fun = () => {
+    const getSizeOfImage = () => {
       if (imageRef.current) {
         return setSizeOfImage({
           width: imageRef.current.width,
@@ -49,11 +49,11 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
         })
       }
     }
-    fun()
-    window.addEventListener('resize', () => fun())
+    getSizeOfImage()
+    window.addEventListener('resize', () => getSizeOfImage())
 
     return () => {
-      window.removeEventListener('resize', () => fun())
+      window.removeEventListener('resize', () => getSizeOfImage())
     }
   }, [])
 
@@ -69,7 +69,7 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
 
   return (
     <motion.div
-      className={`relative flex w-full md:max-w-[22rem] max-w-full lg:max-w-md xl:max-w-lg items-center justify-center hover:cursor-pointer h-full max-h-[700px] transition-none ${isDialogOpen ? 'overflow-visible ' : 'overflow-hidden transition-none'}`}
+      className={`relative flex w-fit md:max-w-[22rem] max-w-full lg:max-w-md xl:max-w-lg items-center justify-center hover:cursor-pointer h-full max-h-[700px] transition-none ${isDialogOpen ? 'overflow-visible ' : 'overflow-hidden transition-none'}`}
     >
       <div
         style={{
@@ -84,46 +84,46 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
           layout
           className={`flex items-center justify-center transition-all duration-300 ${
             isDialogOpen
-              ? 'fixed inset-0 z-50 h-screen w-screen bg-background/80 backdrop-blur-sm p-4'
+              ? 'fixed inset-0 z-50 h-dvh w-screen bg-background/80 backdrop-blur-sm p-4'
               : 'relative w-full max-w-md mx-auto'
           }`}
         >
-          <div
-            className={`relative flex flex-col items-center rounded-xl bg-background/50 ${
-              isDialogOpen ? 'w-full h-full flex items-center justify-center' : ''
-            }`}
-          >
-            {isDialogOpen && (
-              <>
-                <style>{`
+          {' '}
+          {isDialogOpen && (
+            <>
+              <style>{`
                   body {
                     overflow: hidden !important;
                   }
                 `}</style>
-                <motion.button
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="absolute top-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 border border-primary shadow-lg hover:bg-background transition-colors md:top-8 md:right-8"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    setIsDialogOpen(false)
-                    setCanChangeDialogState(true)
-                  }}
+              <motion.button
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className="absolute top-7 right-7 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 border border-primary shadow-lg hover:bg-background transition-colors md:top-8 md:right-8"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setIsDialogOpen(false)
+                  setCanChangeDialogState(true)
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="h-6 w-6"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2}
-                    stroke="currentColor"
-                    className="h-6 w-6"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </motion.button>
-              </>
-            )}
-
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </motion.button>
+            </>
+          )}
+          <div
+            className={`relative flex flex-col items-center rounded-xl bg-background/50 ${
+              isDialogOpen ? 'w-full h-full flex items-center overflow-auto justify-center' : ''
+            }`}
+          >
             <Image
               onMouseEnter={() => isDialogOpen && setCanChangeDialogState(false)}
               onMouseLeave={() => isDialogOpen && setCanChangeDialogState(true)}
@@ -133,10 +133,10 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
               width={1000}
               height={1000}
               quality={100}
-              className={`rounded-xl overflow-scroll border-t-2 border-primary  ${
+              className={`rounded-xl  ${
                 isDialogOpen
-                  ? 'max-h-[95vh]  w-fit h-full  cursor-default  '
-                  : '  shadow-md shadow-primary'
+                  ? 'max-h-[95vh]  mx-auto  w-fit  min-w-max h-dvh  cursor-default  '
+                  : ''
               }`}
             />
           </div>

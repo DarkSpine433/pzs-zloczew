@@ -1,14 +1,14 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 type Props = {
-  className?: string;
-  size?: string;
-};
+  className?: string
+  size?: string
+}
 
 const ContactButton = ({ className, size }: Props) => {
   return (
     <Link
-      href={"/contact?_"}
+      href={'/contact'}
       className={`flex h-4 w-fit items-center rounded-md border-2 border-primary bg-background/10 p-5 text-sm transition-all hover:bg-primary/10 ${className} `}
     >
       <div>Kontakt</div>
@@ -27,7 +27,7 @@ const ContactButton = ({ className, size }: Props) => {
         />
       </svg>
     </Link>
-  );
-};
+  )
+}
 
-export default ContactButton;
+export default ContactButton

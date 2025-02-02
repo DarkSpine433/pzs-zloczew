@@ -5,7 +5,6 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
-import { homeStatic } from '@/endpoints/seed/home-static'
 
 import type { Page as PageType } from '@/payload-types'
 
@@ -63,38 +62,42 @@ export default async function Page({ params: paramsPromise }: Args) {
       <PayloadRedirects disableNotFound url={url} />
 
       <RenderHero {...hero} />
-      <div className=" w-full justify-center max-w-screen-2xl  mx-auto">
+      <div className="  w-full  flex justify-center max-w-screen-2xl  mx-auto px-0 md:px-3 ">
         <style>{`
     *{
     scroll-margin-top: 5rem;
     }
    #sideSection a:before {
 content: '➤' !important;
-display:inline-block !important;
-
+    text-decoration: none !important;
       }  
  #sideSection a{ color:  #2563EB  !important;
         text-transform: uppercase;
-        text-decoration: uderline;
+        text-decoration: none !important;
           width: 100%;
         font-size: 1rem;
+          display: flex;
 
-        
+          font-size: 0.68rem;
+      
+          margin: 0;
         padding: 0;
-display:inline-block !important;
+
 }
+        #sideSection *{
+        padding: 0;
+        margin: 0;
+        }
+      #sideSection a h3 {
+      margin: 0;
+        }
  #sideSection a:hover{
 transform:translateX(1px);
 opacity:0.7;
 
 }
           `}</style>
-        <aside className="left-2 bg-white shadow-sm border rounded-md px-3 py-5 sticky top-16 float-left h-fit max-h-[calc(100vh-8rem)] w-72 xl:block hidden ">
-          <h2 className="text-3xl font-extrabold mb-4">Tematy:</h2>
-          <div id="sideSection" className="pl-5  ">
-            <RenderBlocks getH2Headings={true} blocks={layout} />
-          </div>
-        </aside>
+        <aside className="sideSectionClass left-0 bg-white shadow-sm hidden sm:sticky rounded-md   top-16  h-fit max-h-[calc(100vh-10rem)] overflow-y-auto w-0 md:w-10 lg:w-24 xl:w-44 float-left opacity-0 "></aside>
         <style>{`
           #content a {
         color:  #2563EB  !important;
@@ -103,9 +106,18 @@ opacity:0.7;
             color:  rgba(37, 99, 235, 0.7)  !important;
       }
           `}</style>
-        <div id="content" className=" min-w-96 w-full xl:max-w-2xl  2xl:max-w-6xl mx-auto">
+        <div
+          id="content"
+          className=" min-w-72 w-full  mx-auto border-x px-3 float-left pb-10 max-w-screen-xl"
+        >
           <RenderBlocks blocks={layout} />
         </div>{' '}
+        <aside className="sideSectionClass left-0 bg-white rounded-md  sticky top-16  h-fit max-h-[calc(100vh-10rem)] overflow-y-auto w-60 float-left p-3 hidden sm:block ">
+          <h2 className="text-2xl font-extrabold m-0 ">Tematy:</h2>
+          <div id="sideSection" className="pl-5 ">
+            <RenderBlocks getH2Headings={true} blocks={layout} />
+          </div>
+        </aside>
       </div>
     </article>
   )

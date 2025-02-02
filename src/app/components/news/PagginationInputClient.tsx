@@ -13,21 +13,25 @@ type PaginationInputProps = {
 
 const PaginationInputClient = ({ data, searchParams }: PaginationInputProps) => {
   const [currentPage, setCurrentPage] = useState<number | undefined>(
-    Number(searchParams['page']) || undefined,
+    Math.abs(Number(searchParams['page'])) || undefined,
   )
   const [isOutOfRange, setIsOutOfRange] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   useLayoutEffect(() => {
     if (inputRef.current) {
-      inputRef.current.value = String(searchParams['page'] || '')
+      inputRef.current.value = String(Math.abs(Number(searchParams['page'])) || '')
     }
-    setCurrentPage(Number(searchParams['page']) || undefined)
-  }, [searchParams['page']])
+    setCurrentPage(Math.abs(Number(searchParams['page'])) || undefined)
+  }, [searchParams])
   useEffect(() => {
-    Number(currentPage) == Number(searchParams['page'])
-      ? setIsOutOfRange(true)
-      : setIsOutOfRange(false)
-  })
+    if (
+      Math.abs(Number(currentPage)) == Math.abs(Number(searchParams['page'])) ||
+      Math.abs(Number(currentPage)) > data.totalPages
+    ) {
+      return setIsOutOfRange(true)
+    }
+    return setIsOutOfRange(false)
+  }, [currentPage, searchParams, data.totalPages])
   return (
     <div className="flex w-fit max-w-60 flex-row items-center justify-center gap-2">
       <style>{`
@@ -51,8 +55,8 @@ const PaginationInputClient = ({ data, searchParams }: PaginationInputProps) => 
         max={data.totalPages}
         ref={inputRef}
         onChange={(e) => {
-          const value = e.target.valueAsNumber
-          setCurrentPage(value)
+          const value = Math.abs(Number(e.target.value))
+          setCurrentPage(Math.abs(value))
           if (value < 1 || value > data.totalPages) {
             setIsOutOfRange(true)
           } else {
@@ -67,6 +71,7 @@ const PaginationInputClient = ({ data, searchParams }: PaginationInputProps) => 
           query: { ...searchParams, page: currentPage },
         }}
         scroll={false}
+        aria-disabled={isOutOfRange}
         className={`w-full md:w-3/6 ${isOutOfRange ? 'pointer-events-none opacity-80' : ''}`}
       >
         <Button className="w-full max-w-14">

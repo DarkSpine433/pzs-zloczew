@@ -23,6 +23,7 @@ import type {
 } from '@/payload-types'
 import '@/app/(frontend)/globals.css'
 import { get } from 'react-hook-form'
+import { TopicHeading } from '@/blocks/TopicHeading/Component'
 
 export type NodeTypes =
   | DefaultNodeTypes
@@ -35,7 +36,7 @@ type Props = {
 
 export function serializeLexical({ nodes, getH2Headings }: Props): JSX.Element {
   let HeadingsH2Names = []
-  console.log(HeadingsH2Names)
+
   return (
     <Fragment>
       {nodes?.map((node, index): JSX.Element | null => {
@@ -63,24 +64,39 @@ export function serializeLexical({ nodes, getH2Headings }: Props): JSX.Element {
         }
 
         if (getH2Headings) {
-          if (
-            node?.tag == 'h2' &&
-            node?.type === 'heading' &&
-            node?.children &&
-            node.children[0].text != undefined &&
-            node.children[0].text != null &&
-            node.children[0].text != ''
-          ) {
-            console.log(node.children[0].text)
-            return (
-              <a key={index} href={`#${node.children[0].text}`}>
-                {serializedChildren}
-              </a>
-            )
-          }
-          return null
-        }
+          if (node.type === 'block') {
+            const block = node.fields
 
+            const blockType = block?.blockType
+            if (blockType === 'topic') {
+              return (
+                <a key={index + 'anchor'} href={`#${block.content}`}>
+                  <style key={index}>
+                    {`
+                      .sideSectionClass{
+                        display: block !important;
+                        @media (max-width: 640px) {
+                          display: none !important;
+                        }
+                      }
+                    `}
+                  </style>
+                  <TopicHeading {...block} Heading="h3" className="text-sm" />
+                </a>
+              )
+            }
+          }
+
+          return (
+            <style key={index + 'style'}>
+              {`
+          .sideSectionClass{
+          display: none ;
+          }
+          `}
+            </style>
+          )
+        }
         if (node.type === 'text') {
           let text = <React.Fragment key={index}>{node.text}</React.Fragment>
           if (node.format & IS_BOLD) {
@@ -130,6 +146,12 @@ export function serializeLexical({ nodes, getH2Headings }: Props): JSX.Element {
           }
 
           switch (blockType) {
+            case 'topic':
+              return (
+                <span key={index} id={block.content}>
+                  <TopicHeading {...block} />
+                </span>
+              )
             case 'cta':
               if (getH2Headings) return null
               return <CallToActionBlock key={index} {...block} />

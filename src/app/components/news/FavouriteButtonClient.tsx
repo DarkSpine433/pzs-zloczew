@@ -70,6 +70,8 @@ const FavouriteButtonClient = ({ id, isBlock, className, collection }: Props) =>
             variant={'secondary'}
             type="submit"
             name="favourite"
+            title="Dodaj do ulubionych"
+            aria-label="Dodaj do ulubionych"
             className={`group rounded-xl px-4 py-6 text-primary shadow shadow-primary outline outline-1 outline-transparent transition-all hover:shadow-inner hover:shadow-primary hover:translate-y-0.5 hover:outline hover:outline-1 hover:outline-primary ${className}`}
           >
             {arrayOfFavouriteItems !== undefined && arrayOfFavouriteItems.includes(id) ? (

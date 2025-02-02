@@ -1,13 +1,12 @@
 import type { Metadata } from 'next/types'
 
-import React from 'react'
 import PageClient from './page.client'
 
 import dynamic from 'next/dynamic'
 import SpinerLoader from '@/app/components/SpinerLoader'
 
 const FetchNews = dynamic(() => import('./FetchNews'), {
-  loading: () => <SpinerLoader />,
+  loading: () => <SpinerLoader className="container py-28" changeHeight />,
 })
 export default async function Page({
   searchParams,

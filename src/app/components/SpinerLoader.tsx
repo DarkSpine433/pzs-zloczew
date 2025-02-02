@@ -1,14 +1,15 @@
-import CircularProgress from "@mui/material/CircularProgress";
+import CircularProgress from '@mui/material/CircularProgress'
 type Props = {
-  className?: string;
-};
+  className?: string
+  changeHeight?: boolean
+}
 
-const SpinerLoader = ({ className }: Props) => {
+const SpinerLoader = ({ className, changeHeight }: Props) => {
   return (
-    <div className={` ${className} flex h-full items-center justify-center`}>
+    <div className={`flex items-center justify-center ${!changeHeight && 'h-full'} ${className}`}>
       <CircularProgress />
     </div>
-  );
-};
+  )
+}
 
-export default SpinerLoader;
+export default SpinerLoader
