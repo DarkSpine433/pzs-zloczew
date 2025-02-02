@@ -24,6 +24,7 @@ import { getServerSideURL } from '@/utilities/getURL'
 import Footer from '@/app/components/mainLayout/Footer'
 import Nav from '../components/mainLayout/Nav'
 
+import CookiesConsentClinent from './CookiesConsentClinent'
 const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
@@ -61,6 +62,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             </div>
           </footer>
         </Providers>
+        <CookiesConsentClinent />
       </body>
     </html>
   )
