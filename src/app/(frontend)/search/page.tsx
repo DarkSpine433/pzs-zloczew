@@ -57,7 +57,7 @@ export default async function SearchPage({ searchParams: searchParamsPromise }: 
   })
 
   return (
-    <div className="pt-10 pb-24 min-h-dvh">
+    <div className="pt-10 pb-24 heightFullCalc  ">
       <PageClient />
 
       <div className="container mb-16">

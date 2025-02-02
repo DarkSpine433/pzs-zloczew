@@ -74,7 +74,7 @@ const FetchContent = ({ data }: { data: any }) => {
           `}</style>
       <div
         id="content"
-        className="h-full heightFullCalc mx-auto flex w-full max-w-5xl flex-col gap-10 overflow-x-hidden rounded border-x px-3 pb-10 pt-10 sm:px-10"
+        className=" mx-auto min-h-[600px] flex w-full max-w-5xl flex-col gap-10 overflow-x-hidden rounded border-x px-3 pb-10 pt-10 sm:px-10"
       >
         {data && <RichText content={data.content} />}
       </div>
