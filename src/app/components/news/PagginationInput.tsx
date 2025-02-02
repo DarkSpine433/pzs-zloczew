@@ -42,11 +42,11 @@ const PagginationInput = async ({ data, page, numberOfPages, searchParams }: Pro
               <Tooltip delayDuration={50}>
                 <TooltipTrigger>
                   <PaginationPrevious
-                    aria-label="Previous page"
+                    aria-label="Poprzednia strona"
                     href={await createPageLink(Math.max(data.page - 1, 1))}
                   />
                 </TooltipTrigger>
-                <TooltipContent>Previous page</TooltipContent>
+                <TooltipContent>Poprzednia strona</TooltipContent>
               </Tooltip>
             </TooltipProvider>
           )}
@@ -126,11 +126,11 @@ const PagginationInput = async ({ data, page, numberOfPages, searchParams }: Pro
               <Tooltip delayDuration={50}>
                 <TooltipTrigger>
                   <PaginationNext
-                    aria-label="Next page"
+                    aria-label="Następna strona"
                     href={await createPageLink(Math.min(data.page + 1, data.totalPages))}
                   />
                 </TooltipTrigger>
-                <TooltipContent>Next page</TooltipContent>
+                <TooltipContent>Następna strona</TooltipContent>
               </Tooltip>
             </TooltipProvider>
           )}
