@@ -36,7 +36,7 @@ type Props = {
 
 export function serializeLexical({ nodes, getH2Headings }: Props): JSX.Element {
   let HeadingsH2Names = []
-  console.log(HeadingsH2Names)
+
   return (
     <Fragment>
       {nodes?.map((node, index): JSX.Element | null => {
@@ -70,13 +70,29 @@ export function serializeLexical({ nodes, getH2Headings }: Props): JSX.Element {
             const blockType = block?.blockType
             if (blockType === 'topic') {
               return (
-                <a key={index} href={`#${block.content}`}>
+                <a key={index + 'anchor'} href={`#${block.content}`}>
+                  <style key={index}>
+                    {`
+          .sideSectionClass{
+          display: block !important;
+          }
+          `}
+                  </style>
                   <TopicHeading {...block} Heading="h3" className="text-sm" />
                 </a>
               )
             }
           }
-          return null
+
+          return (
+            <style key={index + 'style'}>
+              {`
+          .sideSectionClass{
+          display: none ;
+          }
+          `}
+            </style>
+          )
         }
         if (node.type === 'text') {
           let text = <React.Fragment key={index}>{node.text}</React.Fragment>

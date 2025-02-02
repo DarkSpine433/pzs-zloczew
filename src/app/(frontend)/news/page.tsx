@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic'
 import SpinerLoader from '@/app/components/SpinerLoader'
 
 const FetchNews = dynamic(() => import('./FetchNews'), {
-  loading: () => <SpinerLoader />,
+  loading: () => <SpinerLoader className="container" />,
 })
 export default async function Page({
   searchParams,

@@ -3,9 +3,9 @@
 type Props = {
   className?: string
   content?: Record<string, any>
-  Heading?: string
+  Heading?: Node.tag
 }
 
 export const TopicHeading: React.FC<Props> = ({ className, content, Heading = 'h2' }) => {
-  return <Heading className>{content}</Heading>
+  return <Heading className={className}>{content}</Heading>
 }

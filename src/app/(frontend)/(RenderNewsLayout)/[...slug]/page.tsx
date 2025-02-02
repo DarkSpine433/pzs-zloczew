@@ -98,7 +98,7 @@ opacity:0.7;
 
 }
           `}</style>
-        <aside className="left-0 bg-white shadow-sm  rounded-md  sticky top-16  h-fit max-h-[calc(100vh-10rem)] overflow-y-auto w-0 md:w-10 lg:w-44 float-left opacity-0 "></aside>
+        <aside className="sideSectionClass left-0 bg-white shadow-sm  rounded-md  sticky top-16  h-fit max-h-[calc(100vh-10rem)] overflow-y-auto w-0 md:w-10 lg:w-44 float-left opacity-0 "></aside>
         <style>{`
           #content a {
         color:  #2563EB  !important;
@@ -107,10 +107,13 @@ opacity:0.7;
             color:  rgba(37, 99, 235, 0.7)  !important;
       }
           `}</style>
-        <div id="content" className=" min-w-72 w-full  mx-auto border-x px-3 float-left pb-10">
+        <div
+          id="content"
+          className=" min-w-72 w-full  mx-auto border-x px-3 float-left pb-10 max-w-screen-xl"
+        >
           <RenderBlocks blocks={layout} />
         </div>{' '}
-        <aside className="left-0 bg-white   rounded-md  sticky top-16  h-fit max-h-[calc(100vh-10rem)] overflow-y-auto w-60 float-left p-3 hidden sm:block ">
+        <aside className="sideSectionClass left-0 bg-white rounded-md  sticky top-16  h-fit max-h-[calc(100vh-10rem)] overflow-y-auto w-60 float-left p-3 hidden sm:block ">
           <h2 className="text-2xl font-extrabold m-0 ">Tematy:</h2>
           <div id="sideSection" className="pl-5 ">
             <RenderBlocks getH2Headings={true} blocks={layout} />

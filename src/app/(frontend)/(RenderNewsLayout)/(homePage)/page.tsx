@@ -172,7 +172,7 @@ const Home = (props: Props) => {
 }
 export function generateMetadata(): Metadata {
   return {
-    title: 'PZS Złoczew - Strona Główna',
+    title: 'Strona Główna - PZS Złoczew',
     description:
       'Witamy na oficjalnej stronie PZS Złoczew. Poznaj naszą ofertę edukacyjną, wydarzenia szkolne, oraz wszystkie informacje na temat naszej szkoły w Złoczewie.',
     keywords: [

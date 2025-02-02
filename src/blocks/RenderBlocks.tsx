@@ -37,7 +37,7 @@ export const RenderBlocks: React.FC<{
             const Block = blockComponents[blockType]
 
             return (
-              <div className="" key={index}>
+              <div className="" key={index + 'getH2Headings'}>
                 <Block {...block} getH2Headings={props.getH2Headings} />
               </div>
             )

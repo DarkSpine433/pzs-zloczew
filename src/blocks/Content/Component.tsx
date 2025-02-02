@@ -17,29 +17,27 @@ export const ContentBlock: React.FC<ContentBlockProps & { getH2Headings?: boolea
   }
 
   return (
-    <div className="">
-      <div className=" w-full gap-y-8 gap-x-16">
-        {columns &&
-          columns.length > 0 &&
-          columns.map((col, index) => {
-            const { enableLink, link, richText, size } = col
+    <div className=" w-full gap-y-8 gap-x-16">
+      {columns &&
+        columns.length > 0 &&
+        columns.map((col, index) => {
+          const { enableLink, link, richText, size } = col
 
-            return (
-              <div
-                className={cn(`col-span-4 lg:col-span-${colsSpanClasses[size!]}`, {
-                  'md:col-span-2': size !== 'full',
-                })}
-                key={index}
-              >
-                {richText && (
-                  <RichText content={richText} enableGutter={false} getH2Headings={getH2Headings} />
-                )}
+          return (
+            <div
+              className={cn(`col-span-4 lg:col-span-${colsSpanClasses[size!]}`, {
+                'md:col-span-2': size !== 'full',
+              })}
+              key={index + 'col'}
+            >
+              {richText && (
+                <RichText content={richText} enableGutter={false} getH2Headings={getH2Headings} />
+              )}
 
-                {enableLink && !getH2Headings && <CMSLink {...link} />}
-              </div>
-            )
-          })}
-      </div>
+              {enableLink && !getH2Headings && <CMSLink {...link} />}
+            </div>
+          )
+        })}
     </div>
   )
 }
