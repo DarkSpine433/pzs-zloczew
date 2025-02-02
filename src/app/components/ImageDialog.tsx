@@ -31,11 +31,9 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
       }
 
       window.addEventListener('keydown', keyDownHandler)
-      window.addEventListener('wheel', isScrolling)
 
       return () => {
         window.removeEventListener('keydown', keyDownHandler)
-        window.removeEventListener('wheel', isScrolling)
       }
     }
   }, [isDialogOpen])

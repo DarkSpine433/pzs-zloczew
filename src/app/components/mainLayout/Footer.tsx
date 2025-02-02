@@ -3,6 +3,7 @@ import React from 'react'
 
 import Image from 'next/image'
 import ClientNavLinks from './ClientNavLinks'
+import { Button } from '@/components/ui/button'
 type Props = {}
 
 const Footer = (props: Props) => {
@@ -13,8 +14,8 @@ const Footer = (props: Props) => {
         <div className="grid h-fit grid-cols-2 justify-center gap-10 md:grid-cols-4">
           <div className="flex flex-col px-3">
             <h2 className="">Szybka Nawigacja</h2>
-            <div className="flex flex-col flex-wrap pl-1  [&>*]:py-3 [&>*]:h-fit [&>*]:w-fit [&>*]:pr-5 [&>*]:lowercase [&>*]:text-gray-500 [&>*]:transition-all [&>*]:first-letter:uppercase [&>*]:first-letter:text-primary ">
-              <ClientNavLinks className="hover:translate-x-1 hover:text-primary hover:first-letter:text-white" />
+            <div className="flex flex-col flex-wrap pl-1  [&>*]:py-3 [&>*]:h-fit [&>*]:w-fit [&>*]:pr-5 [&>*]:lowercase [&>*]:text-gray-500 [&>*]:transition-all [&>*]:first-letter:uppercase [&>*]:first-letter:text-primary  ">
+              <ClientNavLinks className="group-hover:translate-x-1 group-hover:text-primary group-hover:first-letter:text-white group-hover:first-letter:uppercase  [&>*]:lowercase  " />
             </div>
           </div>
           <div className="flex flex-col px-3">
@@ -71,7 +72,25 @@ const Footer = (props: Props) => {
             <br /> 2024 - {new Date().getFullYear()}
           </div>
         </div>
-      </div>
+      </div>{' '}
+      <Link
+        href={`https://github.com/${process.env.NEXT_PUBLIC_NAME_OWNER_OF_PZS_ZLOCZEW_WEBSITE}/${process.env.NEXT_PUBLIC_REPO_NAME_OF_PZS_ZLOCZEW_WEBSITE}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Przejdź do GitHub"
+        title="Przejdź do GitHub"
+        prefetch={false}
+        className="px-3 mx-auto flex w-fit flex-col flex-wrap items-center text-center text-sm "
+      >
+        <div className="py-2  text-center  text-sm bg-secondary w-fit mx-auto px-3 rounded-full mb-2 flex gap-2 items-center justify-center">
+          <span className="underline text-foreground ">
+            <strong>🚀Weź Udział W Rozwoju Naszej Strony!</strong>
+          </span>
+          <Button title="Przejdź do GitHub" aria-label="Przejdź do GitHub" size={'sm'}>
+            Przejdź do GitHub
+          </Button>
+        </div>{' '}
+      </Link>
       <hr className="h-[1px] w-full max-w-screen-2xl border-none bg-gradient-to-r from-transparent via-secondary/20 to-transparent p-0" />
       <div className="py-3 text-center   ">
         Wykonana z ❤️ Przez{' '}
