@@ -67,21 +67,46 @@ export default async function Page({ params: paramsPromise }: Args) {
     *{
     scroll-margin-top: 5rem;
     }
-   #sideSection a:before {
-content: '➤' !important;
-    text-decoration: none !important;
-      }  
- #sideSection a{ color:  #2563EB  !important;
+  #sideSection::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+#sideSection::-webkit-scrollbar-track {
+  background: transparent;
+  opacity: 0; 
+}
+ 
+/* Handle */
+#sideSection::-webkit-scrollbar-thumb {
+  background: rgba(37, 99, 235, 0.4);
+        border-radius: 4px;
+
+}
+
+/* Handle on hover */
+#sideSection::-webkit-scrollbar-thumb:hover {
+   background: rgba(37, 99, 235, 0.7);
+}
+ #sideSection a{ color:  gray  !important;
         text-transform: uppercase;
         text-decoration: none !important;
           width: 100%;
         font-size: 1rem;
           display: flex;
-
+          opacity: 0.8;
           font-size: 0.68rem;
-      
+          transition: transform  0.06s linear;
           margin: 0;
-        padding: 0;
+        padding: 6px 0;
+        text-transform: lowercase;
+
+}
+         #sideSection *::first-letter{   text-transform: uppercase;
+     color:  rgba(37, 99, 235, 1)  !important;
+      font-size: 1.1rem;
+      font-weight: 500;
+
 
 }
         #sideSection *{
@@ -90,10 +115,12 @@ content: '➤' !important;
         }
       #sideSection a h3 {
       margin: 0;
+      font-weight: 400;
         }
  #sideSection a:hover{
 transform:translateX(1px);
-opacity:0.7;
+opacity:1;
+color:  rgba(37, 99, 235,1)  !important;
 
 }
           `}</style>
@@ -112,9 +139,13 @@ opacity:0.7;
         >
           <RenderBlocks blocks={layout} />
         </div>{' '}
-        <aside className="sideSectionClass left-0 bg-white rounded-md  sticky top-16  h-fit max-h-[calc(100vh-10rem)] overflow-y-auto w-60 float-left p-3 hidden sm:block ">
-          <h2 className="text-2xl font-extrabold m-0 ">Tematy:</h2>
-          <div id="sideSection" className="pl-5 ">
+        <aside className="sideSectionClass left-0 bg-white rounded-md  sticky top-16  h-fit max-h-[calc(100vh-2rem)]  w-60 float-left p-3 hidden sm:block ">
+          {' '}
+          <h2 className="text-xl font-semibold   m-0 ">Tematy:</h2>
+          <div
+            id="sideSection"
+            className="pl-2 w-full scroll-  h-fit max-h-[calc(100vh-7rem)] overflow-y-auto overflow-x-hidden"
+          >
             <RenderBlocks getH2Headings={true} blocks={layout} />
           </div>
         </aside>

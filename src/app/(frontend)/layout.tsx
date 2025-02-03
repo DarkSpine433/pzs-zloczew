@@ -38,7 +38,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       suppressHydrationWarning={true}
       className={`${cn(GeistSans.variable, GeistMono.variable)} scroll-smooth`}
     >
-      <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
+      <body className={cn('min-h-screen bg-foreground font-sans antialiased', fontSans.variable)}>
         <HolyLoader color="#2563EB" zIndex={50} />
         <Providers>
           <AdminBar
@@ -55,7 +55,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               </div>
             </nav>
           </header>
-          <main className="heightFullCalc">{children}</main>
+          <main className=" bg-background">{children}</main>
           <footer className="z-50 bg-foreground text-background pb-3 ">
             <div className="mx-auto max-w-7xl">
               <Footer />
