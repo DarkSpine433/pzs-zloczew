@@ -22,7 +22,8 @@ const Upload_and_Delete_Files = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file: any = e.target.files?.[0]
-
+    setStatusMessage([])
+    setStatusOfUpload([])
     if (file) {
       e.target.files?.length && segetFileInfoelectedDocs(Array.from(e.target.files))
     }
