@@ -30,7 +30,7 @@ const Page = () => {
   useEffect(() => {
     GlobalStateUpdateUiAfterUploadUpdateData()
   }, [])
-  if (!GlobalStateUpdateUiAfterUploadData) return <div>Loading...</div>
+
   return (
     <div className="flex flex-col">
       <Dialog>
@@ -46,7 +46,8 @@ const Page = () => {
 
       <div className="mx-auto flex min-h-[600px] w-full max-w-screen-xl flex-wrap justify-center gap-2 overflow-hidden rounded-xl px-3 py-5">
         <Upload_and_Delete_Files />
-        {GlobalStateUpdateUiAfterUploadData[0] !== null &&
+        {GlobalStateUpdateUiAfterUploadData &&
+          GlobalStateUpdateUiAfterUploadData[0] !== null &&
           GlobalStateUpdateUiAfterUploadData.map((item: any, index: number) => (
             <CardBlockClient
               key={item.id + index}
