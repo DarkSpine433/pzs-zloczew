@@ -26,6 +26,10 @@ import { getServerSideURL } from '@/utilities/getURL'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
+  labels: {
+    singular: 'Strony',
+    plural: 'Strony',
+  },
   access: {
     create: authenticated,
     delete: authenticated,

@@ -5,6 +5,10 @@ import { authenticated } from '../access/authenticated'
 
 export const Categories: CollectionConfig = {
   slug: 'categories',
+  labels: {
+    singular: 'Kategorie',
+    plural: 'Kategorie',
+  },
   access: {
     create: authenticated,
     delete: authenticated,

@@ -33,6 +33,10 @@ import { Iframe } from '../blocks/Iframe'
 
 export const News: CollectionConfig = {
   slug: 'news',
+  labels: {
+    singular: 'Aktualność',
+    plural: 'Aktualności',
+  },
   access: {
     create: authenticated,
     delete: authenticated,

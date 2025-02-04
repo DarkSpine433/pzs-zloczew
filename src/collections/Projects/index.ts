@@ -33,6 +33,10 @@ import { Iframe } from '../blocks/Iframe'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
+  labels: {
+    singular: 'Projekt',
+    plural: 'Projekty',
+  },
   access: {
     create: authenticated,
     delete: authenticated,
