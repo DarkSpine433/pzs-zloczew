@@ -1,5 +1,5 @@
 // storage-adapter-import-placeholder
-export const runtime = 'edge'
+
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 
 import sharp from 'sharp' // sharp-import
@@ -29,6 +29,22 @@ const dirname = path.dirname(filename)
 
 export default buildConfig({
   admin: {
+    avatar: 'default',
+    suppressHydrationWarning: true,
+
+    meta: {
+      icons: [{ url: '/favicon.ico', type: 'image/x-icon', sizes: '16x16', rel: 'icon' }],
+      titleSuffix: ' - PZS Złoczew',
+      description: 'Admin panel for PZS Złoczew',
+      keywords: 'PZS Złoczew, Admin, Panel',
+      openGraph: {
+        images: [{ url: '/deafult_og.jpeg', width: 1200, height: 630, alt: 'PZS Złoczew' }],
+        description: 'Admin panel for PZS Złoczew',
+        siteName: 'PZS Złoczew',
+        title: 'Admin Panel - PZS Złoczew',
+      },
+    },
+
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
@@ -36,6 +52,11 @@ export default buildConfig({
       // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
       beforeDashboard: ['@/components/BeforeDashboard'],
+
+      graphics: {
+        Logo: '@/app/components/Logo',
+        Icon: '@/app/components/Icon',
+      },
     },
     importMap: {
       baseDir: path.resolve(dirname),
@@ -76,6 +97,7 @@ export default buildConfig({
     ...plugins,
     // storage-adapter-placeholder
   ],
+
   secret: process.env.PAYLOAD_SECRET,
   sharp,
   typescript: {
