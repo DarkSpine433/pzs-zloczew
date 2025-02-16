@@ -1,5 +1,5 @@
 'use server'
-import { getPayloadHMR } from '@payloadcms/next/utilities'
+import { getPayload } from 'payload'
 import configPromise from '../../payload.config'
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const fetchNews = async ({ limit, page, filter }: Props) => {
-  const payload = await getPayloadHMR({ config: configPromise })
+  const payload = await getPayload({ config: configPromise })
   const query = {
     and: [
       filter.year && {

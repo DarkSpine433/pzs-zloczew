@@ -1,10 +1,10 @@
 'use server'
-import { getPayloadHMR } from '@payloadcms/next/utilities'
+import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { staticNavItems } from './StaticNavT'
 
 export const getStaticNavItems = async () => {
-  const payload = await getPayloadHMR({ config: configPromise })
+  const payload = await getPayload({ config: configPromise })
   const data: any = await payload.findGlobal({
     slug: 'schooljournal',
   })

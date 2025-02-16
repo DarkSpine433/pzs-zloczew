@@ -15,30 +15,29 @@ import {
 import CardBlockClient from './CardBlockClient'
 import dynamic from 'next/dynamic'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import globalStateUpdateUiAfterUpload from '@/lib/GlobalStateUpdateUiAfterUpload'
 
 const PreviewDoc = dynamic(() => import('@/app/components/github_repo_action/preview/PreviewDoc'), {
   ssr: false,
 })
+
 const Page = () => {
   noStore()
-  const [data, setData] = useState<any>([null])
-
+  const GlobalStateUpdateUiAfterUploadData = globalStateUpdateUiAfterUpload((state) => state.data)
+  const GlobalStateUpdateUiAfterUploadUpdateData = globalStateUpdateUiAfterUpload(
+    (state) => state.updateUiAfterUpload,
+  )
   useEffect(() => {
-    const fetchFileVar = async () => {
-      const { data } = await fetchFiles()
-      console.log(data, 123)
-      setData(data)
-    }
-    fetchFileVar()
+    GlobalStateUpdateUiAfterUploadUpdateData()
   }, [])
-  if (!data) return <div>Loading...</div>
+
   return (
     <div className="flex flex-col">
       <Dialog>
         <DialogTrigger className="fixed bottom-10 right-10 z-20 rounded-2xl border border-primary bg-primary text-xl font-extrabold text-white shadow-sm shadow-primary transition-all hover:-translate-y-0.5 hover:bg-primary-foreground hover:text-primary hover:shadow-md hover:shadow-primary">
           <div className="p-5 uppercase">Dodaj plik</div>
         </DialogTrigger>
-        <DialogContent className="h-5/6 w-full max-w-7xl">
+        <DialogContent className="h-5/6 overflow-y-auto w-full max-w-7xl">
           <DialogHeader>
             <DialogTitle className="uppercase">Dodaj plik</DialogTitle>
           </DialogHeader>
@@ -46,8 +45,10 @@ const Page = () => {
       </Dialog>
 
       <div className="mx-auto flex min-h-[600px] w-full max-w-screen-xl flex-wrap justify-center gap-2 overflow-hidden rounded-xl px-3 py-5">
-        {data[0] !== null &&
-          data.map((item: any, index: number) => (
+        <Upload_and_Delete_Files />
+        {GlobalStateUpdateUiAfterUploadData &&
+          GlobalStateUpdateUiAfterUploadData[0] !== null &&
+          GlobalStateUpdateUiAfterUploadData.map((item: any, index: number) => (
             <CardBlockClient
               key={item.id + index}
               sha={item.sha}

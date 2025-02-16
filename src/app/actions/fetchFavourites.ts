@@ -1,5 +1,5 @@
 'use server'
-import { getPayloadHMR } from '@payloadcms/next/utilities'
+import { getPayload } from 'payload'
 import configPromise from '../../payload.config'
 
 type Props = {
@@ -10,7 +10,7 @@ export const fetchFavourites = async ({ idsNews }: Props) => {
   var favourites: { news: any[] } = {
     news: [],
   }
-  const payload = await getPayloadHMR({ config: configPromise })
+  const payload = await getPayload({ config: configPromise })
   var { docs } = await payload.find({
     collection: 'news',
     where: {

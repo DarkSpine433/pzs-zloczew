@@ -183,12 +183,7 @@ export function generateMetadata(): Metadata {
       'edukacja Złoczew',
       'szkoła średnia Złoczew',
     ],
-    authors: [
-      {
-        name: 'DS-Craft Team',
-        url: 'https://bit.ly/ds-craft',
-      },
-    ],
+    creator: 'DS-Craft Team',
 
     openGraph: {
       title: 'Strona Główna - PZS Złoczew',

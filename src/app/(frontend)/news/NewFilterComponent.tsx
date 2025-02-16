@@ -1,12 +1,5 @@
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-import { SheetClose } from '@/components/ui/sheet'
-import Link from 'next/link'
-import { getPayloadHMR } from '@payloadcms/next/utilities'
+import { getPayload } from 'payload'
 import configPromise from '@/payload.config'
-import { FetchUrlObject } from '@/lib/FetchUrlObject'
-import { redirect, RedirectType } from 'next/navigation'
-import Form from 'next/form'
 import dynamic from 'next/dynamic'
 const NewFilterComponentclient = dynamic(() => import('./NewFilterComponent.client'))
 
@@ -15,7 +8,7 @@ type Props = {
 }
 
 const NewFilterComponent = async ({ searchParams }: Props) => {
-  const payload = await getPayloadHMR({ config: configPromise })
+  const payload = await getPayload({ config: configPromise })
   const { docs } = await payload.find({
     collection: 'news',
     limit: 1,

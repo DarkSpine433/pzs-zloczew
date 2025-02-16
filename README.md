@@ -8,14 +8,14 @@ For detailed information about the CMS, refer to the [Payload CMS Documentation]
 
 You can find a list of the technologies, languages, frameworks, libraries, and other dependencies used in this project in the [`package.json`](./package.json) file.
 
-## Contributing to the Project
+## Contributing to the Project🚀
 
 If you would like to contribute to this project, please ensure that your reports follow the appropriate templates:
 
 - [Bug Report](./.github/ISSUE_TEMPLATE/bug_report.md)
 - [Feature Request](./.github/ISSUE_TEMPLATE/feature_request.md)
 
-Or Make **Pull Request** To **Development Branch** And We Will Check It Out 🚀
+Or Make **Pull Request** To **Development Branch** And We Will Check It Out
 
 ## Using the CMS
 

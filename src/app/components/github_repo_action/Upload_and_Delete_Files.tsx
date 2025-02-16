@@ -10,15 +10,20 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { sha1 } from 'crypto-hash'
 import { set } from 'date-fns'
+import globalStateUpdateUiAfterUpload from '@/lib/GlobalStateUpdateUiAfterUpload'
 const crypto = require('crypto')
 const Upload_and_Delete_Files = () => {
+  const GlobalStateUpdateUiAfterUploadUpdateData = globalStateUpdateUiAfterUpload(
+    (state) => state.updateUiAfterUpload,
+  )
   const [statusOfUpload, setStatusOfUpload] = useState<[]>([])
   const [statusMessage, setStatusMessage] = useState<[]>([])
   const [selectedDocs, segetFileInfoelectedDocs] = useState<File[]>([])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file: any = e.target.files?.[0]
-
+    setStatusMessage([])
+    setStatusOfUpload([])
     if (file) {
       e.target.files?.length && segetFileInfoelectedDocs(Array.from(e.target.files))
     }
@@ -82,7 +87,10 @@ const Upload_and_Delete_Files = () => {
           //@ts-ignore
 
           if (selectedDocs.length - 1 === index) {
-            return [setMessageAndStatus(isUploaded.message, isUploaded.status), location.reload()]
+            return [
+              setMessageAndStatus(isUploaded.message, isUploaded.status),
+              GlobalStateUpdateUiAfterUploadUpdateData(),
+            ]
           }
           return setMessageAndStatus(isUploaded.message, isUploaded.status)
         }
@@ -102,7 +110,7 @@ const Upload_and_Delete_Files = () => {
             uri: window.URL.createObjectURL(file),
             fileName: file.name,
           }))}
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: '100%', height: 'fit-content' }}
           pluginRenderers={DocViewerRenderers}
         />
         {selectedDocs.length > 0 && (
@@ -113,16 +121,29 @@ const Upload_and_Delete_Files = () => {
                 return (
                   <li
                     key={file.name + index.toString()}
-                    className={`w-fit border-b border-b-black px-3 ${
+                    className={`border-2 ${
                       statusOfUpload[index] !== 200 && statusOfUpload[index] > 0
-                        ? 'bg-destructive'
-                        : statusOfUpload[index] === 200 && 'bg-green-500'
-                    }`}
+                        ? 'border-destructive '
+                        : statusOfUpload[index] === 200
+                          ? 'border-green-500'
+                          : ' w-fit border-b border-b-black px-3'
+                    } `}
                   >
                     {file.name}
                     {statusOfUpload[index] > 0 && statusMessage[index].length > 0 && (
                       <>
-                        {statusMessage[index]} Status: {statusOfUpload[index]}{' '}
+                        &nbsp;
+                        <span
+                          className={`underline ${
+                            statusOfUpload[index] !== 200 && statusOfUpload[index] > 0
+                              ? ' text-destructive '
+                              : statusOfUpload[index] === 200 && 'text-green-500'
+                          } `}
+                        >
+                          {statusMessage[index]}
+                        </span>
+                        &nbsp; Status:
+                        <span className="font-semibold">{statusOfUpload[index]}</span>
                       </>
                     )}
                   </li>

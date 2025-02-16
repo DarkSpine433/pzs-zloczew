@@ -1,6 +1,3 @@
-import { getPayload } from 'payload'
-import configPromise from '@payload-config'
-
 import { format, parseISO } from 'date-fns'
 import FavouriteButtonClient from '@/app/components/news/FavouriteButtonClient'
 import { Separator } from '@/components/ui/separator'
