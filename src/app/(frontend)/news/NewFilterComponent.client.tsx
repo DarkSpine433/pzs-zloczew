@@ -1,18 +1,9 @@
 'use client'
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
+
 import { SheetClose, SheetTitle } from '@/components/ui/sheet'
 import Link from 'next/link'
-import { getPayloadHMR } from '@payloadcms/next/utilities'
-import configPromise from '@/payload.config'
-import { FetchUrlObject } from '@/lib/FetchUrlObject'
-import { redirect, RedirectType } from 'next/navigation'
-import Form from 'next/form'
 import { useState } from 'react'
-
 import { useRouter } from 'next/navigation'
-import { Tooltip } from '@nextui-org/tooltip'
-import { cn } from '@/lib/utils'
 import { Slider } from '@/components/ui/slider'
 
 type SliderProps = React.ComponentProps<typeof Slider>

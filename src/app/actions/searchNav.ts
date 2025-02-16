@@ -1,5 +1,5 @@
 'use server'
-import { getPayloadHMR } from '@payloadcms/next/utilities'
+import { getPayload } from 'payload'
 import configPromise from '../../payload.config'
 type Props = {
   title: string
@@ -13,7 +13,7 @@ export const searchNav = async ({ title }: Props) => {
   }
   const limitOfSearches = 10
 
-  const payload = await getPayloadHMR({ config: configPromise })
+  const payload = await getPayload({ config: configPromise })
   var docx = await payload.find({
     collection: 'pages',
     sort: '-createdAt',

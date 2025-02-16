@@ -24,7 +24,7 @@ export const RenderBlocks: React.FC<{
   getH2Headings?: boolean
 }> = (props) => {
   const { blocks } = props
-  console.log('blocks', blocks, props.getH2Headings)
+
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
 
   if (props.getH2Headings && hasBlocks && blocks[0].blockType === 'content') {

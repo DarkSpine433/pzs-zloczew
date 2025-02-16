@@ -2,7 +2,7 @@
 import { unstable_noStore as noStore } from 'next/cache'
 
 import configPromise from '@payload-config'
-import { getPayloadHMR } from '@payloadcms/next/utilities'
+import { getPayload } from 'payload'
 import Image from 'next/image'
 import PayLoadErrorHandling from '@/app/components/PayLoadErrorHandling'
 
@@ -19,7 +19,7 @@ import ImageDialog from '@/app/components/ImageDialog'
 type Props = {}
 
 const GetOffer = async (props: Props) => {
-  const payload = await getPayloadHMR({ config: configPromise })
+  const payload = await getPayload({ config: configPromise })
   const getOffer = await payload.findGlobal({
     slug: 'offer',
   })
