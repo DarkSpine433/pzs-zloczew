@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/alert-dialog'
 import { create } from 'zustand'
 import useGlobalState from '@/lib/GlobalStateFavouriteNews'
+import { unstable_noStore } from 'next/cache'
 
 type Props = {
   id: string
@@ -24,8 +25,11 @@ type Props = {
 }
 
 const FavouriteButtonClient = ({ id, isBlock, className, collection }: Props) => {
-  const arrayOfFavouriteItems = useGlobalState((state) => state.favouriteItems)
-  const test2 = useGlobalState((state) => state.updateFavouriteItems)
+  unstable_noStore()
+  const arrayOfFavouriteItems = useGlobalState({ collection: collection })(
+    (state) => state.favouriteItems,
+  )
+  const test2 = useGlobalState({ collection: collection })((state) => state.updateFavouriteItems)
   const [isDialogFavouriteAccept, setIsDialogFavouriteAccept] = useState(false)
   const addFavouriteHandler = () => {
     if (
@@ -40,6 +44,7 @@ const FavouriteButtonClient = ({ id, isBlock, className, collection }: Props) =>
         try {
           favouriteDeleateOrAdd({ id: id, collection: collection })
           test2()
+          console.log(arrayOfFavouriteItems)
         } catch (error) {
           console.log(error)
         }

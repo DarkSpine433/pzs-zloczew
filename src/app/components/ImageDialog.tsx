@@ -139,7 +139,7 @@ const ImageDialog = ({ imageUrl }: { imageUrl: string }) => {
   return (
     <motion.div
       transition={{ duration: 0 }}
-      className={`relative flex w-fit md:max-w-[22rem] max-w-full lg:max-w-md xl:max-w-lg items-center justify-center hover:cursor-pointer  h-full max-h-[700px] transition-none ${isDialogOpen ? 'overflow-visible ' : 'overflow-hidden transition-none'}`}
+      className={`relative flex w-fit md:max-w-[22rem] max-w-full lg:max-w-md xl:max-w-lg items-center justify-center hover:cursor-pointer  h-full max-h-[700px] transition-none rounded-xl   ${isDialogOpen ? 'overflow-visible ' : 'overflow-hidden transition-none'}`}
     >
       <div
         style={{

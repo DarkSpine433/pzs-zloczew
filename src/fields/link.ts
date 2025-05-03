@@ -69,6 +69,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
 
   const linkTypes: Field[] = [
     {
+      unique: true,
       name: 'reference',
       type: 'relationship',
       admin: {
@@ -80,6 +81,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
       required: true,
     },
     {
+      unique: true,
       name: 'url',
       type: 'text',
       admin: {

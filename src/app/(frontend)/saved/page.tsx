@@ -59,7 +59,7 @@ const Page = () => {
           Zapisane
         </h1>
       </div>
-      <div className="mx-auto my-5 flex min-h-[600px] max-w-screen-xl flex-col gap-10 px-5">
+      <div className="mx-auto py-5  flex min-h-[600px] max-w-screen-xl flex-col gap-10 px-5">
         <Carousel
           opts={{ dragFree: true }}
           className="rounded-lg border border-primary bg-secondary/50 px-3 pb-3 shadow-lg"

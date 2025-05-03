@@ -1,25 +1,30 @@
 import { create } from 'zustand'
 
-type Store = {
+type Props = {
   favouriteItems: string[]
   updateFavouriteItems: () => void
 }
 
-const useGlobalState = create<Store>((set) => ({
-  favouriteItems:
-    typeof window !== 'undefined' &&
-    typeof localStorage !== 'undefined' &&
-    localStorage.getItem('FavouriteNews')
-      ? (localStorage.getItem('FavouriteNews')?.split(',') ?? [])
-      : [],
+const useGlobalState = ({ collection = 'News' }: { collection?: string }) => {
+  const collectionName = `Favourite${collection[0].toUpperCase() + collection.slice(1)}`
+  const useGlobalStateWithCollection = create<Props>((set) => ({
+    favouriteItems:
+      typeof window !== 'undefined' &&
+      typeof localStorage !== 'undefined' &&
+      localStorage.getItem(collectionName)
+        ? (localStorage.getItem(collectionName)?.split(',') ?? [])
+        : [],
 
-  updateFavouriteItems: () =>
-    set(() => ({
-      favouriteItems:
-        typeof window !== 'undefined' && typeof localStorage !== 'undefined'
-          ? (localStorage.getItem('FavouriteNews')?.split(',') ?? [])
-          : [],
-    })),
-}))
+    updateFavouriteItems: () =>
+      set(() => ({
+        favouriteItems:
+          typeof window !== 'undefined' && typeof localStorage !== 'undefined'
+            ? (localStorage.getItem(collectionName)?.split(',') ?? [])
+            : [],
+      })),
+  }))
+
+  return useGlobalStateWithCollection
+}
 
 export default useGlobalState

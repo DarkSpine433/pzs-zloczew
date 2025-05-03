@@ -21,6 +21,7 @@ type Props = {
 }
 
 const TemplateNews = ({ doc, reference, customUrl, slugAndIdAndRelationTo }: Props) => {
+  console.log('doc', doc, slugAndIdAndRelationTo, reference, customUrl)
   return (
     <div
       className={`group relative h-fit w-full overflow-hidden rounded-xl transition-all  hover:shadow-xl outline outline-1 outline-gray-200 hover:outline-primary hover:outline-1 focus-within:outline-primary focus-within:outline-1 show-news-u-are-in-${slugAndIdAndRelationTo != undefined ? slugAndIdAndRelationTo.id : doc.id}`}
@@ -79,10 +80,17 @@ const TemplateNews = ({ doc, reference, customUrl, slugAndIdAndRelationTo }: Pro
           </CardContent>
         </Card>
       </CMSLink>
-      <FavouriteButtonClient
-        id={slugAndIdAndRelationTo != undefined ? slugAndIdAndRelationTo.id : doc.id}
-        collection={reference?.relationTo}
-      />
+      {(slugAndIdAndRelationTo?.relationTo || reference?.relationTo) &&
+        (slugAndIdAndRelationTo?.id || doc.id) && (
+          <FavouriteButtonClient
+            id={slugAndIdAndRelationTo != undefined ? slugAndIdAndRelationTo.id : doc.id}
+            collection={
+              reference?.relationTo != undefined
+                ? reference.relationTo
+                : slugAndIdAndRelationTo?.relationTo
+            }
+          />
+        )}
     </div>
   )
 }
